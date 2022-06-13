@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/Feedback_list.dart';
 
-
-
 class FeedbackV extends StatefulWidget {
   const FeedbackV({Key? key}) : super(key: key);
 
@@ -17,11 +15,12 @@ class _FeedbackVState extends State<FeedbackV> with TickerProviderStateMixin {
     TabController _tabController = TabController(length: 2, vsync: this);
     TextEditingController _feedbackController = TextEditingController();
     List<Feedbacks> feedbacks = [
-      Feedbacks('He is a good labour', 'Kiri Saman', 'worker1.jpg'),
+      Feedbacks('He is a ', 'Kiri Saman', 'worker1.jpg'),
       Feedbacks('He is very Experienced', 'Sudesh', 'worker2.jpg'),
       Feedbacks('He is a clever labour', 'Raveen Wick', 'worker3.jpg'),
       Feedbacks('He is a good labour', 'Heshan Moma', 'worker1.jpg'),
-      Feedbacks('He is experienced labour', 'Dinuranga Priyasad', 'worker2.jpg'),
+      Feedbacks(
+          'He is experienced labour', 'Dinuranga Priyasad', 'worker2.jpg'),
     ];
     return Scaffold(
       backgroundColor: Colors.white,
