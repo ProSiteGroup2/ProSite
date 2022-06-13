@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api
+// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
@@ -317,7 +317,7 @@ Map<String, dynamic> data = {
                                                           onPressed: () {
                                                               Navigator.push(
                                                                 context,
-                                                                MaterialPageRoute(builder: (context) => cement()),
+                                                                MaterialPageRoute(builder: (context) => cement(context: context, imgs: data['images'])),
                                                               );
                                                             },
                                                             
