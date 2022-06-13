@@ -78,7 +78,7 @@ class _ItemDetailsState extends State<ItemDetails> with TickerProviderStateMixin
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Safy Goggles",style: TextStyle(fontFamily: "poppins",fontSize: 22,fontWeight: FontWeight.w700,height: 2)),
+                    Text("Safety Goggles",style: TextStyle(fontFamily: "poppins",fontSize: 22,fontWeight: FontWeight.w700,height: 2)),
                     Container(
                       //price            
                       width: kPropWidth(context, 0.22) ,
