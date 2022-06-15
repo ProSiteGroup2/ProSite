@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/pages/user_profile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ItemDetails extends StatefulWidget {
@@ -174,7 +177,7 @@ class _ItemDetailsState extends State<ItemDetails> with TickerProviderStateMixin
                                               Padding(
                                                 padding: const EdgeInsets.all(5.0),
                                                 child: Text(
-                                                "Condition\t -",
+                                                "Condition  -",
                                                 textAlign: TextAlign.justify,
                                                 style: TextStyle(
                                                     fontFamily: "poppins",
@@ -188,7 +191,7 @@ class _ItemDetailsState extends State<ItemDetails> with TickerProviderStateMixin
                                             Padding(
                                               padding: const EdgeInsets.all(5.0),
                                               child: Text(
-                                                "Quantity\t -",
+                                                "Quantity  -",
                                                 textAlign: TextAlign.justify,
                                                 style: TextStyle(
                                                     fontFamily: "poppins",
@@ -202,7 +205,7 @@ class _ItemDetailsState extends State<ItemDetails> with TickerProviderStateMixin
                                             Padding(
                                               padding: const EdgeInsets.all(5.0),
                                               child: Text(
-                                                "Model\t -",
+                                                "Model  -",
                                                 textAlign: TextAlign.justify,
                                                 style: TextStyle(
                                                     fontFamily: "poppins",
@@ -291,6 +294,7 @@ class _ItemDetailsState extends State<ItemDetails> with TickerProviderStateMixin
                                   child: Column(
                                     children: [
                                       Container(
+                                        //about title
                                         width: kPropWidth(context, 1) - 32,
                                         height: kPropHeight(context, 0.1) - 32,
                                         child: Text(
@@ -303,6 +307,130 @@ class _ItemDetailsState extends State<ItemDetails> with TickerProviderStateMixin
                                               height: 1.15),
                                         ),
                                       ),
+                                      Container(
+                                        //about content
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              //seller icon
+                                            ),
+                                            Container(
+                                              //seller details
+                                                 decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      //  border: Border.all(width: 2, color: Colors.grey.shade200),
+                                                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Colors.grey.withOpacity(0.25),
+                                                            spreadRadius: 10,
+                                                            blurRadius: 7,
+                                                            offset: const Offset(2, 5), // changes position of shadow
+                                                          ),
+                                                          BoxShadow(
+                                                            color: Colors.white.withOpacity(0.8),
+                                                            spreadRadius: 10,
+                                                            blurRadius: 7,
+                                                            
+                                                            offset: const Offset(-10, -10), // changes position of shadow
+                                                          ),
+                                                        ],
+                                                    ),
+                                                    child: ElevatedButton(
+                                
+                              onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) =>User_Profile()),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    
+                                     primary: Colors.white,
+                                     shadowColor: Colors.grey.withOpacity(0.25),
+                                     padding: const EdgeInsets.symmetric(
+                                       vertical: 0.0, horizontal: 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                      ),
+                                    ), 
+                               
+                  
+
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  //image
+                                                  alignment: Alignment.centerLeft,
+                                                  width: 110,
+                                                  height: 100,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(width: 1, color: Colors.grey.shade200),
+                                                    borderRadius: BorderRadius.circular(20),
+                                                    color: Colors.white,
+                                                    image: DecorationImage(
+                                                      image: AssetImage("assets/imgs/stee.jpg"),
+                                                      fit: BoxFit.cover,     
+                                                      ),
+                                                    ),
+                                                ),
+                                                Container(
+                                                  //details of a item
+                                                  margin: const EdgeInsets.only(top: 20),
+                                                  width: 100,
+                                                  height: 100,
+                                                  child: Column(
+                                                    children: [
+                                                      Container(
+                                                        child: const Text("Cement",
+                                                      textAlign: TextAlign.right,
+                                                      style: TextStyle(
+                                                          fontFamily: "poppins",
+                                                          fontSize: 14,
+                                                          color: Colors.black,
+                                                          fontWeight: FontWeight.bold,
+                                                          height: 1.15),),
+                                                      ),
+                                                      Container(
+                                                        width: 100,
+                                                        margin: const EdgeInsets.all(7),
+                                                        padding: const EdgeInsets.only(left:2.0,right: 2),
+                                                        child: Row(
+                                                          children: [
+                                                            Container(
+                                                              width: 20,
+                                                              child: const Icon(Icons.location_on,size: 12.0,color: Colors.black,)),
+                                                            Container(
+                                                              width:60,
+                                                              padding: const EdgeInsets.only(left:3.0,right: 2),
+                                                              child: const Text(
+                                                                "Perera Hardware, Maharagama",
+                                                                style: TextStyle(
+                                                                  color: Colors.black,
+                                                                  fontSize: 8),
+                                                                  maxLines:3,
+                                                                  overflow: TextOverflow.ellipsis
+                                                                  ,softWrap: false,
+                                                                  ))
+                                                          ],
+                                                        ),
+                                                      )
+                                          
+                                                      
+                                                    ],
+                                                    
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                        
+                                                    
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      
                                       ],
                                   ),
                                       

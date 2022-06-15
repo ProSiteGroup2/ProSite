@@ -310,38 +310,34 @@ Map<String, dynamic> data = {
                                                             borderRadius: BorderRadius.circular(20.0)
                                                     ),
                                                     
-                                                    child: SizedBox(
-                                                      width: kPropWidth(context, 0.4),
-                                                    height: kPropHeight(context, 0.08),
-                                                      child: ElevatedButton(
-                                                        
-                                                        onPressed: () {
-                                                            Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(builder: (context) => cement(context: context, imgs: data['images'])),
-                                                            );
-                                                            
-                                                          },
-                                                          child: const Text("Cement",
-                                                          style: TextStyle(
-                                                            fontFamily: "Poppins",
-                                                            fontWeight: FontWeight.bold,
-                                                            fontSize: 25,
-                                                            color: Colors.white),),
+                                                    child: ElevatedButton(
+                                                      
+                                                      onPressed: () {
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(builder: (context) => cement(context: context, imgs: data['images'])),
+                                                          );
                                                           
-                                                          style: ElevatedButton.styleFrom(
-                                                           
-                                                            primary: Colors.white12,
-                                                            // shadowColor: Colors. transparent,
-                                                            padding: const EdgeInsets.symmetric(
-                                                              vertical: 0.0, horizontal: 0.0),
+                                                        },
+                                                        child: const Text("Cement",
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 25,
+                                                          color: Colors.white),),
+                                                        
+                                                        style: ElevatedButton.styleFrom(
+                                                         
+                                                          primary: Colors.white12,
+                                                          // shadowColor: Colors. transparent,
+                                                          padding: const EdgeInsets.symmetric(
+                                                            vertical: 0.0, horizontal: 0.0),
+                                                            
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(20.0),
                                                               
-                                                              shape: RoundedRectangleBorder(
-                                                                borderRadius: BorderRadius.circular(20.0),
-                                                                
-                                                              ),
-                                                            ), 
-                                                      ),
+                                                            ),
+                                                          ), 
                                                     ),
                                                       ),
                                                   ),
