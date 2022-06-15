@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:group2/pages/user_profile.dart';
 import 'package:group2/src/ui/customer_activities.dart';
 import 'package:group2/src/ui/home_screen.dart';
-
-
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -13,24 +11,21 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  int currindex=0;
-  final screens=[
-    HomeScreen(),CActivity(),Text("a"),Text('Profile')
-  ];
+  int currindex = 0;
+  final screens = [HomeScreen(), CActivity(), Text("a"), User_Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body:IndexedStack(
+      body: IndexedStack(
         index: currindex,
-          children: screens,
+        children: screens,
       ),
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0),topRight: Radius.circular(15.0)),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
         child: BottomNavigationBar(
-
           currentIndex: currindex,
-          onTap: (index)=>setState(()=>currindex=index),
+          onTap: (index) => setState(() => currindex = index),
           showUnselectedLabels: false,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
