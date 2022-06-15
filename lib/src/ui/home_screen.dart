@@ -244,6 +244,7 @@ Map<String, dynamic> data = {
                                 child: Column(
                                   children: [
                                       Container(
+                                        //category title
                                         child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [

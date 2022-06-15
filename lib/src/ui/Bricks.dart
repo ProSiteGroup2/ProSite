@@ -39,10 +39,12 @@ class _brickState extends State<brick> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
+        
         bottom: PreferredSize(
           preferredSize:Size.fromHeight(kPropHeight(context, 0.1)),
           
-          child: Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
                 Container(
                 margin: EdgeInsets.all(20),
@@ -56,7 +58,18 @@ class _brickState extends State<brick> {
                 ),
                 
                 ),
+              ),
+              Container(
+                child: Image.asset('assets/imgs/bricks.jpg', fit: BoxFit.cover,width: kPropWidth(context, 0.5),height: kPropHeight(context, 0.168),),
               )
+        //       title: Row(
+          
+        //   children: <Widget>[
+            
+        //     Text("Bricks",style: TextStyle(fontFamily: "Poppins",color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+        //     Image.asset('assets/imgs/bricks.jpg', fit: BoxFit.fill),
+        //   ],
+        // ),
            
             ],
           ),
