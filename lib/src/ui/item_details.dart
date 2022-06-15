@@ -382,7 +382,7 @@ class _ItemDetailsState extends State<ItemDetails> with TickerProviderStateMixin
                                                   child: Column(
                                                     children: [
                                                       Container(
-                                                        child: const Text("Cement",
+                                                        child: const Text("Ceent",
                                                       textAlign: TextAlign.right,
                                                       style: TextStyle(
                                                           fontFamily: "poppins",
