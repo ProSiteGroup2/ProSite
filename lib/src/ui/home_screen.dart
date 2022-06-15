@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables
+// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
@@ -298,61 +298,51 @@ Map<String, dynamic> data = {
                                                         ),
 
 
-                                                    child: Stack(
-                                                      children: [
-                                                        
-                                                        Container(
-                                                        //cement
-                                                        width: kPropWidth(context, 0.4),
-                                                        height: kPropHeight(context, 0.08),
-                                                        decoration: BoxDecoration(
-                                                           image: const DecorationImage(
-                                                                image: AssetImage("assets/imgs/cement.jpg"),
-                                                                fit: BoxFit.cover,     
-                                                                ),
-                                                                borderRadius: BorderRadius.circular(20.0)
-                                                        ),
+                                                    child: Container(
+                                                    //cement
+                                                    width: kPropWidth(context, 0.4),
+                                                    height: kPropHeight(context, 0.08),
+                                                    decoration: BoxDecoration(
+                                                       image: const DecorationImage(
+                                                            image: AssetImage("assets/imgs/cement.jpg"),
+                                                            fit: BoxFit.cover,     
+                                                            ),
+                                                            borderRadius: BorderRadius.circular(20.0)
+                                                    ),
                                                     
-                                                        child: ElevatedButton(
-                                                          onPressed: () {
-                                                              Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(builder: (context) => cement(context: context, imgs: data['images'])),
-                                                              );
-                                                            },
+                                                    child: SizedBox(
+                                                      width: kPropWidth(context, 0.4),
+                                                    height: kPropHeight(context, 0.08),
+                                                      child: ElevatedButton(
+                                                        
+                                                        onPressed: () {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(builder: (context) => cement(context: context, imgs: data['images'])),
+                                                            );
                                                             
-                                                            style: ElevatedButton.styleFrom(
-                                                             
-                                                              primary: Colors.white12,
-                                                              // shadowColor: Colors. transparent,
-                                                              padding: const EdgeInsets.symmetric(
-                                                                vertical: 0.0, horizontal: 0.0),
+                                                          },
+                                                          child: const Text("Cement",
+                                                          style: TextStyle(
+                                                            fontFamily: "Poppins",
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 25,
+                                                            color: Colors.white),),
+                                                          
+                                                          style: ElevatedButton.styleFrom(
+                                                           
+                                                            primary: Colors.white12,
+                                                            // shadowColor: Colors. transparent,
+                                                            padding: const EdgeInsets.symmetric(
+                                                              vertical: 0.0, horizontal: 0.0),
+                                                              
+                                                              shape: RoundedRectangleBorder(
+                                                                borderRadius: BorderRadius.circular(20.0),
                                                                 
-                                                                shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(20.0),
-                                                                  
-                                                                ),
-                                                              ), child: null, 
-                                                        ),
+                                                              ),
+                                                            ), 
                                                       ),
-                                                        Center(
-                                                         //text
-                                                         
-                                                          child: Container(
-                                                             
-                                                             height: 30,
-                                                            
-                                                            //  padding: const EdgeInsets.all(10),
-                                                            child: const Text("Cement",
-                                                              style: TextStyle(
-                                                                fontFamily: "Poppins",
-                                                                fontWeight: FontWeight.bold,
-                                                                fontSize: 25,
-                                                                color: Colors.white),),
-                                                          ),
-                                                        ),
-                                                         
-                                                      ],
+                                                    ),
                                                       ),
                                                   ),
                                                   Container(
@@ -383,59 +373,44 @@ Map<String, dynamic> data = {
                                                         ),
 
 
-                                                    child: Stack(
-                                                      children: [
-                                                          Container(
+                                                    child: Container(
                                                         //bricks
                                                         width: kPropWidth(context, 0.4),
                                                         height: kPropHeight(context, 0.08),
                                                         decoration: BoxDecoration(
-                                                           image: const DecorationImage(
-                                                                image: AssetImage("assets/imgs/bricks.jpg"),
-                                                                fit: BoxFit.cover,     
-                                                                ),
-                                                                borderRadius: BorderRadius.circular(20.0)
+                                                     image: const DecorationImage(
+                                                          image: AssetImage("assets/imgs/bricks.jpg"),
+                                                          fit: BoxFit.cover,     
+                                                          ),
+                                                          borderRadius: BorderRadius.circular(20.0)
                                                         ),
                                                         child: ElevatedButton(
-                                                          onPressed: () {
-                                                              Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(builder: (context) =>const bricks()),
-                                                              );
-                                                            },
-                                                            style: ElevatedButton.styleFrom(
-                                                              
-                                                              primary: Colors.white12,
-                                                              // shadowColor: Colors. transparent,
-                                                              padding: const EdgeInsets.symmetric(
-                                                                vertical: 0.0, horizontal: 0.0),
-                                                                shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(20.0),
-                                                                ),
-                                                              ), child: null, 
-                                                        ),
-                                                      ),
-                                                          Center(
-                                                         //text
-                                                         
-                                                          child: Container(
-                                                            //  color: Colors.black54,
-                                                             height: 30,
-                                                            
-                                                            //  padding: const EdgeInsets.all(10),
-                                                            child: const Text("Bricks",
-                                                              style: TextStyle(
-                                                                fontFamily: "Poppins",
-                                                                fontWeight: FontWeight.bold,
-                                                                fontSize: 25,
-                                                                color: Colors.white),),
+                                                    onPressed: () {
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(builder: (context) => brick(context: context, imgs: data['images'])),
+                                                        );
+                                                      },
+                                                      child: const Text("Bricks",
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 25,
+                                                          color: Colors.white),),
+
+
+                                                      style: ElevatedButton.styleFrom(
+                                                        
+                                                        primary: Colors.white12,
+                                                        // shadowColor: Colors. transparent,
+                                                        padding: const EdgeInsets.symmetric(
+                                                          vertical: 0.0, horizontal: 0.0),
+                                                          shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(20.0),
                                                           ),
                                                         ),
-                                                        
-                                                      
-                                                    
-                                                      ],
-                                                       ),
+                                                        ),
+                                                      ),
                                                   )
                                                 
                                                 ],
@@ -473,57 +448,44 @@ Map<String, dynamic> data = {
                                                         ),
 
 
-                                                    child: Stack(
-                                                      children: [
-                                                          Container(
+                                                    child: Container(
                                                         //steel
                                                         width: kPropWidth(context, 0.4),
                                                         height: kPropHeight(context, 0.08),
                                                         decoration: BoxDecoration(
-                                                           image: const DecorationImage(
-                                                                image: AssetImage("assets/imgs/stee.jpg"),
-                                                                fit: BoxFit.cover,     
-                                                                ),
-                                                                borderRadius: BorderRadius.circular(20.0)
+                                                     image: const DecorationImage(
+                                                          image: AssetImage("assets/imgs/stee.jpg"),
+                                                          fit: BoxFit.cover,     
+                                                          ),
+                                                          borderRadius: BorderRadius.circular(20.0)
                                                         ),
                                                         child: ElevatedButton(
-                                                          onPressed: () {
-                                                              Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(builder: (context) =>const steel()),
-                                                              );
-                                                            },
-                                                            style: ElevatedButton.styleFrom(
-                                                              
-                                                              primary: Colors.white12,
-                                                              shadowColor: Colors. transparent,
-                                                              padding: const EdgeInsets.symmetric(
-                                                                vertical: 0.0, horizontal: 0.0),
-                                                                shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(20.0),
-                                                                ),
-                                                              ), child: null, 
-                                                        ),
-                                                      ),
-                                                          Center(
-                                                         //text
-                                                         
-                                                          child: Container(
-                                                            //  color: Colors.black54,
-                                                             height: 30,
-                                                            
-                                                            //  padding: const EdgeInsets.all(10),
-                                                            child: const Text("Steel",
-                                                              style: TextStyle(
-                                                                fontFamily: "Poppins",
-                                                                fontWeight: FontWeight.bold,
-                                                                fontSize: 25,
-                                                                color: Colors.white),),
+                                                    onPressed: () {
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(builder: (context) =>steel(context: context, imgs: data['images'])),
+                                                        );
+                                                      },
+                                                      child: const Text("Steel",
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 25,
+                                                          color: Colors.white),),
+
+                                                          
+                                                      style: ElevatedButton.styleFrom(
+                                                        
+                                                        primary: Colors.white12,
+                                                        shadowColor: Colors. transparent,
+                                                        padding: const EdgeInsets.symmetric(
+                                                          vertical: 0.0, horizontal: 0.0),
+                                                          shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(20.0),
                                                           ),
                                                         ),
-                                                        
-                                                      ],
-                                                       ),
+                                                        ),
+                                                      ),
                                                   ),
                                                   Container(
                                                     //sand
@@ -553,55 +515,41 @@ Map<String, dynamic> data = {
                                                         ),
 
 
-                                                    child: Stack(
-                                                      children: [
-                                                             Container(
-                                                                //sand
-                                                                 width: kPropWidth(context, 0.4),
-                                                                 height: kPropHeight(context, 0.08),
-                                                                decoration: BoxDecoration(
-                                                                  image: const DecorationImage(
-                                                                        image: AssetImage("assets/imgs/sand.jpg"),
-                                                                        fit: BoxFit.cover,     
-                                                                        ),
-                                                                        borderRadius: BorderRadius.circular(20.0)
-                                                                ),
-                                                                child: ElevatedButton(
-                                                                  onPressed: () {
-                                                                      Navigator.push(
-                                                                        context,
-                                                                        MaterialPageRoute(builder: (context) =>const sand()),
-                                                                      );
-                                                                    },
-                                                                    style: ElevatedButton.styleFrom(
-                                                                      
-                                                                      primary: Colors.white10,
-                                                                      // shadowColor: Colors. transparent,
-                                                                      padding: const EdgeInsets.symmetric(
-                                                                        vertical: 0.0, horizontal: 0.0),
-                                                                        shape: RoundedRectangleBorder(
-                                                                          borderRadius: BorderRadius.circular(20.0),
-                                                                        ),
-                                                                      ), child: null, 
-                                                                ),
-                                                      ),
-                                                              Center(
-                                                         //text
-                                                         
-                                                          child: Container(
-                                                            //  color: Colors.black54,
-                                                             height: 30,
-                                                            
-                                                            //  padding: const EdgeInsets.all(10),
-                                                            child: const Text("Sand",
+                                                    child: Container(
+                                                       //sand
+                                                        width: kPropWidth(context, 0.4),
+                                                        height: kPropHeight(context, 0.08),
+                                                       decoration: BoxDecoration(
+                                                         image: const DecorationImage(
+                                                               image: AssetImage("assets/imgs/sand.jpg"),
+                                                               fit: BoxFit.cover,     
+                                                               ),
+                                                               borderRadius: BorderRadius.circular(20.0)
+                                                       ),
+                                                       child: ElevatedButton(
+                                                         onPressed: () {
+                                                             Navigator.push(
+                                                               context,
+                                                               MaterialPageRoute(builder: (context) => sand(context: context, imgs: data['images'])),
+                                                             );
+                                                           },
+                                                           child: const Text("Sand",
                                                               style: TextStyle(
                                                                 fontFamily: "Poppins",
                                                                 fontWeight: FontWeight.bold,
                                                                 fontSize: 25,
                                                                 color: Colors.white),),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                           style: ElevatedButton.styleFrom(
+                                                             
+                                                             primary: Colors.white10,
+                                                             // shadowColor: Colors. transparent,
+                                                             padding: const EdgeInsets.symmetric(
+                                                               vertical: 0.0, horizontal: 0.0),
+                                                               shape: RoundedRectangleBorder(
+                                                                 borderRadius: BorderRadius.circular(20.0),
+                                                               ),
+                                                             ), 
+                                                       ),
                                                       ),
                                                   )
                                                 
