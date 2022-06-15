@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:group2/components/navigation_bar.dart';
 import 'package:group2/pages/starting.dart';
 import 'package:group2/src/ui/home_screen.dart';
+import 'package:group2/pages/notifications.dart';
 
 // import 'dart:ui';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
           // '/home': (context) => HomeScreen(),    //give the home page class name
           '/start': (context) => Starting(), //give the start page class name
           '/navbar': (context) => NavBar(), //give the navbar page class name
+          '/notifications':(context)=>Notifications(),
           // .....
           // ...... give other pages class name like above
         });

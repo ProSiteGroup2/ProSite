@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:group2/pages/user_profile.dart';
 import 'package:group2/src/ui/customer_activities.dart';
 import 'package:group2/src/ui/home_screen.dart';
+import 'package:group2/pages/notifications.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int currindex = 0;
-  final screens = [HomeScreen(), CActivity(), Text("a"), User_Profile()];
+  final screens = [HomeScreen(), CActivity(), Notifications(), User_Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
