@@ -1,9 +1,12 @@
-// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/components/image_causerol.dart';
 import 'package:group2/components/image_causerol_a.dart';
+import 'package:group2/pages/about_setting.dart';
+import 'package:group2/pages/loginas_cons.dart';
+import 'package:group2/pages/loginpage.dart';
 import 'package:group2/src/ui/Bricks.dart';
 import 'package:group2/src/ui/Cement.dart';
 import 'package:group2/src/ui/Sand.dart';
@@ -121,15 +124,51 @@ Map<String, dynamic> data = {
                       elevation: 0,    
                       
                       actions: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: IconButton(
-                            icon: const Icon(Icons.menu, color: Colors.black),
-                            onPressed: () {
-                              print("A");
-                            },
-                          ),
-                        )
+                        // Container(
+                        //   margin: const EdgeInsets.only(right: 15),
+                        //   child: IconButton(
+                        //     icon: const Icon(Icons.menu, color: Colors.black),
+                        //     onPressed: () {
+                        //       print("A");
+                        //     },
+                        //   ),
+                        // )
+                           PopupMenuButton(
+                             // add icon, by default "3 dot" icon
+                              icon: Icon(Icons.menu_rounded,color: Colors.black87,size: 28,),
+                              // position: ,                   
+                              itemBuilder: (context){
+                                                     
+                                return [
+                                  
+                                        PopupMenuItem<int>(
+                                            value: 0,
+                                            child: Text("About and Settings"),
+                                        ),
+
+                                        PopupMenuItem<int>(
+                                            value: 1,
+                                            child: Text("Logout"),
+                                        ),
+
+                                        
+                                    ];
+                              },
+                              onSelected:(value){
+                                  if(value == 0){
+                                    Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => About()),
+                                        );
+                                  }else if(value == 1){
+                                    Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => Loginas_cons()),
+                                        );
+                                  }
+                              }
+                              ),
+
                       ],
                       leading: Container(
                         margin: const EdgeInsets.only(left: 18, top: 12, bottom: 10),
