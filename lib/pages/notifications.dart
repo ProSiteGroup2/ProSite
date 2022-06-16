@@ -29,7 +29,7 @@ class _NotificationsState extends State<Notifications> {
             children: [
               Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top:20.0),
+                    padding: const EdgeInsets.only(top:20.0, bottom: 20.0),
                     child: Text('Notifications',
                       style: TextStyle(
                         fontFamily: 'Roboto',
@@ -79,13 +79,12 @@ class _NotificationsState extends State<Notifications> {
                                 ),
                               ),
                             ),
-                            title: Column(
-                              children: <Widget>[
-
-                              ],
+                            title: Text(notice[index].msg,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                            ),),
                             ),
                           ),
-                        ),
                       );
                     },
                   ),
