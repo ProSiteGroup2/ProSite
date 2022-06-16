@@ -38,7 +38,10 @@ class _steelState extends State<steel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade100,
+        backgroundColor: Colors.white,
+         iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
         
         bottom: PreferredSize(
           preferredSize:Size.fromHeight(kPropHeight(context, 0.1)),
