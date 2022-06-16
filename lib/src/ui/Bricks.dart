@@ -51,7 +51,7 @@ class _brickState extends State<brick> {
                 alignment: Alignment.bottomCenter,
                 child: Text("Bricks",
                 style: TextStyle(
-                  fontFamily: "poppins",
+                  fontFamily: "Poppins",
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   height: 1.15

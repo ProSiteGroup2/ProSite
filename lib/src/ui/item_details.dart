@@ -24,14 +24,17 @@ class _ItemDetailsState extends State<ItemDetails>
       appBar: AppBar(
         backgroundColor: Color(0xE5E5E5),
         elevation: 0,
-        toolbarHeight: 70,
+        toolbarHeight: 60,
         actions: [
           Container(
             margin: EdgeInsets.only(right: 15),
             child: IconButton(
               icon: Icon(Icons.shopping_cart_outlined, color: Colors.black),
               onPressed: () {
-                print("cart");
+               Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => addcart()),
+                  );
               },
             ),
           )
@@ -45,7 +48,7 @@ class _ItemDetailsState extends State<ItemDetails>
                 //image box
                 width: kPropWidth(context, 1) - 20,
                 height: kPropHeight(context, 0.40) - 32,
-                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(20.0),
@@ -335,12 +338,48 @@ class _ItemDetailsState extends State<ItemDetails>
                           Container(
                             //about content
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
                                     //seller icon
+                                          margin: const EdgeInsets.fromLTRB(0, 0, 2, 20),
+                                          width: kPropWidth(context, 0.2),
+                                          height: kPropHeight(context, 0.1),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          //  border: Border.all(width: 2, color: Colors.grey.shade200),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.25),
+                                              spreadRadius: 10,
+                                              blurRadius: 7,
+                                              offset: const Offset(
+                                                  2, 5), // changes position of shadow
+                                            ),
+                                            BoxShadow(
+                                              color: Colors.white.withOpacity(0.8),
+                                              spreadRadius: 10,
+                                              blurRadius: 7,
+
+                                              offset: const Offset(-10,
+                                                  -10), // changes position of shadow
+                                            ),
+                                          ],
+                                          image: DecorationImage(
+                                              image: AssetImage("assets/imgs/self.jpg"),
+                                              fit: BoxFit.cover,     
+                                              ),
+                                        ),
+
+                                        
                                     ),
                                 Container(
                                   //seller details
+                                   margin: const EdgeInsets.fromLTRB(0, 0, 20, 20),
+                                    width: kPropWidth(context, 0.6),
+                                    height: kPropHeight(context, 0.1),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     //  border: Border.all(width: 2, color: Colors.grey.shade200),
@@ -385,42 +424,26 @@ class _ItemDetailsState extends State<ItemDetails>
                                       ),
                                     ),
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Container(
-                                          //image
-                                          alignment: Alignment.centerLeft,
-                                          width: 110,
-                                          height: 100,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                width: 1,
-                                                color: Colors.grey.shade200),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: Colors.white,
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  "assets/imgs/stee.jpg"),
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
+                                        
                                         Container(
                                           //details of a item
                                           margin:
                                               const EdgeInsets.only(top: 20),
-                                          width: 100,
-                                          height: 100,
+                                           width: kPropWidth(context, 0.4),
+                                           height: kPropHeight(context, 0.1),
                                           child: Column(
+                                            
                                             children: [
                                               Container(
                                                 child: const Text(
-                                                  "Cement",
+                                                  "Abc Company",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                       fontFamily: "poppins",
                                                       fontSize: 14,
-                                                      color: Colors.black,
+                                                      color: Colors.black87,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       height: 1.15),
@@ -428,41 +451,16 @@ class _ItemDetailsState extends State<ItemDetails>
                                               ),
                                               Container(
                                                 width: 100,
-                                                margin: const EdgeInsets.all(7),
+                                                margin: const EdgeInsets.fromLTRB(15, 10, 0, 10),
                                                 padding: const EdgeInsets.only(
                                                     left: 2.0, right: 2),
-                                                child: Row(
-                                                  children: [
-                                                    Container(
-                                                        width: 20,
-                                                        child: const Icon(
-                                                          Icons.location_on,
-                                                          size: 12.0,
-                                                          color: Colors.black,
-                                                        )),
-                                                    Container(
-                                                        width: 60,
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 3.0,
-                                                                right: 2),
-                                                        child: const Text(
-                                                          "Perera Hardware, Maharagama",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 8),
-                                                          maxLines: 3,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          softWrap: false,
-                                                        ))
-                                                  ],
-                                                ),
+                                                child: Text("View Profile", style: TextStyle(fontFamily: "Poppins",color: Colors.grey),),
                                               )
                                             ],
                                           ),
+                                        ),
+                                        Container(
+                                          child: Icon(Icons.arrow_forward_ios_rounded, color: Colors.black,),
                                         )
                                       ],
                                     ),

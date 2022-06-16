@@ -687,32 +687,32 @@ Map<String, dynamic> data = {
                                   child: Row(
                                     children: [
                                     
-                                    Flexible(
-                                      // TEXTFIELD
-                                      flex: 1,
-                                      child: TextField(
-                                        style: const TextStyle( height: 0.5 ),
-                                        cursorColor: Colors.grey,
-                                          decoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.only(right: 15,left: 18),
-                                          fillColor: Colors.white,
-                                          filled: true,
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(15),
-                                              borderSide: BorderSide.none
-                                              
+                                        Flexible(
+                                          // TEXTFIELD
+                                          flex: 1,
+                                          child: TextField(
+                                            style: const TextStyle( height: 0.5 ),
+                                            cursorColor: Colors.grey,
+                                              decoration: InputDecoration(
+                                              contentPadding: const EdgeInsets.only(right: 15,left: 18),
+                                              fillColor: Colors.white,
+                                              filled: true,
+                                                border: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.circular(15),
+                                                  borderSide: BorderSide.none
+                                                  
+                                                ),
+                                                
+                                              hintText: 'Search Category...',
+                                              hintStyle: const TextStyle(
+                                                
+                                                fontFamily: 'Poppins',
+                                                color: Colors.grey,
+                                                fontSize: 16
+                                              ),
                                             ),
-                                            
-                                          hintText: 'Search Category...',
-                                          hintStyle: const TextStyle(
-                                            
-                                            fontFamily: 'Poppins',
-                                            color: Colors.grey,
-                                            fontSize: 16
-                                          ),
-                                        ),
-                                  ),
-                                ),
+                                      ),
+                                    ),
                                     Container(
                                       //search button
                                       margin: const EdgeInsets.only (left: 10),
