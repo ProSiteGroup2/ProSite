@@ -13,6 +13,7 @@ class addcart extends StatefulWidget {
 }
 
 class _addcartState extends State<addcart> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,45 +48,13 @@ class _addcartState extends State<addcart> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.bottomLeft,
-                margin: EdgeInsets.fromLTRB(20,10,20,20),
-                child: Text("Payment Method",style: TextStyle(
-                   fontFamily: "Roboto",
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    height: 1.15
-                ),), 
-              ),
-              Container(
-                  child: TextField(
-                            style: const TextStyle( height: 0.5 ),
-                            cursorColor: Colors.grey,
-                            
-                              decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(right: 15,left: 18),
-                              fillColor: Colors.white,
-                              filled: true,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                  borderSide: BorderSide.none
-                                  
-                                ),
-                                
-                              hintText: 'Search Category...',
-                              hintStyle: const TextStyle(
-                                fontFamily: 'Poppins',
-                                color: Colors.grey,
-                                fontSize: 14
-                              ),
-                            ),
-                                      ),
-              )
+              
+                //payment text
+               
             ],
-          ),
         ),
       ),
-    );
+    ));
     
   }
 }
