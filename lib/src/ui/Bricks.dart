@@ -38,48 +38,52 @@ class _brickState extends State<brick> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade100,
-        
-        bottom: PreferredSize(
-          preferredSize:Size.fromHeight(kPropHeight(context, 0.1)),
-          
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-                Container(
-                margin: EdgeInsets.all(20),
-                alignment: Alignment.bottomCenter,
-                child: Text("Bricks",
-                style: TextStyle(
-                  fontFamily: "poppins",
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  height: 1.15
-                ),
-                
-                ),
-              ),
-              Container(
-                child: Image.asset('assets/imgs/bricks.jpg', fit: BoxFit.cover,width: kPropWidth(context, 0.5),height: kPropHeight(context, 0.168),),
-              )
-        //       title: Row(
-          
-        //   children: <Widget>[
-            
-        //     Text("Bricks",style: TextStyle(fontFamily: "Poppins",color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
-        //     Image.asset('assets/imgs/bricks.jpg', fit: BoxFit.fill),
-        //   ],
-        // ),
-           
-            ],
-          ),
-        ),
+         
+        title: Text("Bricks",style: TextStyle(fontFamily: "Poppins",color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold) ),
+        leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(),
+            ), 
+        backgroundColor: Colors.amber[200],
       ),
       body: SafeArea(
         
         child: SingleChildScrollView(
           child: Column(
             children: [
+               Container(
+                //image box
+                width: kPropWidth(context, 1) - 20,
+                height: kPropHeight(context, 0.40) - 32,
+                margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
+                      topLeft: Radius.circular(20),
+                      bottomLeft: Radius.circular(100)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.07),
+                      spreadRadius: 10,
+                      blurRadius: 7,
+                      offset: Offset(1, 4), // changes position of shadow
+                    ),
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.5),
+                      spreadRadius: 10,
+                      blurRadius: 7,
+                      offset: Offset(-10, -10), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.white,
+                  image: DecorationImage(
+                    image: AssetImage("assets/imgs/bricks.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+                
               
                  Container(
                     margin: EdgeInsets.all(20),

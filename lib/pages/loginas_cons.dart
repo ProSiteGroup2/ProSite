@@ -1,4 +1,6 @@
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:group2/pages/reguser.dart';
 import 'package:group2/pages/resetpwd_1.dart';

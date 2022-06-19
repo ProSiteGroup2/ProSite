@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:group2/common/size.dart';
 
 
 
@@ -10,37 +13,48 @@ class addcart extends StatefulWidget {
 }
 
 class _addcartState extends State<addcart> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+         backgroundColor: Color(0xE5E5E5),
+        elevation: 0,
+        toolbarHeight: 50,
+        bottom: PreferredSize(
+          preferredSize:Size.fromHeight(kPropHeight(context, 0.05)),
+          child: Row(
+             mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+               Container(
+                margin: EdgeInsets.all(20),
+                alignment: Alignment.bottomCenter,
+                child: Text("Add to Cart",
+                style: TextStyle(
+                  fontFamily: "poppins",
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  height: 1.15
+                ),
+                
+                ),
+              ),
+            ],
+          ),
+        ),
+         
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                child:Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 11.0,horizontal: 25.0),
-                    child: const Text(
-                      "Add to Cart",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          height: 1.15),
-                    ),
-                  ),
-                  
-                    ]), 
-              )
+              
+                //payment text
+               
             ],
-          ),
         ),
       ),
-    );
+    ));
     
   }
 }
