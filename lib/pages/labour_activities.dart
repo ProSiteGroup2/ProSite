@@ -143,7 +143,17 @@ class _LActivityState extends State<LActivity> {
                             leading: Container(
                               height:50,
                               width: 50,
-                              child: Image.asset('assets/imgs/${l_schedule[index].profile}'),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: Colors.grey.shade200),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/imgs/${l_schedule[index].profile}"),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                             title:Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -259,7 +269,17 @@ class _LActivityState extends State<LActivity> {
                             leading: Container(
                               height:50,
                               width: 50,
-                              child: Image.asset('assets/imgs/${l_preActivity[index].profile}'),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: Colors.grey.shade200),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/imgs/${l_preActivity[index].profile}"),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                             title:Row(
                               mainAxisAlignment: MainAxisAlignment.start,

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/customer_pre_activities.dart';
 
+import '../../Classes/my_flutter_app_icons.dart';
+
 
 class CActivity extends StatefulWidget {
   const CActivity({Key? key}) : super(key: key);
@@ -145,7 +147,6 @@ class _CActivityState extends State<CActivity> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                            onTap: () {},
                             leading: Container(
                               height: 50,
                               width: 55,
@@ -162,63 +163,93 @@ class _CActivityState extends State<CActivity> {
                                 ),
                               ),
                             ),
-                            title: Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      flex: 3,
-                                      child: Text(
-                                        'Hired',
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13.0,
-                                        ),
+                            title: Row(
+                              children: [
+                                Expanded(
+                                  flex:6,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'Hired',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              preActivities[index].hired,
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    Expanded(
-                                      flex: 14,
-                                      child: Text(
-                                        preActivities[index].hired,
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13.0,
-                                          color: Colors.black54,
-                                        ),
+                                      SizedBox(height: 5.0),
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'Date',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              preActivities[index].date,
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                                SizedBox(height: 5.0),
-                                Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      flex: 3,
-                                      child: Text(
-                                        'Date',
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13.0,
-                                        ),
-                                      ),
+
+                                Expanded(
+                                  flex:1,
+                                  child: IconButton(
+                                    splashColor: Colors.lightBlueAccent,
+                                    icon: Icon(
+                                        Icons.add_call
                                     ),
-                                    Expanded(
-                                      flex: 14,
-                                      child: Text(
-                                        preActivities[index].date,
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 13.0,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                    onPressed: (){},
+                                    color: Colors.black,
+                                  ),
                                 ),
+                                SizedBox(width: 5),
+                                Expanded(
+                                  flex:1,
+                                  child: IconButton(
+                                  splashColor: Colors.lightGreen,
+                                  icon: Icon(
+                                    MyFlutterApp.whatsapp,
+                                  ),
+                                  onPressed: (){},
+                                  color: Colors.green,
+                                ),)
                               ],
                             ),
                           ),
