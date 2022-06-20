@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/labour_schedule.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:group2/Classes/my_flutter_app_icons.dart';
 
 
 
@@ -137,7 +139,7 @@ class _LActivityState extends State<LActivity> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                            onTap: (){},
+
                             leading: Container(
                               height:50,
                               width: 50,
@@ -187,15 +189,27 @@ class _LActivityState extends State<LActivity> {
                                     ],
                                   ),
                                 ),
+
                                 Expanded(
                                   flex:1,
                                   child: IconButton(
                                     splashColor: Colors.lightBlueAccent,
                                     icon: Icon(
-                                      Icons.chat
+                                        Icons.add_call
                                     ),
                                     onPressed: (){},
-                                    color: Colors.blueAccent,
+                                    color: Colors.black,
+                                  ),),
+                                Expanded(
+                                  flex:1,
+                                  child: IconButton(
+                                    splashColor: Colors.lightGreen,
+                                    icon: Icon(
+                                      MyFlutterApp.whatsapp
+                                    ),
+                                    onPressed: (){},
+
+                                    color: Colors.green,
                                   ),)
                               ],
                             ),
@@ -241,7 +255,7 @@ class _LActivityState extends State<LActivity> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                            onTap: (){},
+
                             leading: Container(
                               height:50,
                               width: 50,
@@ -291,15 +305,27 @@ class _LActivityState extends State<LActivity> {
                                     ],
                                   ),
                                 ),
+
                                 Expanded(
                                   flex:1,
                                   child: IconButton(
                                     splashColor: Colors.lightBlueAccent,
                                     icon: Icon(
-                                        Icons.chat
+                                      Icons.add_call
                                     ),
                                     onPressed: (){},
-                                    color: Colors.blueAccent,
+                                    color: Colors.black,
+                                  ),),
+
+                                Expanded(
+                                  flex:1,
+                                  child: IconButton(
+                                    splashColor: Colors.lightGreen,
+                                    icon: Icon(
+                                        MyFlutterApp.whatsapp,
+                                    ),
+                                    onPressed: (){},
+                                    color: Colors.green,
                                   ),)
                               ],
                             ),
