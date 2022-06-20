@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:group2/Classes/labour_schedule.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:group2/Classes/my_flutter_app_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -159,7 +160,7 @@ class _LActivityState extends State<LActivity> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  flex:3,
+                                  flex:4,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -184,6 +185,7 @@ class _LActivityState extends State<LActivity> {
                                               ),
                                             ),
                                           ),
+                                          SizedBox(width: 5,),
                                           Expanded(
                                               child:Text(
                                                 l_schedule[index].time,
@@ -285,7 +287,7 @@ class _LActivityState extends State<LActivity> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  flex:3,
+                                  flex:4,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -310,6 +312,7 @@ class _LActivityState extends State<LActivity> {
                                               ),
                                             ),
                                           ),
+                                          SizedBox(width: 5,),
                                           Expanded(
                                               child:Text(
                                                 l_preActivity[index].time,
@@ -333,7 +336,9 @@ class _LActivityState extends State<LActivity> {
                                     icon: Icon(
                                       Icons.add_call
                                     ),
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      launch("tel://+94787145867");
+                                    },
                                     color: Colors.black,
                                   ),),
 
@@ -344,7 +349,9 @@ class _LActivityState extends State<LActivity> {
                                     icon: Icon(
                                         MyFlutterApp.whatsapp,
                                     ),
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      launchwhatsapp( number:"tel://+94787145867",message: "hello");
+                                    },
                                     color: Colors.green,
                                   ),)
                               ],
@@ -361,5 +368,11 @@ class _LActivityState extends State<LActivity> {
         ),
       ),
     );
+  }
+
+  void launchwhatsapp({@required number,@required message}) async{
+    String url="whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url)?launch(url):print("cant't open whatsapp ");
+
   }
 }

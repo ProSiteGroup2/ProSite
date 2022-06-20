@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/customer_pre_activities.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../Classes/my_flutter_app_icons.dart';
 
@@ -235,11 +236,13 @@ class _CActivityState extends State<CActivity> {
                                     icon: Icon(
                                         Icons.add_call
                                     ),
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      launch("tel://+94787145867");
+                                    },
                                     color: Colors.black,
                                   ),
                                 ),
-                                SizedBox(width: 5),
+                                SizedBox(width: 15),
                                 Expanded(
                                   flex:1,
                                   child: IconButton(
@@ -247,7 +250,9 @@ class _CActivityState extends State<CActivity> {
                                   icon: Icon(
                                     MyFlutterApp.whatsapp,
                                   ),
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    launchwhatsapp( number:"tel://+94787145867",message: "hello");
+                                  },
                                   color: Colors.green,
                                 ),)
                               ],
@@ -264,5 +269,11 @@ class _CActivityState extends State<CActivity> {
         ),
       ),
     );
+  }
+
+  void launchwhatsapp({@required number,@required message}) async{
+    String url="whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url)?launch(url):print("cant't open whatsapp ");
+
   }
 }
