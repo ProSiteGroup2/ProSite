@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/labour_schedule.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:group2/Classes/my_flutter_app_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -137,17 +140,27 @@ class _LActivityState extends State<LActivity> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                            onTap: (){},
+
                             leading: Container(
                               height:50,
                               width: 50,
-                              child: Image.asset('assets/imgs/${l_schedule[index].profile}'),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: Colors.grey.shade200),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/imgs/${l_schedule[index].profile}"),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                             title:Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  flex:3,
+                                  flex:4,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -172,6 +185,7 @@ class _LActivityState extends State<LActivity> {
                                               ),
                                             ),
                                           ),
+                                          SizedBox(width: 5,),
                                           Expanded(
                                               child:Text(
                                                 l_schedule[index].time,
@@ -187,15 +201,27 @@ class _LActivityState extends State<LActivity> {
                                     ],
                                   ),
                                 ),
+
                                 Expanded(
                                   flex:1,
                                   child: IconButton(
                                     splashColor: Colors.lightBlueAccent,
                                     icon: Icon(
-                                      Icons.chat
+                                        Icons.add_call
                                     ),
                                     onPressed: (){},
-                                    color: Colors.blueAccent,
+                                    color: Colors.black,
+                                  ),),
+                                Expanded(
+                                  flex:1,
+                                  child: IconButton(
+                                    splashColor: Colors.lightGreen,
+                                    icon: Icon(
+                                      MyFlutterApp.whatsapp
+                                    ),
+                                    onPressed: (){},
+
+                                    color: Colors.green,
                                   ),)
                               ],
                             ),
@@ -241,17 +267,27 @@ class _LActivityState extends State<LActivity> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                            onTap: (){},
+
                             leading: Container(
                               height:50,
                               width: 50,
-                              child: Image.asset('assets/imgs/${l_preActivity[index].profile}'),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: Colors.grey.shade200),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/imgs/${l_preActivity[index].profile}"),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                             title:Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  flex:3,
+                                  flex:4,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -276,6 +312,7 @@ class _LActivityState extends State<LActivity> {
                                               ),
                                             ),
                                           ),
+                                          SizedBox(width: 5,),
                                           Expanded(
                                               child:Text(
                                                 l_preActivity[index].time,
@@ -291,15 +328,31 @@ class _LActivityState extends State<LActivity> {
                                     ],
                                   ),
                                 ),
+
                                 Expanded(
                                   flex:1,
                                   child: IconButton(
                                     splashColor: Colors.lightBlueAccent,
                                     icon: Icon(
-                                        Icons.chat
+                                      Icons.add_call
                                     ),
-                                    onPressed: (){},
-                                    color: Colors.blueAccent,
+                                    onPressed: (){
+                                      launch("tel://+94787145867");
+                                    },
+                                    color: Colors.black,
+                                  ),),
+
+                                Expanded(
+                                  flex:1,
+                                  child: IconButton(
+                                    splashColor: Colors.lightGreen,
+                                    icon: Icon(
+                                        MyFlutterApp.whatsapp,
+                                    ),
+                                    onPressed: (){
+                                      launchwhatsapp( number:"tel://+94787145867",message: "hello");
+                                    },
+                                    color: Colors.green,
                                   ),)
                               ],
                             ),
@@ -315,5 +368,11 @@ class _LActivityState extends State<LActivity> {
         ),
       ),
     );
+  }
+
+  void launchwhatsapp({@required number,@required message}) async{
+    String url="whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url)?launch(url):print("cant't open whatsapp ");
+
   }
 }
