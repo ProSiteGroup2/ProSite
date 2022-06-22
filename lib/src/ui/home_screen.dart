@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print
+// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
@@ -41,6 +41,15 @@ Map<String, dynamic> data = {
       'assets/imgs/logo.png',
       
     ],
+
+    'name':[
+        "cement",
+        "sand",
+        "cem1",
+        "cem2",
+        "sand2",
+    ],
+    
     'owner': {
       'name': "Rental Surat",
       'who': "Owner",
@@ -625,6 +634,7 @@ Map<String, dynamic> data = {
                                         child: ImageCauserol(
                                             context: context,
                                               imgs: data['images'],
+                                              name: data['name'],
                                             ),
                                       ),
                                             ],
@@ -771,6 +781,7 @@ Map<String, dynamic> data = {
                                         
                                           context: context,
                                             imgs: data['images'],
+                                            name: data['name'],
                                           ),
                                     ),       
                               Container(
@@ -816,6 +827,7 @@ Map<String, dynamic> data = {
                                       
                                         context: context,
                                           imgs: data['images'],
+                                          name: data['name'],
                                         ),
                                   ),
                                 ],
@@ -865,6 +877,7 @@ Map<String, dynamic> data = {
                                             
                                               context: context,
                                                 imgs: data['images'],
+                                                name: data['name'],
                                               ),
                                         ),
                                       ],
@@ -913,6 +926,7 @@ Map<String, dynamic> data = {
                                         
                                           context: context,
                                             imgs: data['images'],
+                                            name: data['name'],
                                           ),
                                     ),
                                   ],
