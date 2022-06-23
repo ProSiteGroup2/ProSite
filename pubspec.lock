@@ -239,7 +239,11 @@ packages:
       name: page_transition
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.0.9"
+=======
+    version: "2.0.7"
+>>>>>>> parent of 25fb7de (sudesh pull)
   path:
     dependency: transitive
     description:
