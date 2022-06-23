@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  shared_preferences: ^2.0.15
+  animated_splash_screen: ^1.2.0  
 
 #  font_awesome_flutter: ^5.15.4
 
