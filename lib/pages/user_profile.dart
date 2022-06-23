@@ -122,7 +122,7 @@ class _User_ProfileState extends State<User_Profile> {
                             child: Padding(
                               padding:
                                   EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0.0),
-                              child: Text('KRISHAN'),
+                              child: Text('KRISHAN Indrajith'),
                             ),
                           ),
                           SizedBox(height: 40.0),
