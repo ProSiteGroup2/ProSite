@@ -29,8 +29,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+<<<<<<< HEAD
 
 #  font_awesome_flutter: ^5.15.4
+=======
+>>>>>>> parent of 593336d (splashscreen)
 
 
   # The following adds the Cupertino Icons font to your application.

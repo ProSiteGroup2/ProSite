@@ -227,6 +227,7 @@ packages:
     source: hosted
     version: "0.3.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
   page_transition:
     dependency: transitive
     description:
@@ -238,6 +239,8 @@ packages:
 =======
     version: "2.0.7"
 >>>>>>> parent of 25fb7de (sudesh pull)
+=======
+>>>>>>> parent of 593336d (splashscreen)
 =======
 >>>>>>> parent of 593336d (splashscreen)
   path:
