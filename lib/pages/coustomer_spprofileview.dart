@@ -12,13 +12,13 @@ class _MyHomePageState extends State<MyHomePage> {
   double rating =0;
 
   List<String> items =[
-    'assets/aaa.jpg',
-    'assets/bbb.jpg',
-    'assets/ccc.jpeg',
-    'assets/ddd.jpg',
-    'assets/eee.jpg',
-    'assets/kkk.jpg',
-    'assets/ppp.jfif',
+    'assets/imgs/aaa.jpg',
+    'assets/imgs/bbb.jpg',
+    'assets/imgs/ccc.jpeg',
+    'assets/imgs/ddd.jpg',
+    'assets/imgs/eee.jpg',
+    'assets/imgs/kkk.jpg',
+    'assets/imgs/ppp.jfif',
   ];
 
 
