@@ -1,0 +1,2 @@
+ git config --global http.proxy http[s]://192.248.48.9:3128
+git config --global --unset-all http.proxy  
