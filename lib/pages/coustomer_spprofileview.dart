@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -197,23 +197,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
 
-                  Center(
-                    child: RatingBar.builder(
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      itemCount: 5,
-                      itemSize: 30,
-                      updateOnDrag: true,
-                      itemBuilder: (BuildContext context, _) {
-                        return const Icon(Icons.star,color: Colors.amber,);
-                      },
-                      onRatingUpdate: (rating) {
-                        setState(() {
-                          this.rating =rating;
-                        });
-                      },
+                  // Center(
+                  //   child: RatingBar.builder(
+                  //     itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                  //     itemCount: 5,
+                  //     itemSize: 30,
+                  //     updateOnDrag: true,
+                  //     itemBuilder: (BuildContext context, _) {
+                  //       return const Icon(Icons.star,color: Colors.amber,);
+                  //     },
+                  //     onRatingUpdate: (rating) {
+                  //       setState(() {
+                  //         this.rating =rating;
+                  //       });
+                  //     },
 
-                    ),
-                  ),
+                  //   ),
+                  // ),
 
                   const SizedBox(height: 15.0,)
 
