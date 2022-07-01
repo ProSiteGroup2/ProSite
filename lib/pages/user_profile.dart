@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'edit_profile.dart';
 
 class User_Profile extends StatefulWidget {
   const User_Profile({Key? key}) : super(key: key);
@@ -31,6 +32,14 @@ class _User_ProfileState extends State<User_Profile> {
         ),
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
+        actions: [
+          PopupMenuButton<int>(
+            itemBuilder: (context) => [
+              const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
+            ],
+            onSelected: (item) => onSelete(context, item),
+          )
+        ],
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
@@ -202,6 +211,14 @@ class _User_ProfileState extends State<User_Profile> {
         ),
       ),
     );
+  }
+}
+
+void onSelete(BuildContext context, int item) {
+  switch (item) {
+    case 0:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MyHomePage3()));
   }
 }
 
