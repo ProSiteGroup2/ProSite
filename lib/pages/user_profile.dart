@@ -10,407 +10,204 @@ class User_Profile extends StatefulWidget {
 }
 
 class _User_ProfileState extends State<User_Profile> {
+  List<String> items = [
+    'assets/imgs/aaa.jpg',
+    'assets/imgs/bbb.jpg',
+    'assets/imgs/ccc.jpeg',
+    'assets/imgs/ddd.jpg',
+    'assets/imgs/eee.jpg',
+    'assets/imgs/kkk.jpg',
+    'assets/imgs/ppp.jfif',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.arrow_back_ios_new_sharp),
-            color: Colors.blue[900],
-          ),
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          title: Text(
-            'Profile Settings',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-          ),
-          centerTitle: true,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.arrow_back_ios_new_sharp),
+          color: Colors.blueAccent,
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
+        elevation: 0.0,
+        backgroundColor: Color(hexColor('#F0F0F0')),
+      ),
+      backgroundColor: Color(hexColor('#F0F0F0')),
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: Color(hexColor('#FEFEFE')),
+                  borderRadius: const BorderRadius.all(Radius.circular(42.0))),
+              child: Column(
                 children: [
+                  const SizedBox(
+                    height: 70.0,
+                  ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(0.0, 110.0, 0.0, 0.0),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.all(Radius.circular(30.0))),
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
+                      height: 150.0,
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.blue,
+                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                      padding:
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: items.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return SizedBox(
+                              height: 130,
+                              width: 120,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  items[index],
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            );
+                          })),
+                  const Center(
+                    child: Text(
+                      'Aaron Graham',
+                      style: TextStyle(
+                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const Center(
+                    child: Text(
+                      'mason',
+                      style: TextStyle(
+                          fontSize: 15.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 40.0),
+                      padding:
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(14.0)),
+                        color: Colors.grey[100],
+                      ),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 20.0),
-                          Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Add Your Work Here',
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold)),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 1,
-                                        child:
-                                            Image.asset('assets/imgs/aaa.jpg')),
-                                    Expanded(
-                                        flex: 1,
-                                        child:
-                                            Image.asset('assets/imgs/bbb.jpg')),
-                                    Expanded(
-                                        flex: 1,
-                                        child: Image.asset(
-                                            'assets/imgs/ccc.jpeg')),
-                                  ],
-                                ),
-                                SizedBox(height: 5.0),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 1,
-                                        child:
-                                            Image.asset('assets/imgs/ddd.jpg')),
-                                    Expanded(
-                                        flex: 1,
-                                        child:
-                                            Image.asset('assets/imgs/eee.jpg')),
-                                    Expanded(
-                                        flex: 1,
-                                        child: Image.asset(
-                                            'assets/imgs/ccc.jpeg')),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 25.0),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'First Name:',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                          Row(
+                            children: const [
+                              Icon(Icons.location_on),
+                              SizedBox(
+                                width: 5.0,
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 5.0),
-                          Container(
-                            height: 50.0,
-                            width: 1000.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0)),
-                              color: Colors.blueGrey[50],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueGrey,
-                                  blurRadius: 10.0,
-                                  offset: Offset(10.0, 10.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0.0),
-                              child: Text('KRISHAN Indrajith'),
-                            ),
-                          ),
-                          SizedBox(height: 40.0),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Last Name:',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                'From Gampaha',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ),
+                            ],
                           ),
-                          SizedBox(height: 5.0),
-                          Container(
-                            height: 50.0,
-                            width: 1000.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0)),
-                              color: Colors.blueGrey[50],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueGrey,
-                                  blurRadius: 10.0,
-                                  offset: Offset(10.0, 10.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-                              child: Text('Weerarathna'),
-                            ),
+                          const SizedBox(
+                            height: 10.0,
                           ),
-                          SizedBox(height: 40.0),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Email:',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                          Row(
+                            children: const [
+                              Icon(Icons.home_filled),
+                              SizedBox(
+                                width: 5.0,
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 15.0),
-                          Container(
-                            height: 50.0,
-                            width: 1000.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0)),
-                              color: Colors.blueGrey[50],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueGrey,
-                                  blurRadius: 10.0,
-                                  offset: Offset(10.0, 10.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-                              child: Text('krishan@gmail.com'),
-                            ),
-                          ),
-                          SizedBox(height: 40.0),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Contact Number:',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                'B 70/5A,Edurapotha,Kegalle',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ),
+                            ],
                           ),
-                          SizedBox(height: 15.0),
-                          Container(
-                            height: 50.0,
-                            width: 1000.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0)),
-                              color: Colors.blueGrey[50],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueGrey,
-                                  blurRadius: 10.0,
-                                  offset: Offset(10.0, 10.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-                              child: Text('07775555556666'),
-                            ),
+                          const SizedBox(
+                            height: 10.0,
                           ),
-                          SizedBox(height: 40.0),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Address:',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                          Row(
+                            children: const [
+                              Icon(Icons.email_rounded),
+                              SizedBox(
+                                width: 5.0,
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 15.0),
-                          Container(
-                            height: 50.0,
-                            width: 1000.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0)),
-                              color: Colors.blueGrey[50],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueGrey,
-                                  blurRadius: 10.0,
-                                  offset: Offset(10.0, 10.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-                              child: Text('Edurapotha,Kegalle'),
-                            ),
-                          ),
-                          SizedBox(height: 40.0),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Home Twon:',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                'abcd@gmail.com',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ),
+                            ],
                           ),
-                          SizedBox(height: 15.0),
-                          Container(
-                            height: 50.0,
-                            width: 1000.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0)),
-                              color: Colors.blueGrey[50],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueGrey,
-                                  blurRadius: 10.0,
-                                  offset: Offset(10.0, 10.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-                              child: Text('Kegalle'),
-                            ),
+                          const SizedBox(
+                            height: 10.0,
                           ),
-                          SizedBox(height: 40.0),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Distric:',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                          Row(
+                            children: const [
+                              Icon(Icons.phone_in_talk_outlined),
+                              SizedBox(
+                                width: 5.0,
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 15.0),
-                          Container(
-                            height: 50.0,
-                            width: 1000.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0)),
-                              color: Colors.blueGrey[50],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueGrey,
-                                  blurRadius: 10.0,
-                                  offset: Offset(10.0, 10.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-                              child: Text('Kegalle'),
-                            ),
-                          ),
-                          SizedBox(height: 40.0),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Select Your Qulification Type:',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                '0772222999',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ),
+                            ],
                           ),
-                          SizedBox(height: 15.0),
-                          Container(
-                            height: 50.0,
-                            width: 1000.0,
-                            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0)),
-                              color: Colors.blueGrey[50],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueGrey,
-                                  blurRadius: 10.0,
-                                  offset: Offset(10.0, 10.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-                              child: Text('Only Experience'),
-                            ),
+                          const SizedBox(
+                            height: 10.0,
                           ),
-                          SizedBox(height: 40.0),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(100.0, 0.0, 60.0, 30.0),
-                            child: ElevatedButton.icon(
-                              //label: Icon(Icons.lock),
-                              style: ElevatedButton.styleFrom(
-                                  primary: Colors.grey[700],
-                                  shape: new RoundedRectangleBorder(
-                                      borderRadius:
-                                          new BorderRadiusDirectional.circular(
-                                              16.0))),
-                              onPressed: () {},
-                              icon: Text(
-                                'Changed Password',
-                                style: TextStyle(color: Colors.white),
+                          Row(
+                            children: const [
+                              Icon(Icons.work_sharp),
+                              SizedBox(
+                                width: 5.0,
                               ),
-                              label: Icon(Icons.lock),
-                            ),
-                          )
+                              Text(
+                                'Only with Experience',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
                         ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    child: Container(
-                      child: Center(
-                        child: Stack(
-                          children: [
-                            CircleAvatar(
-                              radius: 80.0,
-                              backgroundImage: AssetImage(
-                                'assets/imgs/167621352-confident-asian-male-engineer-worker-standing-arm-crossed-happy-smile-for-enjoy-working-in-factory.jpg',
-                              ),
-                            ),
-                            Positioned(
-                                bottom: 0.0,
-                                right: 5.0,
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.add_a_photo_outlined,
-                                    color: Colors.greenAccent[400],
-                                    size: 30.0,
-                                  ),
-                                  onPressed: () {},
-                                ))
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                      )),
                 ],
-              )
-            ],
-          ),
-        ));
+              ),
+            ),
+            Positioned(
+                child: Center(
+              child: SizedBox(
+                height: 107.0,
+                width: 115.0,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.asset(
+                      'assets/imgs/suplier.jpg',
+                      fit: BoxFit.fill,
+                    )),
+              ),
+            ))
+          ],
+        ),
+      ),
+    );
   }
+}
+
+hexColor(String color) {
+  String newColor = '0xff' + color;
+  newColor = newColor.replaceAll('#', '');
+  int finalColor = int.parse(newColor);
+  return finalColor;
 }
