@@ -28,6 +28,7 @@ class _ImageCauserolState extends State<ImageCauserol> {
   BuildContext context;
   List<dynamic> imgs;
   List<dynamic> name;
+  
 
   _ImageCauserolState(
       {required this.context, required this.imgs, required this.name});

@@ -320,7 +320,7 @@ Map<String, dynamic> data = {
                                                 children: [
                                                   Container(
                                                     //Cement
-                                                    margin: const EdgeInsets.fromLTRB(25, 10, 20, 15),
+                                                    margin: const EdgeInsets.fromLTRB(25, 10, 10, 15),
                                                         width: kPropWidth(context, 0.4),
                                                         height: kPropHeight(context, 0.08),
                                                         
@@ -467,7 +467,7 @@ Map<String, dynamic> data = {
                                                 children: [
                                                   Container(
                                                     //steel
-                                                    margin: const EdgeInsets.fromLTRB(25, 15, 20, 20),
+                                                    margin: const EdgeInsets.fromLTRB(25, 15, 10, 20),
                                                         width: kPropWidth(context, 0.4),
                                                         height: kPropHeight(context, 0.08),
                                                         
