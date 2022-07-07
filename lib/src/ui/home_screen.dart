@@ -23,101 +23,31 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
 Map<String, dynamic> data = {
     "isRegisted": true,
-    "for": "Boys",
-    'fee': {'per': 'Month', 'cost': 4000},
-    'location': {
-      'address': "15/1 , ABC Rd, ABC, 11850",
-      'lat': 7.526525,
-      'lng': 8.265977
-    },
-    'available': 5,
-    'about':
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo velit, iaculis ac diam et, condimentum molestie felis. Curabitur maximus turpis ut vehicula aliquet. Proin vitae eleifend metus Nullam justo velit, iaculis ac diam et, condimentum molestie felis. Curabitur maximus turpis ut vehicula aliquet. Proin vitae eleifend metus",
-    'images': [
-      'assets/imgs/brush.jpg',
-      'assets/imgs/stee.jpg',
-      'assets/imgs/cement.jpg',
-      'assets/imgs/cement.png',
-      'assets/imgs/logo.png',
-      
-    ],
 
-    'name':[
-        "cement",
-        "sand",
-        "cem1",
-        "cem2",
-        "sand2",
-    ],
+    "tags": [
+    {
+      "image":  'assets/imgs/brush.jpg',
+      "name":"brush",
+    },
+    {
+      "image":  'assets/imgs/stee.jpg',
+      "name":"sand",
+    },
+    {
+      "image":  'assets/imgs/cement.jpg',
+      "name":"cement1",
+    },
+    {
+      "image":  'assets/imgs/cement.png',
+      "name":"cement2",
+    },
+    {
+      "image":  'assets/imgs/logo.png',
+      "name":"logo",
+    },
+  ],
+  
     
-    'owner': {
-      'name': "Rental Surat",
-      'who': "Owner",
-      'image': "assets/imgs/logo.png",
-      'contact_no': "+94750001112"
-    },
-    'rating': {
-      'overall': 4.5,
-      'outof': 5,
-      'reviews': [
-        {
-          'avatar': 'assets/imgs/logo.png',
-          'user_name': 'ACV IOP',
-          'rate': 4.5,
-          'review':
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo velit, iaculis ac diam et, condimentum molestie felis. Curabitur maximus turpis ut vehicula aliquet. Proin vitae eleifend metus Nullam justo velit, iaculis ac diam et, condimentum molestie felis. Curabitur maximus turpis ut vehicula aliquet. Proin vitae eleifend metus',
-        },
-        {
-          'avatar': 'assets/imgs/logo.png',
-          'user_name': 'IOP IOP',
-          'rate': 4.6,
-          'review': 'Lorem ipsum ',
-        },
-      ],
-    },
-    'facilities': [
-      {
-        'category': 1,
-        'type': "Table",
-        'amount': 3,
-        'description': "",
-        'price': 0,
-      },
-      {
-        'category': 2,
-        'type': "Hot Shower",
-        'amount': 3,
-        'description': "",
-        'price': 0,
-      },
-      {
-        'category': 3,
-        'type': "Breakfest",
-        'amount': 3,
-        'description': "with 03 curies",
-        'price': 120,
-      },
-      {
-        'category': 3,
-        'type': "Lunch",
-        'amount': 3,
-        'description': "with 04 curies",
-        'price': 120,
-      },
-      {
-        'category': 4,
-        'type': "Breakfest",
-        'amount': 3,
-        'description':
-            "with 03 curieswith 03 curieswith 03 curieswith 03 curieswith 03 curieswith 03 curieswith 03 curies",
-        'price': 120,
-      }
-    ],
-    'user': {
-      'id': "u1256369554",
-      'name': 'USER UIO',
-      'image': 'assets/imgs/logo.png'
-    }
   };
 
   @override
@@ -364,7 +294,7 @@ Map<String, dynamic> data = {
                                                       onPressed: () {
                                                           Navigator.push(
                                                             context,
-                                                            MaterialPageRoute(builder: (context) => cement(context: context, imgs: data['images'])),
+                                                            MaterialPageRoute(builder: (context) => cement(context: context,  tags: data['tags'],)),
                                                           );
                                                           
                                                         },
@@ -433,7 +363,7 @@ Map<String, dynamic> data = {
                                                     onPressed: () {
                                                         Navigator.push(
                                                           context,
-                                                          MaterialPageRoute(builder: (context) => brick(context: context, imgs: data['images'])),
+                                                          MaterialPageRoute(builder: (context) => brick(context: context,  tags: data['tags'],)),
                                                         );
                                                       },
                                                       child: const Text("Bricks",
@@ -508,7 +438,7 @@ Map<String, dynamic> data = {
                                                     onPressed: () {
                                                         Navigator.push(
                                                           context,
-                                                          MaterialPageRoute(builder: (context) =>steel(context: context, imgs: data['images'])),
+                                                          MaterialPageRoute(builder: (context) =>steel(context: context,  tags: data['tags'],)),
                                                         );
                                                       },
                                                       child: const Text("Steel",
@@ -575,7 +505,7 @@ Map<String, dynamic> data = {
                                                          onPressed: () {
                                                              Navigator.push(
                                                                context,
-                                                               MaterialPageRoute(builder: (context) => sand(context: context, imgs: data['images'])),
+                                                               MaterialPageRoute(builder: (context) => sand(context: context,  tags: data['tags'],)),
                                                              );
                                                            },
                                                            child: const Text("Sand",
@@ -633,8 +563,8 @@ Map<String, dynamic> data = {
                                       Container( 
                                         child: ImageCauserol(
                                             context: context,
-                                              imgs: data['images'],
-                                              name: data['name'],
+                                              tags: data['tags'],
+                                              
                                             ),
                                       ),
                                             ],
@@ -668,7 +598,7 @@ Map<String, dynamic> data = {
                                         
                                         child: ImageCauserol_a(
                                             context: context,
-                                              imgs: data['images'],
+                                              tags: data['tags'],
                                             ),
                                       ),
                                       ],
@@ -780,8 +710,8 @@ Map<String, dynamic> data = {
                                       child: ImageCauserol(
                                         
                                           context: context,
-                                            imgs: data['images'],
-                                            name: data['name'],
+                                            tags: data['tags'],
+                                            
                                           ),
                                     ),       
                               Container(
@@ -826,8 +756,8 @@ Map<String, dynamic> data = {
                                     child: ImageCauserol(
                                       
                                         context: context,
-                                          imgs: data['images'],
-                                          name: data['name'],
+                                          tags: data['tags'],
+                                          
                                         ),
                                   ),
                                 ],
@@ -876,8 +806,7 @@ Map<String, dynamic> data = {
                                           child: ImageCauserol(
                                             
                                               context: context,
-                                                imgs: data['images'],
-                                                name: data['name'],
+                                                tags: data['tags'],
                                               ),
                                         ),
                                       ],
@@ -925,8 +854,7 @@ Map<String, dynamic> data = {
                                       child: ImageCauserol(
                                         
                                           context: context,
-                                            imgs: data['images'],
-                                            name: data['name'],
+                                            tags: data['tags'],
                                           ),
                                     ),
                                   ],

@@ -176,7 +176,7 @@ class _PlacePageState extends State<PlacePage> {
 
                 ImageCauserol(
                   context: context,
-                  imgs: data['images'], name: data['name'],
+                  tags: data['tags'],
                 ),
 
                 const SizedBox(height: 12.0),

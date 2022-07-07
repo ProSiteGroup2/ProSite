@@ -8,17 +8,15 @@ import 'package:group2/src/ui/item_details.dart';
 // ignore: must_be_immutable
 class ImageCauserol extends StatefulWidget {
   BuildContext context;
-  List<dynamic> imgs;
-  List<dynamic> name;
+  List<dynamic> tags;
 
-  ImageCauserol(
-      {Key? key, required this.context, required this.imgs, required this.name})
+  ImageCauserol({Key? key, required this.context, required this.tags})
       : super(key: key);
 
   @override
   State<ImageCauserol> createState() =>
       // ignore: no_logic_in_create_state
-      _ImageCauserolState(context: context, imgs: imgs, name: name);
+      _ImageCauserolState(context: context, tags: tags);
 }
 
 class _ImageCauserolState extends State<ImageCauserol> {
@@ -26,12 +24,9 @@ class _ImageCauserolState extends State<ImageCauserol> {
 
   @override
   BuildContext context;
-  List<dynamic> imgs;
-  List<dynamic> name;
-  
+  List<dynamic> tags;
 
-  _ImageCauserolState(
-      {required this.context, required this.imgs, required this.name});
+  _ImageCauserolState({required this.context, required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -43,7 +38,7 @@ class _ImageCauserolState extends State<ImageCauserol> {
       child: ListView.builder(
           controller: _scrollController,
           scrollDirection: Axis.horizontal,
-          itemCount: imgs.length,
+          itemCount: tags.length,
           itemBuilder: (context, i) {
             return Container(
               margin: const EdgeInsets.all(20),
@@ -102,7 +97,7 @@ class _ImageCauserolState extends State<ImageCauserol> {
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
                         image: DecorationImage(
-                          image: AssetImage("${imgs[i]}"),
+                          image: AssetImage("${tags[i]['image']}"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -116,7 +111,7 @@ class _ImageCauserolState extends State<ImageCauserol> {
                         children: [
                           Container(
                             child: Text(
-                              "${name[i]}",
+                              "${tags[i]['name']}",
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                   fontFamily: "poppins",

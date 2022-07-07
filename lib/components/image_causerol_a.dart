@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/src/ui/item_details.dart';
@@ -7,23 +9,23 @@ import 'package:group2/src/ui/item_details.dart';
 
 class ImageCauserol_a extends StatefulWidget {
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  ImageCauserol_a({Key? key, required this.context, required this.imgs})
+  ImageCauserol_a({Key? key, required this.context, required this.tags})
       : super(key: key);
 
   @override
   State<ImageCauserol_a> createState() =>
-      _ImageCauserol_aState(context: context, imgs: imgs);
+      _ImageCauserol_aState(context: context, tags:tags);
 }
 
 class _ImageCauserol_aState extends State<ImageCauserol_a> {
   int photo = 1;
 
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  _ImageCauserol_aState({required this.context, required this.imgs});
+  _ImageCauserol_aState({required this.context, required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -39,7 +41,7 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
         
           controller: _scrollController,
           scrollDirection: Axis.horizontal,
-          itemCount: imgs.length,
+          itemCount: tags.length,
           itemBuilder: (context, i) {
             return Container(
                           
@@ -102,7 +104,7 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                         
                                         image: DecorationImage(
                                           
-                                          image: AssetImage("${imgs[i]}"),
+                                          image: AssetImage("${tags[i]['image']}"),
                                           fit: BoxFit.cover,     
                                           ),
                                         ),
