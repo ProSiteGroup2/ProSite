@@ -70,103 +70,176 @@ class _paynowState extends State<paynow> {
           child: Column(
             children: [
               Container(
-                alignment: Alignment.bottomLeft,
-                margin: EdgeInsets.fromLTRB(20,10,20,20),
-                child: Text("Delivery Address",style: TextStyle(
-                   fontFamily: "Roboto",
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    height: 1.15
-                ),), 
+                //delivery
+                child: Column(
+                  children: [
+                       Container(
+                          alignment: Alignment.bottomLeft,
+                          margin: EdgeInsets.fromLTRB(20,12,20,12),
+                          child: Text("Delivery Address",style: TextStyle(
+                            fontFamily: "Roboto",
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              height: 1.15
+                          ),), 
+                        ),
+                        Container(
+                          //payment text
+                          padding: const EdgeInsets.only(right: 25,left:25),
+                            child: TextFormField(
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                      ),
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.all(12),
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        floatingLabelBehavior:
+                                            FloatingLabelBehavior.never,
+                                        hintText: 'enter address',
+                                        hintStyle: const TextStyle(
+                                          color: Colors.grey,
+                                        ),
+                                        
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                        labelText: 'Enter Address',
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.trim().isEmpty) {
+                                          return 'Please enter your email address';
+                                        }
+
+                                        if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                                          return 'Please enter a valid email address';
+                                        }
+                                        return null;
+                                      },
+                                      onChanged: (value) => _userEmail = value,
+                                    ),
+                                  
+                          ),
+               
+                  ],
+                ),
               ),
               Container(
-                //payment text
-                padding: const EdgeInsets.only(right: 25,left:25),
-                  child: TextFormField(
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(20),
-                              fillColor: Colors.white,
-                              filled: true,
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
-                              hintText: 'enter address',
-                              hintStyle: const TextStyle(
-                                color: Colors.grey,
-                              ),
-                              
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              labelText: 'Enter Address',
-                            ),
-                            validator: (value) {
-                              if (value == null || value.trim().isEmpty) {
-                                return 'Please enter your email address';
-                              }
-
-                              if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                                return 'Please enter a valid email address';
-                              }
-                              return null;
-                            },
-                            onChanged: (value) => _userEmail = value,
+                //Contact
+                child: Column(
+                  children: [
+                       Container(
+                            //contact number title
+                            alignment: Alignment.bottomLeft,
+                            margin: EdgeInsets.fromLTRB(20,12,20,12),
+                            child: Text("Contact Number",style: TextStyle(
+                              fontFamily: "Roboto",
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                height: 1.15
+                            ),), 
                           ),
-                        
-              ),
-               Container(
-                //contact number title
-                alignment: Alignment.bottomLeft,
-                margin: EdgeInsets.fromLTRB(20,20,20,20),
-                child: Text("Contact Number",style: TextStyle(
-                   fontFamily: "Roboto",
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    height: 1.15
-                ),), 
-              ),
-              Container(
-                //contact number text
-                padding: const EdgeInsets.only(right: 25,left:25),
-                  child: TextFormField(
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(10),
-                              fillColor: Colors.white,
-                              filled: true,
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
-                              hintText: 'contact number',
-                              hintStyle: const TextStyle(
-                                color: Colors.grey,
-                              ),
-                              
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              labelText: 'Contact Number',
-                            ),
-                            validator: (value) {
-                              if (value == null || value.trim().isEmpty) {
-                                return 'Please enter your contact number';
-                              }
+                          Container(
+                            //contact number text
+                            padding: const EdgeInsets.only(right: 25,left:25),
+                              child: TextFormField(
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        ),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.all(12),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.never,
+                                          hintText: 'contact number',
+                                          hintStyle: const TextStyle(
+                                            color: Colors.grey,
+                                          ),
+                                          
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                            borderRadius: BorderRadius.circular(20),
+                                          ),
+                                          labelText: 'Contact Number',
+                                        ),
+                                        validator: (value) {
+                                          if (value == null || value.trim().isEmpty) {
+                                            return 'Please enter your contact number';
+                                          }
 
-                              if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                                return 'Please enter a valid number';
-                              }
-                              return null;
-                            },
-                            onChanged: (value) => _userEmail = value,
+                                          if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                                            return 'Please enter a valid number';
+                                          }
+                                          return null;
+                                        },
+                                        onChanged: (value) => _userEmail = value,
+                                      ),
+                                    
                           ),
-                        
-              ),
             
+                  ],
+                ),
+              ),
+              Container(
+                //Email
+                child: Column(
+                  children: [
+                       Container(
+                            //contact number title
+                            alignment: Alignment.bottomLeft,
+                            margin: EdgeInsets.fromLTRB(20,12,20,12),
+                            child: Text("Email Address",style: TextStyle(
+                              fontFamily: "Roboto",
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                height: 1.15
+                            ),), 
+                          ),
+                          Container(
+                            //contact number text
+                            padding: const EdgeInsets.only(right: 25,left:25),
+                              child: TextFormField(
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        ),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.all(12),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.never,
+                                          hintText: 'email',
+                                          hintStyle: const TextStyle(
+                                            color: Colors.grey,
+                                          ),
+                                          
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                            borderRadius: BorderRadius.circular(20),
+                                          ),
+                                          labelText: 'Email Address',
+                                        ),
+                                        validator: (value) {
+                                          if (value == null || value.trim().isEmpty) {
+                                            return 'Please enter your Email';
+                                          }
+
+                                          if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                                            return 'Please enter a valid Email';
+                                          }
+                                          return null;
+                                        },
+                                        onChanged: (value) => _userEmail = value,
+                                      ),
+                                    
+                          ),
+            
+                  ],
+                ),
+              ),
+              
             ],
         ),
       ),
