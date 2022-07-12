@@ -27,23 +27,39 @@ Map<String, dynamic> data = {
     "tags": [
     {
       "image":  'assets/imgs/brush.jpg',
-      "name":"brush",
+      "name":"Brush",
+      "hardware": "Perera Hardware, Maharagama",
+      "brand":"Fine Brsuh",
+      "discount":"5%",
+
     },
     {
       "image":  'assets/imgs/stee.jpg',
-      "name":"sand",
+      "name":"Steel",
+      "hardware": "Rathna Hardware, Dehiwala",
+      "brand":"Melwa Steel",
+      "discount":"15%",
     },
     {
       "image":  'assets/imgs/cement.jpg',
-      "name":"cement1",
+      "name":"Cement1",
+      "hardware": "Balaji Hardware, Colombo-06",
+      "brand":"Lanwa Cement",
+      "discount":"10% ",
     },
     {
       "image":  'assets/imgs/cement.png',
-      "name":"cement2",
+      "name":"Cement2",
+      "hardware": "ANC Hardware, Matara",
+      "brand":"Sanstha Cement",
+      "discount":"10% ",
     },
     {
       "image":  'assets/imgs/logo.png',
-      "name":"logo",
+      "name":"Logo",
+      "hardware": "S & S Hardware, Mount Lavinia",
+      "brand":"Mascot Logo",
+      "discount":"20%",
     },
   ],
   

@@ -138,8 +138,8 @@ class _ImageCauserolState extends State<ImageCauserol> {
                                     width: 60,
                                     padding: const EdgeInsets.only(
                                         left: 3.0, right: 2),
-                                    child: const Text(
-                                      "Perera Hardware, Maharagama",
+                                    child: Text(
+                                      "${tags[i]['hardware']}",
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 8),
                                       maxLines: 3,

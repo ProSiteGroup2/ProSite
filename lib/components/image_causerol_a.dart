@@ -118,7 +118,8 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                     child: Column(
                                       children: [
                                         Container(
-                                          child: Text("10%\n Discount",
+                                          child: Text(
+                                            "${tags[i]['discount']} Discount" ,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -165,7 +166,8 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                            Container(
                                              margin: EdgeInsets.all(5),
                                              alignment: Alignment.center,
-                                             child: Text("Lanwa Cement", 
+                                             child: Text(
+                                              "${tags[i]['brand']}",
                                                           style: TextStyle(
                                                                 color: Colors.black,
                                                                 fontFamily: "poppins",
@@ -186,7 +188,7 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                                     padding: EdgeInsets.fromLTRB(5, 0, 0, 2),  
                                                     alignment: Alignment.center,                                                 
                                                     child: Text(
-                                                      "Perera Hardware, Maharagama.",
+                                                      "${tags[i]['hardware']}",
                                                        style: TextStyle(
                                                          fontSize: 9),
                                                          maxLines:3,
