@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
@@ -70,6 +70,15 @@ class _paynowState extends State<paynow> {
           child: Column(
             children: [
               Container(
+                //hr line
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(color: Colors.blueAccent),
+                                ),
+                              ),
+              ),
+              Container(
                 //delivery
                 child: Column(
                   children: [
@@ -102,8 +111,8 @@ class _paynowState extends State<paynow> {
                                         ),
                                         
                                         border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                          borderRadius: BorderRadius.circular(20),
+                                          // borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.circular(10),
                                         ),
                                         labelText: 'Enter Address',
                                       ),
@@ -159,8 +168,8 @@ class _paynowState extends State<paynow> {
                                           ),
                                           
                                           border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius: BorderRadius.circular(20),
+                                            // borderSide: BorderSide.none,
+                                            borderRadius: BorderRadius.circular(10),
                                           ),
                                           labelText: 'Contact Number',
                                         ),
@@ -205,6 +214,8 @@ class _paynowState extends State<paynow> {
                                           fontSize: 15,
                                         ),
                                         decoration: InputDecoration(
+                                          
+                                          
                                           contentPadding: EdgeInsets.all(12),
                                           fillColor: Colors.white,
                                           filled: true,
@@ -216,8 +227,9 @@ class _paynowState extends State<paynow> {
                                           ),
                                           
                                           border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius: BorderRadius.circular(20),
+                                            // borderSide: BorderSide.none,
+                                            
+                                            borderRadius: BorderRadius.circular(10),
                                           ),
                                           labelText: 'Email Address',
                                         ),
@@ -239,8 +251,129 @@ class _paynowState extends State<paynow> {
                   ],
                 ),
               ),
-              
-            ],
+              Container(
+                //hr line
+                margin: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(color: Colors.blueAccent),
+                                ),
+                              ),
+              ),
+              Container(
+              //delivery method
+              child: Column(
+                children: [
+                      Container(
+                          //delivery method
+                          alignment: Alignment.bottomLeft,
+                          margin: EdgeInsets.fromLTRB(20,12,20,12),
+                          child: Text("Delivery Method",style: TextStyle(
+                            fontFamily: "Roboto",
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              height: 1.15
+                          ),), 
+                        ),
+                        Container(
+                                //delivery price
+                                  margin: const EdgeInsets.fromLTRB(0, 20, 120, 20),
+                                  width: kPropWidth(context, 0.5),
+                                  height: kPropHeight(context, 0.1),
+                                decoration: BoxDecoration(
+                                  color: Colors.blue[50],
+                                  
+                                    border: Border.all(width: 2, color: Colors.blue.shade100),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.25),
+                                      spreadRadius: 10,
+                                      blurRadius: 7,
+                                      offset: const Offset(
+                                          2, 5), // changes position of shadow
+                                    ),
+                                    BoxShadow(
+                                      color: Colors.white.withOpacity(0.8),
+                                      spreadRadius: 10,
+                                      blurRadius: 7,
+
+                                      offset: const Offset(-10,
+                                          -10), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      //price
+                                      alignment: Alignment.topLeft,
+                                      margin: EdgeInsets.fromLTRB(15, 10, 10, 5),
+                                      child: Text(
+                                        "Rs.119",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: "Poppins",
+                                          fontWeight: FontWeight.bold,
+                                          
+                                        ),),
+                                    ),
+                                    Container(
+                                      //price
+                                      alignment: Alignment.topLeft,
+                                      margin: EdgeInsets.fromLTRB(15, 2, 10, 5),
+                                      child: Text(
+                                        "Standard Delivery",
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: "Poppins",
+                                          // fontWeight: FontWeight.w100,
+                                          
+                                        ),),
+                                    )
+                                  
+                                  ],
+                                ),
+                                ),
+                            
+                ],
+              ),
+            ),
+              Container(
+              //hr line
+              margin: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(color: Colors.blueAccent),
+                              ),
+                            ),
+            ),
+              Container(
+              //product summary
+              child: Row(
+                children: [
+                    Container(
+                      //image
+                      alignment: Alignment.centerLeft,
+                      width: 110,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(width: 1, color: Colors.grey.shade200),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        image: DecorationImage(
+                          image: AssetImage("assets/imgs/logo.png"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                          
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     ));
