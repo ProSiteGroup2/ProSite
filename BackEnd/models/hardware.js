@@ -41,8 +41,12 @@ const hardwareSchema=new Schema({
        
     },
 
-    profile:{
-        type:String
+    publicId: {
+        type: String,
+    },
+    
+    imageUrl: {
+        type: String,
     }
     
 });

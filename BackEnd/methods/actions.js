@@ -7,6 +7,7 @@ const Product=require('../models/product');
 const jwt=require('jwt-simple');
 const config=require('../config/dbconfig');
 const mongoose=require('mongoose');
+const {uploadToCloudinary}=require('../middleware/cloudinaryImage');
 
 var functions={
     addNewConsumer:function(req,res){
@@ -46,7 +47,7 @@ var functions={
                                                         address: req.body.address,
                                                         hometown:req.body.hometown,
                                                         district: req.body.district,
-                                                        password: req.body.password
+                                                        password: req.body.password,
                                                     });
                                                     newConsumer.save(function(err,newConsumer){
                                                         if(err){
@@ -432,11 +433,14 @@ var functions={
         });
     },
     
-    getInfo:function(req,res){
+    getInfo: async (req,res)=>{
         if(req.headers.authorization && req.headers.authorization.split(' ')[0]==='Bearer'){
             var token=req.headers.authorization.split(' ')[1];
             var decodedtoken=jwt.decode(token,config.secret);
-            return res.send({success:true, msg: 'Hello '+decodedtoken.owner});
+            console.log(decodedtoken);
+            req.user=await Consumer.findById(decodedtoken._id);
+            console.log(req.user);
+            return res.send({success:true, msg: 'Hello '+decodedtoken.username});
         }
         else{
             return res.send({success:true, msg:'No Headers'});
@@ -444,16 +448,20 @@ var functions={
     },
 
     //uploading the profile image of consumer
-    consumerProfile:function async (req,res){
-        Consumer.findOneAndUpdate({email:req.params.email},{profile:req.file.filename},function(){
+    consumerProfile: async (req,res)=>{
+        const data=await uploadToCloudinary(req.file.path,"images");
+        req.body.imageUrl = data.url;
+        req.body.publicId = data.public_id;
+        Consumer.findOneAndUpdate({email:req.params.email},req.body,function(){
             Consumer.findOne({email:req.params.email},function(err,consumer){
-                if(err) throw err;
+            if(err) throw err;
             if(!consumer){
                 res.send({success:false,msg:"Coudn't find consumer"});
             }else{
                 res.send(consumer);
             }
             });
+            
         });
     },
 
