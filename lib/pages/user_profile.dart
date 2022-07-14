@@ -218,7 +218,7 @@ void onSelete(BuildContext context, int item) {
   switch (item) {
     case 0:
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage3()));
+          context, MaterialPageRoute(builder: (context) => Editprofile()));
   }
 }
 
