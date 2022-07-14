@@ -16,7 +16,13 @@ const productSchema=new Schema({
         type: [Schema.Types.ObjectId],
         ref: 'Hardware'
    },
-    image:String
+   publicId: {
+        type: String,
+    },
+
+    imageUrl: {
+        type: String,
+    }
 });
 
 const Product=mongoose.model('product',productSchema);

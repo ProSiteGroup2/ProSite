@@ -41,8 +41,12 @@ const transporterSchema=new Schema({
         type:String,
        
     },
-    profile:{
-        type:String
+    publicId: {
+        type: String,
+    },
+    
+    imageUrl: {
+        type: String,
     }
     
 });

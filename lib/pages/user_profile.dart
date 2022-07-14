@@ -34,6 +34,7 @@ class _User_ProfileState extends State<User_Profile> {
         backgroundColor: Color(hexColor('#F0F0F0')),
         actions: [
           PopupMenuButton<int>(
+            icon: Icon(Icons.menu,color: Colors.black),
             itemBuilder: (context) => [
               const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
             ],
