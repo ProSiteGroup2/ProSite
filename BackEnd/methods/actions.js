@@ -466,8 +466,11 @@ var functions={
     },
 
     //uploading the profile image of contractor
-    contractorProfile:function async (req,res){
-        Contractor.findOneAndUpdate({email:req.params.email},{profile:req.file.filename},function(){
+    contractorProfile:async (req,res)=>{
+        const data=await uploadToCloudinary(req.file.path,"images");
+        req.body.imageUrl = data.url;
+        req.body.publicId = data.public_id;
+        Contractor.findOneAndUpdate({email:req.params.email},req.body,function(){
             Contractor.findOne({email:req.params.email},function(err,contractor){
                 if(err) throw err;
                 if(!contractor){
@@ -481,8 +484,11 @@ var functions={
     },
 
     //uploading the profile image of hardware
-    hardwareProfile:function async (req,res){
-        Hardware.findOneAndUpdate({email:req.params.email},{profile:req.file.filename},function(){
+    hardwareProfile:async (req,res)=>{
+        const data=await uploadToCloudinary(req.file.path,"images");
+        req.body.imageUrl = data.url;
+        req.body.publicId = data.public_id;
+        Hardware.findOneAndUpdate({email:req.params.email},req.body,function(){
             Hardware.findOne({email:req.params.email},function(err,hardware){
                 if(err) throw err;
             if(!hardware){
@@ -496,8 +502,11 @@ var functions={
     },
 
     //uploading the profile image of labour
-    labourProfile:function async (req,res){
-        Labour.findOneAndUpdate({email:req.params.email},{profile:req.file.filename},function(){
+    labourProfile:async (req,res)=>{
+        const data=await uploadToCloudinary(req.file.path,"images");
+        req.body.imageUrl = data.url;
+        req.body.publicId = data.public_id;
+        Labour.findOneAndUpdate({email:req.params.email},req.body,function(){
             Labour.findOne({email:req.params.email},function(err,labour){
                 if(err) throw err;
                 if(!labour){
@@ -511,8 +520,11 @@ var functions={
     },
 
     //uploading the profile image of transporter
-    transporterProfile:function async (req,res){
-        Transporter.findOneAndUpdate({email:req.params.email},{profile:req.file.filename},function(){
+    transporterProfile:async (req,res)=>{
+        const data=await uploadToCloudinary(req.file.path,"images");
+        req.body.imageUrl = data.url;
+        req.body.publicId = data.public_id;
+        Transporter.findOneAndUpdate({email:req.params.email},req.body,function(){
             Transporter.findOne({email:req.params.email},function(err,transporter){
                 if(err) throw err;
                 if(!transporter){
