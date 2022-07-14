@@ -1,26 +1,13 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
-import 'edit_profile.dart';
 
-class User_Profile extends StatefulWidget {
-  const User_Profile({Key? key}) : super(key: key);
+class MyHomePage2 extends StatefulWidget {
+  const MyHomePage2({Key? key}) : super(key: key);
 
   @override
-  _User_ProfileState createState() => _User_ProfileState();
+  State<MyHomePage2> createState() => _MyHomePage2State();
 }
 
-class _User_ProfileState extends State<User_Profile> {
-  List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
-  ];
-
+class _MyHomePage2State extends State<MyHomePage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,16 +17,15 @@ class _User_ProfileState extends State<User_Profile> {
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
         ),
-        elevation: 0.0,
-        backgroundColor: Color(hexColor('#F0F0F0')),
         actions: [
-          PopupMenuButton<int>(
-            itemBuilder: (context) => [
-              const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
-            ],
-            onSelected: (item) => onSelete(context, item),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.more_vert_sharp),
+            color: Colors.blueAccent,
           )
         ],
+        elevation: 0.0,
+        backgroundColor: Color(hexColor('#F0F0F0')),
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
@@ -56,41 +42,11 @@ class _User_ProfileState extends State<User_Profile> {
                   const SizedBox(
                     height: 70.0,
                   ),
-                  Container(
-                      height: 150.0,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.blue,
-                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                      padding:
-                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: items.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return SizedBox(
-                              height: 130,
-                              width: 120,
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  items[index],
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            );
-                          })),
                   const Center(
                     child: Text(
                       'Aaron Graham',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'mason',
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
@@ -172,23 +128,6 @@ class _User_ProfileState extends State<User_Profile> {
                           const SizedBox(
                             height: 10.0,
                           ),
-                          Row(
-                            children: const [
-                              Icon(Icons.work_sharp),
-                              SizedBox(
-                                width: 5.0,
-                              ),
-                              Text(
-                                'Only with Experience',
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
                         ],
                       )),
                 ],
@@ -202,7 +141,7 @@ class _User_ProfileState extends State<User_Profile> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/imgs/suplier.jpg',
+                      'assets/imgs/user1.webp',
                       fit: BoxFit.fill,
                     )),
               ),
@@ -211,14 +150,6 @@ class _User_ProfileState extends State<User_Profile> {
         ),
       ),
     );
-  }
-}
-
-void onSelete(BuildContext context, int item) {
-  switch (item) {
-    case 0:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage3()));
   }
 }
 

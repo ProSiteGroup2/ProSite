@@ -9,15 +9,15 @@ import 'package:group2/src/ui/item_details.dart';
 // ignore: must_be_immutable
 class steel extends StatefulWidget {
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  steel({Key? key, required this.context, required this.imgs})
+  steel({Key? key, required this.context, required this.tags})
       : super(key: key);
 
   @override
   State<steel> createState() =>
       // ignore: no_logic_in_create_state
-      _steelState(context: context, imgs: imgs);
+      _steelState(context: context, tags: tags);
 }
 
 class _steelState extends State<steel> {
@@ -25,9 +25,9 @@ class _steelState extends State<steel> {
 
   @override
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  _steelState({required this.context, required this.imgs});
+  _steelState({required this.context, required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -94,7 +94,7 @@ class _steelState extends State<steel> {
                       
                         controller: _scrollController,
                         scrollDirection: Axis.vertical,
-                        itemCount: imgs.length,
+                        itemCount: tags.length,
                         itemBuilder: (context, i) {
                           return Container(
                                         
@@ -156,7 +156,7 @@ class _steelState extends State<steel> {
                                                   borderRadius: BorderRadius.circular(20),
                                                   color: Colors.white,
                                                   image: DecorationImage(
-                                                    image: AssetImage("${imgs[i]}"),
+                                                    image: AssetImage("${tags[i]['image']}"),
                                                     fit: BoxFit.cover,     
                                                     ),
                                                   ),

@@ -9,15 +9,15 @@ import 'package:group2/src/ui/item_details.dart';
 // ignore: must_be_immutable
 class brick extends StatefulWidget {
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  brick({Key? key, required this.context, required this.imgs})
+  brick({Key? key, required this.context, required this.tags})
       : super(key: key);
 
   @override
   State<brick> createState() =>
       // ignore: no_logic_in_create_state
-      _brickState(context: context, imgs: imgs);
+      _brickState(context: context, tags: tags);
 }
 
 class _brickState extends State<brick> {
@@ -25,9 +25,9 @@ class _brickState extends State<brick> {
 
   @override
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  _brickState({required this.context, required this.imgs});
+  _brickState({required this.context, required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -94,7 +94,7 @@ class _brickState extends State<brick> {
                       
                         controller: _scrollController,
                         scrollDirection: Axis.vertical,
-                        itemCount: imgs.length,
+                        itemCount: tags.length,
                         itemBuilder: (context, i) {
                           return Container(
                                         
@@ -156,7 +156,7 @@ class _brickState extends State<brick> {
                                                   borderRadius: BorderRadius.circular(20),
                                                   color: Colors.white,
                                                   image: DecorationImage(
-                                                    image: AssetImage("${imgs[i]}"),
+                                                    image: AssetImage("${tags[i]['image']}"),
                                                     fit: BoxFit.cover,     
                                                     ),
                                                   ),

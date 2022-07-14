@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/src/ui/item_details.dart';
@@ -7,23 +9,23 @@ import 'package:group2/src/ui/item_details.dart';
 
 class ImageCauserol_a extends StatefulWidget {
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  ImageCauserol_a({Key? key, required this.context, required this.imgs})
+  ImageCauserol_a({Key? key, required this.context, required this.tags})
       : super(key: key);
 
   @override
   State<ImageCauserol_a> createState() =>
-      _ImageCauserol_aState(context: context, imgs: imgs);
+      _ImageCauserol_aState(context: context, tags:tags);
 }
 
 class _ImageCauserol_aState extends State<ImageCauserol_a> {
   int photo = 1;
 
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  _ImageCauserol_aState({required this.context, required this.imgs});
+  _ImageCauserol_aState({required this.context, required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -39,7 +41,7 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
         
           controller: _scrollController,
           scrollDirection: Axis.horizontal,
-          itemCount: imgs.length,
+          itemCount: tags.length,
           itemBuilder: (context, i) {
             return Container(
                           
@@ -102,7 +104,7 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                         
                                         image: DecorationImage(
                                           
-                                          image: AssetImage("${imgs[i]}"),
+                                          image: AssetImage("${tags[i]['image']}"),
                                           fit: BoxFit.cover,     
                                           ),
                                         ),
@@ -116,7 +118,8 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                     child: Column(
                                       children: [
                                         Container(
-                                          child: Text("10%\n Discount",
+                                          child: Text(
+                                            "${tags[i]['discount']} Discount" ,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -163,7 +166,8 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                            Container(
                                              margin: EdgeInsets.all(5),
                                              alignment: Alignment.center,
-                                             child: Text("Lanwa Cement", 
+                                             child: Text(
+                                              "${tags[i]['brand']}",
                                                           style: TextStyle(
                                                                 color: Colors.black,
                                                                 fontFamily: "poppins",
@@ -184,7 +188,7 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                                     padding: EdgeInsets.fromLTRB(5, 0, 0, 2),  
                                                     alignment: Alignment.center,                                                 
                                                     child: Text(
-                                                      "Perera Hardware, Maharagama.",
+                                                      "${tags[i]['hardware']}",
                                                        style: TextStyle(
                                                          fontSize: 9),
                                                          maxLines:3,

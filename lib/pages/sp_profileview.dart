@@ -1,16 +1,13 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
-import 'edit_profile.dart';
 
-class User_Profile extends StatefulWidget {
-  const User_Profile({Key? key}) : super(key: key);
+class MyHomePage1 extends StatefulWidget {
+  const MyHomePage1({Key? key}) : super(key: key);
 
   @override
-  _User_ProfileState createState() => _User_ProfileState();
+  State<MyHomePage1> createState() => _MyHomePage1State();
 }
 
-class _User_ProfileState extends State<User_Profile> {
+class _MyHomePage1State extends State<MyHomePage1> {
   List<String> items = [
     'assets/imgs/aaa.jpg',
     'assets/imgs/bbb.jpg',
@@ -32,14 +29,6 @@ class _User_ProfileState extends State<User_Profile> {
         ),
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
-        actions: [
-          PopupMenuButton<int>(
-            itemBuilder: (context) => [
-              const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
-            ],
-            onSelected: (item) => onSelete(context, item),
-          )
-        ],
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
@@ -211,14 +200,6 @@ class _User_ProfileState extends State<User_Profile> {
         ),
       ),
     );
-  }
-}
-
-void onSelete(BuildContext context, int item) {
-  switch (item) {
-    case 0:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage3()));
   }
 }
 

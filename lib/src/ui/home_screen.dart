@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print
+// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
@@ -23,92 +23,47 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
 Map<String, dynamic> data = {
     "isRegisted": true,
-    "for": "Boys",
-    'fee': {'per': 'Month', 'cost': 4000},
-    'location': {
-      'address': "15/1 , ABC Rd, ABC, 11850",
-      'lat': 7.526525,
-      'lng': 8.265977
+
+    "tags": [
+    {
+      "image":  'assets/imgs/brush.jpg',
+      "name":"Brush",
+      "hardware": "Perera Hardware, Maharagama",
+      "brand":"Fine Brsuh",
+      "discount":"5%",
+
     },
-    'available': 5,
-    'about':
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo velit, iaculis ac diam et, condimentum molestie felis. Curabitur maximus turpis ut vehicula aliquet. Proin vitae eleifend metus Nullam justo velit, iaculis ac diam et, condimentum molestie felis. Curabitur maximus turpis ut vehicula aliquet. Proin vitae eleifend metus",
-    'images': [
-      'assets/imgs/brush.jpg',
-      'assets/imgs/stee.jpg',
-      'assets/imgs/cement.jpg',
-      'assets/imgs/cement.png',
-      'assets/imgs/logo.png',
-      
-    ],
-    'owner': {
-      'name': "Rental Surat",
-      'who': "Owner",
-      'image': "assets/imgs/logo.png",
-      'contact_no': "+94750001112"
+    {
+      "image":  'assets/imgs/stee.jpg',
+      "name":"Steel",
+      "hardware": "Rathna Hardware, Dehiwala",
+      "brand":"Melwa Steel",
+      "discount":"15%",
     },
-    'rating': {
-      'overall': 4.5,
-      'outof': 5,
-      'reviews': [
-        {
-          'avatar': 'assets/imgs/logo.png',
-          'user_name': 'ACV IOP',
-          'rate': 4.5,
-          'review':
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo velit, iaculis ac diam et, condimentum molestie felis. Curabitur maximus turpis ut vehicula aliquet. Proin vitae eleifend metus Nullam justo velit, iaculis ac diam et, condimentum molestie felis. Curabitur maximus turpis ut vehicula aliquet. Proin vitae eleifend metus',
-        },
-        {
-          'avatar': 'assets/imgs/logo.png',
-          'user_name': 'IOP IOP',
-          'rate': 4.6,
-          'review': 'Lorem ipsum ',
-        },
-      ],
+    {
+      "image":  'assets/imgs/cement.jpg',
+      "name":"Cement1",
+      "hardware": "Balaji Hardware, Colombo-06",
+      "brand":"Lanwa Cement",
+      "discount":"10% ",
     },
-    'facilities': [
-      {
-        'category': 1,
-        'type': "Table",
-        'amount': 3,
-        'description': "",
-        'price': 0,
-      },
-      {
-        'category': 2,
-        'type': "Hot Shower",
-        'amount': 3,
-        'description': "",
-        'price': 0,
-      },
-      {
-        'category': 3,
-        'type': "Breakfest",
-        'amount': 3,
-        'description': "with 03 curies",
-        'price': 120,
-      },
-      {
-        'category': 3,
-        'type': "Lunch",
-        'amount': 3,
-        'description': "with 04 curies",
-        'price': 120,
-      },
-      {
-        'category': 4,
-        'type': "Breakfest",
-        'amount': 3,
-        'description':
-            "with 03 curieswith 03 curieswith 03 curieswith 03 curieswith 03 curieswith 03 curieswith 03 curies",
-        'price': 120,
-      }
-    ],
-    'user': {
-      'id': "u1256369554",
-      'name': 'USER UIO',
-      'image': 'assets/imgs/logo.png'
-    }
+    {
+      "image":  'assets/imgs/cement.png',
+      "name":"Cement2",
+      "hardware": "ANC Hardware, Matara",
+      "brand":"Sanstha Cement",
+      "discount":"10% ",
+    },
+    {
+      "image":  'assets/imgs/logo.png',
+      "name":"Logo",
+      "hardware": "S & S Hardware, Mount Lavinia",
+      "brand":"Mascot Logo",
+      "discount":"20%",
+    },
+  ],
+  
+    
   };
 
   @override
@@ -311,7 +266,7 @@ Map<String, dynamic> data = {
                                                 children: [
                                                   Container(
                                                     //Cement
-                                                    margin: const EdgeInsets.fromLTRB(25, 10, 20, 15),
+                                                    margin: const EdgeInsets.fromLTRB(25, 10, 10, 15),
                                                         width: kPropWidth(context, 0.4),
                                                         height: kPropHeight(context, 0.08),
                                                         
@@ -355,7 +310,7 @@ Map<String, dynamic> data = {
                                                       onPressed: () {
                                                           Navigator.push(
                                                             context,
-                                                            MaterialPageRoute(builder: (context) => cement(context: context, imgs: data['images'])),
+                                                            MaterialPageRoute(builder: (context) => cement(context: context,  tags: data['tags'],)),
                                                           );
                                                           
                                                         },
@@ -424,7 +379,7 @@ Map<String, dynamic> data = {
                                                     onPressed: () {
                                                         Navigator.push(
                                                           context,
-                                                          MaterialPageRoute(builder: (context) => brick(context: context, imgs: data['images'])),
+                                                          MaterialPageRoute(builder: (context) => brick(context: context,  tags: data['tags'],)),
                                                         );
                                                       },
                                                       child: const Text("Bricks",
@@ -458,7 +413,7 @@ Map<String, dynamic> data = {
                                                 children: [
                                                   Container(
                                                     //steel
-                                                    margin: const EdgeInsets.fromLTRB(25, 15, 20, 20),
+                                                    margin: const EdgeInsets.fromLTRB(25, 15, 10, 20),
                                                         width: kPropWidth(context, 0.4),
                                                         height: kPropHeight(context, 0.08),
                                                         
@@ -499,7 +454,7 @@ Map<String, dynamic> data = {
                                                     onPressed: () {
                                                         Navigator.push(
                                                           context,
-                                                          MaterialPageRoute(builder: (context) =>steel(context: context, imgs: data['images'])),
+                                                          MaterialPageRoute(builder: (context) =>steel(context: context,  tags: data['tags'],)),
                                                         );
                                                       },
                                                       child: const Text("Steel",
@@ -566,7 +521,7 @@ Map<String, dynamic> data = {
                                                          onPressed: () {
                                                              Navigator.push(
                                                                context,
-                                                               MaterialPageRoute(builder: (context) => sand(context: context, imgs: data['images'])),
+                                                               MaterialPageRoute(builder: (context) => sand(context: context,  tags: data['tags'],)),
                                                              );
                                                            },
                                                            child: const Text("Sand",
@@ -624,7 +579,8 @@ Map<String, dynamic> data = {
                                       Container( 
                                         child: ImageCauserol(
                                             context: context,
-                                              imgs: data['images'],
+                                              tags: data['tags'],
+                                              
                                             ),
                                       ),
                                             ],
@@ -658,7 +614,7 @@ Map<String, dynamic> data = {
                                         
                                         child: ImageCauserol_a(
                                             context: context,
-                                              imgs: data['images'],
+                                              tags: data['tags'],
                                             ),
                                       ),
                                       ],
@@ -770,7 +726,8 @@ Map<String, dynamic> data = {
                                       child: ImageCauserol(
                                         
                                           context: context,
-                                            imgs: data['images'],
+                                            tags: data['tags'],
+                                            
                                           ),
                                     ),       
                               Container(
@@ -815,7 +772,8 @@ Map<String, dynamic> data = {
                                     child: ImageCauserol(
                                       
                                         context: context,
-                                          imgs: data['images'],
+                                          tags: data['tags'],
+                                          
                                         ),
                                   ),
                                 ],
@@ -864,7 +822,7 @@ Map<String, dynamic> data = {
                                           child: ImageCauserol(
                                             
                                               context: context,
-                                                imgs: data['images'],
+                                                tags: data['tags'],
                                               ),
                                         ),
                                       ],
@@ -912,7 +870,7 @@ Map<String, dynamic> data = {
                                       child: ImageCauserol(
                                         
                                           context: context,
-                                            imgs: data['images'],
+                                            tags: data['tags'],
                                           ),
                                     ),
                                   ],

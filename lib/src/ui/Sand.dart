@@ -9,15 +9,15 @@ import 'package:group2/src/ui/item_details.dart';
 // ignore: must_be_immutable
 class sand extends StatefulWidget {
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  sand({Key? key, required this.context, required this.imgs})
+  sand({Key? key, required this.context, required this.tags})
       : super(key: key);
 
   @override
   State<sand> createState() =>
       // ignore: no_logic_in_create_state
-      _sandState(context: context, imgs: imgs);
+      _sandState(context: context, tags: tags);
 }
 
 class _sandState extends State<sand> {
@@ -25,9 +25,9 @@ class _sandState extends State<sand> {
 
   @override
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  _sandState({required this.context, required this.imgs});
+  _sandState({required this.context, required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -94,7 +94,7 @@ class _sandState extends State<sand> {
                       
                         controller: _scrollController,
                         scrollDirection: Axis.vertical,
-                        itemCount: imgs.length,
+                        itemCount: tags.length,
                         itemBuilder: (context, i) {
                           return Container(
                                         
@@ -156,7 +156,7 @@ class _sandState extends State<sand> {
                                                   borderRadius: BorderRadius.circular(20),
                                                   color: Colors.white,
                                                   image: DecorationImage(
-                                                    image: AssetImage("${imgs[i]}"),
+                                                    image: AssetImage("${tags[i]['image']}"),
                                                     fit: BoxFit.cover,     
                                                     ),
                                                   ),

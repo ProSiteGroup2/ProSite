@@ -6,23 +6,23 @@ import 'package:group2/common/size.dart';
 
 class ImageCauserol_b extends StatefulWidget {
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  ImageCauserol_b({Key? key, required this.context, required this.imgs})
+  ImageCauserol_b({Key? key, required this.context, required this.tags})
       : super(key: key);
 
   @override
   State<ImageCauserol_b> createState() =>
-      _ImageCauserol_bState(context: context, imgs: imgs);
+      _ImageCauserol_bState(context: context, tags: tags);
 }
 
 class _ImageCauserol_bState extends State<ImageCauserol_b> {
   int photo = 1;
 
   BuildContext context;
-  List<dynamic> imgs;
+  List<dynamic> tags;
 
-  _ImageCauserol_bState({required this.context, required this.imgs});
+  _ImageCauserol_bState({required this.context, required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -38,7 +38,7 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
         
           controller: _scrollController,
           scrollDirection: Axis.horizontal,
-          itemCount: imgs.length,
+          itemCount: tags.length,
           itemBuilder: (context, i) {
             return Container(
                           
@@ -75,7 +75,7 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
                                   borderRadius: BorderRadius.circular(20),
                                   color: Colors.white,
                                   image: DecorationImage(
-                                    image: AssetImage("${imgs[i]}"),
+                                    image: AssetImage("${tags[i].image}"),
                                     fit: BoxFit.cover,     
                                     ),
                                   ),
