@@ -44,7 +44,7 @@ class _CActivityState extends State<CActivity> {
                 ),
               ),
               Card(
-                color: Colors.cyanAccent,
+                color: Colors.greenAccent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -62,7 +62,7 @@ class _CActivityState extends State<CActivity> {
                               'Rashan Fernando',
                               style: TextStyle(
                                 fontFamily: 'Poppins',
-                                fontSize: 15.0,
+                                fontSize: 18.0,
                                 color: Colors.black87,
                               ),
                             ),
@@ -91,24 +91,22 @@ class _CActivityState extends State<CActivity> {
                       ],
                     ),
                     SizedBox(height: 9.0),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      side: BorderSide(color: Color(0))))),
-                      onPressed: () {},
-                      child: Text(
-                        'View Appointments',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold,
+                    Container(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue,),
+                        onPressed: () {},
+                        child: Text(
+                          'View Appointments',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
+
                     ),
-                    SizedBox(height: 5.0),
-                  ],
+                    SizedBox(height: 5.0),],
                 ),
               ),
               SizedBox(height: 30.0),
