@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage3 extends StatefulWidget {
-  const MyHomePage3({Key? key}) : super(key: key);
+class Editprofile extends StatefulWidget {
+  const Editprofile({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage3> createState() => _MyHomePage3State();
+  State<Editprofile> createState() => _EditprofileState();
 }
 
-class _MyHomePage3State extends State<MyHomePage3> {
+class _EditprofileState extends State<Editprofile> {
   List<String> items = [
     'assets/imgs/aaa.jpg',
     'assets/imgs/bbb.jpg',
