@@ -1,37 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:group2/pages/edit_hdprofile.dart';
 
-class Customerspview extends StatefulWidget {
-  const Customerspview({Key? key}) : super(key: key);
+class Hardwareprofile extends StatefulWidget {
+  const Hardwareprofile({Key? key}) : super(key: key);
 
   @override
-  State<Customerspview> createState() => _CustomerspviewState();
+  State<Hardwareprofile> createState() => _HardwareprofileState();
 }
 
-class _CustomerspviewState extends State<Customerspview> {
-  double rating = 0;
-
+class _HardwareprofileState extends State<Hardwareprofile> {
   List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
+    'assets/h1.jpg',
+    'assets/h2.jpg',
+    'assets/h4.jpg',
+    'assets/h5.jpg',
+    'assets/h6.jpg',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_sharp),
+        /*leading: IconButton(
+          onPressed: () {  },
+          icon:const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
-        ),
+        ),*/
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
+        actions: [
+          PopupMenuButton<int>(
+            icon: const Icon(Icons.menu, color: Colors.black),
+            itemBuilder: (context) => [
+              const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
+            ],
+            onSelected: (item) => onSelete(context, item),
+          )
+        ],
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
@@ -50,16 +55,9 @@ class _CustomerspviewState extends State<Customerspview> {
                   ),
                   const Center(
                     child: Text(
-                      'Aaron Graham',
+                      'Sk HARDWARE',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'mason',
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
@@ -86,7 +84,7 @@ class _CustomerspviewState extends State<Customerspview> {
                             );
                           })),
                   Container(
-                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 20.0),
+                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 40.0),
                       padding:
                           const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                       decoration: BoxDecoration(
@@ -166,12 +164,12 @@ class _CustomerspviewState extends State<Customerspview> {
                           ),
                           Row(
                             children: const [
-                              Icon(Icons.work_sharp),
+                              Icon(Icons.account_box_outlined),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Only with Experience',
+                                'Muththahar',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -181,72 +179,8 @@ class _CustomerspviewState extends State<Customerspview> {
                           const SizedBox(
                             height: 10.0,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Color(hexColor('#1982BD')),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadiusDirectional.circular(
-                                                16.0))),
-                                onPressed: () {},
-                                icon: const Text(
-                                  'Chat',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                label: const Icon(Icons.chat),
-                              ),
-                              const SizedBox(
-                                width: 5.0,
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Color(hexColor('#1982BD')),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadiusDirectional.circular(
-                                                16.0))),
-                                onPressed: () {},
-                                child: const Text(
-                                  'Give/View Feedback',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          ),
                         ],
                       )),
-                  const Center(
-                    child: Text(
-                      'Rate Him',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Center(
-                    child: RatingBar.builder(
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      itemCount: 5,
-                      itemSize: 30,
-                      updateOnDrag: true,
-                      itemBuilder: (BuildContext context, _) {
-                        return const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        );
-                      },
-                      onRatingUpdate: (rating) {
-                        setState(() {
-                          this.rating = rating;
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  )
                 ],
               ),
             ),
@@ -258,7 +192,7 @@ class _CustomerspviewState extends State<Customerspview> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/suplier.jpg',
+                      'assets/hshop1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),
@@ -267,6 +201,14 @@ class _CustomerspviewState extends State<Customerspview> {
         ),
       ),
     );
+  }
+
+  void onSelete(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Edithdprofile()));
+    }
   }
 }
 

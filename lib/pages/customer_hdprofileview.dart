@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class Customerspview extends StatefulWidget {
-  const Customerspview({Key? key}) : super(key: key);
+class Customerhdprofileview extends StatefulWidget {
+  const Customerhdprofileview({Key? key}) : super(key: key);
 
   @override
-  State<Customerspview> createState() => _CustomerspviewState();
+  State<Customerhdprofileview> createState() => _CustomerhdprofileviewState();
 }
 
-class _CustomerspviewState extends State<Customerspview> {
+class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
   double rating = 0;
 
   List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
+    'assets/h1.jpg',
+    'assets/h2.jpg',
+    'assets/h4.jpg',
+    'assets/h5.jpg',
+    'assets/h6.jpg',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_sharp),
+        /*leading: IconButton(
+          onPressed: () {  },
+          icon:const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
-        ),
+        ),*/
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
       ),
@@ -50,16 +48,9 @@ class _CustomerspviewState extends State<Customerspview> {
                   ),
                   const Center(
                     child: Text(
-                      'Aaron Graham',
+                      'Sk HARDWARE',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'mason',
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
@@ -166,12 +157,12 @@ class _CustomerspviewState extends State<Customerspview> {
                           ),
                           Row(
                             children: const [
-                              Icon(Icons.work_sharp),
+                              Icon(Icons.account_box_outlined),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Only with Experience',
+                                'Muththahar',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -220,7 +211,7 @@ class _CustomerspviewState extends State<Customerspview> {
                       )),
                   const Center(
                     child: Text(
-                      'Rate Him',
+                      'Rate shop',
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
@@ -258,7 +249,7 @@ class _CustomerspviewState extends State<Customerspview> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/suplier.jpg',
+                      'assets/hshop1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),
