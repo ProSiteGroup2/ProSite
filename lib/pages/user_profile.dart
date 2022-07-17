@@ -25,16 +25,16 @@ class _User_ProfileState extends State<User_Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
+        /*leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
-        ),
+        ),*/
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
         actions: [
           PopupMenuButton<int>(
-            icon: Icon(Icons.menu,color: Colors.black),
+            icon: Icon(Icons.menu, color: Colors.black),
             itemBuilder: (context) => [
               const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
             ],
