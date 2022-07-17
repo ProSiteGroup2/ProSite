@@ -40,7 +40,7 @@ class _ChatState extends State<Chat> {
                       ),
                     ),
                     Text(
-                      'W.Krishan',
+                      'W.Krishan Perera',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.bold,
