@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class Spprofileview extends StatefulWidget {
-  const Spprofileview({Key? key}) : super(key: key);
+class Customerhdprofileview extends StatefulWidget {
+  const Customerhdprofileview({Key? key}) : super(key: key);
 
   @override
-  State<Spprofileview> createState() => _SpprofileviewState();
+  State<Customerhdprofileview> createState() => _CustomerhdprofileviewState();
 }
 
-class _SpprofileviewState extends State<Spprofileview> {
+class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
+  double rating = 0;
+
   List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
+    'assets/h1.jpg',
+    'assets/h2.jpg',
+    'assets/h4.jpg',
+    'assets/h5.jpg',
+    'assets/h6.jpg',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_sharp),
+        /*leading: IconButton(
+          onPressed: () {  },
+          icon:const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
-        ),
+        ),*/
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
       ),
@@ -47,16 +48,9 @@ class _SpprofileviewState extends State<Spprofileview> {
                   ),
                   const Center(
                     child: Text(
-                      'Aaron Graham',
+                      'Sk HARDWARE',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'mason',
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
@@ -83,7 +77,7 @@ class _SpprofileviewState extends State<Spprofileview> {
                             );
                           })),
                   Container(
-                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 40.0),
+                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 20.0),
                       padding:
                           const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                       decoration: BoxDecoration(
@@ -163,12 +157,12 @@ class _SpprofileviewState extends State<Spprofileview> {
                           ),
                           Row(
                             children: const [
-                              Icon(Icons.work_sharp),
+                              Icon(Icons.account_box_outlined),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Only with Experience',
+                                'Muththahar',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -178,8 +172,72 @@ class _SpprofileviewState extends State<Spprofileview> {
                           const SizedBox(
                             height: 10.0,
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(hexColor('#1982BD')),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                16.0))),
+                                onPressed: () {},
+                                icon: const Text(
+                                  'Chat',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                label: const Icon(Icons.chat),
+                              ),
+                              const SizedBox(
+                                width: 5.0,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(hexColor('#1982BD')),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                16.0))),
+                                onPressed: () {},
+                                child: const Text(
+                                  'Give/View Feedback',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       )),
+                  const Center(
+                    child: Text(
+                      'Rate shop',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Center(
+                    child: RatingBar.builder(
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      itemCount: 5,
+                      itemSize: 30,
+                      updateOnDrag: true,
+                      itemBuilder: (BuildContext context, _) {
+                        return const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        );
+                      },
+                      onRatingUpdate: (rating) {
+                        setState(() {
+                          this.rating = rating;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15.0,
+                  )
                 ],
               ),
             ),
@@ -191,7 +249,7 @@ class _SpprofileviewState extends State<Spprofileview> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/imgs/suplier.jpg',
+                      'assets/hshop1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),

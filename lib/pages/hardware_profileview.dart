@@ -1,34 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:group2/pages/edit_hdprofile.dart';
 
-class Spprofileview extends StatefulWidget {
-  const Spprofileview({Key? key}) : super(key: key);
+class Hardwareprofile extends StatefulWidget {
+  const Hardwareprofile({Key? key}) : super(key: key);
 
   @override
-  State<Spprofileview> createState() => _SpprofileviewState();
+  State<Hardwareprofile> createState() => _HardwareprofileState();
 }
 
-class _SpprofileviewState extends State<Spprofileview> {
+class _HardwareprofileState extends State<Hardwareprofile> {
   List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
+    'assets/h1.jpg',
+    'assets/h2.jpg',
+    'assets/h4.jpg',
+    'assets/h5.jpg',
+    'assets/h6.jpg',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_sharp),
+        /*leading: IconButton(
+          onPressed: () {  },
+          icon:const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
-        ),
+        ),*/
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
+        actions: [
+          PopupMenuButton<int>(
+            icon: const Icon(Icons.menu, color: Colors.black),
+            itemBuilder: (context) => [
+              const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
+            ],
+            onSelected: (item) => onSelete(context, item),
+          )
+        ],
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
@@ -47,16 +55,9 @@ class _SpprofileviewState extends State<Spprofileview> {
                   ),
                   const Center(
                     child: Text(
-                      'Aaron Graham',
+                      'Sk HARDWARE',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'mason',
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
@@ -163,12 +164,12 @@ class _SpprofileviewState extends State<Spprofileview> {
                           ),
                           Row(
                             children: const [
-                              Icon(Icons.work_sharp),
+                              Icon(Icons.account_box_outlined),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Only with Experience',
+                                'Muththahar',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -191,7 +192,7 @@ class _SpprofileviewState extends State<Spprofileview> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/imgs/suplier.jpg',
+                      'assets/hshop1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),
@@ -200,6 +201,14 @@ class _SpprofileviewState extends State<Spprofileview> {
         ),
       ),
     );
+  }
+
+  void onSelete(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Edithdprofile()));
+    }
   }
 }
 
