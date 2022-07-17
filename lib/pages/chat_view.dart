@@ -39,11 +39,13 @@ class _ChatState extends State<Chat> {
                         radius: 30.0,
                       ),
                     ),
-                    Text('W.Krishan Perera',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
-                    ),),
+                    Text(
+                      'W.Krishan',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     // IconButton(
                     //     onPressed: (){},
                     //     icon: Icon(),)
