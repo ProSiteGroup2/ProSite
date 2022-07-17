@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class Customerspview extends StatefulWidget {
+  const Customerspview({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Customerspview> createState() => _CustomerspviewState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CustomerspviewState extends State<Customerspview> {
   double rating = 0;
 
   List<String> items = [
@@ -48,7 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(
                     height: 70.0,
                   ),
-
                   const Center(
                     child: Text(
                       'Aaron Graham',
@@ -56,7 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontSize: 30.0, fontWeight: FontWeight.bold),
                     ),
                   ),
-
                   const Center(
                     child: Text(
                       'mason',
@@ -64,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ),
-
                   Container(
                       height: 150.0,
                       width: MediaQuery.of(context).size.width,
@@ -88,7 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             );
                           })),
-
                   Container(
                       margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 20.0),
                       padding:
@@ -222,7 +218,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       )),
-
                   const Center(
                     child: Text(
                       'Rate Him',
@@ -230,7 +225,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                   ),
-
                   Center(
                     child: RatingBar.builder(
                       itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
@@ -238,17 +232,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       itemSize: 30,
                       updateOnDrag: true,
                       itemBuilder: (BuildContext context, _) {
-                        return const Icon(Icons.star,color: Colors.amber,);
+                        return const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        );
                       },
                       onRatingUpdate: (rating) {
                         setState(() {
-                          this.rating =rating;
+                          this.rating = rating;
                         });
                       },
-
                     ),
                   ),
-
                   const SizedBox(
                     height: 15.0,
                   )
