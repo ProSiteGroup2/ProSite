@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group2/pages/user_profile.dart';
 
 class Editprofile extends StatefulWidget {
   const Editprofile({Key? key}) : super(key: key);
@@ -23,7 +24,12 @@ class _EditprofileState extends State<Editprofile> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => User_Profile()),
+            );
+          },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
         ),
@@ -323,7 +329,28 @@ class _EditprofileState extends State<Editprofile> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40.0,
+                    height: 0.0,
+                  ),
+                  const Divider(
+                    height: 20.0,
+                    color: Colors.black,
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Color(hexColor('#1982BD')),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(16.0))),
+                      onPressed: () {},
+                      child: const Text(
+                        'Save changes',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
                   ),
                 ],
               ),
