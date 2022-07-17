@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage1 extends StatefulWidget {
-  const MyHomePage1({Key? key}) : super(key: key);
+class Spprofileview extends StatefulWidget {
+  const Spprofileview({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage1> createState() => _MyHomePage1State();
+  State<Spprofileview> createState() => _SpprofileviewState();
 }
 
-class _MyHomePage1State extends State<MyHomePage1> {
+class _SpprofileviewState extends State<Spprofileview> {
   List<String> items = [
     'assets/imgs/aaa.jpg',
     'assets/imgs/bbb.jpg',
@@ -45,6 +45,20 @@ class _MyHomePage1State extends State<MyHomePage1> {
                   const SizedBox(
                     height: 70.0,
                   ),
+                  const Center(
+                    child: Text(
+                      'Aaron Graham',
+                      style: TextStyle(
+                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const Center(
+                    child: Text(
+                      'mason',
+                      style: TextStyle(
+                          fontSize: 15.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                   Container(
                       height: 150.0,
                       width: MediaQuery.of(context).size.width,
@@ -68,20 +82,6 @@ class _MyHomePage1State extends State<MyHomePage1> {
                               ),
                             );
                           })),
-                  const Center(
-                    child: Text(
-                      'Aaron Graham',
-                      style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'mason',
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
                   Container(
                       margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 40.0),
                       padding:

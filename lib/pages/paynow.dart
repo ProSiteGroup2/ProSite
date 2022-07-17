@@ -586,7 +586,7 @@ class _paynowState extends State<paynow> {
                                       );
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      primary: Colors.greenAccent[200],
+                                      primary: Colors.greenAccent[100],
                                       shadowColor:
                                           Colors.grey.withOpacity(0.25),
                                       padding: const EdgeInsets.symmetric(

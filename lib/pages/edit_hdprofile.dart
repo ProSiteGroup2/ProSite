@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:group2/pages/user_profile.dart';
+import 'package:group2/pages/hardware_profileview.dart';
 
-class Editprofile extends StatefulWidget {
-  const Editprofile({Key? key}) : super(key: key);
+class Edithdprofile extends StatefulWidget {
+  const Edithdprofile({Key? key}) : super(key: key);
 
   @override
-  State<Editprofile> createState() => _EditprofileState();
+  State<Edithdprofile> createState() => _EdithdprofileState();
 }
 
-class _EditprofileState extends State<Editprofile> {
+class _EdithdprofileState extends State<Edithdprofile> {
   List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
+    'assets/h1.jpg',
+    'assets/h2.jpg',
+    'assets/h4.jpg',
+    'assets/h5.jpg',
+    'assets/h6.jpg',
   ];
 
   @override
@@ -27,7 +25,7 @@ class _EditprofileState extends State<Editprofile> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => User_Profile()),
+              MaterialPageRoute(builder: (context) => Hardwareprofile()),
             );
           },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
@@ -88,7 +86,7 @@ class _EditprofileState extends State<Editprofile> {
                                   BorderRadiusDirectional.circular(16.0))),
                       onPressed: () {},
                       child: const Text(
-                        'Add Your Work Here',
+                        'Add your workshop photes',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -99,43 +97,7 @@ class _EditprofileState extends State<Editprofile> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'First Name:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(8.0, 8.0),
-                        )
-                      ],
-                    ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Last Name:',
+                      'Hardware Name:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -243,7 +205,7 @@ class _EditprofileState extends State<Editprofile> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Home Address:',
+                      'Hardware Address:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -279,7 +241,79 @@ class _EditprofileState extends State<Editprofile> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Home Town:',
+                      'City:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5.0),
+                  Container(
+                    height: 50.0,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(16.0)),
+                      color: Colors.blueGrey[50],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.blueGrey,
+                          blurRadius: 5.0,
+                          offset: Offset(8.0, 8.0),
+                        )
+                      ],
+                    ),
+                    child: const Padding(
+                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                        child: TextField(
+                          cursorColor: Colors.black12,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 50.0,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'Registation Number:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5.0),
+                  Container(
+                    height: 50.0,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(16.0)),
+                      color: Colors.blueGrey[50],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.blueGrey,
+                          blurRadius: 5.0,
+                          offset: Offset(8.0, 8.0),
+                        )
+                      ],
+                    ),
+                    child: const Padding(
+                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                        child: TextField(
+                          cursorColor: Colors.black12,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 50.0,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'Owners Name:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -363,7 +397,7 @@ class _EditprofileState extends State<Editprofile> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/imgs/suplier.jpg',
+                      'assets/hshop1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),
