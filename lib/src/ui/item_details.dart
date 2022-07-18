@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/pages/addcart.dart';
+import 'package:group2/pages/customer_spprofileview.dart';
 import 'package:group2/pages/paynow.dart';
 import 'package:group2/pages/user_profile.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -409,7 +410,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                User_Profile()),
+                                                Customerspview()),
                                       );
                                     },
                                     style: ElevatedButton.styleFrom(
