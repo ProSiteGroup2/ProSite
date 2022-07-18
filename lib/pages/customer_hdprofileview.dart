@@ -12,11 +12,11 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
   double rating = 0;
 
   List<String> items = [
-    'assets/h1.jpg',
-    'assets/h2.jpg',
-    'assets/h4.jpg',
-    'assets/h5.jpg',
-    'assets/h6.jpg',
+    'assets/imgs/h1.jpg',
+    'assets/imgs/h2.jpg',
+    'assets/imgs/h4.jpg',
+    'assets/imgs/h5.jpg',
+    'assets/imgs/h6.jpg',
   ];
 
   @override
@@ -249,7 +249,7 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/hshop1.jpg',
+                      'assets/imgs/hshop1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),
