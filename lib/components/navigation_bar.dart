@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:group2/pages/customer_profileview.dart';
 import 'package:group2/pages/user_profile.dart';
 // import 'package:group2/pages/labour_activities.dart';
 import 'package:group2/src/ui/customer_activities.dart';
@@ -16,7 +17,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int currindex = 0;
-  final screens = [HomeScreen(), CActivity(), Notifications(), User_Profile()];
+  final screens = [HomeScreen(), CActivity(), Notifications(), Customerpview()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
