@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         //  home: HomeScreen(),
         //  home: NavBar(),
-        initialRoute: '/navbar',
+        initialRoute: '/start',
         routes: {
           // '/home': (context) => HomeScreen(),    //give the home page class name
           '/start': (context) => Starting(), //give the start page class name
