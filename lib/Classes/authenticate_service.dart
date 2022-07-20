@@ -8,7 +8,7 @@ class AuthService{
 
   consumerLogin(email, password) async {
     try{
-      return await dio.post('https://prositegroup2.herokuapp.com/SPLogin',
+      return await dio.post('https://prositegroup2.herokuapp.com/consumerLogin',
       data: {"email":email,"password":password},
       options: Options(contentType: Headers.jsonContentType));
     } on DioError catch(e){
@@ -61,6 +61,8 @@ class AuthService{
           fontSize: 16.0);
     }
   }
+
+
 
 
 

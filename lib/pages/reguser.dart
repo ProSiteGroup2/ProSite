@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+import 'package:group2/Classes/authenticate_service.dart';
 import 'package:group2/pages/loginas_cons.dart';
 
 class RegUser extends StatefulWidget {
@@ -52,7 +53,7 @@ class _RegUserState extends State<RegUser> {
   String _userTown = '';
   String _userDistrict = '';
 
-  void _trySubmitForm() {
+  Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
@@ -65,30 +66,34 @@ class _RegUserState extends State<RegUser> {
       debugPrint(_userTown);
       debugPrint(_userDistrict);
 
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Registered Successfully'),
-          content: Icon(
-            Icons.check_circle,
-            color: Colors.green,
-            size: 60,
-          ),
-          actions: [
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Loginas_cons()),
-                  );
-                },
-                child: Text('Done'),
+       AuthService().addConsumer(_userName, _userEmail, _userConNum, _userAddress, _userTown, _userDistrict, _password).then((val){
+        if(val.data['success']){
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Registered Successfully'),
+              content: Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 60,
               ),
-            )
-          ],
-        ),
-      );
+              actions: [
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Loginas_cons()),
+                      );
+                    },
+                    child: Text('Done'),
+                  ),
+                )
+              ],
+            ),
+          );
+        }
+      });
     }
   }
 
@@ -379,6 +384,7 @@ class _RegUserState extends State<RegUser> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     d_choose = newValue;
+                                    _userDistrict=d_choose;
                                   });
                                 },
                                 items: location.map((valueItem) {
