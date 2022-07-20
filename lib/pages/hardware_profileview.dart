@@ -1,24 +1,20 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
-import 'edit_profile.dart';
+import 'package:group2/pages/edit_hdprofile.dart';
 
-class User_Profile extends StatefulWidget {
-  const User_Profile({Key? key}) : super(key: key);
+class Hardwareprofile extends StatefulWidget {
+  const Hardwareprofile({Key? key}) : super(key: key);
 
   @override
-  _User_ProfileState createState() => _User_ProfileState();
+  State<Hardwareprofile> createState() => _HardwareprofileState();
 }
 
-class _User_ProfileState extends State<User_Profile> {
+class _HardwareprofileState extends State<Hardwareprofile> {
   List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
+    'assets/h1.jpg',
+    'assets/h2.jpg',
+    'assets/h4.jpg',
+    'assets/h5.jpg',
+    'assets/h6.jpg',
   ];
 
   @override
@@ -26,15 +22,15 @@ class _User_ProfileState extends State<User_Profile> {
     return Scaffold(
       appBar: AppBar(
         /*leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_sharp),
+          onPressed: () {  },
+          icon:const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
         ),*/
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
         actions: [
           PopupMenuButton<int>(
-            icon: Icon(Icons.menu, color: Colors.black),
+            icon: const Icon(Icons.menu, color: Colors.black),
             itemBuilder: (context) => [
               const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
             ],
@@ -56,6 +52,13 @@ class _User_ProfileState extends State<User_Profile> {
                 children: [
                   const SizedBox(
                     height: 70.0,
+                  ),
+                  const Center(
+                    child: Text(
+                      'Sk HARDWARE',
+                      style: TextStyle(
+                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   Container(
                       height: 150.0,
@@ -80,20 +83,6 @@ class _User_ProfileState extends State<User_Profile> {
                               ),
                             );
                           })),
-                  const Center(
-                    child: Text(
-                      'Aaron Graham',
-                      style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'mason',
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
                   Container(
                       margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 40.0),
                       padding:
@@ -175,12 +164,12 @@ class _User_ProfileState extends State<User_Profile> {
                           ),
                           Row(
                             children: const [
-                              Icon(Icons.work_sharp),
+                              Icon(Icons.account_box_outlined),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Only with Experience',
+                                'Muththahar',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -203,7 +192,7 @@ class _User_ProfileState extends State<User_Profile> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/imgs/suplier.jpg',
+                      'assets/hshop1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),
@@ -213,13 +202,13 @@ class _User_ProfileState extends State<User_Profile> {
       ),
     );
   }
-}
 
-void onSelete(BuildContext context, int item) {
-  switch (item) {
-    case 0:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Editprofile()));
+  void onSelete(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Edithdprofile()));
+    }
   }
 }
 

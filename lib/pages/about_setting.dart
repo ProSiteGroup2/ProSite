@@ -11,8 +11,32 @@ class About extends StatefulWidget {
 class _AboutState extends State<About> {
 
   var lchoose;
-  List location=[
-    "Colombo","Gampaha","Kalutara","Kandy","Matale","Nuwara Eliya","Galle","Matara","Hambantota","Jaffna","Kilinochchi","Mannar","Vavuniya","Mullaitivu","Batticaloa","Ampara","Tricomalee","Kurunegala","Anuradhapura","Puttlam","Polonnaruwa","Badulla","Monaragala","Ratnapura","Kegalle"
+  List location = [
+    "Ampara",
+    "Anuradhapura",
+    "Badulla",
+    "Batticaloa",
+    "Colombo",
+    "Galle",
+    "Gampaha",
+    "Hambanthota",
+    "Jaffna",
+    "Kalutara",
+    "Kandy",
+    "Kegalle",
+    "Kilinochchi",
+    "Kurunegala",
+    "Mannar",
+    "Matale",
+    "Matara",
+    "Monaragala",
+    "Mullaitivu",
+    "Nuwara Eliya",
+    "Polonnaruwa",
+    "Puttalam",
+    "Ratnapura",
+    "Trincomalee",
+    "Vavuniya"
   ];
   @override
   Widget build(BuildContext context) {
