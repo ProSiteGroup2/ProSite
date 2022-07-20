@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
 import 'package:group2/pages/loginas_cons.dart';
 
@@ -92,6 +93,14 @@ class _RegUserState extends State<RegUser> {
               ],
             ),
           );
+        }else{
+          Fluttertoast.showToast(
+              msg: val.data['msg'],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
         }
       });
     }

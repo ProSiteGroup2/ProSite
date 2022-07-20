@@ -115,6 +115,56 @@ class AuthService{
     }
   }
 
+  addHardware(hardwarename,email,contactNo,address,city,district,regno,owner,password) async {
+    try{
+      return await dio.post('https://prositegroup2.herokuapp.com/addHardware',
+          data:{
+            "hardwarename":hardwarename,
+            "email":email,
+            "contactNo":contactNo,
+            "address":address,
+            "city":city,
+            "district":district,
+            "regno":regno,
+            "owner":owner,
+            "password":password
+          },
+          options: Options(contentType:Headers.jsonContentType));
+    } on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
+  addTransporter(username,email,contactNo,address,hometown,district,vehicle,work_out,password) async {
+    try{
+      return await dio.post('https://prositegroup2.herokuapp.com/addTransporter',
+          data:{
+            "username":username,
+            "email":email,
+            "contactNo":contactNo,
+            "address":address,
+            "hometown":hometown,
+            "district":district,
+            "vehicle":vehicle,
+            "work_out":work_out,
+            "password":password
+          },
+          options: Options(contentType:Headers.jsonContentType));
+    } on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
 }
