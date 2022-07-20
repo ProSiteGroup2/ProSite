@@ -62,7 +62,58 @@ class AuthService{
     }
   }
 
+  addContractor(contractorname,email,contactNo,address,hometown,district,regno,no_of_workers,password) async {
+    try{
+      return await dio.post('https://prositegroup2.herokuapp.com/addContractor',
+          data:{
+            "contractorname":contractorname,
+            "email":email,
+            "contactNo":contactNo,
+            "address":address,
+            "hometown":hometown,
+            "district":district,
+            "regno":regno,
+            "no_of_workers":no_of_workers,
+            "password":password
+          },
+          options: Options(contentType:Headers.jsonContentType));
+    } on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
+  addLabour(profession,username,email,contactNo,address,hometown,district,qualification,experience,password) async {
+    try{
+      return await dio.post('https://prositegroup2.herokuapp.com/addLabour',
+          data:{
+            "profession":profession,
+            "username":username,
+            "email":email,
+            "contactNo":contactNo,
+            "address":address,
+            "hometown":hometown,
+            "district":district,
+            "qualification":qualification,
+            "experience":experience,
+            "password":password
+          },
+          options: Options(contentType:Headers.jsonContentType));
+    } on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
 
 
