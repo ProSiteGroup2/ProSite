@@ -64,6 +64,16 @@ class _RegUserState extends State<RegUser> {
       debugPrint(_userTown);
       debugPrint(_userDistrict);
     }
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Registered Successfully'),
+        content: Icon(
+          Icons.check_circle,
+          color: Colors.green,
+        ),
+      ),
+    );
   }
 
   @override
@@ -479,6 +489,7 @@ class _RegUserState extends State<RegUser> {
                           Center(
                             child: ElevatedButton(
                               onPressed: _trySubmitForm,
+
                               //onPressed: () {
 
                               // Navigator.push(
