@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+import 'package:group2/pages/loginas_cons.dart';
 
 class RegUser extends StatefulWidget {
   const RegUser({Key? key}) : super(key: key);
@@ -63,17 +64,32 @@ class _RegUserState extends State<RegUser> {
       debugPrint(_userAddress);
       debugPrint(_userTown);
       debugPrint(_userDistrict);
-    }
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Registered Successfully'),
-        content: Icon(
-          Icons.check_circle,
-          color: Colors.green,
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Registered Successfully'),
+          content: Icon(
+            Icons.check_circle,
+            color: Colors.green,
+            size: 60,
+          ),
+          actions: [
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Loginas_cons()),
+                  );
+                },
+                child: Text('Done'),
+              ),
+            )
+          ],
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override

@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
@@ -244,7 +243,7 @@ class _Loginas_consState extends State<Loginas_cons> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            child: Text('Don\'t have an acoount?'),
+                            child: Text('Don\'t have an account?'),
                           ),
                           FlatButton(
                             onPressed: () {
