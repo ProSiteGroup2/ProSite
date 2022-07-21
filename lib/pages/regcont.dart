@@ -59,7 +59,6 @@ class _RegContState extends State<RegCont> {
   String _contTown = '';
   String _contDistrict = '';
   String _contRegNum = '';
-  String _contOwName = '';
   String _contWorkers = '';
 
   void _trySubmitForm() {
@@ -75,7 +74,6 @@ class _RegContState extends State<RegCont> {
       debugPrint(_contTown);
       debugPrint(_contDistrict);
       debugPrint(_contRegNum);
-      debugPrint(_contOwName);
       debugPrint(_contWorkers);
     }
   }
@@ -89,7 +87,6 @@ class _RegContState extends State<RegCont> {
   final cont_districtController = TextEditingController();
   final cont_passwordController = TextEditingController();
   final cont_regnumController = TextEditingController();
-  final cont_ownameController = TextEditingController();
 
   late bool _passwordVisible;
   void initState() {
@@ -438,44 +435,6 @@ class _RegContState extends State<RegCont> {
                           ),
                           SizedBox(
                             height: 10,
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 40.0, vertical: 10.0),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 0),
-                            child: TextFormField(
-                              controller: cont_ownameController,
-                              style: TextStyle(
-                                fontSize: 17,
-                              ),
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  prefixIcon: Icon(Icons.person,
-                                      color: Colors.blueGrey),
-                                  labelText: 'Owner\'s Name',
-                                  labelStyle: TextStyle(color: Colors.black),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        width: 3, color: Colors.blueGrey),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  focusColor: Colors.black,
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        width: 3,
-                                        color: Colors.lightBlueAccent),
-                                    borderRadius: BorderRadius.circular(15),
-                                  )),
-                              validator: (value) {
-                                if (value == null || value.trim().isEmpty) {
-                                  return 'This field is required';
-                                }
-                                return null;
-                              },
-                              onChanged: (value) => _contOwName = value,
-                            ),
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(
