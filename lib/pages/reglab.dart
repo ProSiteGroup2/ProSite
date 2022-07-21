@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
@@ -86,16 +84,40 @@ class _RegLabState extends State<RegLab> {
       debugPrint(_labQualification);
       debugPrint('$_labYears');
 
-      await AuthService().addLabour(_labProfession, _labName, _labEmail, _labConNum, _labAddress, _labTown, _labDistrict, _labQualification, _labYears, _labpassword).then((val){
-        if(val.data['success']){
-          Fluttertoast.showToast(
-              msg: val.data['msg'],
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.green,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        }else{
+      await AuthService()
+          .addLabour(
+              _labProfession,
+              _labName,
+              _labEmail,
+              _labConNum,
+              _labAddress,
+              _labTown,
+              _labDistrict,
+              _labQualification,
+              _labYears,
+              _labpassword)
+          .then((val) {
+        if (val.data['success']) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(
+                  'Your request has been sent to the Admin.Please check your Email!'),
+              content: Icon(
+                Icons.circle,
+                color: Colors.green,
+                size: 60,
+              ),
+            ),
+          );
+          // Fluttertoast.showToast(
+          //     msg: val.data['msg'],
+          //     toastLength: Toast.LENGTH_SHORT,
+          //     gravity: ToastGravity.BOTTOM,
+          //     backgroundColor: Colors.green,
+          //     textColor: Colors.white,
+          //     fontSize: 16.0);
+        } else {
           Fluttertoast.showToast(
               msg: val.data['msg'],
               toastLength: Toast.LENGTH_SHORT,
@@ -198,7 +220,7 @@ class _RegLabState extends State<RegLab> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     p_choose = newValue;
-                                    _labProfession=p_choose;
+                                    _labProfession = p_choose;
                                   });
                                 },
                                 items: profession.map((valueItem) {
@@ -446,7 +468,7 @@ class _RegLabState extends State<RegLab> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     d_choose = newValue;
-                                    _labDistrict=d_choose;
+                                    _labDistrict = d_choose;
                                   });
                                 },
                                 items: location.map((valueItem) {
@@ -494,7 +516,7 @@ class _RegLabState extends State<RegLab> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     q_choose = newValue;
-                                    _labQualification=q_choose;
+                                    _labQualification = q_choose;
                                   });
                                 },
                                 items: qualification.map((valueItem) {
@@ -542,7 +564,8 @@ class _RegLabState extends State<RegLab> {
                                 }
                                 return null;
                               },
-                              onChanged: (value) => _labYears = int.parse(value),
+                              onChanged: (value) =>
+                                  _labYears = int.parse(value),
                             ),
                           ),
                           Container(

@@ -79,16 +79,39 @@ class _RegTranState extends State<RegTran> {
       debugPrint(_tranVehicle);
       debugPrint(_tranTransport);
 
-      await AuthService().addTransporter(_tranName, _tranEmail, _tranConNum, _tranAddress, _tranTown, _tranDistrict, _tranVehicle, _tranTransport, _tranpassword).then((val){
-        if(val.data['success']){
-          Fluttertoast.showToast(
-              msg: val.data['msg'],
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.green,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        }else{
+      await AuthService()
+          .addTransporter(
+              _tranName,
+              _tranEmail,
+              _tranConNum,
+              _tranAddress,
+              _tranTown,
+              _tranDistrict,
+              _tranVehicle,
+              _tranTransport,
+              _tranpassword)
+          .then((val) {
+        if (val.data['success']) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(
+                  'Your request has been sent to the Admin.Please check your Email!'),
+              content: Icon(
+                Icons.circle,
+                color: Colors.green,
+                size: 60,
+              ),
+            ),
+          );
+          // Fluttertoast.showToast(
+          //     msg: val.data['msg'],
+          //     toastLength: Toast.LENGTH_SHORT,
+          //     gravity: ToastGravity.BOTTOM,
+          //     backgroundColor: Colors.green,
+          //     textColor: Colors.white,
+          //     fontSize: 16.0);
+        } else {
           Fluttertoast.showToast(
               msg: val.data['msg'],
               toastLength: Toast.LENGTH_SHORT,
@@ -390,7 +413,7 @@ class _RegTranState extends State<RegTran> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     d_choose = newValue;
-                                    _tranDistrict=d_choose;
+                                    _tranDistrict = d_choose;
                                   });
                                 },
                                 items: location.map((valueItem) {
@@ -438,7 +461,7 @@ class _RegTranState extends State<RegTran> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     v_choose = newValue;
-                                    _tranVehicle=v_choose;
+                                    _tranVehicle = v_choose;
                                   });
                                 },
                                 items: vehicle.map((valueItem) {
@@ -507,7 +530,7 @@ class _RegTranState extends State<RegTran> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     t_choose = newValue;
-                                    _tranTransport=t_choose;
+                                    _tranTransport = t_choose;
                                   });
                                 },
                                 items: transport.map((valueItem) {
