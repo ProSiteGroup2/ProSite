@@ -1,8 +1,10 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/authenticate_service.dart';
 
 class RegLab extends StatefulWidget {
   const RegLab({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class RegLab extends StatefulWidget {
 class _RegLabState extends State<RegLab> {
   var q_choose;
   List qualification = [
-    "Only With Experiance",
+    "Only With Experience",
     "With Professional Qualifications",
   ];
   var p_choose;
@@ -66,9 +68,9 @@ class _RegLabState extends State<RegLab> {
   String _labDistrict = '';
   String _labProfession = '';
   String _labQualification = '';
-  String _labYears = '';
+  int? _labYears;
 
-  void _trySubmitForm() {
+  Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
@@ -82,7 +84,27 @@ class _RegLabState extends State<RegLab> {
       debugPrint(_labProfession);
       debugPrint(_labDistrict);
       debugPrint(_labQualification);
-      debugPrint(_labYears);
+      debugPrint('$_labYears');
+
+      await AuthService().addLabour(_labProfession, _labName, _labEmail, _labConNum, _labAddress, _labTown, _labDistrict, _labQualification, _labYears, _labpassword).then((val){
+        if(val.data['success']){
+          Fluttertoast.showToast(
+              msg: val.data['msg'],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.green,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        }else{
+          Fluttertoast.showToast(
+              msg: val.data['msg'],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        }
+      });
     }
   }
 
@@ -176,6 +198,7 @@ class _RegLabState extends State<RegLab> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     p_choose = newValue;
+                                    _labProfession=p_choose;
                                   });
                                 },
                                 items: profession.map((valueItem) {
@@ -423,6 +446,7 @@ class _RegLabState extends State<RegLab> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     d_choose = newValue;
+                                    _labDistrict=d_choose;
                                   });
                                 },
                                 items: location.map((valueItem) {
@@ -470,6 +494,7 @@ class _RegLabState extends State<RegLab> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     q_choose = newValue;
+                                    _labQualification=q_choose;
                                   });
                                 },
                                 items: qualification.map((valueItem) {
@@ -515,12 +540,9 @@ class _RegLabState extends State<RegLab> {
                                 if (value == null || value.trim().isEmpty) {
                                   return 'This field is required';
                                 }
-                                if (value.trim().length < 4) {
-                                  return 'Username must be at least 4 characters in length';
-                                }
                                 return null;
                               },
-                              onChanged: (value) => _labName = value,
+                              onChanged: (value) => _labYears = int.parse(value),
                             ),
                           ),
                           Container(

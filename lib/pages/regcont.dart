@@ -1,8 +1,9 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/authenticate_service.dart';
 
 class RegCont extends StatefulWidget {
   const RegCont({Key? key}) : super(key: key);
@@ -61,7 +62,7 @@ class _RegContState extends State<RegCont> {
   String _contRegNum = '';
   String _contWorkers = '';
 
-  void _trySubmitForm() {
+  Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
@@ -75,6 +76,26 @@ class _RegContState extends State<RegCont> {
       debugPrint(_contDistrict);
       debugPrint(_contRegNum);
       debugPrint(_contWorkers);
+
+      await AuthService().addContractor(_contName, _contEmail, _contConNum, _contAddress, _contTown, _contDistrict, _contRegNum, _contWorkers, _contpassword).then((val){
+        if(val.data['success']){
+          Fluttertoast.showToast(
+              msg: val.data['msg'],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.green,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        }else{
+        Fluttertoast.showToast(
+        msg: val.data['msg'],
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+        }
+      });
     }
   }
 
@@ -87,6 +108,7 @@ class _RegContState extends State<RegCont> {
   final cont_districtController = TextEditingController();
   final cont_passwordController = TextEditingController();
   final cont_regnumController = TextEditingController();
+
 
   late bool _passwordVisible;
   void initState() {
@@ -367,6 +389,7 @@ class _RegContState extends State<RegCont> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     d_choose = newValue;
+                                    _contDistrict=d_choose;
                                   });
                                 },
                                 items: location.map((valueItem) {
@@ -470,6 +493,7 @@ class _RegContState extends State<RegCont> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     w_choose = newValue;
+                                    _contWorkers=w_choose;
                                   });
                                 },
                                 items: workers.map((valueItem) {
