@@ -80,7 +80,7 @@ class _RegTranState extends State<RegTran> {
       debugPrint(_tranTransport);
 
       try{
-         AuthService().addTransporter(_tranName, _tranEmail, _tranConNum, _tranAddress, _tranTown, _tranDistrict, _tranVehicle, _tranTransport, _tranpassword).then((val){
+         await AuthService().addTransporter(_tranName, _tranEmail, _tranConNum, _tranAddress, _tranTown, _tranDistrict, _tranVehicle, _tranTransport, _tranpassword).then((val){
           if(val.data['success']){
             Fluttertoast.showToast(
                 msg: val.data['msg'],
