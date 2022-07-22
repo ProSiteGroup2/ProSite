@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
         token = val.data['token'];
         debugPrint(token);
         Fluttertoast.showToast(
-            msg: 'Authenticated',
+            msg: val.data['role']+' Authenticated',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.green,
