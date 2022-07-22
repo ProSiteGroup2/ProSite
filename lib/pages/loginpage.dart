@@ -1,6 +1,8 @@
 
 // ignore_for_file: prefer_const_constructors, override_on_non_overriding_member, must_call_super, sort_child_properties_last
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
@@ -23,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   String _spEmail = '';
   String _sppassword = '';
   var token;
+  // late Map sp;
 
 
 
@@ -41,6 +44,8 @@ class _LoginPageState extends State<LoginPage> {
           if(val.data['role']=='labour'){
             AuthService().getLabourInfo(token).then((val2){
               if (val2.data['success']){
+                // sp=(val2.data['sp']);
+                // print(sp['profession']);
                 Fluttertoast.showToast(
                     msg: val2.data['msg'],
                     toastLength: Toast.LENGTH_SHORT,
