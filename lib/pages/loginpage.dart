@@ -37,15 +37,20 @@ class _LoginPageState extends State<LoginPage> {
     await AuthService().SPLogin(_spEmail, _sppassword).then((val){
       if (val.data['success']) {
         token = val.data['token'];
-        debugPrint(token);
-        Fluttertoast.showToast(
-            msg: val.data['role']+' Authenticated',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-            fontSize: 16.0);
-        // Navigator.pushNamed(context, '/navbar');
+        if(val.data['role']=='labour'){
+          AuthService().getLabourInfo(token).then((val2){
+            if (val2.data['success']){
+              Fluttertoast.showToast(
+                  msg: val2.data['msg'],
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+              // Navigator.pushNamed(context, '/navbar');
+            }
+          });
+        }
       }
     });
   }
