@@ -79,48 +79,30 @@ class _RegTranState extends State<RegTran> {
       debugPrint(_tranVehicle);
       debugPrint(_tranTransport);
 
-      await AuthService()
-          .addTransporter(
-              _tranName,
-              _tranEmail,
-              _tranConNum,
-              _tranAddress,
-              _tranTown,
-              _tranDistrict,
-              _tranVehicle,
-              _tranTransport,
-              _tranpassword)
-          .then((val) {
-        if (val.data['success']) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text(
-                  'Your request has been sent to the Admin.Please check your Email!'),
-              content: Icon(
-                Icons.circle,
-                color: Colors.green,
-                size: 60,
-              ),
-            ),
-          );
-          // Fluttertoast.showToast(
-          //     msg: val.data['msg'],
-          //     toastLength: Toast.LENGTH_SHORT,
-          //     gravity: ToastGravity.BOTTOM,
-          //     backgroundColor: Colors.green,
-          //     textColor: Colors.white,
-          //     fontSize: 16.0);
-        } else {
-          Fluttertoast.showToast(
-              msg: val.data['msg'],
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        }
-      });
+      try{
+         await AuthService().addTransporter(_tranName, _tranEmail, _tranConNum, _tranAddress, _tranTown, _tranDistrict, _tranVehicle, _tranTransport, _tranpassword).then((val){
+          if(val.data['success']){
+            Fluttertoast.showToast(
+                msg: val.data['msg'],
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.green,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }else{
+            Fluttertoast.showToast(
+                msg: val.data['msg'],
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+        });
+      }
+      catch(e){
+        print('An error occured');
+      }
     }
   }
 
