@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           // '/home': (context) => HomeScreen(),    //give the home page class name
           '/start': (context) => Starting(), //give the start page class name
           '/navbar': (context) => NavBar(), //give the navbar page class name
-          '/notifications':(context)=>Notifications(),
+          '/notifications': (context) => Notifications(),
           // .....
           // ...... give other pages class name like above
         });

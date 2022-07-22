@@ -1,8 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/authenticate_service.dart';
 
 class RegCont extends StatefulWidget {
   const RegCont({Key? key}) : super(key: key);
@@ -59,10 +59,9 @@ class _RegContState extends State<RegCont> {
   String _contTown = '';
   String _contDistrict = '';
   String _contRegNum = '';
-  String _contOwName = '';
   String _contWorkers = '';
 
-  void _trySubmitForm() {
+  Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
@@ -75,8 +74,50 @@ class _RegContState extends State<RegCont> {
       debugPrint(_contTown);
       debugPrint(_contDistrict);
       debugPrint(_contRegNum);
-      debugPrint(_contOwName);
       debugPrint(_contWorkers);
+
+      await AuthService()
+          .addContractor(
+              _contName,
+              _contEmail,
+              _contConNum,
+              _contAddress,
+              _contTown,
+              _contDistrict,
+              _contRegNum,
+              _contWorkers,
+              _contpassword)
+          .then((val) {
+        if (val.data['success']) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(
+                  'Your request has been sent to the Admin.Please check your Email!'),
+              content: Icon(
+                Icons.circle,
+                color: Colors.green,
+                size: 60,
+              ),
+            ),
+          );
+          // Fluttertoast.showToast(
+          //     msg: val.data['msg'],
+          //     toastLength: Toast.LENGTH_SHORT,
+          //     gravity: ToastGravity.BOTTOM,
+          //     backgroundColor: Colors.green,
+          //     textColor: Colors.white,
+          //     fontSize: 16.0);
+        } else {
+          Fluttertoast.showToast(
+              msg: val.data['msg'],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        }
+      });
     }
   }
 
@@ -89,7 +130,6 @@ class _RegContState extends State<RegCont> {
   final cont_districtController = TextEditingController();
   final cont_passwordController = TextEditingController();
   final cont_regnumController = TextEditingController();
-  final cont_ownameController = TextEditingController();
 
   late bool _passwordVisible;
   void initState() {
@@ -370,6 +410,7 @@ class _RegContState extends State<RegCont> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     d_choose = newValue;
+                                    _contDistrict = d_choose;
                                   });
                                 },
                                 items: location.map((valueItem) {
@@ -441,44 +482,6 @@ class _RegContState extends State<RegCont> {
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(
-                                horizontal: 40.0, vertical: 10.0),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 0),
-                            child: TextFormField(
-                              controller: cont_ownameController,
-                              style: TextStyle(
-                                fontSize: 17,
-                              ),
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  prefixIcon: Icon(Icons.person,
-                                      color: Colors.blueGrey),
-                                  labelText: 'Owner\'s Name',
-                                  labelStyle: TextStyle(color: Colors.black),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        width: 3, color: Colors.blueGrey),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  focusColor: Colors.black,
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        width: 3,
-                                        color: Colors.lightBlueAccent),
-                                    borderRadius: BorderRadius.circular(15),
-                                  )),
-                              validator: (value) {
-                                if (value == null || value.trim().isEmpty) {
-                                  return 'This field is required';
-                                }
-                                return null;
-                              },
-                              onChanged: (value) => _contOwName = value,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(
                                 horizontal: 70.0, vertical: 10.0),
                             child: Container(
                               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -511,6 +514,7 @@ class _RegContState extends State<RegCont> {
                                 onChanged: (newValue) {
                                   setState(() {
                                     w_choose = newValue;
+                                    _contWorkers = w_choose;
                                   });
                                 },
                                 items: workers.map((valueItem) {

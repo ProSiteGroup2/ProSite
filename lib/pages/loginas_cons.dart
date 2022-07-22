@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class _Loginas_consState extends State<Loginas_cons> {
   String _password = '';
   var token;
 
-  void _trySubmitForm()  {
+  void _trySubmitForm() {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
@@ -30,9 +29,10 @@ class _Loginas_consState extends State<Loginas_cons> {
     }
 
     AuthService().consumerLogin(_userEmail, _password).then((val) async {
-      if(val.data['success']){
-        token=val.data['token'];
-        await Fluttertoast.showToast(msg: 'Authenticated',
+      if (val.data['success']) {
+        token = val.data['token'];
+        await Fluttertoast.showToast(
+            msg: 'Authenticated',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.green,
@@ -40,7 +40,6 @@ class _Loginas_consState extends State<Loginas_cons> {
             fontSize: 16.0);
         Navigator.pushNamed(context, '/navbar');
       }
-      
     });
   }
 

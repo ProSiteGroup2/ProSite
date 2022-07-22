@@ -248,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              child: Text('Don\'t have an acoount?'),
+                              child: Text('Don\'t have an account?'),
                             ),
                             FlatButton(
                               onPressed: () {
