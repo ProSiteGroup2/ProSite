@@ -2,8 +2,13 @@
 // ignore_for_file: prefer_const_constructors, override_on_non_overriding_member, must_call_super, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/authenticate_service.dart';
 import 'package:group2/pages/choose.dart';
+import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/resetpwd_1.dart';
+import 'package:group2/globals.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,14 +22,32 @@ class _LoginPageState extends State<LoginPage> {
 
   String _spEmail = '';
   String _sppassword = '';
+  var token;
 
-  void _trySubmitForm() {
+
+
+  Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
       debugPrint(_spEmail);
       debugPrint(_sppassword);
     }
+
+    await AuthService().SPLogin(_spEmail, _sppassword).then((val){
+      if (val.data['success']) {
+        token = val.data['token'];
+        debugPrint(token);
+        Fluttertoast.showToast(
+            msg: 'Authenticated',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
+        // Navigator.pushNamed(context, '/navbar');
+      }
+    });
   }
 
   @override

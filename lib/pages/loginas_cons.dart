@@ -9,6 +9,7 @@ import 'package:group2/pages/resetpwd_1.dart';
 class Loginas_cons extends StatefulWidget {
   const Loginas_cons({Key? key}) : super(key: key);
 
+
   @override
   State<Loginas_cons> createState() => _Loginas_consState();
 }
@@ -19,6 +20,8 @@ class _Loginas_consState extends State<Loginas_cons> {
   String _userEmail = '';
   String _password = '';
   var token;
+
+
 
   void _trySubmitForm() {
     final bool? isValid = _formKey.currentState?.validate();
@@ -31,6 +34,7 @@ class _Loginas_consState extends State<Loginas_cons> {
     AuthService().consumerLogin(_userEmail, _password).then((val) async {
       if (val.data['success']) {
         token = val.data['token'];
+        print(token);
         await Fluttertoast.showToast(
             msg: 'Authenticated',
             toastLength: Toast.LENGTH_SHORT,
