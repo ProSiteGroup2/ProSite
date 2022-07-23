@@ -58,11 +58,15 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                   ),
                   Container(
                       height: 150.0,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.blue,
+                      //width: MediaQuery.of(context).size.width,
+                      //color: Colors.blue,
                       margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                      padding:
-                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                      /*padding:
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),*/
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.green[200],
+                      ),
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: items.length,
@@ -71,10 +75,14 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                             return SizedBox(
                               height: 130,
                               width: 120,
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  items[index],
-                                  fit: BoxFit.fill,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    10.0, 10.0, 5.0, 10.0),
+                                child: ClipRRect(
+                                  child: Image.asset(
+                                    items[index],
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             );
