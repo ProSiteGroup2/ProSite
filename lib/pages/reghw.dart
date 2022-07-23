@@ -68,10 +68,7 @@ class _RegHwState extends State<RegHw> {
       debugPrint(_hwRegNum);
       debugPrint(_hwOwName);
 
-      await AuthService()
-          .addHardware(_hwName, _hwEmail, _hwConNum, _hwAddress, _hwTown,
-              _hwDistrict, _hwRegNum, _hwOwName, _hwpassword)
-          .then((val) {
+      await AuthService().addHardware(_hwName, _hwEmail, _hwConNum, _hwAddress, _hwTown, _hwDistrict, _hwRegNum, _hwOwName, _hwpassword).then((val) {
         if (val.data['success']) {
           showDialog(
             context: context,

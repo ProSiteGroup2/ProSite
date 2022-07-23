@@ -84,19 +84,7 @@ class _RegLabState extends State<RegLab> {
       debugPrint(_labQualification);
       debugPrint('$_labYears');
 
-      await AuthService()
-          .addLabour(
-              _labProfession,
-              _labName,
-              _labEmail,
-              _labConNum,
-              _labAddress,
-              _labTown,
-              _labDistrict,
-              _labQualification,
-              _labYears,
-              _labpassword)
-          .then((val) {
+      await AuthService().addLabour(_labProfession, _labName, _labEmail, _labConNum, _labAddress, _labTown, _labDistrict, _labQualification, _labYears, _labpassword).then((val) {
         if (val.data['success']) {
           showDialog(
             context: context,

@@ -76,18 +76,7 @@ class _RegContState extends State<RegCont> {
       debugPrint(_contRegNum);
       debugPrint(_contWorkers);
 
-      await AuthService()
-          .addContractor(
-              _contName,
-              _contEmail,
-              _contConNum,
-              _contAddress,
-              _contTown,
-              _contDistrict,
-              _contRegNum,
-              _contWorkers,
-              _contpassword)
-          .then((val) {
+      await AuthService().addContractor(_contName, _contEmail, _contConNum, _contAddress,_contTown, _contDistrict, _contRegNum, _contWorkers, _contpassword).then((val) {
         if (val.data['success']) {
           showDialog(
             context: context,
