@@ -66,42 +66,46 @@ class _RegUserState extends State<RegUser> {
       debugPrint(_userTown);
       debugPrint(_userDistrict);
 
-       AuthService().addConsumer(_userName, _userEmail, _userConNum, _userAddress, _userTown, _userDistrict, _password).then((val){
-        if(val.data['success']){
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Registered Successfully'),
-              content: Icon(
-                Icons.check_circle,
-                color: Colors.green,
-                size: 60,
+       try {
+         AuthService().addConsumer(_userName, _userEmail, _userConNum, _userAddress, _userTown, _userDistrict, _password).then((val){
+          if(val.data['success']){
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text('Registered Successfully'),
+                content: Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                  size: 60,
+                ),
+                actions: [
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Loginas_cons()),
+                        );
+                      },
+                      child: Text('Done'),
+                    ),
+                  )
+                ],
               ),
-              actions: [
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Loginas_cons()),
-                      );
-                    },
-                    child: Text('Done'),
-                  ),
-                )
-              ],
-            ),
-          );
-        }else{
-          Fluttertoast.showToast(
-              msg: val.data['msg'],
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        }
-      });
+            );
+          }else{
+            Fluttertoast.showToast(
+                msg: val.data['msg'],
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+               });
+       } on Exception catch (e) {
+         debugPrint('An error occured');
+       }
     }
   }
 
