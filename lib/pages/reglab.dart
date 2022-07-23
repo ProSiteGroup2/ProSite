@@ -84,49 +84,41 @@ class _RegLabState extends State<RegLab> {
       debugPrint(_labQualification);
       debugPrint('$_labYears');
 
-      await AuthService()
-          .addLabour(
-              _labProfession,
-              _labName,
-              _labEmail,
-              _labConNum,
-              _labAddress,
-              _labTown,
-              _labDistrict,
-              _labQualification,
-              _labYears,
-              _labpassword)
-          .then((val) {
-        if (val.data['success']) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text(
-                  'Your request has been sent to the Admin.Please check your Email!'),
-              content: Icon(
-                Icons.circle,
-                color: Colors.green,
-                size: 60,
+      try {
+        await AuthService().addLabour(_labProfession, _labName, _labEmail, _labConNum, _labAddress, _labTown, _labDistrict, _labQualification, _labYears, _labpassword).then((val) {
+          if (val.data['success']) {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text(
+                    'Your request has been sent to the Admin.Please check your Email!'),
+                content: Icon(
+                  Icons.circle,
+                  color: Colors.green,
+                  size: 60,
+                ),
               ),
-            ),
-          );
-          // Fluttertoast.showToast(
-          //     msg: val.data['msg'],
-          //     toastLength: Toast.LENGTH_SHORT,
-          //     gravity: ToastGravity.BOTTOM,
-          //     backgroundColor: Colors.green,
-          //     textColor: Colors.white,
-          //     fontSize: 16.0);
-        } else {
-          Fluttertoast.showToast(
-              msg: val.data['msg'],
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        }
-      });
+            );
+            // Fluttertoast.showToast(
+            //     msg: val.data['msg'],
+            //     toastLength: Toast.LENGTH_SHORT,
+            //     gravity: ToastGravity.BOTTOM,
+            //     backgroundColor: Colors.green,
+            //     textColor: Colors.white,
+            //     fontSize: 16.0);
+          } else {
+            Fluttertoast.showToast(
+                msg: val.data['msg'],
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+        });
+      } on Exception catch (e) {
+        debugPrint('An error occured');
+      }
     }
   }
 

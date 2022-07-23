@@ -167,4 +167,79 @@ class AuthService{
     }
   }
 
+  getConsumerInfo(token) async {
+    try{
+      dio.options.headers['authorization']='Bearer $token';
+      return await dio.get('https://prositegroup2.herokuapp.com/getConsumerInfo');
+    }on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getContractorInfo(token) async {
+    try{
+      dio.options.headers['authorization']='Bearer $token';
+      return await dio.get('https://prositegroup2.herokuapp.com/getContractorInfo');
+    }on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getHardwareInfo(token) async {
+    try{
+      dio.options.headers['authorization']='Bearer $token';
+      return await dio.get('https://prositegroup2.herokuapp.com/getHardwareInfo');
+    }on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getLabourInfo(token) async {
+    try{
+      dio.options.headers['authorization']='Bearer $token';
+      return await dio.get('https://prositegroup2.herokuapp.com/getLabourInfo');
+    }on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getTransporterInfo(token) async {
+    try{
+      dio.options.headers['authorization']='Bearer $token';
+      return await dio.get('https://prositegroup2.herokuapp.com/getConsumerInfo');
+    }on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
 }
