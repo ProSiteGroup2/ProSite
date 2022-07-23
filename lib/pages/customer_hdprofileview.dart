@@ -50,7 +50,10 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                     child: Text(
                       'Sk HARDWARE',
                       style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "poppins",
+                      ),
                     ),
                   ),
                   Container(
@@ -96,8 +99,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 'From Gampaha',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -113,8 +117,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 'B 70/5A,Edurapotha,Kegalle',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -130,8 +135,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 'abcd@gmail.com',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -147,8 +153,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 '0772222999',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -164,8 +171,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 'Muththahar',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
