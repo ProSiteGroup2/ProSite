@@ -79,7 +79,18 @@ class _RegTranState extends State<RegTran> {
       debugPrint(_tranVehicle);
       debugPrint(_tranTransport);
 
-      await AuthService().addTransporter(_tranName, _tranEmail, _tranConNum, _tranAddress, _tranTown, _tranDistrict, _tranVehicle, _tranTransport, _tranpassword).then((val) {
+      await AuthService()
+          .addTransporter(
+              _tranName,
+              _tranEmail,
+              _tranConNum,
+              _tranAddress,
+              _tranTown,
+              _tranDistrict,
+              _tranVehicle,
+              _tranTransport,
+              _tranpassword)
+          .then((val) {
         if (val.data['success']) {
           showDialog(
             context: context,
@@ -87,7 +98,7 @@ class _RegTranState extends State<RegTran> {
               title: Text(
                   'Your request has been sent to the Admin.Please check your Email!'),
               content: Icon(
-                Icons.check_circle,
+                Icons.circle,
                 color: Colors.green,
                 size: 60,
               ),

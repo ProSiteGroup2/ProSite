@@ -1,4 +1,3 @@
-
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors, unnecessary_new
 
 import 'package:flutter/material.dart';
@@ -67,7 +66,7 @@ class Select extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      'Provider',
+                      'Service Provider',
                       style: TextStyle(
                         fontSize: 20.0,
                       ),
