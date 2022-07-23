@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group2/pages/edit_csprofile.dart';
 
 class Customerpview extends StatefulWidget {
   const Customerpview({Key? key}) : super(key: key);
@@ -12,16 +13,18 @@ class _CustomerpviewState extends State<Customerpview> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
+        /*leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
-        ),
+        ),*/
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert_sharp),
-            color: Colors.blueAccent,
+          PopupMenuButton<int>(
+            icon: const Icon(Icons.menu, color: Colors.black),
+            itemBuilder: (context) => [
+              const PopupMenuItem<int>(value: 0, child: Text('Edit Profile'))
+            ],
+            onSelected: (item) => onSelete(context, item),
           )
         ],
         elevation: 0.0,
@@ -46,7 +49,10 @@ class _CustomerpviewState extends State<Customerpview> {
                     child: Text(
                       'Aaron Graham',
                       style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "poppins",
+                      ),
                     ),
                   ),
                   Container(
@@ -67,15 +73,16 @@ class _CustomerpviewState extends State<Customerpview> {
                                 width: 5.0,
                               ),
                               Text(
-                                'From Gampaha',
+                                'From Kegalle',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
                           const SizedBox(
-                            height: 10.0,
+                            height: 20.0,
                           ),
                           Row(
                             children: const [
@@ -86,13 +93,14 @@ class _CustomerpviewState extends State<Customerpview> {
                               Text(
                                 'B 70/5A,Edurapotha,Kegalle',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
                           const SizedBox(
-                            height: 10.0,
+                            height: 20.0,
                           ),
                           Row(
                             children: const [
@@ -103,13 +111,14 @@ class _CustomerpviewState extends State<Customerpview> {
                               Text(
                                 'abcd@gmail.com',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
                           const SizedBox(
-                            height: 10.0,
+                            height: 20.0,
                           ),
                           Row(
                             children: const [
@@ -120,11 +129,26 @@ class _CustomerpviewState extends State<Customerpview> {
                               Text(
                                 '0772222999',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          Row(children: const [
+                            Icon(Icons.home),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            Text('Bulathkohupitiya',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                )),
+                          ]),
                           const SizedBox(
                             height: 10.0,
                           ),
@@ -150,6 +174,14 @@ class _CustomerpviewState extends State<Customerpview> {
         ),
       ),
     );
+  }
+}
+
+void onSelete(BuildContext context, int item) {
+  switch (item) {
+    case 0:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Editcsprofile()));
   }
 }
 
