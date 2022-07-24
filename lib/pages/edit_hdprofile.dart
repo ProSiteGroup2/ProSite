@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/hardware_profileview.dart';
 
 class Edithdprofile extends StatefulWidget {
@@ -95,6 +96,29 @@ class _EdithdprofileState extends State<Edithdprofile> {
                       onPressed: () {},
                       child: const Text(
                         'Add your workshop photes',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Color(hexColor('#1982BD')),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(16.0))),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Additem()),
+                        );
+                      },
+                      child: const Text(
+                        'Add Items Post',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
