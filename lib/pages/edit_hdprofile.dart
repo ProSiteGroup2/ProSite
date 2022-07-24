@@ -10,11 +10,11 @@ class Edithdprofile extends StatefulWidget {
 
 class _EdithdprofileState extends State<Edithdprofile> {
   List<String> items = [
-    'assets/h1.jpg',
-    'assets/h2.jpg',
-    'assets/h4.jpg',
-    'assets/h5.jpg',
-    'assets/h6.jpg',
+    'assets/imgs/h1.jpg',
+    'assets/imgs/h2.jpg',
+    'assets/imgs/h4.jpg',
+    'assets/imgs/h5.jpg',
+    'assets/imgs/h6.jpg',
   ];
 
   @override
@@ -53,11 +53,15 @@ class _EdithdprofileState extends State<Edithdprofile> {
                   ),
                   Container(
                       height: 150.0,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.blue,
+                      //width: MediaQuery.of(context).size.width,
+                      //color: Colors.blue,
                       margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                      padding:
-                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                      /*padding:
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),*/
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.green[200],
+                      ),
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: items.length,
@@ -66,10 +70,14 @@ class _EdithdprofileState extends State<Edithdprofile> {
                             return SizedBox(
                               height: 130,
                               width: 120,
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  items[index],
-                                  fit: BoxFit.fill,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    10.0, 10.0, 5.0, 10.0),
+                                child: ClipRRect(
+                                  child: Image.asset(
+                                    items[index],
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             );
@@ -111,13 +119,13 @@ class _EdithdprofileState extends State<Edithdprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.blueGrey,
                           blurRadius: 5.0,
-                          offset: Offset(8.0, 8.0),
+                          offset: Offset(7.0, 7.0),
                         )
                       ],
                     ),
@@ -147,13 +155,13 @@ class _EdithdprofileState extends State<Edithdprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.blueGrey,
                           blurRadius: 5.0,
-                          offset: Offset(8.0, 8.0),
+                          offset: Offset(7.0, 7.0),
                         )
                       ],
                     ),
@@ -183,13 +191,13 @@ class _EdithdprofileState extends State<Edithdprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.blueGrey,
                           blurRadius: 5.0,
-                          offset: Offset(8.0, 8.0),
+                          offset: Offset(7.0, 7.0),
                         )
                       ],
                     ),
@@ -219,13 +227,13 @@ class _EdithdprofileState extends State<Edithdprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.blueGrey,
                           blurRadius: 5.0,
-                          offset: Offset(8.0, 8.0),
+                          offset: Offset(7.0, 7.0),
                         )
                       ],
                     ),
@@ -255,13 +263,13 @@ class _EdithdprofileState extends State<Edithdprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.blueGrey,
                           blurRadius: 5.0,
-                          offset: Offset(8.0, 8.0),
+                          offset: Offset(7.0, 7.0),
                         )
                       ],
                     ),
@@ -291,13 +299,13 @@ class _EdithdprofileState extends State<Edithdprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.blueGrey,
                           blurRadius: 5.0,
-                          offset: Offset(8.0, 8.0),
+                          offset: Offset(7.0, 7.0),
                         )
                       ],
                     ),
@@ -327,13 +335,13 @@ class _EdithdprofileState extends State<Edithdprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.blueGrey,
                           blurRadius: 5.0,
-                          offset: Offset(8.0, 8.0),
+                          offset: Offset(7.0, 7.0),
                         )
                       ],
                     ),
@@ -391,16 +399,28 @@ class _EdithdprofileState extends State<Edithdprofile> {
             ),
             Positioned(
                 child: Center(
-              child: SizedBox(
-                height: 107.0,
-                width: 115.0,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      'assets/hshop1.jpg',
-                      fit: BoxFit.fill,
-                    )),
-              ),
+              child: Stack(children: [
+                SizedBox(
+                  height: 107.0,
+                  width: 115.0,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Image.asset(
+                        'assets/imgs/hshop1.jpg',
+                        fit: BoxFit.fill,
+                      )),
+                ),
+                Positioned(
+                    bottom: -5.0,
+                    right: -5.0,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.add_a_photo_outlined,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {},
+                    ))
+              ]),
             ))
           ],
         ),
