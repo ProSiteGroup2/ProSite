@@ -62,11 +62,15 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                   ),
                   Container(
                       height: 150.0,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.blue,
+                      //width: MediaQuery.of(context).size.width,
+                      //color: Colors.blue,
                       margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                      padding:
-                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                      /*padding:
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),*/
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.green[200],
+                      ),
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: items.length,
@@ -75,10 +79,14 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                             return SizedBox(
                               height: 130,
                               width: 120,
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  items[index],
-                                  fit: BoxFit.fill,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    10.0, 10.0, 5.0, 10.0),
+                                child: ClipRRect(
+                                  child: Image.asset(
+                                    items[index],
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             );
@@ -164,12 +172,46 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                           ),
                           Row(
                             children: const [
+                              Icon(Icons.location_city_outlined),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              Text(
+                                'Bulathkohupitiya',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            children: const [
                               Icon(Icons.account_box_outlined),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
                                 'Muththahar',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            children: const [
+                              Icon(Icons.confirmation_number),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              Text(
+                                'Reg:450623',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
