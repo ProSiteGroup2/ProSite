@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group2/pages/changepw.dart';
 import 'customer_profileview.dart';
 
 class Editcsprofile extends StatefulWidget {
@@ -53,7 +54,6 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   const SizedBox(
                     height: 70.0,
                   ),
-
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
@@ -71,7 +71,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(8.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
@@ -107,7 +107,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(8.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
@@ -143,7 +143,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(8.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
@@ -179,7 +179,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(8.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
@@ -215,7 +215,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(8.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
@@ -251,7 +251,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(8.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
@@ -267,7 +267,6 @@ class _EditcsprofileState extends State<Editcsprofile> {
                           cursorColor: Colors.black12,
                         )),
                   ),
-
                   const SizedBox(
                     height: 50.0,
                   ),
@@ -288,7 +287,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                     margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                     decoration: BoxDecoration(
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(8.0)),
+                          const BorderRadius.all(Radius.circular(8.0)),
                       color: Colors.blueGrey[50],
                       boxShadow: const [
                         BoxShadow(
@@ -304,7 +303,6 @@ class _EditcsprofileState extends State<Editcsprofile> {
                           cursorColor: Colors.black12,
                         )),
                   ),
-
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -315,8 +313,13 @@ class _EditcsprofileState extends State<Editcsprofile> {
                           primary: Colors.grey[700],
                           shape: RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadiusDirectional.circular(16.0))),
-                      onPressed: () {},
+                                  BorderRadiusDirectional.circular(16.0))),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Change_pw()),
+                        );
+                      },
                       icon: const Text(
                         'Changed Password',
                         style: TextStyle(color: Colors.white),
@@ -324,7 +327,6 @@ class _EditcsprofileState extends State<Editcsprofile> {
                       label: const Icon(Icons.lock),
                     ),
                   ),
-
                   const Divider(
                     height: 20.0,
                     color: Colors.black,
@@ -335,7 +337,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                           primary: Color(hexColor('#1982BD')),
                           shape: RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadiusDirectional.circular(16.0))),
+                                  BorderRadiusDirectional.circular(16.0))),
                       onPressed: () {},
                       child: const Text(
                         'Save changes',
@@ -351,17 +353,17 @@ class _EditcsprofileState extends State<Editcsprofile> {
             ),
             Positioned(
                 child: Center(
-                  child: SizedBox(
-                    height: 107.0,
-                    width: 115.0,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16.0),
-                        child: Image.asset(
-                          'assets/imgs/suplier.jpg',
-                          fit: BoxFit.fill,
-                        )),
-                  ),
-                ))
+              child: SizedBox(
+                height: 107.0,
+                width: 115.0,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.asset(
+                      'assets/imgs/suplier.jpg',
+                      fit: BoxFit.fill,
+                    )),
+              ),
+            ))
           ],
         ),
       ),
