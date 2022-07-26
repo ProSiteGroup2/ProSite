@@ -18,7 +18,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int currindex = 0;
-  final screens = [HomeScreen(), CActivity(), Notifications(), Customerpview()];
+  final screens = [HrdDashboard(), CActivity(), Notifications(), Customerpview()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
