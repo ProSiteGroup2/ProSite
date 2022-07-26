@@ -80,69 +80,13 @@ class _paynowState extends State<paynow> {
                               ),
               ),
               Container(
-                //delivery
-                child: Column(
-                  children: [
-                       Container(
-                          alignment: Alignment.bottomLeft,
-                          margin: EdgeInsets.fromLTRB(20,12,20,12),
-                          child: Text("Delivery Address",style: TextStyle(
-                            fontFamily: "Roboto",
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              height: 1.15
-                          ),), 
-                        ),
-                        Container(
-                          //payment text
-                          padding: const EdgeInsets.only(right: 25,left:25),
-                            child: TextFormField(
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                      ),
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.all(12),
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        floatingLabelBehavior:
-                                            FloatingLabelBehavior.never,
-                                        hintText: 'enter address',
-                                        hintStyle: const TextStyle(
-                                          color: Colors.grey,
-                                        ),
-                                        
-                                        border: OutlineInputBorder(
-                                          // borderSide: BorderSide.none,
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        labelText: 'Enter Address',
-                                      ),
-                                      validator: (value) {
-                                        if (value == null || value.trim().isEmpty) {
-                                          return 'Please enter your email address';
-                                        }
-
-                                        if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                                          return 'Please enter a valid email address';
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (value) => _userEmail = value,
-                                    ),
-                                  
-                          ),
-               
-                  ],
-                ),
-              ),
-              Container(
                 //Contact
                 child: Column(
                   children: [
                        Container(
                             //contact number title
                             alignment: Alignment.bottomLeft,
-                            margin: EdgeInsets.fromLTRB(20,12,20,12),
+                            margin: EdgeInsets.fromLTRB(20,12,20,15),
                             child: Text("Contact Number",style: TextStyle(
                               fontFamily: "Roboto",
                                 fontSize: 15,
@@ -152,6 +96,7 @@ class _paynowState extends State<paynow> {
                           ),
                           Container(
                             //contact number text
+                            margin: EdgeInsets.fromLTRB(0,10,0,0),
                             padding: const EdgeInsets.only(right: 25,left:25),
                               child: TextFormField(
                                         style: TextStyle(
@@ -199,7 +144,7 @@ class _paynowState extends State<paynow> {
                        Container(
                             //contact number title
                             alignment: Alignment.bottomLeft,
-                            margin: EdgeInsets.fromLTRB(20,12,20,12),
+                            margin: EdgeInsets.fromLTRB(20,20,20,12),
                             child: Text("Email Address",style: TextStyle(
                               fontFamily: "Roboto",
                                 fontSize: 15,
@@ -209,6 +154,7 @@ class _paynowState extends State<paynow> {
                           ),
                           Container(
                             //contact number text
+                             margin: EdgeInsets.fromLTRB(0,10,0,12),
                             padding: const EdgeInsets.only(right: 25,left:25),
                               child: TextFormField(
                                         style: TextStyle(
@@ -261,102 +207,102 @@ class _paynowState extends State<paynow> {
                                 ),
                               ),
               ),
-              Container(
-              //delivery method
-              child: Column(
-                children: [
-                      Container(
-                          //delivery method
-                          alignment: Alignment.bottomLeft,
-                          margin: EdgeInsets.fromLTRB(20,12,20,12),
-                          child: Text("Delivery Method",style: TextStyle(
-                            fontFamily: "Roboto",
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              height: 1.15
-                          ),), 
-                        ),
-                        Container(
-                                //delivery price
-                                  margin: const EdgeInsets.fromLTRB(0, 20, 120, 20),
-                                  width: kPropWidth(context, 0.5),
-                                  height: kPropHeight(context, 0.1),
-                                decoration: BoxDecoration(
-                                  color: Colors.blue[50],
+            //   Container(
+            //   //delivery method
+            //   child: Column(
+            //     children: [
+            //           Container(
+            //               //delivery method
+            //               alignment: Alignment.bottomLeft,
+            //               margin: EdgeInsets.fromLTRB(20,12,20,12),
+            //               child: Text("Delivery Method",style: TextStyle(
+            //                 fontFamily: "Roboto",
+            //                   fontSize: 15,
+            //                   fontWeight: FontWeight.bold,
+            //                   height: 1.15
+            //               ),), 
+            //             ),
+            //             Container(
+            //                     //delivery price
+            //                       margin: const EdgeInsets.fromLTRB(0, 20, 120, 20),
+            //                       width: kPropWidth(context, 0.5),
+            //                       height: kPropHeight(context, 0.1),
+            //                     decoration: BoxDecoration(
+            //                       color: Colors.blue[50],
                                   
-                                    border: Border.all(width: 2, color: Colors.blue.shade100),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.25),
-                                      spreadRadius: 10,
-                                      blurRadius: 7,
-                                      offset: const Offset(
-                                          2, 5), // changes position of shadow
-                                    ),
-                                    BoxShadow(
-                                      color: Colors.white.withOpacity(0.8),
-                                      spreadRadius: 10,
-                                      blurRadius: 7,
+            //                         border: Border.all(width: 2, color: Colors.blue.shade100),
+            //                       borderRadius: const BorderRadius.all(
+            //                           Radius.circular(20)),
+            //                       boxShadow: [
+            //                         BoxShadow(
+            //                           color: Colors.grey.withOpacity(0.25),
+            //                           spreadRadius: 10,
+            //                           blurRadius: 7,
+            //                           offset: const Offset(
+            //                               2, 5), // changes position of shadow
+            //                         ),
+            //                         BoxShadow(
+            //                           color: Colors.white.withOpacity(0.8),
+            //                           spreadRadius: 10,
+            //                           blurRadius: 7,
 
-                                      offset: const Offset(-10,
-                                          -10), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      //price
-                                      alignment: Alignment.topLeft,
-                                      margin: EdgeInsets.fromLTRB(15, 10, 10, 5),
-                                      child: Text(
-                                        "Rs.119",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: "Poppins",
-                                          fontWeight: FontWeight.bold,
+            //                           offset: const Offset(-10,
+            //                               -10), // changes position of shadow
+            //                         ),
+            //                       ],
+            //                     ),
+            //                     child: Column(
+            //                       children: [
+            //                         Container(
+            //                           //price
+            //                           alignment: Alignment.topLeft,
+            //                           margin: EdgeInsets.fromLTRB(15, 10, 10, 5),
+            //                           child: Text(
+            //                             "Rs.119",
+            //                             style: TextStyle(
+            //                               fontSize: 16,
+            //                               fontFamily: "Poppins",
+            //                               fontWeight: FontWeight.bold,
                                           
-                                        ),),
-                                    ),
-                                    Container(
-                                      //price
-                                      alignment: Alignment.topLeft,
-                                      margin: EdgeInsets.fromLTRB(15, 2, 10, 5),
-                                      child: Text(
-                                        "Standard Delivery",
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontFamily: "Poppins",
-                                          // fontWeight: FontWeight.w100,
+            //                             ),),
+            //                         ),
+            //                         Container(
+            //                           //price
+            //                           alignment: Alignment.topLeft,
+            //                           margin: EdgeInsets.fromLTRB(15, 2, 10, 5),
+            //                           child: Text(
+            //                             "Standard Delivery",
+            //                             style: TextStyle(
+            //                               fontSize: 13,
+            //                               fontFamily: "Poppins",
+            //                               // fontWeight: FontWeight.w100,
                                           
-                                        ),),
-                                    )
+            //                             ),),
+            //                         )
                                   
-                                  ],
-                                ),
-                                ),
+            //                       ],
+            //                     ),
+            //                     ),
                             
-                ],
-              ),
-            ),
-              Container(
-              //hr line
-              margin: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(color: Colors.blueAccent),
-                              ),
-                            ),
-            ),
+            //     ],
+            //   ),
+            // ),
+            //   Container(
+            //   //hr line
+            //   margin: EdgeInsets.all(15),
+            //   decoration: BoxDecoration(
+            //                   border: Border(
+            //                     bottom: BorderSide(color: Colors.blueAccent),
+            //                   ),
+            //                 ),
+            // ),
               Container(
               //product summary
                   child: Row(
                     children: [
                         Container(
                           //image
-                          margin: EdgeInsets.fromLTRB(15,0,15,10),
+                          margin: EdgeInsets.fromLTRB(15,10,15,10),
                           alignment: Alignment.center,
                           width: 150,
                           height: 120,
@@ -377,7 +323,7 @@ class _paynowState extends State<paynow> {
                             children: [
                               Container(
                                 //item name
-                                margin: EdgeInsets.fromLTRB(15,0,15,20),
+                                margin: EdgeInsets.fromLTRB(15,10,15,20),
                                 alignment: Alignment.topCenter,
                                 child: Text("Item Name",style: TextStyle(
                                 fontFamily: "Poppins",
@@ -392,7 +338,7 @@ class _paynowState extends State<paynow> {
                                   children: [
                                     Container(
                                       //price
-                                      margin: EdgeInsets.fromLTRB(15,0,15,10),
+                                      margin: EdgeInsets.fromLTRB(15,5,15,10),
                                       alignment: Alignment.topCenter,
                                       child: Text("Rs.10,500",style: TextStyle(
                                       fontFamily: "Poppins",
@@ -424,83 +370,8 @@ class _paynowState extends State<paynow> {
                   ),
                ),
               Container(
-                //hr line
-                margin: EdgeInsets.all(15),
-                
-                decoration: BoxDecoration(
-                  
-                                border: Border(
-                                  bottom: BorderSide(color: Colors.grey),
-                                  
-                                ),
-                              ),
-              ),
-              Container(
                 child: Column(
                   children: [
-                     Container(
-                      //total
-                       child: Row(
-                        
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                              Container(
-                                          //item total word
-                                          margin: EdgeInsets.fromLTRB(30,10,15,20),
-                                          alignment: Alignment.topLeft,
-                                          child: Text("Item Total",style: TextStyle(
-                                          fontFamily: "Poppins",
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.normal,
-                                            height: 1.15
-                                        ),), 
-                                        ),
-                              Container(
-                                          //item total price
-                                          margin: EdgeInsets.fromLTRB(30,10,30,20),
-                                          alignment: Alignment.topRight,
-                                          child: Text("Rs.10,500",style: TextStyle(
-                                          fontFamily: "Poppins",
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.normal,
-                                            height: 1.15
-                                        ),), 
-                                        ),
-                         ],
-                       ),
-                     ),
-                      
-                     Container(
-                      //delivery
-                       child: Row(
-                        
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                              Container(
-                                          //delivery cost word
-                                          margin: EdgeInsets.fromLTRB(30,0,15,20),
-                                          alignment: Alignment.topLeft,
-                                          child: Text("Delivery Cost",style: TextStyle(
-                                          fontFamily: "Poppins",
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.normal,
-                                            height: 1.15
-                                        ),), 
-                                        ),
-                              Container(
-                                          //delivery cost
-                                          margin: EdgeInsets.fromLTRB(30,0,30,20),
-                                          alignment: Alignment.topRight,
-                                          child: Text("Rs.119",style: TextStyle(
-                                          fontFamily: "Poppins",
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.normal,
-                                            height: 1.15
-                                        ),), 
-                                        ),
-                         ],
-                       ),
-                     ),
                      Container(
                         //hr line
                         margin: EdgeInsets.all(15),
