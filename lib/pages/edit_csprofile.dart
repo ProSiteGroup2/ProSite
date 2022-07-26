@@ -54,7 +54,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   const SizedBox(
                     height: 70.0,
                   ),
-                  const Padding(
+                  /*const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'First Name:',
@@ -89,11 +89,11 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   ),
                   const SizedBox(
                     height: 50.0,
-                  ),
+                  ),*/
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Last Name:',
+                      'User Name:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
