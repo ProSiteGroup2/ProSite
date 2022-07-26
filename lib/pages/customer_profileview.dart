@@ -152,7 +152,7 @@ class _CustomerpviewState extends State<Customerpview> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
                         child: Image.asset(
-                          'assets/user1.webp',
+                          'assets/imgs/user1.webp',
                           fit: BoxFit.fill,
                         )),
                   ),
