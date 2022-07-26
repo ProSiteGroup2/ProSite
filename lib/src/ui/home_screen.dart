@@ -79,15 +79,7 @@ Map<String, dynamic> data = {
                       elevation: 0,    
                       
                       actions: [
-                        // Container(
-                        //   margin: const EdgeInsets.only(right: 15),
-                        //   child: IconButton(
-                        //     icon: const Icon(Icons.menu, color: Colors.black),
-                        //     onPressed: () {
-                        //       print("A");
-                        //     },
-                        //   ),
-                        // )
+                        
                            PopupMenuButton(
                              // add icon, by default "3 dot" icon
                               icon: Icon(Icons.menu_rounded,color: Colors.black87,size: 28,),
@@ -162,16 +154,7 @@ Map<String, dynamic> data = {
                           ],
                         ),
                       ),
-                             
-                        // // Container(
-                        // //   child: Align(
-                        // //     alignment: Alignment.centerLeft,
-                            
-                        // //   ),
-                        // // ),
                         
-                       
-              
               ),
                 body: TabBarView(  
                   //tabbarview
@@ -205,7 +188,7 @@ Map<String, dynamic> data = {
                                                     
                                                   ),
                                                   
-                                                hintText: 'Search Category...',
+                                                hintText: 'Search Item...',
                                                 hintStyle: const TextStyle(
                                                   
                                                   fontFamily: 'Poppins',

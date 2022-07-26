@@ -12,11 +12,11 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
   double rating = 0;
 
   List<String> items = [
-    'assets/h1.jpg',
-    'assets/h2.jpg',
-    'assets/h4.jpg',
-    'assets/h5.jpg',
-    'assets/h6.jpg',
+    'assets/imgs/h1.jpg',
+    'assets/imgs/h2.jpg',
+    'assets/imgs/h4.jpg',
+    'assets/imgs/h5.jpg',
+    'assets/imgs/h6.jpg',
   ];
 
   @override
@@ -50,16 +50,23 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                     child: Text(
                       'Sk HARDWARE',
                       style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "poppins",
+                      ),
                     ),
                   ),
                   Container(
                       height: 150.0,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.blue,
+                      //width: MediaQuery.of(context).size.width,
+                      //color: Colors.blue,
                       margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                      padding:
-                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                      /*padding:
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),*/
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.green[200],
+                      ),
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: items.length,
@@ -68,10 +75,14 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                             return SizedBox(
                               height: 130,
                               width: 120,
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  items[index],
-                                  fit: BoxFit.fill,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    10.0, 10.0, 5.0, 10.0),
+                                child: ClipRRect(
+                                  child: Image.asset(
+                                    items[index],
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             );
@@ -96,8 +107,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 'From Gampaha',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -113,8 +125,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 'B 70/5A,Edurapotha,Kegalle',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -130,8 +143,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 'abcd@gmail.com',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -147,8 +161,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 '0772222999',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -164,8 +179,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               Text(
                                 'Muththahar',
                                 style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 20.0,
+                                  fontFamily: "poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -249,7 +265,7 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/hshop1.jpg',
+                      'assets/imgs/hshop1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),

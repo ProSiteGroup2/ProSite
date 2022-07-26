@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import
 import 'package:flutter/material.dart';
 import 'package:group2/components/navigation_bar.dart';
 import 'package:group2/pages/starting.dart';

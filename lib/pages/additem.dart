@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group2/pages/edit_hdprofile.dart';
 
 class Additem extends StatefulWidget {
   const Additem({Key? key}) : super(key: key);
@@ -13,7 +14,12 @@ class _AdditemState extends State<Additem> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Edithdprofile()),
+            );
+          },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
         ),
@@ -51,13 +57,13 @@ class _AdditemState extends State<Additem> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                 color: Colors.blueGrey[50],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.blueGrey,
-                    blurRadius: 10.0,
-                    offset: Offset(8.0, 8.0),
+                    blurRadius: 5.0,
+                    offset: Offset(7.0, 7.0),
                   )
                 ],
               ),
@@ -83,13 +89,13 @@ class _AdditemState extends State<Additem> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                 color: Colors.blueGrey[50],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.blueGrey,
-                    blurRadius: 10.0,
-                    offset: Offset(8.0, 8.0),
+                    blurRadius: 5.0,
+                    offset: Offset(7.0, 7.0),
                   )
                 ],
               ),
@@ -115,13 +121,13 @@ class _AdditemState extends State<Additem> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                 color: Colors.blueGrey[50],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.blueGrey,
-                    blurRadius: 10.0,
-                    offset: Offset(8.0, 8.0),
+                    blurRadius: 5.0,
+                    offset: Offset(7.0, 7.0),
                   )
                 ],
               ),
@@ -204,13 +210,13 @@ class _AdditemState extends State<Additem> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                 color: Colors.blueGrey[50],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.blueGrey,
-                    blurRadius: 10.0,
-                    offset: Offset(8.0, 8.0),
+                    blurRadius: 5.0,
+                    offset: Offset(7.0, 7.0),
                   )
                 ],
               ),
@@ -236,13 +242,13 @@ class _AdditemState extends State<Additem> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                 color: Colors.blueGrey[50],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.blueGrey,
-                    blurRadius: 10.0,
-                    offset: Offset(8.0, 8.0),
+                    blurRadius: 5.0,
+                    offset: Offset(7.0, 7.0),
                   )
                 ],
               ),
