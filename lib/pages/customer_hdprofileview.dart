@@ -69,7 +69,7 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                           const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),*/
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.green[200],
+                        color: Colors.white,
                       ),
                       child: ListView.builder(
                           shrinkWrap: true,
@@ -208,6 +208,44 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 label: const Icon(Icons.chat),
+                              ),
+                              const SizedBox(
+                                width: 5.0,
+                              ),
+                              ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(hexColor('#1982BD')),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                16.0))),
+                                onPressed: () {},
+                                icon: const Text(
+                                  'Call',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                label: const Icon(Icons.add_call),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(hexColor('#1982BD')),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                16.0))),
+                                onPressed: () {},
+                                child: const Text(
+                                  'Appointment',
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               ),
                               const SizedBox(
                                 width: 5.0,
