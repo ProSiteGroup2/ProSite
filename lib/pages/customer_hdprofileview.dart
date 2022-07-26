@@ -28,6 +28,10 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
           icon:const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
         ),*/
+        leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(),
+            ), 
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
       ),
