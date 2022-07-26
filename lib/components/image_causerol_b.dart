@@ -111,29 +111,29 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
                                         
                                     ),
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 20),
-                                    width: 70,
-                                    height: 100,
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          child: Text(
-                                            "${tags[i]['discount']} Discount" ,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                            fontFamily: "poppins",
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.bold,
-                                            height: 1.15),),
-                                        ),
-                                        //                              
+                                  // Container(
+                                  //   margin: EdgeInsets.only(top: 20),
+                                  //   width: 70,
+                                  //   height: 100,
+                                  //   child: Column(
+                                  //     children: [
+                                  //       Container(
+                                  //         child: Text(
+                                  //           "${tags[i]['discount']} Discount" ,
+                                  //       textAlign: TextAlign.center,
+                                  //       style: TextStyle(
+                                  //         color: Colors.black,
+                                  //           fontFamily: "poppins",
+                                  //           fontSize: 13,
+                                  //           fontWeight: FontWeight.bold,
+                                  //           height: 1.15),),
+                                  //       ),
+                                  //       //                              
                                         
-                                      ],
+                                  //     ],
                                 
-                                    ),
-                                  )
+                                  //   ),
+                                  // )
                                 
                                  ],
                                                           ),
