@@ -58,8 +58,8 @@ class _ppaymentState extends State<ppayment> {
                     
                     Container(
                       width: kPropWidth(context, 0.5),
-                      height: kPropHeight(context, 0.10),
-                      margin: EdgeInsets.fromLTRB(80, 5, 0, 10),
+                      height: kPropHeight(context, 0.05),
+                      margin: EdgeInsets.fromLTRB(80, 5, 0, 30),
                       child: Text("Your Order ID :",
                       style: TextStyle(
                         fontFamily: "Poppins",
@@ -71,11 +71,9 @@ class _ppaymentState extends State<ppayment> {
                     ),
                     Container(
                       width: kPropWidth(context, 0.3),
-                      height: kPropHeight(context, 0.10),
-                      margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                      height: kPropHeight(context, 0.05),
+                      margin: EdgeInsets.fromLTRB(0, 5, 0, 30),
                       child: Text("ID ",
-                    
-                      
                       style: TextStyle(
                         fontFamily: "Poppins",
                         
@@ -89,7 +87,7 @@ class _ppaymentState extends State<ppayment> {
               ),
               Container(
                 width: kPropWidth(context, 1),
-                height: kPropHeight(context, 0.07),
+                height: kPropHeight(context, 0.05),
                 margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 
                 child: Text("To find a delivery partner click below button ",
@@ -106,7 +104,7 @@ class _ppaymentState extends State<ppayment> {
                         width: kPropWidth(context, 0.5),
                         height: kPropHeight(context, 0.06),
                         margin: EdgeInsets.only(left: 10),
-                        padding: EdgeInsets.only(right: 5, left: 5),
+                        padding: EdgeInsets.only(right: 5, left: 5,bottom: 5),
                         decoration: BoxDecoration(
                           // color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(10),
@@ -130,14 +128,12 @@ class _ppaymentState extends State<ppayment> {
                         child: SizedBox(
                           width: kPropWidth(context, 1),
                         height: kPropHeight(context, 0.06),
-                          child: ElevatedButton.icon(
-                                                      
+                          child: ElevatedButton.icon(                     
                                   onPressed: () {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) => delivery()),
-                                      );
-                                      
+                                      ); 
                                     },
                                     style: ElevatedButton.styleFrom(
                                         shape: RoundedRectangleBorder(
@@ -155,9 +151,9 @@ class _ppaymentState extends State<ppayment> {
                         ),
                       ),
                       Container(
-                        width: kPropWidth(context, 0.2),
-                        height: kPropHeight(context, 0.10),
-                        margin: EdgeInsets.fromLTRB(160, 20, 160, 20),
+                        width: kPropWidth(context, 1),
+                        height: kPropHeight(context, 0.3),
+                        margin: EdgeInsets.fromLTRB(50, 20, 50, 100),
                           decoration: BoxDecoration(
                                 image:  DecorationImage(
                                     image: AssetImage("assets/imgs/ordsuccess.jpg"),

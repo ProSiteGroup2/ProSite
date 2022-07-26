@@ -45,42 +45,6 @@ class _cementState extends State<cement> {
               onPressed: () => Navigator.of(context).pop(),
             ), 
         backgroundColor: Colors.brown[200],
-        
-        
-        // bottom: PreferredSize(
-        //   preferredSize:Size.fromHeight(kPropHeight(context, 0.1)),
-          
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [
-        //         Container(
-        //         margin: EdgeInsets.all(20),
-        //         alignment: Alignment.bottomCenter,
-        //         child: Text("Cement",
-        //         style: TextStyle(
-        //           fontFamily: "poppins",
-        //           fontSize: 30,
-        //           fontWeight: FontWeight.bold,
-        //           height: 1.15
-        //         ),
-                
-        //         ),
-        //       ),
-        //       Container(
-        //         child: Image.asset('assets/imgs/cement.jpg', fit: BoxFit.cover,width: kPropWidth(context, 0.5),height: kPropHeight(context, 0.168),),
-        //       )
-        // //       title: Row(
-          
-        // //   children: <Widget>[
-            
-        // //     Text("Bricks",style: TextStyle(fontFamily: "Poppins",color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
-        // //     Image.asset('assets/imgs/bricks.jpg', fit: BoxFit.fill),
-        // //   ],
-        // // ),
-           
-        //     ],
-        //   ),
-        // ),
       ),
       body: SafeArea(
         
