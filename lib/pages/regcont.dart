@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
 
@@ -94,10 +95,9 @@ class _RegContState extends State<RegCont> {
             builder: (context) => AlertDialog(
               title: Text(
                   'Your request has been sent to the Admin.Please check your Email!'),
-              content: Icon(
-                Icons.circle,
-                color: Colors.green,
-                size: 60,
+              content: SpinKitCircle(
+                color: Colors.blue,
+                size: 30.0,
               ),
             ),
           );

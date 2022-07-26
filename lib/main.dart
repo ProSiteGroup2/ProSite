@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:group2/components/navigation_bar.dart';
+import 'package:group2/pages/splashscreen.dart';
 import 'package:group2/pages/starting.dart';
 import 'package:group2/src/ui/home_screen.dart';
 import 'package:group2/pages/notifications.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 // import 'dart:ui';
 
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/start',
         routes: {
           // '/home': (context) => HomeScreen(),    //give the home page class name
-          '/start': (context) => Starting(), //give the start page class name
+          '/start': (context) =>
+              SplashScreen(), //give the start page class name
           '/navbar': (context) => NavBar(), //give the navbar page class name
           '/notifications': (context) => Notifications(),
           // .....
