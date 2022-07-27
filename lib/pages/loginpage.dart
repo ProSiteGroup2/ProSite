@@ -1,9 +1,10 @@
-
 // ignore_for_file: prefer_const_constructors, override_on_non_overriding_member, must_call_super, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:group2/components/navigation_bar.dart';
 import 'package:group2/pages/choose.dart';
 import 'package:group2/pages/resetpwd_1.dart';
+import 'package:group2/pages/static.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,7 +21,13 @@ class _LoginPageState extends State<LoginPage> {
 
   void _trySubmitForm() {
     final bool? isValid = _formKey.currentState?.validate();
+
     if (isValid == true) {
+      setLog();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => NavBar()),
+      );
       debugPrint('Everything looks good!');
       debugPrint(_spEmail);
       debugPrint(_sppassword);

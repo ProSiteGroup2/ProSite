@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
 import 'package:group2/pages/reguser.dart';
 import 'package:group2/pages/resetpwd_1.dart';
+import 'package:group2/pages/static.dart';
 
 class Loginas_cons extends StatefulWidget {
   const Loginas_cons({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class _Loginas_consState extends State<Loginas_cons> {
   void _trySubmitForm() {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
+      setLog();
       debugPrint('Everything looks good!');
       debugPrint(_userEmail);
       debugPrint(_password);

@@ -1,8 +1,11 @@
 import 'dart:async';
-import 'package:group2/pages/shared_preferences.dart';
+import 'package:group2/components/navigation_bar.dart';
+import 'package:group2/pages/paynow.dart';
 import 'package:flutter/material.dart';
 import 'starting.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:group2/pages/static.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,15 +18,36 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    navigate();
+    _navigateToHome();
   }
 
-  navigate() async {
-    if (logState == '0' && signState == '0') {
-      Timer(
-          Duration(seconds: 4),
-          () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (BuildContext context) => Starting())));
+  _navigateToHome() async {
+    await Future.delayed(const Duration(milliseconds: 4000), () {});
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    if (preferences.getInt('roll') == 1 &&
+        preferences.getInt('logState') == 1) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const NavBar()));
+    } else if (preferences.getInt('roll') == 2 &&
+        preferences.getInt('logState') == 1) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const paynow()));
+    } else if (preferences.getInt('roll') == 3 &&
+        preferences.getInt('logState') == 1) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const NavBar()));
+    } else if (preferences.getInt('roll') == 4 &&
+        preferences.getInt('logState') == 1) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const NavBar()));
+    } else if (preferences.getInt('roll') == 5 &&
+        preferences.getInt('logState') == 1) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const NavBar()));
+    } else {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const Starting()));
     }
   }
 
