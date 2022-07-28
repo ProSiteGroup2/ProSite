@@ -230,7 +230,7 @@ class AuthService{
   getTransporterInfo(token) async {
     try{
       dio.options.headers['authorization']='Bearer $token';
-      return await dio.get('https://prositegroup2.herokuapp.com/getConsumerInfo');
+      return await dio.get('https://prositegroup2.herokuapp.com/getTransporterInfo');
     }on DioError catch(e){
       Fluttertoast.showToast(
           msg: e.response?.data['msg'],

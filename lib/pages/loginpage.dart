@@ -39,84 +39,86 @@ class _LoginPageState extends State<LoginPage> {
       debugPrint('Everything looks good!');
       debugPrint(_spEmail);
       debugPrint(_sppassword);
+
+      try {
+        await AuthService().SPLogin(_spEmail, _sppassword).then((val){
+          if (val.data['success']) {
+            token = val.data['token'];
+            if(val.data['role']=='labour'){
+              AuthService().getLabourInfo(token).then((val2){
+                if (val2.data['success']){
+                  sp=val2.data['sp'];
+                  // print(sp['profession']);
+                  Fluttertoast.showToast(
+                      msg: val2.data['msg'],
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                  Navigator.pushNamed(context, '/navbar');
+                }
+              });
+            }else if(val.data['role']=='contractor'){
+              AuthService().getContractorInfo(token).then((val2){
+                if (val2.data['success']){
+                  sp=val2.data['sp'];
+                  Fluttertoast.showToast(
+                      msg: val2.data['msg'],
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                  Navigator.pushNamed(context, '/navbar');
+                }
+              });
+            }else if(val.data['role']=='hardware'){
+              AuthService().getHardwareInfo(token).then((val2){
+                if (val2.data['success']){
+                  sp=val2.data['sp'];
+                  Fluttertoast.showToast(
+                      msg: val2.data['msg'],
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                  Navigator.pushNamed(context, '/hrddashboard');
+                }
+              });
+            }else if(val.data['role']=='transporter'){
+              AuthService().getTransporterInfo(token).then((val2){
+                if (val2.data['success']){
+                  sp=val2.data['sp'];
+                  Fluttertoast.showToast(
+                      msg: val2.data['msg'],
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                  Navigator.pushNamed(context, '/navbar');
+                }
+              });
+            }
+          }else{
+            Fluttertoast.showToast(
+                msg: val.data['msg'],
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+        });
+      } on Exception catch (e) {
+        debugPrint('An error occured');
+      }
+    }
     }
 
-    try {
-      await AuthService().SPLogin(_spEmail, _sppassword).then((val){
-        if (val.data['success']) {
-          token = val.data['token'];
-          if(val.data['role']=='labour'){
-            AuthService().getLabourInfo(token).then((val2){
-              if (val2.data['success']){
-                sp=val2.data['sp'];
-                // print(sp['profession']);
-                Fluttertoast.showToast(
-                    msg: val2.data['msg'],
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-                // Navigator.pushNamed(context, '/navbar');
-              }
-            });
-          }else if(val.data['role']=='contractor'){
-            AuthService().getContractorInfo(token).then((val2){
-              if (val2.data['success']){
-                sp=val2.data['sp'];
-                Fluttertoast.showToast(
-                    msg: val2.data['msg'],
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-                // Navigator.pushNamed(context, '/navbar');
-              }
-            });
-          }else if(val.data['role']=='hardware'){
-            AuthService().getHardwareInfo(token).then((val2){
-              if (val2.data['success']){
-                sp=val2.data['sp'];
-                Fluttertoast.showToast(
-                    msg: val2.data['msg'],
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-                // Navigator.pushNamed(context, '/navbar');
-              }
-            });
-          }else if(val.data['role']=='transporter'){
-            AuthService().getTransporterInfo(token).then((val2){
-              if (val2.data['success']){
-                sp=val2.data['sp'];
-                Fluttertoast.showToast(
-                    msg: val2.data['msg'],
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-                // Navigator.pushNamed(context, '/navbar');
-              }
-            });
-          }
-        }else{
-          Fluttertoast.showToast(
-              msg: val.data['msg'],
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        }
-      });
-    } on Exception catch (e) {
-      debugPrint('An error occured');
-    }
-  }
+
 
   @override
   final sp_emailController = TextEditingController();

@@ -30,25 +30,6 @@ class ProductMethods{
     }
   }
 
-  productImage(File file,productID) async {
-    try {
-      String fileName=file.path.split('/').last;
-      FormData formData=FormData.fromMap({
-        "image": await MultipartFile.fromFile(file.path, filename:fileName),
-      });
-
-      return await dio.put('https://prositegroup2.herokuapp.com/productImage/$productID', data: formData);
-    } on DioError catch (e) {
-      Fluttertoast.showToast(
-          msg: 'image upload failed',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    }
-  }
-
   getProductInfo(productID) async {
     try {
       return await dio.get('https://prositegroup2.herokuapp.com/getProductInfo/$productID');

@@ -32,27 +32,29 @@ class _Loginas_consState extends State<Loginas_cons> {
       debugPrint('Everything looks good!');
       debugPrint(_userEmail);
       debugPrint(_password);
+
+      await AuthService().consumerLogin(_userEmail, _password).then((val) async {
+        if (val.data['success']) {
+          token = val.data['token'];
+          AuthService().getConsumerInfo(token).then((val2) async {
+            if (val2.data['success']){
+              consumer=(val2.data['consumer']);
+              // print(consumer['address']);
+              await Fluttertoast.showToast(
+                  msg: val2.data['msg'],
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+              Navigator.pushNamed(context,'/navbar');
+            }
+          });
+        }
+      });
     }
 
-    await AuthService().consumerLogin(_userEmail, _password).then((val) async {
-      if (val.data['success']) {
-        token = val.data['token'];
-        AuthService().getConsumerInfo(token).then((val2) async {
-          if (val2.data['success']){
-            consumer=(val2.data['consumer']);
-            // print(consumer['address']);
-            await Fluttertoast.showToast(
-                msg: val2.data['msg'],
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
-            Navigator.pushNamed(context, '/navbar');
-          }
-        });
-      }
-    });
+
   }
 
   @override

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_import
 import 'package:flutter/material.dart';
 import 'package:group2/components/navigation_bar.dart';
+import 'package:group2/pages/hardware_dashboard.dart';
 import 'package:group2/pages/splashscreen.dart';
 import 'package:group2/pages/starting.dart';
 import 'package:group2/src/ui/home_screen.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
               SplashScreen(), //give the start page class name
           '/navbar': (context) => NavBar(), //give the navbar page class name
           '/notifications': (context) => Notifications(),
+          '/hrddashboard':(context)=>HrdDashboard(),
           // .....
           // ...... give other pages class name like above
         });
