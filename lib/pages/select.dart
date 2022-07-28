@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/loginpage.dart';
+import 'package:group2/pages/static.dart';
 
 class Select extends StatelessWidget {
   const Select({Key? key}) : super(key: key);
@@ -36,6 +37,7 @@ class Select extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(220, 50, 0, 0),
                   child: ElevatedButton(
                     onPressed: () {
+                      setRoll(1);
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => Loginas_cons()),

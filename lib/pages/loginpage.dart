@@ -6,11 +6,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
+import 'package:group2/components/navigation_bar.dart';
 import 'package:group2/pages/choose.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/resetpwd_1.dart';
 import 'package:group2/globals.dart';
 
+import 'package:group2/pages/static.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -31,7 +33,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
+
     if (isValid == true) {
+      setLog();
       debugPrint('Everything looks good!');
       debugPrint(_spEmail);
       debugPrint(_sppassword);
