@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
 import 'package:group2/pages/reguser.dart';
 import 'package:group2/pages/resetpwd_1.dart';
+import 'package:group2/pages/static.dart';
 
 class Loginas_cons extends StatefulWidget {
   const Loginas_cons({Key? key}) : super(key: key);
@@ -27,30 +28,33 @@ class _Loginas_consState extends State<Loginas_cons> {
   Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
+      setLog();
       debugPrint('Everything looks good!');
       debugPrint(_userEmail);
       debugPrint(_password);
+
+      await AuthService().consumerLogin(_userEmail, _password).then((val) async {
+        if (val.data['success']) {
+          token = val.data['token'];
+          AuthService().getConsumerInfo(token).then((val2) async {
+            if (val2.data['success']){
+              consumer=(val2.data['consumer']);
+              // print(consumer['address']);
+              await Fluttertoast.showToast(
+                  msg: val2.data['msg'],
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+              Navigator.pushNamed(context,'/navbar');
+            }
+          });
+        }
+      });
     }
 
-    await AuthService().consumerLogin(_userEmail, _password).then((val) async {
-      if (val.data['success']) {
-        token = val.data['token'];
-        AuthService().getConsumerInfo(token).then((val2) async {
-          if (val2.data['success']){
-            consumer=(val2.data['consumer']);
-            // print(consumer['address']);
-            await Fluttertoast.showToast(
-                msg: val2.data['msg'],
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
-            Navigator.pushNamed(context, '/navbar');
-          }
-        });
-      }
-    });
+
   }
 
   @override

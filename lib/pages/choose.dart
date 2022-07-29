@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
@@ -6,6 +5,7 @@ import 'package:group2/pages/regcont.dart';
 import 'package:group2/pages/reghw.dart';
 import 'package:group2/pages/reglab.dart';
 import 'package:group2/pages/regtran.dart';
+import 'package:group2/pages/static.dart';
 
 class Choose extends StatefulWidget {
   const Choose({Key? key}) : super(key: key);
@@ -83,6 +83,7 @@ class _ChooseState extends State<Choose> {
                     padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
                     child: ElevatedButton(
                       onPressed: () {
+                        setRoll(2);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => RegHw()),
@@ -113,6 +114,7 @@ class _ChooseState extends State<Choose> {
                     padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
                     child: ElevatedButton(
                       onPressed: () {
+                        setRoll(3);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => RegCont()),
@@ -143,6 +145,7 @@ class _ChooseState extends State<Choose> {
                     padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
                     child: ElevatedButton(
                       onPressed: () {
+                        setRoll(4);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => RegLab()),
@@ -173,6 +176,7 @@ class _ChooseState extends State<Choose> {
                     padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
                     child: ElevatedButton(
                       onPressed: () {
+                        setRoll(5);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => RegTran()),
