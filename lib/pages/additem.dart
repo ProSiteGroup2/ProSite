@@ -164,7 +164,7 @@ class _AdditemState extends State<Additem> {
                               BorderRadiusDirectional.circular(16.0))),
                   onPressed: () {},
                   child: const Text(
-                    'Use Default',
+                    'Add photo',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
