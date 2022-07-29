@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class ProductMethods{
   Dio dio=new Dio();
 
-  addProduct(productname,price,stock,size,category,description,seller) async {
+  addProduct(productname,price,stock,size,category,description,brand,seller) async {
     try {
       return await dio.post('https://prositegroup2.herokuapp.com/addProduct',
       data:{
@@ -17,6 +17,7 @@ class ProductMethods{
         "size":size,
         "category":category,
         "description":description,
+        "brand":brand,
         "seller":seller
       },options: Options(contentType: Headers.jsonContentType));
     } on DioError catch (e) {
