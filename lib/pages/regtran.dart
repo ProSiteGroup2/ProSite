@@ -88,7 +88,7 @@ class _RegTranState extends State<RegTran> {
                 title: Text(
                     'Your request has been sent to the Admin.Please check your Email!'),
                 content: Icon(
-                  Icons.circle,
+                  Icons.check_circle,
                   color: Colors.green,
                   size: 60,
                 ),

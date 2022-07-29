@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:group2/components/navigation_bar.dart';
+import 'package:group2/pages/hardware_dashboard.dart';
 import 'package:group2/pages/paynow.dart';
 import 'package:flutter/material.dart';
 import 'starting.dart';
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } else if (preferences.getInt('roll') == 2 &&
         preferences.getInt('logState') == 1) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const paynow()));
+          context, MaterialPageRoute(builder: (context) => const HrdDashboard()));
     } else if (preferences.getInt('roll') == 3 &&
         preferences.getInt('logState') == 1) {
       Navigator.pushReplacement(

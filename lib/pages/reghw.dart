@@ -77,7 +77,7 @@ class _RegHwState extends State<RegHw> {
                 title: Text(
                     'Your request has been sent to the Admin.Please check your Email!'),
                 content: Icon(
-                  Icons.circle,
+                  Icons.check_circle,
                   color: Colors.green,
                   size: 60,
                 ),
