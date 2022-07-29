@@ -54,7 +54,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   const SizedBox(
                     height: 70.0,
                   ),
-                  const Padding(
+                  /*const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'First Name:',
@@ -89,11 +89,11 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   ),
                   const SizedBox(
                     height: 50.0,
-                  ),
+                  ),*/
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Last Name:',
+                      'User Name:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -353,16 +353,28 @@ class _EditcsprofileState extends State<Editcsprofile> {
             ),
             Positioned(
                 child: Center(
-              child: SizedBox(
-                height: 107.0,
-                width: 115.0,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      'assets/imgs/suplier.jpg',
-                      fit: BoxFit.fill,
-                    )),
-              ),
+              child: Stack(children: [
+                SizedBox(
+                  height: 107.0,
+                  width: 115.0,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Image.asset(
+                        'assets/user1.webp',
+                        fit: BoxFit.fill,
+                      )),
+                ),
+                Positioned(
+                    bottom: -5.0,
+                    right: -5.0,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.add_a_photo_outlined,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {},
+                    ))
+              ]),
             ))
           ],
         ),

@@ -5,6 +5,7 @@ import 'package:group2/common/size.dart';
 import 'package:group2/components/image_causerol.dart';
 import 'package:group2/components/image_causerol_b.dart';
 import 'package:group2/pages/about_setting.dart';
+import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/loginas_cons.dart';
 
 class HrdDashboard extends StatefulWidget {
@@ -56,12 +57,9 @@ Map<String, dynamic> data = {
       "brand":"Mascot Logo",
       "discount":"20%",
     },
-  ],
-  
-    
+    ],
   };
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +123,7 @@ Map<String, dynamic> data = {
                               "Dashboard",
                               style: TextStyle(
                                   fontFamily: "Poppins",
-                                  fontSize: 30,
+                                  fontSize: 30.5,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 2,
                                   height: 1.15),
@@ -223,6 +221,26 @@ Map<String, dynamic> data = {
             ),
                   
       )),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Add your onPressed code here!
+             Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Additem()),
+                );
+          },
+          label: Text('Post Ad ',
+          style: TextStyle(
+             fontFamily: "poppins",
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+              // height: 1.15
+          ),
+          ),
+          icon: const Icon(Icons.add_a_photo_rounded),
+          backgroundColor: Color.fromRGBO(0, 207, 108, 1),
+      ),
     );
   }
 }
