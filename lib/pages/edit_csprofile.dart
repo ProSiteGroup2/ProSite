@@ -353,16 +353,28 @@ class _EditcsprofileState extends State<Editcsprofile> {
             ),
             Positioned(
                 child: Center(
-              child: SizedBox(
-                height: 107.0,
-                width: 115.0,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      'assets/imgs/suplier.jpg',
-                      fit: BoxFit.fill,
-                    )),
-              ),
+              child: Stack(children: [
+                SizedBox(
+                  height: 107.0,
+                  width: 115.0,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Image.asset(
+                        'assets/user1.webp',
+                        fit: BoxFit.fill,
+                      )),
+                ),
+                Positioned(
+                    bottom: -5.0,
+                    right: -5.0,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.add_a_photo_outlined,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {},
+                    ))
+              ]),
             ))
           ],
         ),
