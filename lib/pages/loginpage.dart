@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   String _spEmail = '';
   String _sppassword = '';
   var token;
-  // late Map sp;
+  late Map sp;
 
 
 
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
           if(val.data['role']=='labour'){
             AuthService().getLabourInfo(token).then((val2){
               if (val2.data['success']){
-                // sp=(val2.data['sp']);
+                sp=val2.data['sp'];
                 // print(sp['profession']);
                 Fluttertoast.showToast(
                     msg: val2.data['msg'],
@@ -59,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
           }else if(val.data['role']=='contractor'){
             AuthService().getContractorInfo(token).then((val2){
               if (val2.data['success']){
+                sp=val2.data['sp'];
                 Fluttertoast.showToast(
                     msg: val2.data['msg'],
                     toastLength: Toast.LENGTH_SHORT,
@@ -72,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
           }else if(val.data['role']=='hardware'){
             AuthService().getHardwareInfo(token).then((val2){
               if (val2.data['success']){
+                sp=val2.data['sp'];
                 Fluttertoast.showToast(
                     msg: val2.data['msg'],
                     toastLength: Toast.LENGTH_SHORT,
@@ -85,6 +87,7 @@ class _LoginPageState extends State<LoginPage> {
           }else if(val.data['role']=='transporter'){
             AuthService().getTransporterInfo(token).then((val2){
               if (val2.data['success']){
+                sp=val2.data['sp'];
                 Fluttertoast.showToast(
                     msg: val2.data['msg'],
                     toastLength: Toast.LENGTH_SHORT,

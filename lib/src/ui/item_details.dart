@@ -41,6 +41,10 @@ class _ItemDetailsState extends State<ItemDetails>
             ),
           )
         ],
+        leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(),
+            ), 
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -431,20 +435,22 @@ class _ItemDetailsState extends State<ItemDetails>
                                         
                                         Container(
                                           //details of a item
-                                          margin:
-                                              const EdgeInsets.only(top: 20),
+                                          margin: EdgeInsets.only(top: 20),
                                            width: kPropWidth(context, 0.4),
                                            height: kPropHeight(context, 0.1),
                                           child: Column(
                                             
                                             children: [
                                               Container(
-                                                child: const Text(
+                                                width: kPropWidth(context, 0.5),
+                                                margin: const EdgeInsets.fromLTRB(5, 2, 40, 0),
+                                                padding: const EdgeInsets.only(left: 2.0, right: 2),
+                                                child:  Text(
                                                   "Abc Company",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                       fontFamily: "poppins",
-                                                      fontSize: 14,
+                                                      fontSize: 15,
                                                       color: Colors.black87,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -452,10 +458,9 @@ class _ItemDetailsState extends State<ItemDetails>
                                                 ),
                                               ),
                                               Container(
-                                                width: 100,
-                                                margin: const EdgeInsets.fromLTRB(15, 10, 0, 10),
-                                                padding: const EdgeInsets.only(
-                                                    left: 2.0, right: 2),
+                                                width: kPropWidth(context, 0.5),
+                                                margin: const EdgeInsets.fromLTRB(10, 10, 0, 5),
+                                                padding: const EdgeInsets.only(left: 2.0, right: 2),
                                                 child: Text("View Profile", style: TextStyle(fontFamily: "Poppins",color: Colors.grey),),
                                               )
                                             ],
