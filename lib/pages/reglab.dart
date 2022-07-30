@@ -527,6 +527,7 @@ class _RegLabState extends State<RegLab> {
                                 horizontal: 10.0, vertical: 0),
                             child: TextFormField(
                               controller: lab_yearsController,
+                              keyboardType: TextInputType.number,
                               style: TextStyle(
                                 fontSize: 17,
                               ),
