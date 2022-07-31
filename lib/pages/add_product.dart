@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+
 
 class AddProduct extends StatefulWidget {
   const AddProduct({Key? key}) : super(key: key);
@@ -11,6 +16,21 @@ class _AddProductState extends State<AddProduct> {
   var c_choose;
   List category=['Cement','Bricks','Steel','Sand'];
   final _formKey = GlobalKey<FormState>();
+
+  File? image;
+  File def_image=File('assets/imgs/default-product-image.jpg');
+
+  pickImage(ImageSource source) async {
+    try {
+      final image=await ImagePicker().pickImage(source: source);
+      if(image==null) return;
+      
+      final imageTemporary=File(image.path);
+      setState(()=>this.image=imageTemporary);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
 
   String _productName = '';
   int? _productPrice;
@@ -372,45 +392,80 @@ class _AddProductState extends State<AddProduct> {
                       ),
                     ),
 
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        ElevatedButton(
-                          onPressed: (){},
-                          child: Text(
-                            'Add Image',
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.black
+                    Column(
+                      children: [
+                        SizedBox(height: 15,),
+                        Text('Add an Item Image',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.bold
+                        ),),
+                        SizedBox(height: 10.0,),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Column(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: ()=>pickImage(ImageSource.gallery),
+                                  child: Text(
+                                    'Pick Gallery',
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xFF75E6DA),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 12.0, horizontal: 25.0),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: new BorderRadius.circular(15.0),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 5.0,),
+                                ElevatedButton(
+                                  onPressed: ()=>pickImage(ImageSource.camera),
+                                  child: Text(
+                                    'Pick Camera',
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xFF75E6DA),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 12.0, horizontal: 25.0),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: new BorderRadius.circular(15.0),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF75E6DA),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 12.0, horizontal: 25.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(15.0),
-                            ),
-                          ),
-                        ),
 
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 8.0, 16.0, 0),
-                          child: Container(
-                            width: 120,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1, color: Colors.grey.shade200),
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                              image: DecorationImage(
-                                image: AssetImage("assets/imgs/default-product-image.jpg"),
-                                fit: BoxFit.cover,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 8.0, 16.0, 0),
+                              child: Container(
+                                width: 150,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 1, color: Colors.grey.shade200),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                  image: DecorationImage(
+                                    image: image !=null? FileImage(image!):AssetImage("assets/imgs/default-product-image.jpg") as ImageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
