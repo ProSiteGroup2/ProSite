@@ -349,7 +349,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                               fit: BoxFit.fill,
                             )
                           : Image.asset(
-                              'assets/user1.webp',
+                              'assets/imgs/user1.webp',
                               fit: BoxFit.fill,
                             )),
                 ),
