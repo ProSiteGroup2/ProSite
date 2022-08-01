@@ -1,11 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/pages/ppayment.dart';
-
-import '../Controller/payment_controller.dart';
 
 
 
@@ -41,7 +38,6 @@ class _paynowState extends State<paynow> {
 
   @override
   Widget build(BuildContext context) {
-    final paymentController = Get.put(PaymentController());
     return Scaffold(
       appBar: AppBar(
          backgroundColor: Color(0xE5E5E5),
@@ -452,7 +448,14 @@ class _paynowState extends State<paynow> {
                                     ],
                                   ),
                                   child: ElevatedButton(
-                                    onPressed: () => paymentController.makePayment(amount: '5', currency: 'USD'),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ppayment()),
+                                      );
+                                    },
                                     style: ElevatedButton.styleFrom(
                                       primary: Colors.greenAccent[100],
                                       shadowColor:
