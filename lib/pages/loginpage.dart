@@ -27,7 +27,6 @@ class _LoginPageState extends State<LoginPage> {
   String _spEmail = '';
   String _sppassword = '';
   var token;
-  late Map sp;
 
 
 

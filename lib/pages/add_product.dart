@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/image_upload.dart';
 import 'package:group2/Classes/product_methods.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:group2/globals.dart';
 
 
 class AddProduct extends StatefulWidget {
@@ -43,7 +44,7 @@ class _AddProductState extends State<AddProduct> {
   String _productCategory='';
   String _productDescription='';
   String _productBrand='N/A';
-  String _productSeller='62e34a3095da3d9c822cb31a';
+  String _productSeller=sp['_id'];
 
   Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
