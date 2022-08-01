@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:group2/Controller/payment_controller.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/pages/addcart.dart';
 import 'package:group2/pages/customer_hdprofileview.dart';
@@ -22,7 +21,6 @@ class _ItemDetailsState extends State<ItemDetails>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    
     TabController _tabController = TabController(length: 4, vsync: this);
     return Scaffold(
       appBar: AppBar(
@@ -35,18 +33,18 @@ class _ItemDetailsState extends State<ItemDetails>
             child: IconButton(
               icon: Icon(Icons.shopping_cart_outlined, color: Colors.black),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => addcart()),
-                );
+               Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => addcart()),
+                  );
               },
             ),
           )
         ],
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(),
+            ), 
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -349,45 +347,45 @@ class _ItemDetailsState extends State<ItemDetails>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  //seller icon
-                                  margin:
-                                      const EdgeInsets.fromLTRB(0, 0, 2, 20),
-                                  width: kPropWidth(context, 0.2),
-                                  height: kPropHeight(context, 0.1),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    //  border: Border.all(width: 2, color: Colors.grey.shade200),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(20)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.25),
-                                        spreadRadius: 10,
-                                        blurRadius: 7,
-                                        offset: const Offset(
-                                            2, 5), // changes position of shadow
-                                      ),
-                                      BoxShadow(
-                                        color: Colors.white.withOpacity(0.8),
-                                        spreadRadius: 10,
-                                        blurRadius: 7,
+                                    //seller icon
+                                          margin: const EdgeInsets.fromLTRB(0, 0, 2, 20),
+                                          width: kPropWidth(context, 0.2),
+                                          height: kPropHeight(context, 0.1),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          //  border: Border.all(width: 2, color: Colors.grey.shade200),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.25),
+                                              spreadRadius: 10,
+                                              blurRadius: 7,
+                                              offset: const Offset(
+                                                  2, 5), // changes position of shadow
+                                            ),
+                                            BoxShadow(
+                                              color: Colors.white.withOpacity(0.8),
+                                              spreadRadius: 10,
+                                              blurRadius: 7,
 
-                                        offset: const Offset(-10,
-                                            -10), // changes position of shadow
-                                      ),
-                                    ],
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/imgs/self.jpg"),
-                                      fit: BoxFit.cover,
+                                              offset: const Offset(-10,
+                                                  -10), // changes position of shadow
+                                            ),
+                                          ],
+                                          image: DecorationImage(
+                                              image: AssetImage("assets/imgs/self.jpg"),
+                                              fit: BoxFit.cover,     
+                                              ),
+                                        ),
+
+                                        
                                     ),
-                                  ),
-                                ),
                                 Container(
                                   //seller details
-                                  margin:
-                                      const EdgeInsets.fromLTRB(0, 0, 20, 20),
-                                  width: kPropWidth(context, 0.6),
-                                  height: kPropHeight(context, 0.1),
+                                   margin: const EdgeInsets.fromLTRB(0, 0, 20, 20),
+                                    width: kPropWidth(context, 0.6),
+                                    height: kPropHeight(context, 0.1),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     //  border: Border.all(width: 2, color: Colors.grey.shade200),
@@ -432,24 +430,22 @@ class _ItemDetailsState extends State<ItemDetails>
                                       ),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
+                                        
                                         Container(
                                           //details of a item
                                           margin: EdgeInsets.only(top: 20),
-                                          width: kPropWidth(context, 0.4),
-                                          height: kPropHeight(context, 0.1),
+                                           width: kPropWidth(context, 0.4),
+                                           height: kPropHeight(context, 0.1),
                                           child: Column(
+                                            
                                             children: [
                                               Container(
                                                 width: kPropWidth(context, 0.5),
-                                                margin:
-                                                    const EdgeInsets.fromLTRB(
-                                                        5, 2, 40, 0),
-                                                padding: const EdgeInsets.only(
-                                                    left: 2.0, right: 2),
-                                                child: Text(
+                                                margin: const EdgeInsets.fromLTRB(5, 2, 40, 0),
+                                                padding: const EdgeInsets.only(left: 2.0, right: 2),
+                                                child:  Text(
                                                   "Abc Company",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -463,26 +459,15 @@ class _ItemDetailsState extends State<ItemDetails>
                                               ),
                                               Container(
                                                 width: kPropWidth(context, 0.5),
-                                                margin:
-                                                    const EdgeInsets.fromLTRB(
-                                                        10, 10, 0, 5),
-                                                padding: const EdgeInsets.only(
-                                                    left: 2.0, right: 2),
-                                                child: Text(
-                                                  "View Profile",
-                                                  style: TextStyle(
-                                                      fontFamily: "Poppins",
-                                                      color: Colors.grey),
-                                                ),
+                                                margin: const EdgeInsets.fromLTRB(10, 10, 0, 5),
+                                                padding: const EdgeInsets.only(left: 2.0, right: 2),
+                                                child: Text("View Profile", style: TextStyle(fontFamily: "Poppins",color: Colors.grey),),
                                               )
                                             ],
                                           ),
                                         ),
                                         Container(
-                                          child: Icon(
-                                            Icons.arrow_forward_ios_rounded,
-                                            color: Colors.black,
-                                          ),
+                                          child: Icon(Icons.arrow_forward_ios_rounded, color: Colors.black,),
                                         )
                                       ],
                                     ),
@@ -533,36 +518,33 @@ class _ItemDetailsState extends State<ItemDetails>
                         ),
                         child: SizedBox(
                           width: kPropWidth(context, 1),
-                          height: kPropHeight(context, 0.06),
+                        height: kPropHeight(context, 0.06),
                           child: ElevatedButton.icon(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => paynow()),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                              ),
-                            ),
-                            label: const Text(
-                              "Buy Now",
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black),
-                            ),
-                            icon: Icon(
-                              Icons.account_balance_wallet_rounded,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                          ),
+                                                      
+                                  onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => paynow()),
+                                      );
+                                      
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        shape: new RoundedRectangleBorder(
+                                          borderRadius: new BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                    label: const Text("Buy Now",
+                                    style: TextStyle(
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.black),), 
+                                      icon: Icon(Icons.account_balance_wallet_rounded,color:Colors.black ,size: 20,) ,
+                                    
+                                   
+                                ),
                         ),
-
+                                                      
                         // child: Row(
                         //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         //   children: [
@@ -590,61 +572,61 @@ class _ItemDetailsState extends State<ItemDetails>
                         //   ],
                         // ),
                       ),
-                      //   Container(
-                      //     //add to cart
-                      //     width: kPropWidth(context, 0.37),
-                      //     height: kPropHeight(context, 0.06),
-                      //     margin: EdgeInsets.only(left: 10),
-                      //     padding: EdgeInsets.only(right: 5, left: 5),
-                      //     decoration: BoxDecoration(
-                      //       color: Colors.cyan[300],
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       boxShadow: [
-                      //         BoxShadow(
-                      //           color: Colors.grey.withOpacity(0.25),
-                      //           spreadRadius: 10,
-                      //           blurRadius: 7,
-                      //           offset:
-                      //               Offset(2, 5), // changes position of shadow
-                      //         ),
-                      //         BoxShadow(
-                      //           color: Colors.white.withOpacity(0.8),
-                      //           spreadRadius: 10,
-                      //           blurRadius: 7,
-                      //           offset: Offset(
-                      //               -10, -10), // changes position of shadow
-                      //         ),
-                      //       ],
-                      //     ),
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //       children: [
-                      //         Container(
-                      //           //add cart text
-                      //           alignment: Alignment.centerRight,
-                      //           child: Text(
-                      //             "Add to Cart",
-                      //             style: TextStyle(
-                      //                 fontFamily: "poppins",
-                      //                 fontWeight: FontWeight.bold,
-                      //                 color: Colors.black),
-                      //           ),
-                      //         ),
-                      //         Container(
-                      //           //add cart icon
-                      //           child: IconButton(
-                      //             icon: Icon(Icons.shopping_bag_rounded,
-                      //                 color: Colors.black),
-                      //             onPressed: () {
-                      //               print("add to cart");
-                      //             },
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      //
-                      Container(
+                    //   Container(
+                    //     //add to cart
+                    //     width: kPropWidth(context, 0.37),
+                    //     height: kPropHeight(context, 0.06),
+                    //     margin: EdgeInsets.only(left: 10),
+                    //     padding: EdgeInsets.only(right: 5, left: 5),
+                    //     decoration: BoxDecoration(
+                    //       color: Colors.cyan[300],
+                    //       borderRadius: BorderRadius.circular(10),
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //           color: Colors.grey.withOpacity(0.25),
+                    //           spreadRadius: 10,
+                    //           blurRadius: 7,
+                    //           offset:
+                    //               Offset(2, 5), // changes position of shadow
+                    //         ),
+                    //         BoxShadow(
+                    //           color: Colors.white.withOpacity(0.8),
+                    //           spreadRadius: 10,
+                    //           blurRadius: 7,
+                    //           offset: Offset(
+                    //               -10, -10), // changes position of shadow
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //       children: [
+                    //         Container(
+                    //           //add cart text
+                    //           alignment: Alignment.centerRight,
+                    //           child: Text(
+                    //             "Add to Cart",
+                    //             style: TextStyle(
+                    //                 fontFamily: "poppins",
+                    //                 fontWeight: FontWeight.bold,
+                    //                 color: Colors.black),
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           //add cart icon
+                    //           child: IconButton(
+                    //             icon: Icon(Icons.shopping_bag_rounded,
+                    //                 color: Colors.black),
+                    //             onPressed: () {
+                    //               print("add to cart");
+                    //             },
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // 
+                    Container(
                         //buy now
                         width: kPropWidth(context, 0.37),
                         height: kPropHeight(context, 0.06),
@@ -672,37 +654,35 @@ class _ItemDetailsState extends State<ItemDetails>
                         ),
                         child: SizedBox(
                           width: kPropWidth(context, 1),
-                          height: kPropHeight(context, 0.06),
+                        height: kPropHeight(context, 0.06),
                           child: ElevatedButton.icon(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => addcart()),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.cyan[300],
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                              ),
-                            ),
-                            label: const Text(
-                              "Add to Cart",
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black),
-                            ),
-                            icon: Icon(
-                              Icons.shopping_bag_rounded,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                          ),
+                                                      
+                                  onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => addcart()),
+                                      );
+                                      
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.cyan[300],
+                                      
+                                        shape: new RoundedRectangleBorder(
+                                          borderRadius: new BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                    label: const Text("Add to Cart",
+                                    style: TextStyle(
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.black),), 
+                                      icon: Icon(Icons.shopping_bag_rounded,color:Colors.black,size: 20,) ,
+                                    
+                                   
+                                ),
                         ),
-
+                                                      
                         // child: Row(
                         //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         //   children: [
@@ -730,6 +710,7 @@ class _ItemDetailsState extends State<ItemDetails>
                         //   ],
                         // ),
                       ),
+                    
                     ],
                   ),
                 ),
