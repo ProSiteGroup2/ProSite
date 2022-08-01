@@ -447,10 +447,17 @@ class _EdithdprofileState extends State<Edithdprofile> {
                   width: 115.0,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
-                      child: Image.asset(
-                        'assets/imgs/hshop1.jpg',
-                        fit: BoxFit.fill,
-                      )),
+                      child: image != null
+                          ? Image.file(
+                              image!,
+                              width: 115.0,
+                              height: 107.0,
+                              fit: BoxFit.fill,
+                            )
+                          : Image.asset(
+                              'assets/imgs/hshop1.jpg',
+                              fit: BoxFit.fill,
+                            )),
                 ),
                 Positioned(
                     bottom: -5.0,

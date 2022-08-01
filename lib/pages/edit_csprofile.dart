@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:group2/pages/changepw.dart';
+import 'package:image_picker/image_picker.dart';
 import 'customer_profileview.dart';
 
 class Editcsprofile extends StatefulWidget {
@@ -19,6 +23,20 @@ class _EditcsprofileState extends State<Editcsprofile> {
     'assets/imgs/kkk.jpg',
     'assets/imgs/ppp.jfif',
   ];
+
+  File? image;
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      setState(() {
+        this.image = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      print('Failed to pick image:$e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,42 +72,6 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   const SizedBox(
                     height: 70.0,
                   ),
-                  /*const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'First Name:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(7.0, 7.0),
-                        )
-                      ],
-                    ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),*/
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
@@ -359,10 +341,17 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   width: 115.0,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
-                      child: Image.asset(
-                        'assets/user1.webp',
-                        fit: BoxFit.fill,
-                      )),
+                      child: image != null
+                          ? Image.file(
+                              image!,
+                              width: 115.0,
+                              height: 107.0,
+                              fit: BoxFit.fill,
+                            )
+                          : Image.asset(
+                              'assets/user1.webp',
+                              fit: BoxFit.fill,
+                            )),
                 ),
                 Positioned(
                     bottom: -5.0,
@@ -372,7 +361,65 @@ class _EditcsprofileState extends State<Editcsprofile> {
                         Icons.add_a_photo_outlined,
                         color: Colors.black,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              height: 100.0,
+                              width: MediaQuery.of(context).size.width,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 20.0),
+                              child: Column(
+                                children: [
+                                  Text('Choose profile photo'),
+                                  const SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Color(hexColor('#1982BD')),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadiusDirectional
+                                                        .circular(16.0))),
+                                        onPressed: () {
+                                          pickImage(ImageSource.gallery);
+                                        },
+                                        child: const Text(
+                                          'Add from galery',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Color(hexColor('#1982BD')),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadiusDirectional
+                                                        .circular(16.0))),
+                                        onPressed: () {
+                                          pickImage(ImageSource.camera);
+                                        },
+                                        child: const Text(
+                                          'Add from Camera',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ))
               ]),
             ))
