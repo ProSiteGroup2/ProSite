@@ -54,8 +54,6 @@ dependencies:
   url_launcher: ^6.0.10
   flutter_rating_bar: ^4.0.1
   flutter_stripe: ^4.0.0
-  get: ^4.6.5
-  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
