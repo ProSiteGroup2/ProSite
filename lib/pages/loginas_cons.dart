@@ -6,6 +6,7 @@ import 'package:group2/Classes/authenticate_service.dart';
 import 'package:group2/pages/reguser.dart';
 import 'package:group2/pages/resetpwd_1.dart';
 import 'package:group2/pages/static.dart';
+import 'package:group2/globals.dart';
 
 class Loginas_cons extends StatefulWidget {
   const Loginas_cons({Key? key}) : super(key: key);
@@ -21,7 +22,6 @@ class _Loginas_consState extends State<Loginas_cons> {
   String _userEmail = '';
   String _password = '';
   var token;
-  late Map consumer;
 
 
 
@@ -39,7 +39,7 @@ class _Loginas_consState extends State<Loginas_cons> {
           AuthService().getConsumerInfo(token).then((val2) async {
             if (val2.data['success']){
               consumer=(val2.data['consumer']);
-              // print(consumer['address']);
+              print(consumer['address']);
               await Fluttertoast.showToast(
                   msg: val2.data['msg'],
                   toastLength: Toast.LENGTH_SHORT,

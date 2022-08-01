@@ -2,7 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/image_upload.dart';
+import 'package:group2/Classes/product_methods.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:group2/globals.dart';
 
 
 class AddProduct extends StatefulWidget {
@@ -19,6 +23,7 @@ class _AddProductState extends State<AddProduct> {
 
   File? image;
   File def_image=File('assets/imgs/default-product-image.jpg');
+  late Map product;
 
   pickImage(ImageSource source) async {
     try {
@@ -39,9 +44,9 @@ class _AddProductState extends State<AddProduct> {
   String _productCategory='';
   String _productDescription='';
   String _productBrand='N/A';
-  String _productSeller='';
+  String _productSeller=sp['_id'];
 
-  void _trySubmitForm(){
+  Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
 
     if (isValid == true){
@@ -54,6 +59,73 @@ class _AddProductState extends State<AddProduct> {
       debugPrint(_productDescription);
       debugPrint(_productBrand);
       debugPrint(_productSeller);
+
+      if(image==null){
+        Fluttertoast.showToast(
+            msg: 'Please upload a product image',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }else{
+        await ProductMethods().addProduct(_productName, _productPrice, _stock, _productSize, _productCategory, _productDescription, _productBrand, _productSeller).then((val) async {
+          if(val.data['success']){
+            print('I am in');
+            product=val.data['product'];
+            await ImgUpload().productImage(image!, product['_id']).then((val2) async {
+              if(val2.data['success']){
+                product=val2.data['product'];
+                await Fluttertoast.showToast(
+                    msg: val2.data['msg'],
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Product Saved Successfully'),
+                    content: Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                      size: 60,
+                    ),
+                    actions: [
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(context, '/hrddashboard', (route) => false);
+                          },
+                          child: Text('Done'),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }else{
+                Fluttertoast.showToast(
+                    msg: val.data['msg'],
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+              }
+            });
+          }else{
+            Fluttertoast.showToast(
+                msg: val.data['msg'],
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+        });
+      }
     }
   }
 

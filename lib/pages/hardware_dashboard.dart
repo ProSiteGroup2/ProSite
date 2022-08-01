@@ -224,9 +224,8 @@ Map<String, dynamic> data = {
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             // Add your onPressed code here!
-             Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Additem()),
+             Navigator.pushNamed(
+                  context,'/addProduct'
                 );
           },
           label: Text('Post Ad ',
