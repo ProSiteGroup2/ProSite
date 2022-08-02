@@ -48,6 +48,7 @@ class _pickdateState extends State<pickdate> {
               ),
               const SizedBox(height: 16),
               Row(
+                //two blue buttons date and time
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
@@ -105,6 +106,7 @@ class _pickdateState extends State<pickdate> {
                   ))
                 ],
               ),
+              
             ],
           ),
         ),
