@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:group2/pages/feedback%20view.dart';
 import 'package:group2/pages/pick_date.dart';
 
 class Customerhdprofileview extends StatefulWidget {
@@ -263,7 +264,15 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () {
+                                         Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                FeedbackV()),
+                                      );
+
+                                },
                                 child: const Text(
                                   'Give/View Feedback',
                                   style: TextStyle(color: Colors.white),
