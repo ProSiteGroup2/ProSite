@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:group2/pages/pick_date.dart';
 
 class Customerhdprofileview extends StatefulWidget {
   const Customerhdprofileview({Key? key}) : super(key: key);
@@ -241,7 +242,12 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () { Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                pickdate()),
+                                      );},
                                 child: const Text(
                                   'Appointment',
                                   style: TextStyle(color: Colors.white),
