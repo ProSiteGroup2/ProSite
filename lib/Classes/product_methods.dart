@@ -45,5 +45,73 @@ class ProductMethods{
     }
   }
 
+  getCementProduct() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getCementProduct');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'getting cement products failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
+  getBricksProduct() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getBricksProduct');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'getting bricks products failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getSteelProduct() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getSteelProduct');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'getting steel products failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getSandProduct() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getSandProduct');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'getting sand products failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getHardwareProduct(seller_id) async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getHardwareProduct/$seller_id');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'getting hardware products failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 }
