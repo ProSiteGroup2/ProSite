@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/src/ui/item_details.dart';
+
+import '../../globals.dart';
 //import '../common/color.dart';
 
 
@@ -126,6 +128,7 @@ class _sandState extends State<sand> {
                                         child: ElevatedButton(
                                               
                                             onPressed: () {
+                                              product=tags[i];
                                                   Navigator.push(
                                                     context,
                                                     MaterialPageRoute(builder: (context) =>const ItemDetails()),

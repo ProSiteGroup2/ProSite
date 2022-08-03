@@ -125,7 +125,7 @@ class _cementState extends State<cement> {
                                         child: ElevatedButton(
                                               
                                             onPressed: () {
-                                              // product=tags[i];
+                                              product=tags[i];
                                                   Navigator.push(
                                                     context,
                                                     MaterialPageRoute(builder: (context) =>const ItemDetails()),

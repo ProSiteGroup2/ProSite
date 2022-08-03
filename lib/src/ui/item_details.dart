@@ -10,6 +10,8 @@ import 'package:group2/pages/paynow.dart';
 import 'package:group2/pages/user_profile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../globals.dart';
+
 class ItemDetails extends StatefulWidget {
   const ItemDetails({Key? key}) : super(key: key);
 
@@ -21,7 +23,7 @@ class _ItemDetailsState extends State<ItemDetails>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    TabController _tabController = TabController(length: 4, vsync: this);
+    TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xE5E5E5),
@@ -77,8 +79,8 @@ class _ItemDetailsState extends State<ItemDetails>
                   ],
                   color: Colors.white,
                   image: DecorationImage(
-                    image: AssetImage("assets/imgs/logo.png"),
-                    fit: BoxFit.cover,
+                    image: NetworkImage('${product['imageUrl']}'),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
@@ -90,7 +92,7 @@ class _ItemDetailsState extends State<ItemDetails>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Safety Goggles",
+                    Text('${product['productname']}',
                         style: TextStyle(
                             fontFamily: "poppins",
                             fontSize: 22,
@@ -105,10 +107,10 @@ class _ItemDetailsState extends State<ItemDetails>
                         color: Colors.blue[700]!.withOpacity(0.4),
                       ),
                       child: Text(
-                        "Rs.1000",
+                        'Rs. ${product['price']}',
                         style: TextStyle(
                             fontFamily: "poppins",
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                             fontSize: 19),
                         textAlign: TextAlign.center,
                       ),
@@ -125,16 +127,15 @@ class _ItemDetailsState extends State<ItemDetails>
                     controller: _tabController,
                     labelColor: Colors.black,
                     labelStyle: TextStyle(
-                        fontSize: 13,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         fontFamily: "poppins"),
                     unselectedLabelColor: Colors.grey,
                     isScrollable: true,
                     indicatorSize: TabBarIndicatorSize.label,
                     tabs: [
-                      Tab(text: "Details"),
                       Tab(text: "Specifications"),
-                      Tab(text: "Reviews"),
+                      Tab(text: "Details"),
                       Tab(text: "About Seller")
                     ],
                   ),
@@ -146,46 +147,6 @@ class _ItemDetailsState extends State<ItemDetails>
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    Container(
-                      //details tab
-                      margin: EdgeInsets.only(top: 15),
-                      child: Column(
-                        children: [
-                          Container(
-                            //details tab details
-                            width: kPropWidth(context, 1) - 32,
-                            //height: kPropHeight(context, 0.4) - 32,
-                            margin:
-                                EdgeInsets.only(left: 20, right: 20, top: 15),
-                            child: Text(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi maximus hendrerit odio, eu iaculis orci rutrum et. Vestibulum ex orci, semper lobortis lacus sit amet, vehicula porttitor felis.",
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                  fontFamily: "poppins",
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 0.5,
-                                  height: 1.15),
-                            ),
-                          ),
-                          Container(
-                            //blue clr link
-                            margin: EdgeInsets.only(left: 22, right: 15),
-                            alignment: Alignment.topLeft,
-                            child: InkWell(
-                                child: Text(
-                                  'See full description . . .',
-                                  style: TextStyle(
-                                    fontFamily: "poppins",
-                                    color: Colors.blue[800],
-                                  ),
-                                ),
-                                onTap: () =>
-                                    launch('https://www.youtube.com/')),
-                          )
-                        ],
-                      ),
-                    ),
                     Container(
                       //specifications tab
                       margin: EdgeInsets.only(top: 15),
@@ -202,12 +163,12 @@ class _ItemDetailsState extends State<ItemDetails>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Condition  -",
+                                    "Category  -   ${product['category']}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
                                         fontSize: 14,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                         wordSpacing: 0.5,
                                         letterSpacing: 0.8,
                                         height: 1.15),
@@ -216,12 +177,12 @@ class _ItemDetailsState extends State<ItemDetails>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Quantity  -",
+                                    "Size  -   ${product['size']}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
                                         fontSize: 14,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
                                         wordSpacing: 0.5,
                                         letterSpacing: 0.8,
                                         height: 1.15),
@@ -230,12 +191,26 @@ class _ItemDetailsState extends State<ItemDetails>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Model  -",
+                                    "Stock  -   ${product['stock']}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
                                         fontSize: 14,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.bold,
+                                        wordSpacing: 0.5,
+                                        letterSpacing: 0.8,
+                                        height: 1.15),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    "Brand  -   ${product['brand']}",
+                                    textAlign: TextAlign.justify,
+                                    style: TextStyle(
+                                        fontFamily: "poppins",
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
                                         wordSpacing: 0.5,
                                         letterSpacing: 0.8,
                                         height: 1.15),
@@ -244,81 +219,31 @@ class _ItemDetailsState extends State<ItemDetails>
                               ],
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(left: 22, right: 15),
-                            alignment: Alignment.topLeft,
-                            child: InkWell(
-                                child: Text(
-                                  'For more . . .',
-                                  style: TextStyle(
-                                    fontFamily: "poppins",
-                                    color: Colors.blue[800],
-                                  ),
-                                ),
-                                onTap: () =>
-                                    launch('https://www.youtube.com/')),
-                          )
                         ],
                       ),
                     ),
                     Container(
                       //details tab
-                      margin: EdgeInsets.only(top: 15),
+                      margin: EdgeInsets.only(top: 15,left: 10),
                       child: Column(
                         children: [
-                          // Container(
-                          //     //Review title
-                          //         margin: EdgeInsets.only(left: 30, top: 10),
-                          //         child: Column(
-                          //           children: [
-                          //             Container(
-                          //               width: kPropWidth(context, 1) - 32,
-                          //               height: kPropHeight(context, 0.1) - 32,
-                          //               child: Text(
-                          //                 "Reviews",
-                          //                 textAlign: TextAlign.left,
-                          //                 style: TextStyle(
-                          //                     fontFamily: "poppins",
-                          //                     fontSize: 14,
-                          //                     fontWeight: FontWeight.bold,
-                          //                     height: 1.15),
-                          //               ),
-                          //             ),
-                          //             ],
-                          //         ),
-                          //     ),
                           Container(
                             //details tab details
                             width: kPropWidth(context, 1) - 32,
                             //height: kPropHeight(context, 0.4) - 32,
                             margin:
-                                EdgeInsets.only(left: 20, right: 20, top: 20),
+                            EdgeInsets.only(left: 20, right: 20, top: 15),
                             child: Text(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                              '${product['description']}',
                               textAlign: TextAlign.justify,
                               style: TextStyle(
                                   fontFamily: "poppins",
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
                                   letterSpacing: 0.5,
                                   height: 1.15),
                             ),
                           ),
-                          Container(
-                            //blue clr link
-                            margin: EdgeInsets.only(left: 22, right: 15),
-                            alignment: Alignment.topLeft,
-                            child: InkWell(
-                                child: Text(
-                                  'See more . . .',
-                                  style: TextStyle(
-                                    fontFamily: "poppins",
-                                    color: Colors.blue[800],
-                                  ),
-                                ),
-                                onTap: () =>
-                                    launch('https://www.youtube.com/')),
-                          )
                         ],
                       ),
                     ),
@@ -332,7 +257,7 @@ class _ItemDetailsState extends State<ItemDetails>
                             width: kPropWidth(context, 1) - 32,
                             height: kPropHeight(context, 0.1) - 32,
                             child: Text(
-                              "About",
+                              "Seller",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontFamily: "poppins",
@@ -374,7 +299,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                             ),
                                           ],
                                           image: DecorationImage(
-                                              image: AssetImage("assets/imgs/self.jpg"),
+                                              image: NetworkImage('${product['seller']['imageUrl']}'),
                                               fit: BoxFit.cover,     
                                               ),
                                         ),
@@ -411,6 +336,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                   ),
                                   child: ElevatedButton(
                                     onPressed: () {
+                                      sp=product['seller'];
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -442,11 +368,11 @@ class _ItemDetailsState extends State<ItemDetails>
                                             
                                             children: [
                                               Container(
-                                                width: kPropWidth(context, 0.5),
-                                                margin: const EdgeInsets.fromLTRB(5, 2, 40, 0),
-                                                padding: const EdgeInsets.only(left: 2.0, right: 2),
+                                                // width: kPropWidth(context, 0.5),
+                                                // margin: const EdgeInsets.fromLTRB(5, 2, 40, 0),
+                                                // padding: const EdgeInsets.only(left: 2.0, right: 2),
                                                 child:  Text(
-                                                  "Abc Company",
+                                                  '${product['seller']['hardwarename']}',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                       fontFamily: "poppins",
@@ -458,10 +384,17 @@ class _ItemDetailsState extends State<ItemDetails>
                                                 ),
                                               ),
                                               Container(
-                                                width: kPropWidth(context, 0.5),
-                                                margin: const EdgeInsets.fromLTRB(10, 10, 0, 5),
-                                                padding: const EdgeInsets.only(left: 2.0, right: 2),
-                                                child: Text("View Profile", style: TextStyle(fontFamily: "Poppins",color: Colors.grey),),
+                                                // width: kPropWidth(context, 0.5),
+                                                // margin: const EdgeInsets.fromLTRB(10, 10, 0, 5),
+                                                // padding: const EdgeInsets.only(left: 2.0, right: 2),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Icon(Icons.location_on,color: Colors.red,),
+                                                    SizedBox(width: 5.0,),
+                                                    Text("${product['seller']['city']}", style: TextStyle(fontFamily: "Poppins",color: Colors.black),),
+                                                  ],
+                                                ),
                                               )
                                             ],
                                           ),

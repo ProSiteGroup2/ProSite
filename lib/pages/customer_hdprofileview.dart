@@ -3,6 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:group2/pages/feedback%20view.dart';
 import 'package:group2/pages/pick_date.dart';
 
+import '../globals.dart';
+
 class Customerhdprofileview extends StatefulWidget {
   const Customerhdprofileview({Key? key}) : super(key: key);
 
@@ -52,11 +54,11 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                   const SizedBox(
                     height: 70.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      'Sk HARDWARE',
+                      '${sp['hardwarename']}',
                       style: TextStyle(
-                        fontSize: 30.0,
+                        fontSize: 25.0,
                         fontWeight: FontWeight.bold,
                         fontFamily: "poppins",
                       ),
@@ -105,15 +107,16 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                       child: Column(
                         children: [
                           Row(
-                            children: const [
-                              Icon(Icons.location_on),
+                            children:[
+                              Icon(Icons.location_on,color: Colors.red,),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'From Gampaha',
+                                '${sp['city']}, ${sp['district']}',
                                 style: TextStyle(
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: "poppins",
                                 ),
                               ),
@@ -123,15 +126,16 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
+                            children:[
                               Icon(Icons.home_filled),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'B 70/5A,Edurapotha,Kegalle',
+                                '${sp['address']}',
                                 style: TextStyle(
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: "poppins",
                                 ),
                               ),
@@ -141,15 +145,16 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
+                            children:[
                               Icon(Icons.email_rounded),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'abcd@gmail.com',
+                                '${sp['email']}',
                                 style: TextStyle(
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: "poppins",
                                 ),
                               ),
@@ -159,15 +164,16 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
-                              Icon(Icons.phone_in_talk_outlined),
+                            children: [
+                              Icon(Icons.phone_in_talk_sharp,color: Colors.green,),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                '0772222999',
+                                '${sp['contactNo']}',
                                 style: TextStyle(
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: "poppins",
                                 ),
                               ),
@@ -177,16 +183,26 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
-                              Icon(Icons.account_box_outlined),
+                            children:[
+                              Icon(Icons.person_rounded),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Muththahar',
+                                'Owner : ',
                                 style: TextStyle(
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: "poppins",
+                                ),
+                              ),
+
+                              Text(
+                                '${sp['owner']}',
+                                style: TextStyle(
+                                  fontSize:18.0,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Roboto",
                                 ),
                               ),
                             ],
@@ -321,8 +337,8 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                 width: 115.0,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      'assets/imgs/hshop1.jpg',
+                    child: Image.network(
+                      '${sp['imageUrl']}',
                       fit: BoxFit.fill,
                     )),
               ),
