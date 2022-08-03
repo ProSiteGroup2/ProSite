@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print, unused_import
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/product_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/components/image_causerol.dart';
 import 'package:group2/components/image_causerol_a.dart';
@@ -290,7 +292,20 @@ Map<String, dynamic> data = {
                                                     
                                                     child: ElevatedButton(
                                                       
-                                                      onPressed: () {
+                                                      onPressed: () async {
+                                                        await ProductMethods().getCementProduct().then((val){
+                                                          if(val.data['success']){
+                                                            data['tags']=val.data['products'];
+                                                          }else{
+                                                            Fluttertoast.showToast(
+                                                                msg: val.data['msg'],
+                                                                toastLength: Toast.LENGTH_SHORT,
+                                                                gravity: ToastGravity.BOTTOM,
+                                                                backgroundColor: Colors.red,
+                                                                textColor: Colors.white,
+                                                                fontSize: 16.0);
+                                                          }
+                                                        });
                                                           Navigator.push(
                                                             context,
                                                             MaterialPageRoute(builder: (context) => cement(context: context,  tags: data['tags'],)),
@@ -359,7 +374,20 @@ Map<String, dynamic> data = {
                                                           borderRadius: BorderRadius.circular(20.0)
                                                         ),
                                                         child: ElevatedButton(
-                                                    onPressed: () {
+                                                    onPressed: () async {
+                                                      await ProductMethods().getBricksProduct().then((val){
+                                                        if(val.data['success']){
+                                                          data['tags']=val.data['products'];
+                                                        }else{
+                                                          Fluttertoast.showToast(
+                                                              msg: val.data['msg'],
+                                                              toastLength: Toast.LENGTH_SHORT,
+                                                              gravity: ToastGravity.BOTTOM,
+                                                              backgroundColor: Colors.red,
+                                                              textColor: Colors.white,
+                                                              fontSize: 16.0);
+                                                        }
+                                                      });
                                                         Navigator.push(
                                                           context,
                                                           MaterialPageRoute(builder: (context) => brick(context: context,  tags: data['tags'],)),
@@ -434,7 +462,20 @@ Map<String, dynamic> data = {
                                                           borderRadius: BorderRadius.circular(20.0)
                                                         ),
                                                         child: ElevatedButton(
-                                                    onPressed: () {
+                                                    onPressed: () async {
+                                                      await ProductMethods().getSteelProduct().then((val){
+                                                        if(val.data['success']){
+                                                          data['tags']=val.data['products'];
+                                                        }else{
+                                                          Fluttertoast.showToast(
+                                                              msg: val.data['msg'],
+                                                              toastLength: Toast.LENGTH_SHORT,
+                                                              gravity: ToastGravity.BOTTOM,
+                                                              backgroundColor: Colors.red,
+                                                              textColor: Colors.white,
+                                                              fontSize: 16.0);
+                                                        }
+                                                      });
                                                         Navigator.push(
                                                           context,
                                                           MaterialPageRoute(builder: (context) =>steel(context: context,  tags: data['tags'],)),
@@ -501,7 +542,20 @@ Map<String, dynamic> data = {
                                                                borderRadius: BorderRadius.circular(20.0)
                                                        ),
                                                        child: ElevatedButton(
-                                                         onPressed: () {
+                                                         onPressed: () async {
+                                                           await ProductMethods().getSandProduct().then((val){
+                                                             if(val.data['success']){
+                                                               data['tags']=val.data['products'];
+                                                             }else{
+                                                               Fluttertoast.showToast(
+                                                                   msg: val.data['msg'],
+                                                                   toastLength: Toast.LENGTH_SHORT,
+                                                                   gravity: ToastGravity.BOTTOM,
+                                                                   backgroundColor: Colors.red,
+                                                                   textColor: Colors.white,
+                                                                   fontSize: 16.0);
+                                                             }
+                                                           });
                                                              Navigator.push(
                                                                context,
                                                                MaterialPageRoute(builder: (context) => sand(context: context,  tags: data['tags'],)),
