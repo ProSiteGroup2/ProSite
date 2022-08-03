@@ -47,12 +47,12 @@ dependencies:
 
 
   flutter_bloc: ^6.1.2
-
   cached_network_image: ^2.0.0-rc
-
   equatable: ^1.2.5
   url_launcher: ^6.0.10
   flutter_rating_bar: ^4.0.1
+  
+  
 
 dev_dependencies:
   flutter_test:

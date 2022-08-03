@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/hardware_profileview.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Edithdprofile extends StatefulWidget {
   const Edithdprofile({Key? key}) : super(key: key);
@@ -17,6 +21,20 @@ class _EdithdprofileState extends State<Edithdprofile> {
     'assets/imgs/h5.jpg',
     'assets/imgs/h6.jpg',
   ];
+
+  File? image;
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      setState(() {
+        this.image = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      print('Failed to pick image:$e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -429,10 +447,17 @@ class _EdithdprofileState extends State<Edithdprofile> {
                   width: 115.0,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
-                      child: Image.asset(
-                        'assets/imgs/hshop1.jpg',
-                        fit: BoxFit.fill,
-                      )),
+                      child: image != null
+                          ? Image.file(
+                              image!,
+                              width: 115.0,
+                              height: 107.0,
+                              fit: BoxFit.fill,
+                            )
+                          : Image.asset(
+                              'assets/imgs/hshop1.jpg',
+                              fit: BoxFit.fill,
+                            )),
                 ),
                 Positioned(
                     bottom: -5.0,
@@ -442,7 +467,65 @@ class _EdithdprofileState extends State<Edithdprofile> {
                         Icons.add_a_photo_outlined,
                         color: Colors.black,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              height: 100.0,
+                              width: MediaQuery.of(context).size.width,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 20.0),
+                              child: Column(
+                                children: [
+                                  Text('Choose profile photo'),
+                                  const SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Color(hexColor('#1982BD')),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadiusDirectional
+                                                        .circular(16.0))),
+                                        onPressed: () {
+                                          pickImage(ImageSource.gallery);
+                                        },
+                                        child: const Text(
+                                          'Add from galery',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Color(hexColor('#1982BD')),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadiusDirectional
+                                                        .circular(16.0))),
+                                        onPressed: () {
+                                          pickImage(ImageSource.camera);
+                                        },
+                                        child: const Text(
+                                          'Add from Camera',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ))
               ]),
             ))
