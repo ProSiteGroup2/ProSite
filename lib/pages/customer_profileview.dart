@@ -1,5 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:group2/pages/edit_csprofile.dart';
+import 'package:group2/globals.dart';
+//import 'package:http/http.dart' as http;
+
 
 class Customerpview extends StatefulWidget {
   const Customerpview({Key? key}) : super(key: key);
@@ -9,6 +13,23 @@ class Customerpview extends StatefulWidget {
 }
 
 class _CustomerpviewState extends State<Customerpview> {
+
+
+  /*Future<Map<String,dynamic>> getuser() async{
+    try{
+      var result = await http.get(Uri.parse('http://10.0.2.2:5000//getConsumerInfo'),
+      headers: {}
+      );
+      if(jsonDecode(result.body)['success']) return jsonDecode(result.body)['consumer'];
+      else{
+        return jsonDecode(result.body)['msg'];
+      }
+    }catch(err){
+      print(err.toString());
+      return {};
+    }
+}*/
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,46 +52,62 @@ class _CustomerpviewState extends State<Customerpview> {
             ),
             Stack(
               children: [
+                /*Container(
+                  child: FutureBuilder<Map<String, dynamic>>(
+                    future: getuser(),
+                    builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot){
+                      if(snapshot.hasData){
+                        if(snapshot.data!.isEmpty){
+                          return const Text('no data');
+                        }else{
+                          return ;
+                        }
+                      }else{
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
+                ),*/
                 Container(
                   margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
                   decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
                       color: Color(hexColor('#FEFEFE')),
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(42.0))),
+                      const BorderRadius.all(Radius.circular(42.0))),
                   child: Column(
                     children: [
                       const SizedBox(
                         height: 70.0,
                       ),
-                      const Center(
+                      Center(
                         child: Text(
-                          'Aaron Graham',
-                          style: TextStyle(
+                          '${consumer['username']}',
+                          style: const TextStyle(
                               fontSize: 30.0, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
                           margin:
-                              const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 40.0),
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 40.0),
                           padding:
-                              const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                           decoration: BoxDecoration(
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(14.0)),
+                            const BorderRadius.all(Radius.circular(14.0)),
                             color: Colors.grey[100],
                           ),
                           child: Column(
                             children: [
                               Row(
-                                children: const [
-                                  Icon(Icons.location_on),
-                                  SizedBox(
+                                children:  [
+                                  const Icon(Icons.location_on),
+                                  const SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'From Kegalle',
-                                    style: TextStyle(
+                                    '${consumer['hometown']}, ${consumer['district']}',
+                                    style: const TextStyle(
                                       fontSize: 20.0,
                                     ),
                                   ),
@@ -80,14 +117,14 @@ class _CustomerpviewState extends State<Customerpview> {
                                 height: 20.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.home_filled),
-                                  SizedBox(
+                                children: [
+                                  const Icon(Icons.home_filled),
+                                  const SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'B 70/5A,Edurapotha,Kegalle',
-                                    style: TextStyle(
+                                    '${consumer['address']}',
+                                    style: const TextStyle(
                                       fontSize: 20.0,
                                     ),
                                   ),
@@ -97,13 +134,13 @@ class _CustomerpviewState extends State<Customerpview> {
                                 height: 20.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.email_rounded),
-                                  SizedBox(
+                                children: [
+                                  const Icon(Icons.email_rounded),
+                                  const SizedBox(
                                     width: 5.0,
                                   ),
-                                  Text('abcd@gmail.com',
-                                      style: TextStyle(
+                                  Text('${consumer['email']}',
+                                      style: const TextStyle(
                                         fontSize: 20.0,
                                       )),
                                 ],
@@ -112,13 +149,13 @@ class _CustomerpviewState extends State<Customerpview> {
                                 height: 20.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.phone_in_talk_outlined),
-                                  SizedBox(
+                                children: [
+                                  const Icon(Icons.phone_in_talk_outlined),
+                                  const SizedBox(
                                     width: 5.0,
                                   ),
-                                  Text('0772222999',
-                                      style: TextStyle(
+                                  Text('${consumer['username']}',
+                                      style: const TextStyle(
                                         fontSize: 20.0,
                                       )),
                                 ],
@@ -126,13 +163,13 @@ class _CustomerpviewState extends State<Customerpview> {
                               const SizedBox(
                                 height: 20.0,
                               ),
-                              Row(children: const [
-                                Icon(Icons.home),
-                                SizedBox(
+                              Row(children: [
+                                const Icon(Icons.home),
+                                const SizedBox(
                                   width: 5.0,
                                 ),
-                                Text('Bulathkohupitiya',
-                                    style: TextStyle(
+                                Text('${consumer['hometown']}',
+                                    style: const TextStyle(
                                       fontSize: 20.0,
                                     )),
                               ]),
@@ -144,6 +181,7 @@ class _CustomerpviewState extends State<Customerpview> {
                     ],
                   ),
                 ),
+
                 Positioned(
                     child: Center(
                   child: SizedBox(
@@ -151,8 +189,8 @@ class _CustomerpviewState extends State<Customerpview> {
                     width: 115.0,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
-                        child: Image.asset(
-                          'assets/imgs/user1.webp',
+                        child: Image.network(
+                          '${consumer['imageUrl']}',
                           fit: BoxFit.fill,
                         )),
                   ),
