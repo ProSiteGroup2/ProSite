@@ -353,12 +353,12 @@ class _CscontractorviewState extends State<Cscontractorview> {
                           ),
                           Row(
                             children: const [
-                              Icon(Icons.work_sharp),
+                              Icon(Icons.people_alt),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Only with Experience',
+                                'No of workers:30',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
