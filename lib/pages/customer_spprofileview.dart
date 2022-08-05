@@ -216,6 +216,57 @@ class _CustomerspviewState extends State<Customerspview> {
                               ),
                             ],
                           ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(hexColor('#1982BD')),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                16.0))),
+                                onPressed: () {
+                                  /*Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                pickdate()),
+                                      );*/
+                                },
+                                child: const Text(
+                                  'Appointment',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 5.0,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(hexColor('#1982BD')),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                16.0))),
+                                onPressed: () {
+                                  /*Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                FeedbackHd()),
+                                      );*/
+                                },
+                                child: const Text(
+                                  'Give/View Feedback',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       )),
                   const Center(
