@@ -7,7 +7,7 @@ import 'package:group2/pages/hardware_dashboard.dart';
 import 'package:group2/pages/loginpage.dart';
 import 'package:group2/pages/splashscreen.dart';
 import 'package:group2/pages/starting.dart';
-import 'package:group2/src/sp_home_screen.dart';
+import 'package:group2/src/ui/sp_home_screen.dart';
 import 'package:group2/src/ui/home_screen.dart';
 import 'package:group2/pages/notifications.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
