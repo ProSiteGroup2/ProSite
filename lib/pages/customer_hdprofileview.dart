@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:group2/pages/feedback%20view.dart';
+import 'package:group2/pages/feedback_hardware.dart';
 import 'package:group2/pages/pick_date.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../globals.dart';
 
 class Customerhdprofileview extends StatefulWidget {
@@ -220,7 +221,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  launchwhatsapp( number:"tel://+94${sp['contactNo'].substring(1)}",message: "Hello");
+                                },
                                 icon: const Text(
                                   'Chat',
                                   style: TextStyle(color: Colors.white),
@@ -237,7 +240,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  launch("tel://+94${sp['contactNo'].substring(1)}");
+                                },
                                 icon: const Text(
                                   'Call',
                                   style: TextStyle(color: Colors.white),
@@ -285,7 +290,7 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                FeedbackV()),
+                                                FeedbackHd()),
                                       );
 
                                 },
@@ -347,6 +352,12 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
         ),
       ),
     );
+  }
+
+  void launchwhatsapp({@required number,@required message}) async{
+    String url="whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url)?launch(url):print("cant't open whatsapp ");
+
   }
 }
 
