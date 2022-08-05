@@ -34,9 +34,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
           color: Colors.blueAccent,
         ),*/
         leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
-              onPressed: () => Navigator.of(context).pop(),
-            ), 
+          icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         elevation: 0.0,
         backgroundColor: Color(hexColor('#F0F0F0')),
       ),
@@ -58,7 +58,7 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                   Center(
                     child: Text(
                       '${sp['hardwarename']}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25.0,
                         fontWeight: FontWeight.bold,
                         fontFamily: "poppins",
@@ -108,52 +108,17 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                       child: Column(
                         children: [
                           Row(
-                            children:[
-                              Icon(Icons.location_on,color: Colors.red,),
-                              SizedBox(
+                            children: [
+                              const Icon(
+                                Icons.location_on,
+                                color: Colors.red,
+                              ),
+                              const SizedBox(
                                 width: 5.0,
                               ),
                               Text(
                                 '${sp['city']}, ${sp['district']}',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "poppins",
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          Row(
-                            children:[
-                              Icon(Icons.home_filled),
-                              SizedBox(
-                                width: 5.0,
-                              ),
-                              Text(
-                                '${sp['address']}',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "poppins",
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          Row(
-                            children:[
-                              Icon(Icons.email_rounded),
-                              SizedBox(
-                                width: 5.0,
-                              ),
-                              Text(
-                                '${sp['email']}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "poppins",
@@ -166,13 +131,13 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                           ),
                           Row(
                             children: [
-                              Icon(Icons.phone_in_talk_sharp,color: Colors.green,),
-                              SizedBox(
+                              const Icon(Icons.home_filled),
+                              const SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                '${sp['contactNo']}',
-                                style: TextStyle(
+                                '${sp['address']}',
+                                style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "poppins",
@@ -184,12 +149,53 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                             height: 10.0,
                           ),
                           Row(
-                            children:[
-                              Icon(Icons.person_rounded),
-                              SizedBox(
+                            children: [
+                              const Icon(Icons.email_rounded),
+                              const SizedBox(
                                 width: 5.0,
                               ),
                               Text(
+                                '${sp['email']}',
+                                style: const TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "poppins",
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.phone_in_talk_sharp,
+                                color: Colors.green,
+                              ),
+                              const SizedBox(
+                                width: 5.0,
+                              ),
+                              Text(
+                                '${sp['contactNo']}',
+                                style: const TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "poppins",
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            children: [
+                              const Icon(Icons.person_rounded),
+                              const SizedBox(
+                                width: 5.0,
+                              ),
+                              const Text(
                                 'Owner : ',
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -197,11 +203,10 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                   fontFamily: "poppins",
                                 ),
                               ),
-
                               Text(
                                 '${sp['owner']}',
-                                style: TextStyle(
-                                  fontSize:18.0,
+                                style: const TextStyle(
+                                  fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "Roboto",
                                 ),
@@ -222,7 +227,10 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
                                 onPressed: () {
-                                  launchwhatsapp( number:"tel://+94${sp['contactNo'].substring(1)}",message: "Hello");
+                                  launchwhatsapp(
+                                      number:
+                                          "tel://+94${sp['contactNo'].substring(1)}",
+                                      message: "Hello");
                                 },
                                 icon: const Text(
                                   'Chat',
@@ -241,7 +249,8 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
                                 onPressed: () {
-                                  launch("tel://+94${sp['contactNo'].substring(1)}");
+                                  launch(
+                                      "tel://+94${sp['contactNo'].substring(1)}");
                                 },
                                 icon: const Text(
                                   'Call',
@@ -257,7 +266,7 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              ElevatedButton(
+                              /*ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     primary: Color(hexColor('#1982BD')),
                                     shape: RoundedRectangleBorder(
@@ -277,7 +286,7 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                               ),
                               const SizedBox(
                                 width: 5.0,
-                              ),
+                              ),*/
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     primary: Color(hexColor('#1982BD')),
@@ -286,13 +295,11 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
                                 onPressed: () {
-                                         Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                FeedbackHd()),
-                                      );
-
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => FeedbackHd()),
+                                  );
                                 },
                                 child: const Text(
                                   'Give/View Feedback',
@@ -354,10 +361,9 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
     );
   }
 
-  void launchwhatsapp({@required number,@required message}) async{
-    String url="whatsapp://send?phone=$number&text=$message";
-    await canLaunch(url)?launch(url):print("cant't open whatsapp ");
-
+  void launchwhatsapp({@required number, @required message}) async {
+    String url = "whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url) ? launch(url) : print("cant't open whatsapp ");
   }
 }
 
