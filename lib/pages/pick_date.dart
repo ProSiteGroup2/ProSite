@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:group2/Classes/service_provider_methods.dart';
 import 'package:group2/common/size.dart';
+
+import '../globals.dart';
 
 class pickdate extends StatefulWidget {
   pickdate({Key? key}) : super(key: key);
@@ -113,11 +116,36 @@ class _pickdateState extends State<pickdate> {
               ),
               SizedBox(height: 50.0,),
               ElevatedButton(
-                onPressed: (){
+                onPressed: () async {
                   print(dateTime);
                   print(app_date);
                   print(app_date_str);
                   print(app_time_str);
+                  await SPMethods().addAppointment(consumer['_id'], sp['email'], app_date_str, app_time_str).then((val){
+                    if(val.data['success']){
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Appointment Made Successfully'),
+                          content: Icon(
+                            Icons.check_circle,
+                            color: Colors.green,
+                            size: 60,
+                          ),
+                          actions: [
+                            Center(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushNamedAndRemoveUntil(context, '/HomeScreen', (route) => false);
+                                },
+                                child: Text('OK'),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                  });
                 },
                 child: Text(
                   'Make Appointment',

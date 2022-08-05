@@ -71,7 +71,6 @@ class _AddProductState extends State<AddProduct> {
       }else{
         await ProductMethods().addProduct(_productName, _productPrice, _stock, _productSize, _productCategory, _productDescription, _productBrand, _productSeller).then((val) async {
           if(val.data['success']){
-            print('I am in');
             product=val.data['product'];
             await ImgUpload().productImage(image!, product['_id']).then((val2) async {
               if(val2.data['success']){

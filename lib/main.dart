@@ -4,6 +4,7 @@ import 'package:group2/components/navigation_bar.dart';
 import 'package:group2/pages/add_product.dart';
 import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/hardware_dashboard.dart';
+import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/loginpage.dart';
 import 'package:group2/pages/splashscreen.dart';
 import 'package:group2/pages/starting.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         //  home: HomeScreen(),
         //  home: NavBar(),
-        initialRoute: '/SP_HomeScreen',
+        initialRoute: '/start',
         routes: {
           // '/home': (context) => HomeScreen(),    //give the home page class name
           '/start': (context) => SplashScreen(), //give the start page class name
@@ -36,7 +37,9 @@ class MyApp extends StatelessWidget {
           '/addItem':(context)=>Additem(),
           '/SPLogin':(context)=>LoginPage(),
           '/addProduct':(context)=> AddProduct(),
-          '/SP_HomeScreen':(context) =>SP_HomeScreen(), 
+          '/SP_HomeScreen':(context) =>SP_HomeScreen(),
+          '/HomeScreen':(context)=>HomeScreen(),
+          '/ConsumerLogin':(context)=>Loginas_cons(),
           // .....
           // ...... give other pages class name like above
         });

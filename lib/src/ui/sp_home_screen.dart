@@ -108,10 +108,7 @@ Map<String, dynamic> data = {
                                      MaterialPageRoute(builder: (context) => About()),
                                    );
                              }else if(value == 1){
-                               Navigator.push(
-                                     context,
-                                     MaterialPageRoute(builder: (context) => Loginas_cons()),
-                                   );
+                               Navigator.pushNamedAndRemoveUntil(context, '/SPLogin', (route) => false);
                              }
                          }
                          ),
