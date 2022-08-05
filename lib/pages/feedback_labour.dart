@@ -1,17 +1,16 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/Feedback_list.dart';
 
-class FeedbackV extends StatefulWidget {
-  const FeedbackV({Key? key}) : super(key: key);
+import '../globals.dart';
+
+class FeedbackLab extends StatefulWidget {
+  const FeedbackLab({Key? key}) : super(key: key);
 
   @override
-  _FeedbackVState createState() => _FeedbackVState();
+  State<FeedbackLab> createState() => _FeedbackLabState();
 }
 
-class _FeedbackVState extends State<FeedbackV> with TickerProviderStateMixin {
+class _FeedbackLabState extends State<FeedbackLab> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 2, vsync: this);
@@ -28,27 +27,27 @@ class _FeedbackVState extends State<FeedbackV> with TickerProviderStateMixin {
       appBar: AppBar(
         backgroundColor: Color(0xFF60A3D9),
         title: Text('Feedbacks',style: TextStyle(
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.bold
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold
         ),),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Column(
             children: [
               SizedBox(height: 10.0),
               Center(
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/imgs/pro1.jpg'),
+                  backgroundImage: NetworkImage('${sp['imageUrl']}'),
                   radius: 40.0,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  'W.Krishan Perera',
+                  '${sp['username']}',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.bold,
@@ -82,7 +81,7 @@ class _FeedbackVState extends State<FeedbackV> with TickerProviderStateMixin {
               ),
               SizedBox(height: 20.0),
               Container(
-                height:400,
+                height: 380,
                 width: double.maxFinite,
                 child: TabBarView(
                   controller: _tabController,
@@ -117,7 +116,7 @@ class _FeedbackVState extends State<FeedbackV> with TickerProviderStateMixin {
                                   ),
                                   title: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
+                                    CrossAxisAlignment.stretch,
                                     children: [
                                       Text(
                                         feedbacks[index].feedback,
@@ -128,7 +127,7 @@ class _FeedbackVState extends State<FeedbackV> with TickerProviderStateMixin {
                                       SizedBox(height: 4.0),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                        MainAxisAlignment.end,
                                         children: [
                                           Text(
                                             feedbacks[index].cName,
@@ -193,10 +192,10 @@ class _FeedbackVState extends State<FeedbackV> with TickerProviderStateMixin {
                             child: ElevatedButton(
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ))),
+                                        borderRadius: BorderRadius.circular(20.0),
+                                      ))),
                               onPressed: () {
                                 print(_feedbackController.text);
                               },

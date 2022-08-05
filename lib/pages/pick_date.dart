@@ -11,7 +11,10 @@ class pickdate extends StatefulWidget {
 }
 
 class _pickdateState extends State<pickdate> {
-  DateTime dateTime = DateTime(2022, 12, 24, 5, 30);
+  DateTime dateTime = DateTime(2022, 01, 01, 00, 00);
+  late String app_date;
+  late String app_date_str;
+  late String app_time_str;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +23,6 @@ class _pickdateState extends State<pickdate> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[200],
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_outlined,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
         elevation: 0.0,
       ),
       body: SafeArea(
@@ -54,7 +50,7 @@ class _pickdateState extends State<pickdate> {
                   Expanded(
                       child: ElevatedButton(
                     child: Text(
-                        '${dateTime.year}/${dateTime.month}/${dateTime.day} '
+                        '${dateTime.year}-${dateTime.month}-${dateTime.day} '
                         ,
                         style: TextStyle(
                           fontFamily: "poppins",
@@ -74,7 +70,11 @@ class _pickdateState extends State<pickdate> {
                         dateTime.minute,
                       );
 
-                      setState(() => dateTime = newDateTime); //pressed 'OK'
+                      setState(() {
+                        dateTime = newDateTime;
+                        app_date=dateTime.toString();
+                        app_date_str= app_date.substring(0,10);
+                      }); //pressed 'OK'
                     },
                   )),
                   const SizedBox(width: 12),
@@ -101,12 +101,40 @@ class _pickdateState extends State<pickdate> {
 
                         
                        );
-                       setState(() => dateTime = newDateTime);
+                       setState(() {
+                         dateTime = newDateTime;
+                         app_date=dateTime.toString();
+
+                         app_time_str=app_date.substring(11,16);
+                       });
                     },
                   ))
                 ],
               ),
-              
+              SizedBox(height: 50.0,),
+              ElevatedButton(
+                onPressed: (){
+                  print(dateTime);
+                  print(app_date);
+                  print(app_date_str);
+                  print(app_time_str);
+                },
+                child: Text(
+                  'Make Appointment',
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF189AB4),
+                  padding: EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 25.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(15.0),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
