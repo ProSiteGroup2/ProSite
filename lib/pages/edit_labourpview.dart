@@ -73,7 +73,43 @@ class _EditlabourState extends State<Editlabour> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'contractor name:',
+                      'User name:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5.0),
+                  Container(
+                    height: 50.0,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8.0)),
+                      color: Colors.blueGrey[50],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.blueGrey,
+                          blurRadius: 5.0,
+                          offset: Offset(7.0, 7.0),
+                        )
+                      ],
+                    ),
+                    child: const Padding(
+                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                        child: TextField(
+                          cursorColor: Colors.black12,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 50.0,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'Profession:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -289,7 +325,7 @@ class _EditlabourState extends State<Editlabour> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Reg No:',
+                      'Qualification:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -325,7 +361,7 @@ class _EditlabourState extends State<Editlabour> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'No of Workers:',
+                      'Work Experience:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,

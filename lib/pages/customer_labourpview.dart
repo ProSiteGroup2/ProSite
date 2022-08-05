@@ -290,7 +290,7 @@ class _CslabourviewState extends State<Cslabourview> {
                                 width: 5.0,
                               ),
                               Text(
-                                'From Gampaha',
+                                'From Kegalle, Dewalegama',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -358,7 +358,7 @@ class _CslabourviewState extends State<Cslabourview> {
                                 width: 5.0,
                               ),
                               Text(
-                                'Only with Experience',
+                                '2 Yr Experience',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),

@@ -60,43 +60,231 @@ class _LabourpviewState extends State<Labourpview> {
                               fontSize: 30.0, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      /*const Center(
+                      const Center(
                         child: Text(
                           'mason',
                           style: TextStyle(
                               fontSize: 15.0, fontWeight: FontWeight.bold),
                         ),
-                      ),*/
+                      ),
                       Container(
-                          height: 150.0,
-                          //width: MediaQuery.of(context).size.width,
-                          margin:
-                              const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                          //padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: Colors.white,
-                          ),
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: items.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return SizedBox(
-                                  height: 130,
-                                  width: 120,
-                                  child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        10.0, 10.0, 5.0, 10.0),
-                                    child: ClipRRect(
-                                      child: Image.asset(
-                                        items[index],
-                                        fit: BoxFit.fill,
-                                      ),
+                        height: 250.0,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: Colors.green[50],
+                            borderRadius: BorderRadius.circular(8.0)),
+                        margin:
+                            const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                        padding:
+                            const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                        /*child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: items.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context ,index){
+                            return SizedBox(
+                              height: 130,
+                              width: 120,
+
+                              child: ClipRRect(
+                                child: Image.asset(items[index],fit: BoxFit.fill,),
+                              ),
+                            );
+                          }
+                      )*/
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(
+                                    10.0, 10.0, 10.0, 10.0),
+                                height: 200,
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[200],
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: const [
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 30.0, 0.0, 0.0),
+                                          child: Text(
+                                            'A House Planning',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Edurapotha, Kegalle',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Owaner is Ravindu perera',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Cost is 1Milion',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                );
-                              })),
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10.0, 10.0, 10.0, 10.0),
+                                        child: SizedBox(
+                                            child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.asset(
+                                                    'assets/imgs/aaa.jpg')))),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(
+                                    10.0, 10.0, 10.0, 10.0),
+                                height: 200,
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[200],
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: const [
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 30.0, 0.0, 0.0),
+                                          child: Text(
+                                            'A House Planning',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Edurapotha, Kegalle',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Owaner is Ravindu perera',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Cost is 1Milion',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10.0, 10.0, 10.0, 10.0),
+                                        child: SizedBox(
+                                            child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.asset(
+                                                    'assets/imgs/ddd.jpg')))),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(
+                                    10.0, 10.0, 10.0, 10.0),
+                                height: 200,
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[200],
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: const [
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 30.0, 0.0, 0.0),
+                                          child: Text(
+                                            'A House Planning',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Edurapotha, Kegalle',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Owaner is Ravindu perera',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Cost is 1Milion',
+                                            style: TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10.0, 10.0, 10.0, 10.0),
+                                        child: SizedBox(
+                                            child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.asset(
+                                                  'assets/imgs/ccc.jpeg',
+                                                )))),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                       Container(
                           margin:
                               const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 40.0),
@@ -111,7 +299,7 @@ class _LabourpviewState extends State<Labourpview> {
                             children: [
                               Row(
                                 children: const [
-                                  Icon(Icons.location_on),
+                                  Icon(Icons.email_outlined),
                                   SizedBox(
                                     width: 5.0,
                                   ),
@@ -145,7 +333,7 @@ class _LabourpviewState extends State<Labourpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.email_rounded),
+                                  Icon(Icons.holiday_village),
                                   SizedBox(
                                     width: 5.0,
                                   ),
@@ -162,7 +350,7 @@ class _LabourpviewState extends State<Labourpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.phone_in_talk_outlined),
+                                  Icon(Icons.home),
                                   SizedBox(
                                     width: 5.0,
                                   ),
@@ -179,7 +367,7 @@ class _LabourpviewState extends State<Labourpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.work_sharp),
+                                  Icon(Icons.phone),
                                   SizedBox(
                                     width: 5.0,
                                   ),
@@ -196,12 +384,12 @@ class _LabourpviewState extends State<Labourpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.work_sharp),
+                                  Icon(Icons.work),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Reg-No:5598', //Registrastion number
+                                    'Diploma',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -213,12 +401,12 @@ class _LabourpviewState extends State<Labourpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.work_sharp),
+                                  Icon(Icons.work_history),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'No of workers:30', //No of workers
+                                    '2 Yr Experience',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
