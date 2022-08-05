@@ -15,20 +15,7 @@ class Customerpview extends StatefulWidget {
 class _CustomerpviewState extends State<Customerpview> {
 
 
-  /*Future<Map<String,dynamic>> getuser() async{
-    try{
-      var result = await http.get(Uri.parse('http://10.0.2.2:5000//getConsumerInfo'),
-      headers: {}
-      );
-      if(jsonDecode(result.body)['success']) return jsonDecode(result.body)['consumer'];
-      else{
-        return jsonDecode(result.body)['msg'];
-      }
-    }catch(err){
-      print(err.toString());
-      return {};
-    }
-}*/
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,22 +39,7 @@ class _CustomerpviewState extends State<Customerpview> {
             ),
             Stack(
               children: [
-                /*Container(
-                  child: FutureBuilder<Map<String, dynamic>>(
-                    future: getuser(),
-                    builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot){
-                      if(snapshot.hasData){
-                        if(snapshot.data!.isEmpty){
-                          return const Text('no data');
-                        }else{
-                          return ;
-                        }
-                      }else{
-                        return Center(child: CircularProgressIndicator());
-                      }
-                    },
-                  ),
-                ),*/
+
                 Container(
                   margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
                   decoration: BoxDecoration(
@@ -100,11 +72,30 @@ class _CustomerpviewState extends State<Customerpview> {
                           child: Column(
                             children: [
                               Row(
+                                children: [
+                                  const Icon(Icons.email_rounded),
+                                  const SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  Text('${consumer['email']}',
+                                      style: const TextStyle(
+                                        fontSize: 20.0,
+                                      )),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20.0,
+                              ),
+
+
+                              Row(
                                 children:  [
                                   const Icon(Icons.location_on),
                                   const SizedBox(
                                     width: 5.0,
                                   ),
+
+
                                   Text(
                                     '${consumer['hometown']}, ${consumer['district']}',
                                     style: const TextStyle(
@@ -133,34 +124,20 @@ class _CustomerpviewState extends State<Customerpview> {
                               const SizedBox(
                                 height: 20.0,
                               ),
-                              Row(
-                                children: [
-                                  const Icon(Icons.email_rounded),
-                                  const SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text('${consumer['email']}',
-                                      style: const TextStyle(
-                                        fontSize: 20.0,
-                                      )),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20.0,
-                              ),
+
                               Row(
                                 children: [
                                   const Icon(Icons.phone_in_talk_outlined),
                                   const SizedBox(
                                     width: 5.0,
                                   ),
-                                  Text('${consumer['username']}',
+                                  Text('${consumer['contactNo']}',
                                       style: const TextStyle(
                                         fontSize: 20.0,
                                       )),
                                 ],
                               ),
-                              const SizedBox(
+                              /*const SizedBox(
                                 height: 20.0,
                               ),
                               Row(children: [
@@ -172,7 +149,7 @@ class _CustomerpviewState extends State<Customerpview> {
                                     style: const TextStyle(
                                       fontSize: 20.0,
                                     )),
-                              ]),
+                              ]),*/
                               const SizedBox(
                                 height: 10.0,
                               ),
