@@ -201,18 +201,21 @@ class _CustomerspviewState extends State<Customerspview> {
                               const SizedBox(
                                 width: 5.0,
                               ),
-                              ElevatedButton(
+                              ElevatedButton.icon(
                                 style: ElevatedButton.styleFrom(
                                     primary: Color(hexColor('#1982BD')),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
-                                child: const Text(
-                                  'Give/View Feedback',
+                                onPressed: () {
+                                  //launch("tel://+94${sp['contactNo'].substring(1)}");
+                                },
+                                icon: const Text(
+                                  'Call',
                                   style: TextStyle(color: Colors.white),
                                 ),
+                                label: const Icon(Icons.add_call),
                               ),
                             ],
                           ),
