@@ -1,19 +1,18 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:group2/pages/changepw.dart';
+import 'package:group2/pages/sp_transporter_profileview.dart';
 import 'package:image_picker/image_picker.dart';
-import 'customer_profileview.dart';
+import 'package:flutter/services.dart';
 
-class Editcsprofile extends StatefulWidget {
-  const Editcsprofile({Key? key}) : super(key: key);
+class Edittransporter extends StatefulWidget {
+  const Edittransporter({Key? key}) : super(key: key);
 
   @override
-  State<Editcsprofile> createState() => _EditcsprofileState();
+  State<Edittransporter> createState() => _EdittransporterState();
 }
 
-class _EditcsprofileState extends State<Editcsprofile> {
-  List<String> items = [
+class _EdittransporterState extends State<Edittransporter> {
+  /*List<String> items = [
     'assets/imgs/aaa.jpg',
     'assets/imgs/bbb.jpg',
     'assets/imgs/ccc.jpeg',
@@ -21,7 +20,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
     'assets/imgs/eee.jpg',
     'assets/imgs/kkk.jpg',
     'assets/imgs/ppp.jfif',
-  ];
+  ];*/
 
   File? image;
   Future pickImage(ImageSource source) async {
@@ -45,7 +44,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Customerpview()),
+              MaterialPageRoute(builder: (context) => Transporterpview()),
             );
           },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
@@ -74,7 +73,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'User Name:',
+                      'User name:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -182,7 +181,43 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Home Address:',
+                      'Address:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5.0),
+                  Container(
+                    height: 50.0,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8.0)),
+                      color: Colors.blueGrey[50],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.blueGrey,
+                          blurRadius: 5.0,
+                          offset: Offset(7.0, 7.0),
+                        )
+                      ],
+                    ),
+                    child: const Padding(
+                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                        child: TextField(
+                          cursorColor: Colors.black12,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 50.0,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'District:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -254,7 +289,43 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Distric:',
+                      'Vehicle:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5.0),
+                  Container(
+                    height: 50.0,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8.0)),
+                      color: Colors.blueGrey[50],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.blueGrey,
+                          blurRadius: 5.0,
+                          offset: Offset(7.0, 7.0),
+                        )
+                      ],
+                    ),
+                    child: const Padding(
+                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                        child: TextField(
+                          cursorColor: Colors.black12,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 50.0,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'work out:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -295,12 +366,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadiusDirectional.circular(16.0))),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Change_pw()),
-                        );
-                      },
+                      onPressed: () {},
                       icon: const Text(
                         'Changed Password',
                         style: TextStyle(color: Colors.white),
@@ -348,7 +414,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                               fit: BoxFit.fill,
                             )
                           : Image.asset(
-                              'assets/imgs/user1.webp',
+                              'assets/t1.jpg',
                               fit: BoxFit.fill,
                             )),
                 ),
