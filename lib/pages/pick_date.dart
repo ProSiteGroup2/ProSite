@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';

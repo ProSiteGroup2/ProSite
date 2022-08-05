@@ -7,6 +7,7 @@ import 'package:group2/pages/hardware_dashboard.dart';
 import 'package:group2/pages/loginpage.dart';
 import 'package:group2/pages/splashscreen.dart';
 import 'package:group2/pages/starting.dart';
+import 'package:group2/src/ui/sp_home_screen.dart';
 import 'package:group2/src/ui/home_screen.dart';
 import 'package:group2/pages/notifications.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         //  home: HomeScreen(),
         //  home: NavBar(),
-        initialRoute: '/start',
+        initialRoute: '/SP_HomeScreen',
         routes: {
           // '/home': (context) => HomeScreen(),    //give the home page class name
           '/start': (context) => SplashScreen(), //give the start page class name
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           '/addItem':(context)=>Additem(),
           '/SPLogin':(context)=>LoginPage(),
           '/addProduct':(context)=> AddProduct(),
+          '/SP_HomeScreen':(context) =>SP_HomeScreen(), 
           // .....
           // ...... give other pages class name like above
         });
