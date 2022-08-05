@@ -201,6 +201,30 @@ class _CustomerspviewState extends State<Customerspview> {
                               const SizedBox(
                                 width: 5.0,
                               ),
+                              ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(hexColor('#1982BD')),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                16.0))),
+                                onPressed: () {
+                                  //launch("tel://+94${sp['contactNo'].substring(1)}");
+                                },
+                                icon: const Text(
+                                  'Call',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                label: const Icon(Icons.add_call),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     primary: Color(hexColor('#1982BD')),
@@ -208,7 +232,37 @@ class _CustomerspviewState extends State<Customerspview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  /*Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                pickdate()),
+                                      );*/
+                                },
+                                child: const Text(
+                                  'Appointment',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 5.0,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(hexColor('#1982BD')),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                16.0))),
+                                onPressed: () {
+                                  /*Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                FeedbackHd()),
+                                      );*/
+                                },
                                 child: const Text(
                                   'Give/View Feedback',
                                   style: TextStyle(color: Colors.white),
