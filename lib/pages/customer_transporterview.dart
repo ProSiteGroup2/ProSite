@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class Cslabourview extends StatefulWidget {
-  const Cslabourview({Key? key}) : super(key: key);
+class Cstransporterview extends StatefulWidget {
+  const Cstransporterview({Key? key}) : super(key: key);
 
   @override
-  State<Cslabourview> createState() => _CslabourviewState();
+  State<Cstransporterview> createState() => _CstransporterviewState();
 }
 
-class _CslabourviewState extends State<Cslabourview> {
+class _CstransporterviewState extends State<Cstransporterview> {
   double rating = 0;
 
   List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
+    'assets/imgs/t1.jpg',
+    'assets/imgs/t2.webp',
+    'assets/imgs/t3.jpg',
+    'assets/imgs/t4.webp',
+    'assets/imgs/t5.jpg',
   ];
 
   @override
@@ -111,7 +109,7 @@ class _CslabourviewState extends State<Cslabourview> {
                                 width: 5.0,
                               ),
                               Text(
-                                'From Gampaha',
+                                'From Kegalle, Dewalegama',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -174,12 +172,29 @@ class _CslabourviewState extends State<Cslabourview> {
                           ),
                           Row(
                             children: const [
+                              Icon(Icons.car_rental_sharp),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              Text(
+                                'Lorry',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            children: const [
                               Icon(Icons.work_sharp),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Only with Experience',
+                                'Work out: No',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -304,7 +319,7 @@ class _CslabourviewState extends State<Cslabourview> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'assets/imgs/suplier.jpg',
+                      'assets/imgs/t1.jpg',
                       fit: BoxFit.fill,
                     )),
               ),

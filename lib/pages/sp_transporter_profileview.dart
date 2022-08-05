@@ -10,13 +10,11 @@ class Transporterpview extends StatefulWidget {
 
 class _TransporterpviewState extends State<Transporterpview> {
   List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
+    'assets/imgs/t1.jpg',
+    'assets/imgs/t2.webp',
+    'assets/imgs/t3.jpg',
+    'assets/imgs/t4.webp',
+    'assets/imgs/t5.jpg',
   ];
 
   @override
@@ -111,7 +109,7 @@ class _TransporterpviewState extends State<Transporterpview> {
                             children: [
                               Row(
                                 children: const [
-                                  Icon(Icons.location_on),
+                                  Icon(Icons.email_outlined),
                                   SizedBox(
                                     width: 5.0,
                                   ),
@@ -133,7 +131,7 @@ class _TransporterpviewState extends State<Transporterpview> {
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Kegalle', //district
+                                    'Kegalle',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -145,12 +143,12 @@ class _TransporterpviewState extends State<Transporterpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.email_rounded),
+                                  Icon(Icons.holiday_village),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Dewalegama', //home twon
+                                    'Dewalegama', //district
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -162,12 +160,12 @@ class _TransporterpviewState extends State<Transporterpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.phone_in_talk_outlined),
+                                  Icon(Icons.home),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'B 70/5A,Edurapotha,Kegalle', // address
+                                    'B 70/5A,Edurapotha,Kegalle', //home twon
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -179,12 +177,12 @@ class _TransporterpviewState extends State<Transporterpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.work_sharp),
+                                  Icon(Icons.phone),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    '077-5555999', //contact no
+                                    '0767777777',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -196,12 +194,12 @@ class _TransporterpviewState extends State<Transporterpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.work_sharp),
+                                  Icon(Icons.car_rental_sharp),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Vehicle: Lorry', //Registrastion number
+                                    'Vehicle: Lorry',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -213,12 +211,12 @@ class _TransporterpviewState extends State<Transporterpview> {
                               ),
                               Row(
                                 children: const [
-                                  Icon(Icons.work_sharp),
+                                  Icon(Icons.work_off),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Work out:no', //No of workers
+                                    'Work out:no',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -241,7 +239,7 @@ class _TransporterpviewState extends State<Transporterpview> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
                         child: Image.asset(
-                          'assets/imgs/suplier.jpg',
+                          'assets/imgs/t1.jpg',
                           fit: BoxFit.fill,
                         )),
                   ),

@@ -12,7 +12,7 @@ class Edittransporter extends StatefulWidget {
 }
 
 class _EdittransporterState extends State<Edittransporter> {
-  List<String> items = [
+  /*List<String> items = [
     'assets/imgs/aaa.jpg',
     'assets/imgs/bbb.jpg',
     'assets/imgs/ccc.jpeg',
@@ -20,7 +20,7 @@ class _EdittransporterState extends State<Edittransporter> {
     'assets/imgs/eee.jpg',
     'assets/imgs/kkk.jpg',
     'assets/imgs/ppp.jfif',
-  ];
+  ];*/
 
   File? image;
   Future pickImage(ImageSource source) async {
@@ -73,7 +73,7 @@ class _EdittransporterState extends State<Edittransporter> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'contractor name:',
+                      'User name:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -289,7 +289,7 @@ class _EdittransporterState extends State<Edittransporter> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Reg No:',
+                      'Vehicle:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -325,7 +325,7 @@ class _EdittransporterState extends State<Edittransporter> {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'No of Workers:',
+                      'work out:',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -414,7 +414,7 @@ class _EdittransporterState extends State<Edittransporter> {
                               fit: BoxFit.fill,
                             )
                           : Image.asset(
-                              'assets/imgs/suplier.jpg',
+                              'assets/t1.jpg',
                               fit: BoxFit.fill,
                             )),
                 ),
