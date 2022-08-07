@@ -12,7 +12,7 @@ class SPMethods{
   addFeedback(feedback) async {
     try{
 
-      return await dio.post('https://prositegroup2.herokuapp.com/getFeedback',
+      return await dio.post('https://prositegroup2.herokuapp.com/addFeedback',
       data: {"feedback": feedback},
       options: Options(contentType: Headers.jsonContentType)
       );

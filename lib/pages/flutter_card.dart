@@ -111,13 +111,20 @@ class MySampleState extends State<MySample> {
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
-                            enabledBorder: border,
+                            enabledBorder:OutlineInputBorder(
+                                    borderSide: BorderSide(width: 3, color: Colors.white54), //<-- SEE HERE
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  ),
                           ),
                           expiryDateDecoration: InputDecoration(
+                              
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
-                            enabledBorder: border,
+                            enabledBorder:OutlineInputBorder(
+                                    borderSide: BorderSide(width: 3, color: Colors.white54), //<-- SEE HERE
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  ),
                             labelText: 'Expired Date',
                             hintText: 'XX/XX',
                           ),
@@ -125,7 +132,10 @@ class MySampleState extends State<MySample> {
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
-                            enabledBorder: border,
+                            enabledBorder:OutlineInputBorder(
+                                    borderSide: BorderSide(width: 3, color: Colors.white54), //<-- SEE HERE
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  ),
                             labelText: 'CVV',
                             hintText: 'XXX',
                           ),
@@ -133,7 +143,10 @@ class MySampleState extends State<MySample> {
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
-                            enabledBorder: border,
+                            enabledBorder:OutlineInputBorder(
+                                    borderSide: BorderSide(width: 3, color: Colors.white54), //<-- SEE HERE
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  ),
                             labelText: 'Card Holder',
                           ),
                           onCreditCardModelChange: onCreditCardModelChange,
@@ -196,7 +209,7 @@ class MySampleState extends State<MySample> {
                           child: Container(
                             margin: const EdgeInsets.all(12),
                             child: const Text(
-                              'Validate',
+                              'Pay Now',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'halter',
