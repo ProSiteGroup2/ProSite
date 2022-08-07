@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:group2/Classes/payment_methods.dart';
 import 'package:group2/pages/ppayment.dart';
-
 
 class MySample extends StatefulWidget {
   @override
@@ -111,20 +110,23 @@ class MySampleState extends State<MySample> {
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
-                            enabledBorder:OutlineInputBorder(
-                                    borderSide: BorderSide(width: 3, color: Colors.white54), //<-- SEE HERE
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 3,
+                                  color: Colors.white54), //<-- SEE HERE
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
                           ),
                           expiryDateDecoration: InputDecoration(
-                              
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
-                            enabledBorder:OutlineInputBorder(
-                                    borderSide: BorderSide(width: 3, color: Colors.white54), //<-- SEE HERE
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 3,
+                                  color: Colors.white54), //<-- SEE HERE
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
                             labelText: 'Expired Date',
                             hintText: 'XX/XX',
                           ),
@@ -132,10 +134,12 @@ class MySampleState extends State<MySample> {
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
-                            enabledBorder:OutlineInputBorder(
-                                    borderSide: BorderSide(width: 3, color: Colors.white54), //<-- SEE HERE
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 3,
+                                  color: Colors.white54), //<-- SEE HERE
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
                             labelText: 'CVV',
                             hintText: 'XXX',
                           ),
@@ -143,10 +147,12 @@ class MySampleState extends State<MySample> {
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
-                            enabledBorder:OutlineInputBorder(
-                                    borderSide: BorderSide(width: 3, color: Colors.white54), //<-- SEE HERE
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 3,
+                                  color: Colors.white54), //<-- SEE HERE
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
                             labelText: 'Card Holder',
                           ),
                           onCreditCardModelChange: onCreditCardModelChange,
@@ -220,13 +226,13 @@ class MySampleState extends State<MySample> {
                           ),
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
+                              PaymentMethods().addCard(cardNumber, expiryDate, cvvCode, cardHolderName);
                               print('valid!');
                               Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ppayment()),
-                                      );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ppayment()),
+                              );
                             } else {
                               print('invalid!');
                             }
