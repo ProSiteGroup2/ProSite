@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
@@ -7,6 +9,7 @@ import 'package:group2/pages/reguser.dart';
 import 'package:group2/pages/resetpwd_1.dart';
 import 'package:group2/pages/static.dart';
 import 'package:group2/globals.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginas_cons extends StatefulWidget {
   const Loginas_cons({Key? key}) : super(key: key);
@@ -23,6 +26,16 @@ class _Loginas_consState extends State<Loginas_cons> {
   String _password = '';
   var token;
 
+  // late SharedPreferences preferences;
+  //
+  //
+  // setConsumer() async {
+  //   preferences=await SharedPreferences.getInstance();
+  //
+  //   final consumer_str=preferences.getString("consumer");
+  //   // consumer=json.decode(consumer_str!);
+  // }
+
 
 
   Future<void> _trySubmitForm() async {
@@ -38,7 +51,9 @@ class _Loginas_consState extends State<Loginas_cons> {
           token = val.data['token'];
           AuthService().getConsumerInfo(token).then((val2) async {
             if (val2.data['success']){
-              consumer=(val2.data['consumer']);
+              // preferences.setString("consumer", "${val2.data['consumer']}");
+              consumer=val2.data['consumer'];
+
               print(consumer['address']);
               await Fluttertoast.showToast(
                   msg: val2.data['msg'],
@@ -63,6 +78,8 @@ class _Loginas_consState extends State<Loginas_cons> {
   late bool _passwordVisible;
   void initState() {
     _passwordVisible = false;
+    // super.initState();
+    // setConsumer();
   }
 
   Widget build(BuildContext context) {
