@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/pages/add_card_details.dart';
+import 'package:group2/pages/flutter_card.dart';
 import 'package:group2/pages/ppayment.dart';
 
 
@@ -207,95 +209,7 @@ class _paynowState extends State<paynow> {
                                 ),
                               ),
               ),
-            //   Container(
-            //   //delivery method
-            //   child: Column(
-            //     children: [
-            //           Container(
-            //               //delivery method
-            //               alignment: Alignment.bottomLeft,
-            //               margin: EdgeInsets.fromLTRB(20,12,20,12),
-            //               child: Text("Delivery Method",style: TextStyle(
-            //                 fontFamily: "Roboto",
-            //                   fontSize: 15,
-            //                   fontWeight: FontWeight.bold,
-            //                   height: 1.15
-            //               ),), 
-            //             ),
-            //             Container(
-            //                     //delivery price
-            //                       margin: const EdgeInsets.fromLTRB(0, 20, 120, 20),
-            //                       width: kPropWidth(context, 0.5),
-            //                       height: kPropHeight(context, 0.1),
-            //                     decoration: BoxDecoration(
-            //                       color: Colors.blue[50],
-                                  
-            //                         border: Border.all(width: 2, color: Colors.blue.shade100),
-            //                       borderRadius: const BorderRadius.all(
-            //                           Radius.circular(20)),
-            //                       boxShadow: [
-            //                         BoxShadow(
-            //                           color: Colors.grey.withOpacity(0.25),
-            //                           spreadRadius: 10,
-            //                           blurRadius: 7,
-            //                           offset: const Offset(
-            //                               2, 5), // changes position of shadow
-            //                         ),
-            //                         BoxShadow(
-            //                           color: Colors.white.withOpacity(0.8),
-            //                           spreadRadius: 10,
-            //                           blurRadius: 7,
-
-            //                           offset: const Offset(-10,
-            //                               -10), // changes position of shadow
-            //                         ),
-            //                       ],
-            //                     ),
-            //                     child: Column(
-            //                       children: [
-            //                         Container(
-            //                           //price
-            //                           alignment: Alignment.topLeft,
-            //                           margin: EdgeInsets.fromLTRB(15, 10, 10, 5),
-            //                           child: Text(
-            //                             "Rs.119",
-            //                             style: TextStyle(
-            //                               fontSize: 16,
-            //                               fontFamily: "Poppins",
-            //                               fontWeight: FontWeight.bold,
-                                          
-            //                             ),),
-            //                         ),
-            //                         Container(
-            //                           //price
-            //                           alignment: Alignment.topLeft,
-            //                           margin: EdgeInsets.fromLTRB(15, 2, 10, 5),
-            //                           child: Text(
-            //                             "Standard Delivery",
-            //                             style: TextStyle(
-            //                               fontSize: 13,
-            //                               fontFamily: "Poppins",
-            //                               // fontWeight: FontWeight.w100,
-                                          
-            //                             ),),
-            //                         )
-                                  
-            //                       ],
-            //                     ),
-            //                     ),
-                            
-            //     ],
-            //   ),
-            // ),
-            //   Container(
-            //   //hr line
-            //   margin: EdgeInsets.all(15),
-            //   decoration: BoxDecoration(
-            //                   border: Border(
-            //                     bottom: BorderSide(color: Colors.blueAccent),
-            //                   ),
-            //                 ),
-            // ),
+            
               Container(
               //product summary
                   child: Row(
@@ -407,7 +321,7 @@ class _paynowState extends State<paynow> {
                                   Container(
                                     //final price
                                     margin: EdgeInsets.all(5),
-                                    child: Text("Rs.10,619",style: TextStyle(
+                                    child: Text("Rs.10,500",style: TextStyle(
                                             fontFamily: "Poppins",
                                               fontSize: 25,
                                               fontWeight: FontWeight.bold,
@@ -453,7 +367,7 @@ class _paynowState extends State<paynow> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ppayment()),
+                                                MySample()),
                                       );
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -482,7 +396,7 @@ class _paynowState extends State<paynow> {
                                             children: [
                                               Container(
                                                 child: const Text(
-                                                  "Proceed",
+                                                  "Pay Now",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                       fontFamily: "poppins",
