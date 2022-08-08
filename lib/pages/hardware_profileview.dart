@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:group2/pages/edit_hdprofile.dart';
 
+import '../globals.dart';
+
 class Hardwareprofile extends StatefulWidget {
   const Hardwareprofile({Key? key}) : super(key: key);
 
@@ -53,9 +55,9 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                   const SizedBox(
                     height: 70.0,
                   ),
-                  const Center(
+                   Center(
                     child: Text(
-                      'Sk HARDWARE',
+                      '${sp['hardwarename']}',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.bold),
                     ),
@@ -103,13 +105,14 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                       child: Column(
                         children: [
                           Row(
-                            children: const [
-                              Icon(Icons.location_on),
+                            children:  [
+                              Icon(Icons.location_on,
+                              color: Colors.red,),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'From Gampaha',
+                                '${sp['city']}, ${sp['district']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -120,13 +123,13 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
+                            children: [
                               Icon(Icons.home_filled),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'B 70/5A,Edurapotha,Kegalle',
+                                '${sp['address']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -137,13 +140,13 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
+                            children:  [
                               Icon(Icons.email_rounded),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'abcd@gmail.com',
+                                '${sp['email']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -154,13 +157,14 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
-                              Icon(Icons.phone_in_talk_outlined),
+                            children:  [
+                              Icon(Icons.phone_in_talk,
+                              color: Colors.green,),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                '0772222999',
+                                '${sp['contactNo']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -171,53 +175,38 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
-                              Icon(Icons.location_city_outlined),
-                              SizedBox(
-                                width: 5.0,
-                              ),
-                              Text(
-                                'Bulathkohupitiya',
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          Row(
-                            children: const [
-                              Icon(Icons.account_box_outlined),
-                              SizedBox(
-                                width: 5.0,
-                              ),
-                              Text(
-                                'Muththahar',
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          Row(
-                            children: const [
+                            children: [
                               Icon(Icons.confirmation_number),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'Reg:450623',
+                                'Registration: ${sp['regno']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+
+                          Row(
+                            children: [
+                              Icon(Icons.account_box_outlined),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              Text(
+                                'Owner: ${sp['owner']}',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+
                           const SizedBox(
                             height: 10.0,
                           ),
@@ -233,8 +222,8 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                 width: 115.0,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      'assets/imgs/hshop1.jpg',
+                    child: Image.network(
+                      '${sp['imageUrl']}',
                       fit: BoxFit.fill,
                     )),
               ),

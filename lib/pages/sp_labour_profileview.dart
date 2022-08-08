@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:group2/pages/edit_labourpview.dart';
 
+import '../globals.dart';
+
 class Labourpview extends StatefulWidget {
   const Labourpview({Key? key}) : super(key: key);
 
@@ -53,18 +55,18 @@ class _LabourpviewState extends State<Labourpview> {
                       const SizedBox(
                         height: 70.0,
                       ),
-                      const Center(
+                       Center(
                         child: Text(
-                          'Aaron Graham', //username
+                          '${sp['username']}', //username
                           style: TextStyle(
                               fontSize: 30.0, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      const Center(
+                       Center(
                         child: Text(
-                          'mason',
+                          '${sp['profession']}',
                           style: TextStyle(
-                              fontSize: 15.0, fontWeight: FontWeight.bold),
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
@@ -298,13 +300,13 @@ class _LabourpviewState extends State<Labourpview> {
                           child: Column(
                             children: [
                               Row(
-                                children: const [
+                                children: [
                                   Icon(Icons.email_outlined),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Abcd@gmail.com', // email
+                                    '${sp['email']}', // email
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -315,13 +317,14 @@ class _LabourpviewState extends State<Labourpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.home_filled),
+                                children:  [
+                                  Icon(Icons.location_on,
+                                  color: Colors.red,),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Kegalle', //district
+                                    '${sp['hometown']}, ${sp['district']}', //district
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -332,30 +335,13 @@ class _LabourpviewState extends State<Labourpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.holiday_village),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    'Dewalegama', //home twon
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              Row(
-                                children: const [
+                                children:  [
                                   Icon(Icons.home),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'B 70/5A,Edurapotha,Kegalle', // address
+                                    '${sp['address']}', // address
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -366,13 +352,13 @@ class _LabourpviewState extends State<Labourpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.phone),
+                                children: [
+                                  Icon(Icons.phone,color: Colors.green,),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    '077-5555999', //contact no
+                                    '${sp['contactNo']}', //contact no
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -383,13 +369,13 @@ class _LabourpviewState extends State<Labourpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.work),
+                                children:  [
+                                  Icon(Icons.workspace_premium),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Diploma',
+                                    '${sp['qualification']}',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -400,13 +386,13 @@ class _LabourpviewState extends State<Labourpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
+                                children:  [
                                   Icon(Icons.work_history),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    '2 Yr Experience',
+                                    '${sp['experience']} Year Experience',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -428,8 +414,8 @@ class _LabourpviewState extends State<Labourpview> {
                     width: 115.0,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
-                        child: Image.asset(
-                          'assets/imgs/suplier.jpg',
+                        child: Image.network(
+                          '${sp['imageUrl']}',
                           fit: BoxFit.fill,
                         )),
                   ),
