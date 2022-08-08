@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:group2/pages/edit_transporterprofile.dart';
 
+import '../globals.dart';
+
 class Transporterpview extends StatefulWidget {
   const Transporterpview({Key? key}) : super(key: key);
 
@@ -51,9 +53,9 @@ class _TransporterpviewState extends State<Transporterpview> {
                       const SizedBox(
                         height: 70.0,
                       ),
-                      const Center(
+                      Center(
                         child: Text(
-                          'Aaron Graham', //username
+                          '${sp['username']}', //username
                           style: TextStyle(
                               fontSize: 30.0, fontWeight: FontWeight.bold),
                         ),
@@ -108,13 +110,13 @@ class _TransporterpviewState extends State<Transporterpview> {
                           child: Column(
                             children: [
                               Row(
-                                children: const [
+                                children:[
                                   Icon(Icons.email_outlined),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Abcd@gmail.com', // email
+                                    '${sp['email']}', // email
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -125,13 +127,14 @@ class _TransporterpviewState extends State<Transporterpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.home_filled),
+                                children: [
+                                  Icon(Icons.location_on,
+                                  color: Colors.red,),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Kegalle',
+                                    '${sp['hometown']}, ${sp['district']}',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -142,30 +145,13 @@ class _TransporterpviewState extends State<Transporterpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.holiday_village),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    'Dewalegama', //district
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              Row(
-                                children: const [
+                                children: [
                                   Icon(Icons.home),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'B 70/5A,Edurapotha,Kegalle', //home twon
+                                    '${sp['address']}', //home twon
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -176,13 +162,14 @@ class _TransporterpviewState extends State<Transporterpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.phone),
+                                children: [
+                                  Icon(Icons.phone,
+                                  color: Colors.green,),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    '0767777777',
+                                    '${sp['contactNo']}',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -193,13 +180,13 @@ class _TransporterpviewState extends State<Transporterpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.car_rental_sharp),
+                                children:[
+                                  Icon(Icons.car_rental),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Vehicle: Lorry',
+                                    '${sp['vehicle']}',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -210,13 +197,13 @@ class _TransporterpviewState extends State<Transporterpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.work_off),
+                                children:[
+                                  Icon(Icons.work_rounded),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Work out:no',
+                                    'Work out of District: ${sp['work_out']}',
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -238,8 +225,8 @@ class _TransporterpviewState extends State<Transporterpview> {
                     width: 115.0,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
-                        child: Image.asset(
-                          'assets/imgs/t1.jpg',
+                        child: Image.network(
+                          '${sp['imageUrl']}',
                           fit: BoxFit.fill,
                         )),
                   ),

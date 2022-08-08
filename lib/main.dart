@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, unused_import
 import 'package:flutter/material.dart';
+import 'package:group2/components/contractor_navbar.dart';
+import 'package:group2/components/hardware_navbar.dart';
+import 'package:group2/components/labour_navbar.dart';
 import 'package:group2/components/navigation_bar.dart';
+import 'package:group2/components/trans_navbar.dart';
 import 'package:group2/pages/add_product.dart';
 import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/hardware_dashboard.dart';
@@ -40,6 +44,10 @@ class MyApp extends StatelessWidget {
           '/SP_HomeScreen':(context) =>SP_HomeScreen(),
           '/HomeScreen':(context)=>HomeScreen(),
           '/ConsumerLogin':(context)=>Loginas_cons(),
+          '/labourNavBar':(context)=>LabNavBar(),
+          '/transporterNavBar':(context)=>TransNavBar(),
+          '/contractorNavBar':(context)=>ConNavBar(),
+          '/hdNavBar':(context)=>HdNavBar(),
           // .....
           // ...... give other pages class name like above
         });

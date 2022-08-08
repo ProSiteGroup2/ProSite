@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/product_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/components/image_causerol.dart';
 import 'package:group2/components/image_causerol_b.dart';
 import 'package:group2/pages/about_setting.dart';
 import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/loginas_cons.dart';
+
+import '../globals.dart';
 
 class HrdDashboard extends StatefulWidget {
   const HrdDashboard({Key? key}) : super(key: key);
@@ -17,48 +21,72 @@ class HrdDashboard extends StatefulWidget {
 
 class _HrdDashboardState extends State<HrdDashboard> {
 
-Map<String, dynamic> data = {
+  Map<String, dynamic> data = {
     "isRegisted": true,
 
     "tags": [
-    {
-      "image":  'assets/imgs/brush.jpg',
-      "name":"Brush",
-      "hardware": "Perera Hardware, Maharagama",
-      "brand":"Fine Brsuh",
-      "discount":"5%",
+      {
+        "image":  'assets/imgs/brush.jpg',
+        "name":"Brush",
+        "hardware": "Perera Hardware, Maharagama",
+        "brand":"Fine",
+        "discount":"5%",
 
-    },
-    {
-      "image":  'assets/imgs/stee.jpg',
-      "name":"Steel",
-      "hardware": "Rathna Hardware, Dehiwala",
-      "brand":"Melwa Steel",
-      "discount":"15%",
-    },
-    {
-      "image":  'assets/imgs/cement.jpg',
-      "name":"Cement1",
-      "hardware": "Balaji Hardware, Colombo-06",
-      "brand":"Lanwa Cement",
-      "discount":"10% ",
-    },
-    {
-      "image":  'assets/imgs/cement.png',
-      "name":"Cement2",
-      "hardware": "ANC Hardware, Matara",
-      "brand":"Sanstha Cement",
-      "discount":"10% ",
-    },
-    {
-      "image":  'assets/imgs/logo.png',
-      "name":"Logo",
-      "hardware": "S & S Hardware, Mount Lavinia",
-      "brand":"Mascot Logo",
-      "discount":"20%",
-    },
+      },
+      {
+        "image":  'assets/imgs/stee.jpg',
+        "name":"Steel",
+        "hardware": "Rathna Hardware, Dehiwala",
+        "brand":"Melwa Steel",
+        "discount":"15%",
+      },
+      {
+        "image":  'assets/imgs/cement.jpg',
+        "name":"Cement1",
+        "hardware": "Balaji Hardware, Colombo-06",
+        "brand":"Lanwa Cement",
+        "discount":"10% ",
+      },
+      {
+        "image":  'assets/imgs/cement.png',
+        "name":"Cement2",
+        "hardware": "ANC Hardware, Matara",
+        "brand":"Sanstha Cement",
+        "discount":"10% ",
+      },
+      {
+        "image":  'assets/imgs/logo.png',
+        "name":"Logo",
+        "hardware": "S & S Hardware, Mount Lavinia",
+        "brand":"Mascot Logo",
+        "discount":"20%",
+      },
     ],
   };
+
+  // @override
+  // initState(){
+  //   super.initState();
+  //
+  //   gettingProducts();
+  // }
+  // //
+  Future<List<dynamic>?> gettingProducts() async {
+   var results= await ProductMethods().getHardwareProduct(sp['_id']);
+      if(results.data['success']){
+        return results.data['products'];
+      }else{
+        Fluttertoast.showToast(
+            msg: results.data['msg'],
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -98,10 +126,7 @@ Map<String, dynamic> data = {
                                           MaterialPageRoute(builder: (context) => About()),
                                         );
                                   }else if(value == 1){
-                                    Navigator.push(
-                                          context,
-                                          MaterialPageRoute(builder: (context) => Loginas_cons()),
-                                        );
+                                    Navigator.pushNamedAndRemoveUntil(context, '/SPLogin', (route) => false);
                                   }
                               }
                               ),
@@ -208,11 +233,19 @@ Map<String, dynamic> data = {
                                             ]),
                                           ),         
                                       Container( 
-                                        child: ImageCauserol_b(
-                                            context: context,
-                                              tags: data['tags'],
-                                              
-                                            ),
+                                        child: FutureBuilder<List<dynamic>?>(
+                                          future: gettingProducts(),
+                                          builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                            if(snapshot.hasData){
+                                              return ImageCauserol_b(
+                                                tags: snapshot.data!,
+
+                                              );
+                                            }else{
+                                              return CircularProgressIndicator();
+                                            }
+                                          },
+                                        )
                                       ),
                                             ],
                                           ),

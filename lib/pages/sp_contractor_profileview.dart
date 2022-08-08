@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../globals.dart';
 import 'edit_contractorprof.dart';
 
 class Contractorpview extends StatefulWidget {
@@ -53,9 +54,9 @@ class _ContractorpviewState extends State<Contractorpview> {
                       const SizedBox(
                         height: 70.0,
                       ),
-                      const Center(
+                      Center(
                         child: Text(
-                          'Aaron Graham', //username
+                          '${sp['contractorname']}', //username
                           style: TextStyle(
                               fontSize: 30.0, fontWeight: FontWeight.bold),
                         ),
@@ -298,13 +299,13 @@ class _ContractorpviewState extends State<Contractorpview> {
                           child: Column(
                             children: [
                               Row(
-                                children: const [
+                                children:[
                                   Icon(Icons.email_outlined),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Abcd@gmail.com', // email
+                                    '${sp['email']}', // email
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -315,47 +316,32 @@ class _ContractorpviewState extends State<Contractorpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.home_filled),
+                                children: [
+                                  Icon(Icons.location_on,
+                                  color: Colors.red,),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Kegalle', //district
+                                    '${sp['hometown']}, ${sp['district']}', //district
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
+
                               const SizedBox(
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.holiday_village),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    'Dewalegama', //home twon
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              Row(
-                                children: const [
+                                children:[
                                   Icon(Icons.home),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'B 70/5A,Edurapotha,Kegalle', // address
+                                    '${sp['address']}', // address
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -366,13 +352,14 @@ class _ContractorpviewState extends State<Contractorpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
-                                  Icon(Icons.phone),
+                                children: [
+                                  Icon(Icons.phone,
+                                  color: Colors.green,),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    '077-5555999', //contact no
+                                    '${sp['contactNo']}', //contact no
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -383,13 +370,13 @@ class _ContractorpviewState extends State<Contractorpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Icon(Icons.work_sharp),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'Reg-No:5598', //Registrastion number
+                                    'Registration: ${sp['regno']}', //Registrastion number
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -400,13 +387,13 @@ class _ContractorpviewState extends State<Contractorpview> {
                                 height: 10.0,
                               ),
                               Row(
-                                children: const [
+                                children:  [
                                   Icon(Icons.people_alt),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
-                                    'No of workers:30', //No of workers
+                                    'No.of Workers: ${sp['no_of_workers']}', //No of workers
                                     style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),
@@ -428,8 +415,8 @@ class _ContractorpviewState extends State<Contractorpview> {
                     width: 115.0,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
-                        child: Image.asset(
-                          'assets/imgs/suplier.jpg',
+                        child: Image.network(
+                          '${sp['imageUrl']}',
                           fit: BoxFit.fill,
                         )),
                   ),

@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0);
-                  Navigator.pushNamed(context, '/navbar');
+                  Navigator.pushNamed(context, '/labourNavBar');
                 }
               });
             }else if(val.data['role']=='contractor'){
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0);
-                  Navigator.pushNamed(context, '/navbar');
+                  Navigator.pushNamed(context, '/contractorNavBar');
                 }
               });
             }else if(val.data['role']=='hardware'){
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0);
-                  Navigator.pushNamed(context, '/hrddashboard');
+                  Navigator.pushNamed(context, '/hdNavBar');
                 }
               });
             }else if(val.data['role']=='transporter'){
@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0);
-                  Navigator.pushNamed(context, '/navbar');
+                  Navigator.pushNamed(context, '/transporterNavBar');
                 }
               });
             }
