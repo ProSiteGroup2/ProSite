@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/Feedback_list.dart';
+import 'package:group2/Classes/feedback_methods.dart';
 
 import '../globals.dart';
 
@@ -10,7 +11,8 @@ class FeedbackHd extends StatefulWidget {
   State<FeedbackHd> createState() => _FeedbackHdState();
 }
 
-class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin{
+class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
+  String feedback = '';
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 2, vsync: this);
@@ -26,10 +28,10 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF60A3D9),
-        title: Text('Feedbacks',style: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.bold
-        ),),
+        title: Text(
+          'Feedbacks',
+          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -116,7 +118,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin{
                                   ),
                                   title: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.stretch,
+                                        CrossAxisAlignment.stretch,
                                     children: [
                                       Text(
                                         feedbacks[index].feedback,
@@ -127,7 +129,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin{
                                       SizedBox(height: 4.0),
                                       Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.end,
+                                            MainAxisAlignment.end,
                                         children: [
                                           Text(
                                             feedbacks[index].cName,
@@ -174,6 +176,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin{
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: TextField(
+                                onChanged: (value) => feedback = value,
                                 controller: _feedbackController,
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -186,18 +189,20 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin{
                                 keyboardType: TextInputType.text,
                                 maxLines: 9,
                               ),
+                               
                             ),
+                            
                           ),
                           Center(
                             child: ElevatedButton(
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
+                                          RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20.0),
-                                      ))),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ))),
                               onPressed: () {
-                                print(_feedbackController.text);
+                                FeedbackMethods().addFeedback(feedback);
                               },
                               child: Text(
                                 'Submit',
