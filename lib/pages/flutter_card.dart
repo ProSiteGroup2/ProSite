@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:group2/Classes/payment_methods.dart';
+import 'package:group2/pages/PaymentScreen.dart';
 import 'package:group2/pages/ppayment.dart';
 
 class MySample extends StatefulWidget {
@@ -231,7 +232,7 @@ class MySampleState extends State<MySample> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ppayment()),
+                                    builder: (context) => Payment(amount: '5000',cardNumber:cardNumber,)),
                               );
                             } else {
                               print('invalid!');

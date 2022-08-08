@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/pages/PaymentScreen.dart';
 import 'package:group2/pages/add_card_details.dart';
 import 'package:group2/pages/flutter_card.dart';
 import 'package:group2/pages/ppayment.dart';
@@ -367,7 +368,8 @@ class _paynowState extends State<paynow> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                MySample()),
+                                             MySample())
+                                                // Payment(amount:"55")),
                                       );
                                     },
                                     style: ElevatedButton.styleFrom(
