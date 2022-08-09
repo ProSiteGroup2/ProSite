@@ -511,8 +511,8 @@ class _CscontractorviewState extends State<Cscontractorview> {
                 width: 115.0,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      'assets/imgs/suplier.jpg',
+                    child: Image.network(
+                      '${sp['imageUrl']}',
                       fit: BoxFit.fill,
                     )),
               ),

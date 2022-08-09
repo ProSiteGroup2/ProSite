@@ -181,7 +181,8 @@ class _TransporterpviewState extends State<Transporterpview> {
                               ),
                               Row(
                                 children:[
-                                  Icon(Icons.car_rental),
+                                  Icon(Icons.car_repair_sharp,
+                                    color: Colors.blue,),
                                   SizedBox(
                                     width: 5.0,
                                   ),

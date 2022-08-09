@@ -370,7 +370,8 @@ class _LabourpviewState extends State<Labourpview> {
                               ),
                               Row(
                                 children:  [
-                                  Icon(Icons.workspace_premium),
+                                  Icon(Icons.workspace_premium,
+                                    color: Colors.purpleAccent,),
                                   SizedBox(
                                     width: 5.0,
                                   ),

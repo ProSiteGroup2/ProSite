@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/pages/customer_transporterview.dart';
 import 'package:group2/src/ui/item_details.dart';
+
+import '../globals.dart';
 //import '../common/color.dart';
 
 // ignore: must_be_immutable
@@ -40,8 +43,9 @@ class _ImageCauserol_transState extends State<ImageCauserol_trans> {
           itemCount: tags.length,
           itemBuilder: (context, i) {
             return Container(
+
               margin: const EdgeInsets.all(20),
-              width: 250,
+              width: 260,
               height: 100,
 
               // margin: EdgeInsets.only( right:20,top: 15),
@@ -61,20 +65,21 @@ class _ImageCauserol_transState extends State<ImageCauserol_trans> {
                     spreadRadius: 10,
                     blurRadius: 7,
 
-                    offset:
-                    const Offset(-10, -10), // changes position of shadow
+                    offset: const Offset(-10, -10), // changes position of shadow
                   ),
                 ],
               ),
               child: ElevatedButton(
+
                 onPressed: () {
+                  sp=tags[i];
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const ItemDetails()),
+                    MaterialPageRoute(builder: (context) =>const Cstransporterview()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
+
                   primary: Colors.white,
                   shadowColor: Colors.grey.withOpacity(0.25),
                   padding: const EdgeInsets.symmetric(
@@ -83,74 +88,81 @@ class _ImageCauserol_transState extends State<ImageCauserol_trans> {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
+
+
+
                 child: Row(
                   children: [
-                    Container(
-                      //image
-                      alignment: Alignment.centerLeft,
-                      width: 110,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        border:
-                        Border.all(width: 1, color: Colors.grey.shade200),
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                        image: DecorationImage(
-                          image: AssetImage("${tags[i]['image']}"),
-                          fit: BoxFit.cover,
+                    Expanded(
+                      flex:1,
+                      child: Container(
+                        //image
+                        alignment: Alignment.centerLeft,
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.grey.shade200),
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                          image: DecorationImage(
+                            image: NetworkImage("${tags[i]['imageUrl']}"),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
-                    Container(
-                      //details of a item
-                      margin: const EdgeInsets.only(top: 20),
-                      width: 100,
-                      height: 100,
+                    Expanded(
+                      flex:2,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            child: Text(
-                              "${tags[i]['name']}",
-                              textAlign: TextAlign.right,
+                            child: Text(tags[i]['username'],
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontFamily: "poppins",
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.15),
-                            ),
+                                fontFamily: "poppins",
+                                fontSize: 17,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,),),
                           ),
-                          Container(
-                            width: 100,
-                            margin: const EdgeInsets.all(7),
-                            padding: const EdgeInsets.only(left: 2.0, right: 2),
-                            child: Row(
-                              children: [
-                                Container(
-                                    width: 20,
-                                    child: const Icon(
-                                      Icons.location_on,
-                                      size: 12.0,
-                                      color: Colors.black,
-                                    )),
-                                Container(
-                                    width: 60,
-                                    padding: const EdgeInsets.only(
-                                        left: 3.0, right: 2),
-                                    child: Text(
-                                      "${tags[i]['hardware']}",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 8),
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                      softWrap: false,
-                                    ))
-                              ],
-                            ),
-                          )
+                          SizedBox(height: 3.0,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(Icons.car_repair_sharp,
+                                size: 20,
+                                color: Colors.blue,),
+                              SizedBox(width: 3.0,),
+                              Text(tags[i]['vehicle'],
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16
+                                ),),
+                            ],
+                          ),
+                          SizedBox(height: 3.0,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(Icons.location_on,size: 13.0,color: Colors.red,),
+                              SizedBox(width: 3.0,),
+                              Text(
+                                "${tags[i]['hometown']}",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13),
+                                maxLines:3,
+                                softWrap: false,
+                              )
+                            ],
+                          ),
                         ],
                       ),
-                    )
+                    ),
+
                   ],
                 ),
               ),

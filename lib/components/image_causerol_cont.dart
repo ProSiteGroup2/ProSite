@@ -45,7 +45,7 @@ class _ImageCauserol_contState extends State<ImageCauserol_cont> {
             return Container(
 
               margin: const EdgeInsets.all(20),
-              width: 250,
+              width: 260,
               height: 100,
 
               // margin: EdgeInsets.only( right:20,top: 15),

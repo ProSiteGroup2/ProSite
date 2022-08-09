@@ -90,7 +90,8 @@ class _CustomerpviewState extends State<Customerpview> {
 
                               Row(
                                 children:  [
-                                  const Icon(Icons.location_on),
+                                  const Icon(Icons.location_on,
+                                  color: Colors.red,),
                                   const SizedBox(
                                     width: 5.0,
                                   ),
@@ -127,7 +128,8 @@ class _CustomerpviewState extends State<Customerpview> {
 
                               Row(
                                 children: [
-                                  const Icon(Icons.phone_in_talk_outlined),
+                                  const Icon(Icons.phone_in_talk,
+                                  color: Colors.green,),
                                   const SizedBox(
                                     width: 5.0,
                                   ),
@@ -168,7 +170,7 @@ class _CustomerpviewState extends State<Customerpview> {
                         borderRadius: BorderRadius.circular(16.0),
                         child: Image.network(
                           '${consumer['imageUrl']}',
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         )),
                   ),
                 ))

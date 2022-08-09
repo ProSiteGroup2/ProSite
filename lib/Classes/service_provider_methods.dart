@@ -93,5 +93,32 @@ class SPMethods{
     }
   }
 
+  getMason() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getMason');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getElectrician() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getElectrician');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
 }

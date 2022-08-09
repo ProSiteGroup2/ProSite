@@ -43,10 +43,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Customerpview()),
-            );
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,

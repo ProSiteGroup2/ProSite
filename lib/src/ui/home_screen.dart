@@ -8,6 +8,8 @@ import 'package:group2/common/size.dart';
 import 'package:group2/components/image_causerol.dart';
 import 'package:group2/components/image_causerol_a.dart';
 import 'package:group2/components/image_causerol_cont.dart';
+import 'package:group2/components/image_causerol_lab.dart';
+import 'package:group2/components/image_causerol_trans.dart';
 import 'package:group2/pages/about_setting.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/loginpage.dart';
@@ -44,6 +46,51 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     var results=await SPMethods().getContractors();
     if(results.data['success']){
       return results.data['contractors'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<List<dynamic>?> gettingLabours() async {
+    var results=await SPMethods().getLabours();
+    if(results.data['success']){
+      return results.data['labours'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<List<dynamic>?> gettingMasons() async {
+    var results=await SPMethods().getMason();
+    if(results.data['success']){
+      return results.data['masons'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<List<dynamic>?> gettingElectricians() async {
+    var results=await SPMethods().getElectrician();
+    if(results.data['success']){
+      return results.data['electricians'];
     }else{
       Fluttertoast.showToast(
           msg: results.data['msg'],
@@ -772,19 +819,7 @@ Map<String, dynamic> data = {
                                                   height: 1.15),
                                             ),
                                           ),
-                                              Container(
-                                                padding: const EdgeInsets.only(right: 30),
-                                                child: const Text(
-                                                  "See all",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                      fontFamily: "Poppins",
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.grey,
-                                                      height: 1),
-                                                ),
-                                              ),
+
                                             ]),
                                            ),
                               Container(
@@ -814,7 +849,7 @@ Map<String, dynamic> data = {
                                               //mason carousals name
                                               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
                                               child: const Text(
-                                                "Masons",
+                                                "Labours",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                     fontFamily: "Poppins",
@@ -840,11 +875,19 @@ Map<String, dynamic> data = {
                                         ),
                           
                                   Container(
-                                    //masons carousals
-                                    child: ImageCauserol(
-                                          tags: data['tags'],
-
-                                        ),
+                                    //labours carousals
+                                    child: FutureBuilder<List<dynamic>?>(
+                                      future: gettingLabours(),
+                                      builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                        if(snapshot.hasData){
+                                          return ImageCauserol_lab(
+                                            tags: snapshot.data!,
+                                          );
+                                        }else{
+                                          return CircularProgressIndicator();
+                                        }
+                                      },
+                                    )
                                   ),
                                 ],
                               ),
@@ -861,6 +904,90 @@ Map<String, dynamic> data = {
                                                 //Electrians carousals name
                                               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
                                               child: const Text(
+                                                "Transporters",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    height: 1.15),
+                                              ),
+                                            ),
+                                              ]),
+                                        ),
+                          
+                                        Container(
+                                          //transoporters carousals
+                                          child: FutureBuilder<List<dynamic>?>(
+                                            future: gettingTransporters(),
+                                            builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                              if(snapshot.hasData){
+                                                return ImageCauserol_trans(
+                                                  tags: snapshot.data!,
+                                                );
+                                              }else{
+                                                return CircularProgressIndicator();
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                              Container(
+                                //Masons
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                          Container(
+                                            //mason carousals name
+                                                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
+                                                child: const Text(
+                                                  "Masons",
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                      fontFamily: "Poppins",
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold,
+                                                      height: 1.15),
+                                                ),
+                                              ),
+                                          ]),
+                                    ),
+                          
+                                    Container(
+                                      //mason carousals
+                                      child: FutureBuilder<List<dynamic>?>(
+                                        future: gettingMasons(),
+                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                          if(snapshot.hasData){
+                                            return ImageCauserol_lab(
+                                              tags: snapshot.data!,
+                                            );
+                                          }else{
+                                            return CircularProgressIndicator();
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                //Electricians
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              //electrician carousals name
+                                              padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
+                                              child: const Text(
                                                 "Electricians",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
@@ -870,79 +997,27 @@ Map<String, dynamic> data = {
                                                     height: 1.15),
                                               ),
                                             ),
-                                              Container(
-                                                
-                                                padding: const EdgeInsets.only(right: 30),
-                                                child: const Text(
-                                                  "See all",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                      fontFamily: "Poppins",
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.grey,
-                                                      height: 1),
-                                                ),
-                                              ),
-                                              ]),
-                                        ),
-                          
-                                        Container(
-                                          //electrians carousals
-                                          child: ImageCauserol(
-                                                tags: data['tags'],
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                              Container(
-                                //plumber
-                                child: Column(
-                                  children: [
-                                    Container(
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                          Container(
-                                            //plumber carousals name
-                                                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
-                                                child: const Text(
-                                                  "Plumbers",
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                      fontFamily: "Poppins",
-                                                      fontSize: 16,
-                                                      fontWeight: FontWeight.bold,
-                                                      height: 1.15),
-                                                ),
-                                              ),
-                                          Container(
-                                            padding: const EdgeInsets.only(right: 30),
-                                            child: const Text(
-                                              "See all",
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                  fontFamily: "Poppins",
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.grey,
-                                                  height: 1),
-                                            ),
-                                          ),
                                           ]),
                                     ),
-                          
+
                                     Container(
-                                      //elec carousals
-                                      child: ImageCauserol(
-                                            tags: data['tags'],
-                                          ),
+                                      //electrician carousals
+                                      child: FutureBuilder<List<dynamic>?>(
+                                        future: gettingElectricians(),
+                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                          if(snapshot.hasData){
+                                            return ImageCauserol_lab(
+                                              tags: snapshot.data!,
+                                            );
+                                          }else{
+                                            return CircularProgressIndicator();
+                                          }
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                            
                             ],
                           ),
                         ),
