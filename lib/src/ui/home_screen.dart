@@ -102,6 +102,66 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     }
   }
 
+  Future<List<dynamic>?> gettingPlumbers() async {
+    var results=await SPMethods().getPlumber();
+    if(results.data['success']){
+      return results.data['plumbers'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<List<dynamic>?> gettingArchitecturers() async {
+    var results=await SPMethods().getArchitecturer();
+    if(results.data['success']){
+      return results.data['architecturers'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<List<dynamic>?> gettingCarpenters() async {
+    var results=await SPMethods().getCarpenter();
+    if(results.data['success']){
+      return results.data['carpenters'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<List<dynamic>?> gettingPainters() async {
+    var results=await SPMethods().getPainter();
+    if(results.data['success']){
+      return results.data['painters'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
 Map<String, dynamic> data = {
     "isRegisted": true,
 
@@ -917,7 +977,7 @@ Map<String, dynamic> data = {
                                         ),
                           
                                         Container(
-                                          //transoporters carousals
+                                          //transporters carousals
                                           child: FutureBuilder<List<dynamic>?>(
                                             future: gettingTransporters(),
                                             builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
@@ -1004,6 +1064,178 @@ Map<String, dynamic> data = {
                                       //electrician carousals
                                       child: FutureBuilder<List<dynamic>?>(
                                         future: gettingElectricians(),
+                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                          if(snapshot.hasData){
+                                            return ImageCauserol_lab(
+                                              tags: snapshot.data!,
+                                            );
+                                          }else{
+                                            return CircularProgressIndicator();
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              Container(
+                                //Plumbers
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              //plumbers carousals name
+                                              padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
+                                              child: const Text(
+                                                "Plumbers",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    height: 1.15),
+                                              ),
+                                            ),
+                                          ]),
+                                    ),
+
+                                    Container(
+                                      //plumbers carousals
+                                      child: FutureBuilder<List<dynamic>?>(
+                                        future: gettingPlumbers(),
+                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                          if(snapshot.hasData){
+                                            return ImageCauserol_lab(
+                                              tags: snapshot.data!,
+                                            );
+                                          }else{
+                                            return CircularProgressIndicator();
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              Container(
+                                //Architecturer
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              //Architecturer carousals name
+                                              padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
+                                              child: const Text(
+                                                "Architecturers",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    height: 1.15),
+                                              ),
+                                            ),
+                                          ]),
+                                    ),
+
+                                    Container(
+                                      //Architecturer carousals
+                                      child: FutureBuilder<List<dynamic>?>(
+                                        future: gettingArchitecturers(),
+                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                          if(snapshot.hasData){
+                                            return ImageCauserol_lab(
+                                              tags: snapshot.data!,
+                                            );
+                                          }else{
+                                            return CircularProgressIndicator();
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              Container(
+                                //Carpenter
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              //Carpenter carousals name
+                                              padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
+                                              child: const Text(
+                                                "Carpenters",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    height: 1.15),
+                                              ),
+                                            ),
+                                          ]),
+                                    ),
+
+                                    Container(
+                                      //Carpenter carousals
+                                      child: FutureBuilder<List<dynamic>?>(
+                                        future: gettingCarpenters(),
+                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                          if(snapshot.hasData){
+                                            return ImageCauserol_lab(
+                                              tags: snapshot.data!,
+                                            );
+                                          }else{
+                                            return CircularProgressIndicator();
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              Container(
+                                //Painter
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              //Painter carousals name
+                                              padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0),
+                                              child: const Text(
+                                                "Painters",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    height: 1.15),
+                                              ),
+                                            ),
+                                          ]),
+                                    ),
+
+                                    Container(
+                                      //Painter carousals
+                                      child: FutureBuilder<List<dynamic>?>(
+                                        future: gettingPainters(),
                                         builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
                                           if(snapshot.hasData){
                                             return ImageCauserol_lab(
