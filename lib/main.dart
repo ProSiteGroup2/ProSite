@@ -10,6 +10,7 @@ import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/hardware_dashboard.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/loginpage.dart';
+import 'package:group2/pages/select.dart';
 import 'package:group2/pages/splashscreen.dart';
 import 'package:group2/pages/starting.dart';
 import 'package:group2/src/ui/sp_home_screen.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
           '/transporterNavBar':(context)=>TransNavBar(),
           '/contractorNavBar':(context)=>ConNavBar(),
           '/hdNavBar':(context)=>HdNavBar(),
+          '/select':(context)=>Select(),
           // .....
           // ...... give other pages class name like above
         });

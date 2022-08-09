@@ -175,7 +175,6 @@ class _PlacePageState extends State<PlacePage> {
                  */
 
                 ImageCauserol(
-                  context: context,
                   tags: data['tags'],
                 ),
 

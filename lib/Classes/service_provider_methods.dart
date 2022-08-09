@@ -48,6 +48,50 @@ class SPMethods{
           textColor: Colors.white,
           fontSize: 16.0);
     }
+    
   }
+
+  getContractors() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getContractors');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getTransporters() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getTransporters');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getLabours() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getLabours');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
 
 }

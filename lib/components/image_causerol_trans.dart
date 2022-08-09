@@ -6,26 +6,26 @@ import 'package:group2/src/ui/item_details.dart';
 //import '../common/color.dart';
 
 // ignore: must_be_immutable
-class ImageCauserol extends StatefulWidget {
+class ImageCauserol_trans extends StatefulWidget {
 
   List<dynamic> tags;
 
-  ImageCauserol({Key? key, required this.tags})
+  ImageCauserol_trans({Key? key, required this.tags})
       : super(key: key);
 
   @override
-  State<ImageCauserol> createState() =>
+  State<ImageCauserol_trans> createState() =>
       // ignore: no_logic_in_create_state
-      _ImageCauserolState(tags: tags);
+  _ImageCauserol_transState(tags: tags);
 }
 
-class _ImageCauserolState extends State<ImageCauserol> {
+class _ImageCauserol_transState extends State<ImageCauserol_trans> {
   int photo = 1;
 
 
   List<dynamic> tags;
 
-  _ImageCauserolState({required this.tags});
+  _ImageCauserol_transState({required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -62,7 +62,7 @@ class _ImageCauserolState extends State<ImageCauserol> {
                     blurRadius: 7,
 
                     offset:
-                        const Offset(-10, -10), // changes position of shadow
+                    const Offset(-10, -10), // changes position of shadow
                   ),
                 ],
               ),
@@ -92,7 +92,7 @@ class _ImageCauserolState extends State<ImageCauserol> {
                       height: 100,
                       decoration: BoxDecoration(
                         border:
-                            Border.all(width: 1, color: Colors.grey.shade200),
+                        Border.all(width: 1, color: Colors.grey.shade200),
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
                         image: DecorationImage(

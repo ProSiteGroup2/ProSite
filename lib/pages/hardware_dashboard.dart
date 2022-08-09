@@ -239,7 +239,6 @@ class _HrdDashboardState extends State<HrdDashboard> {
                                             if(snapshot.hasData){
                                               return ImageCauserol_b(
                                                 tags: snapshot.data!,
-
                                               );
                                             }else{
                                               return CircularProgressIndicator();
@@ -270,7 +269,7 @@ class _HrdDashboardState extends State<HrdDashboard> {
               // height: 1.15
           ),
           ),
-          icon: const Icon(Icons.add_a_photo_rounded),
+          icon: const Icon(Icons.add_circle),
           backgroundColor: Color.fromRGBO(0, 207, 108, 1),
       ),
     );

@@ -1,54 +1,52 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: sized_box_for_whitespace, avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/pages/customer_contractorview.dart';
 import 'package:group2/src/ui/item_details.dart';
 
 import '../globals.dart';
-
 //import '../common/color.dart';
 
-
-class ImageCauserol_b extends StatefulWidget {
+// ignore: must_be_immutable
+class ImageCauserol_cont extends StatefulWidget {
 
   List<dynamic> tags;
 
-  ImageCauserol_b({Key? key, required this.tags})
+  ImageCauserol_cont({Key? key, required this.tags})
       : super(key: key);
 
   @override
-  State<ImageCauserol_b> createState() =>
-      _ImageCauserol_bState(tags:tags);
+  State<ImageCauserol_cont> createState() =>
+      // ignore: no_logic_in_create_state
+  _ImageCauserol_contState(tags: tags);
 }
 
-class _ImageCauserol_bState extends State<ImageCauserol_b> {
+class _ImageCauserol_contState extends State<ImageCauserol_cont> {
   int photo = 1;
+
 
   List<dynamic> tags;
 
-  _ImageCauserol_bState({required this.tags});
+  _ImageCauserol_contState({required this.tags});
 
   final ScrollController _scrollController = ScrollController();
-
- 
-
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: kPropWidth(context, 0.9),
-      height:kPropHeight(context, 0.55) ,
+      width: kPropWidth(context, 1),
+      height: 140,
       child: ListView.builder(
-        
           controller: _scrollController,
-          scrollDirection: Axis.vertical,
+          scrollDirection: Axis.horizontal,
           itemCount: tags.length,
           itemBuilder: (context, i) {
             return Container(
 
               margin: const EdgeInsets.all(20),
               width: 250,
-              height: 150,
+              height: 100,
 
               // margin: EdgeInsets.only( right:20,top: 15),
               decoration: BoxDecoration(
@@ -73,7 +71,13 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
               ),
               child: ElevatedButton(
 
-                onPressed: () {},
+                onPressed: () {
+                  sp=tags[i];
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>const Cscontractorview()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
 
                   primary: Colors.white,
@@ -94,15 +98,15 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
                       child: Container(
                         //image
                         alignment: Alignment.centerLeft,
-                        width: 110,
-                        height: 150,
+                        width: 100,
+                        height: 100,
                         decoration: BoxDecoration(
                           border: Border.all(width: 1, color: Colors.grey.shade200),
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                           image: DecorationImage(
                             image: NetworkImage("${tags[i]['imageUrl']}"),
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -114,50 +118,28 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            child: Text(tags[i]['productname'],
-                              textAlign: TextAlign.right,
+                            child: Text(tags[i]['contractorname'],
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: "poppins",
                                   fontSize: 16,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.15),),
+                                  fontWeight: FontWeight.bold,),),
                           ),
-                          SizedBox(height: 3.0,),
-                          Text('Rs. ${tags[i]['price']}',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red,
-                                fontSize: 18.0
-                            ),),
                           SizedBox(height: 3.0,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary:Color(0xFF18978F),
-                                ),
-                                onPressed:(){},
-                                child: Text('Edit',
+                              Icon(Icons.location_on,size: 13.0,color: Colors.red,),
+                              SizedBox(width: 3.0,),
+                              Text(
+                                "${tags[i]['hometown']}",
                                 style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold
-                                ),),
-
-                              ),
-                              SizedBox(width: 10,),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary:Colors.red,
-                                ),
-                                onPressed:(){},
-                                child: Text('Delete',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16
-                                ),),
-
+                                    color: Colors.black,
+                                    fontSize: 13),
+                                maxLines:3,
+                                softWrap: false,
                               )
                             ],
                           ),
@@ -169,7 +151,6 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
                 ),
               ),
             );
-
           }),
     );
   }

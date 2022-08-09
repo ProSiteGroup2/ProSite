@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/product_methods.dart';
+import 'package:group2/Classes/service_provider_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/components/image_causerol.dart';
 import 'package:group2/components/image_causerol_a.dart';
+import 'package:group2/components/image_causerol_cont.dart';
 import 'package:group2/pages/about_setting.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/loginpage.dart';
@@ -22,6 +24,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+
+  Future<List<dynamic>?> gettingTransporters() async {
+    var results=await SPMethods().getTransporters();
+    if(results.data['success']){
+      return results.data['transporters'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<List<dynamic>?> gettingContractors() async {
+    var results=await SPMethods().getContractors();
+    if(results.data['success']){
+      return results.data['contractors'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
 Map<String, dynamic> data = {
     "isRegisted": true,
@@ -612,7 +644,7 @@ Map<String, dynamic> data = {
                                           ),         
                                       Container( 
                                         child: ImageCauserol(
-                                            context: context,
+
                                               tags: data['tags'],
                                               
                                             ),
@@ -757,13 +789,19 @@ Map<String, dynamic> data = {
                                            ),
                               Container(
                                       //constructor car
-                                      child: ImageCauserol(
-                                        
-                                          context: context,
-                                            tags: data['tags'],
-                                            
-                                          ),
-                                    ),       
+                                      child: FutureBuilder<List<dynamic>?>(
+                                        future: gettingContractors(),
+                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                          if(snapshot.hasData){
+                                            return ImageCauserol_cont(
+                                              tags: snapshot.data!,
+                                            );
+                                          }else{
+                                            return CircularProgressIndicator();
+                                          }
+                                        },
+                                      )
+                                    ),
                               Container(
                               //mason 
                                 child: Column(
@@ -804,10 +842,8 @@ Map<String, dynamic> data = {
                                   Container(
                                     //masons carousals
                                     child: ImageCauserol(
-                                      
-                                        context: context,
                                           tags: data['tags'],
-                                          
+
                                         ),
                                   ),
                                 ],
@@ -854,8 +890,6 @@ Map<String, dynamic> data = {
                                         Container(
                                           //electrians carousals
                                           child: ImageCauserol(
-                                            
-                                              context: context,
                                                 tags: data['tags'],
                                               ),
                                         ),
@@ -902,8 +936,6 @@ Map<String, dynamic> data = {
                                     Container(
                                       //elec carousals
                                       child: ImageCauserol(
-                                        
-                                          context: context,
                                             tags: data['tags'],
                                           ),
                                     ),

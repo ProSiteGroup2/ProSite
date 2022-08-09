@@ -152,8 +152,23 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0,left: 20),
+                            child: IconButton(
+                              icon: Icon(Icons.arrow_back_ios_new),
+                              onPressed: (){
+                                Navigator.pushNamedAndRemoveUntil(context, '/select', (route) => false);
+                              },
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 25.0, 10.0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10.0, 0),
                         child: Text(
                           "Login",
                           style: TextStyle(
