@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/globals.dart';
 import 'package:group2/pages/PaymentScreen.dart';
 import 'package:group2/pages/add_card_details.dart';
 import 'package:group2/pages/flutter_card.dart';
@@ -126,10 +127,6 @@ class _paynowState extends State<paynow> {
                                           if (value == null || value.trim().isEmpty) {
                                             return 'Please enter your contact number';
                                           }
-
-                                          if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                                            return 'Please enter a valid number';
-                                          }
                                           return null;
                                         },
                                         onChanged: (value) => _userEmail = value,
@@ -227,7 +224,7 @@ class _paynowState extends State<paynow> {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
                             image: DecorationImage(
-                              image: AssetImage("assets/imgs/logo.png"),
+                              image: NetworkImage("${product['imageUrl']}"),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -240,7 +237,7 @@ class _paynowState extends State<paynow> {
                                 //item name
                                 margin: EdgeInsets.fromLTRB(15,10,15,20),
                                 alignment: Alignment.topCenter,
-                                child: Text("Item Name",style: TextStyle(
+                                child: Text("${product['productname']}",style: TextStyle(
                                 fontFamily: "Poppins",
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -255,10 +252,11 @@ class _paynowState extends State<paynow> {
                                       //price
                                       margin: EdgeInsets.fromLTRB(15,5,15,10),
                                       alignment: Alignment.topCenter,
-                                      child: Text("Rs.10,500",style: TextStyle(
+                                      child: Text("Rs. ${product['price']}",style: TextStyle(
                                       fontFamily: "Poppins",
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal,
+                                        color: Colors.red,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
                                         height: 1.15
                                     ),), 
                                     ),
@@ -322,7 +320,7 @@ class _paynowState extends State<paynow> {
                                   Container(
                                     //final price
                                     margin: EdgeInsets.all(5),
-                                    child: Text("Rs.10,500",style: TextStyle(
+                                    child: Text("Rs. ${product['price']}",style: TextStyle(
                                             fontFamily: "Poppins",
                                               fontSize: 25,
                                               fontWeight: FontWeight.bold,
