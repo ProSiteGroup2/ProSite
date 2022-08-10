@@ -121,7 +121,7 @@ class _pickdateState extends State<pickdate> {
                   print(app_date);
                   print(app_date_str);
                   print(app_time_str);
-                  await SPMethods().addAppointment(consumer['_id'], sp['email'], DateTime.parse(app_date_str), app_time_str).then((val){
+                  await SPMethods().addAppointment(consumer['_id'], sp['email'], app_date_str, app_time_str).then((val){
                     if(val.data['success']){
                       showDialog(
                         context: context,
