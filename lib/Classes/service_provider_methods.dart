@@ -205,8 +205,18 @@ class SPMethods{
     }
   }
 
-  // findSP(sp_email) async {
-  //   return await dio.get('https://prositegroup2.herokuapp.com/findSP');
-  // }
+  findSP(sp_email) async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/findSP/$sp_email');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
 }

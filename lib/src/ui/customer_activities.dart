@@ -28,31 +28,35 @@ class _CActivityState extends State<CActivity> {
   ];
 
 
-
-
-
   // @override
   // void initState() {
-  //   gettingPastAppointments();
   //   super.initState();
+  //   gettingPastAppointments();
+  //   print(sp_profile);
+  //   print(sp_contacts);
   // }
-
-  late List sp_contacts;
-  late List sp_profile;
-
-  GettingContacts(){
-    for(var i=0;i<preActivities.length;i++){
-
-    }
-  }
-
-  // Future<void> gettingPastAppointments() async {
-  //   var results=await SPMethods().getPastAppointment();
-  //   if(results.data['success']){
-  //     preActivities=results.data['appointments'];
-  //   }else{
+  //
+  // List sp_contacts = [];
+  // List sp_profile = [];
+  //
+  // gettingPastAppointments() async {
+  //   var results = await SPMethods().getPastAppointment();
+  //   if (results.data['success']) {
+  //     preActivities = results.data['appointments'];
+  //     print(preActivities);
+  //     for (var i = 0; i < preActivities.length; i++) {
+  //       var result2 = await SPMethods().findSP(preActivities[i]['sp_email']);
+  //       if (result2.data['success']) {
+  //         var sp_local = result2.data['sp'];
+  //         sp_contacts.add(sp_local['contactNo']);
+  //         sp_profile.add(sp_local['imageUrl']);
+  //       }
+  //     }
+  //     print(sp_contacts);
+  //     print(sp_profile);
+  //   } else {
   //     Fluttertoast.showToast(
-  //         msg: results.data['msg'],
+  //         msg: 'getting Past Appointments failed',
   //         toastLength: Toast.LENGTH_SHORT,
   //         gravity: ToastGravity.BOTTOM,
   //         backgroundColor: Colors.red,
@@ -60,6 +64,17 @@ class _CActivityState extends State<CActivity> {
   //         fontSize: 16.0);
   //   }
   // }
+  //
+  // // Future<void> GettingProCont() async {
+  // //   for(var i=0;i<preActivities.length;i++){
+  // //     var result=await SPMethods().findSP(preActivities[i]['sp_email']);
+  // //     sp_contacts.add(result.data['contactNo']);
+  // //     sp_profile.add(result.data['imageUrl']);
+  // //   }
+  // //   print(sp_contacts);
+  // //   print(sp_profile);
+  // // }
+
 
 
   @override
@@ -199,6 +214,7 @@ class _CActivityState extends State<CActivity> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
                                 image: DecorationImage(
+                                  // NetworkImage("${sp_profile[index]}"),
                                   image: AssetImage(
                                       "assets/imgs/${preActivities[index].profile}"),
                                   fit: BoxFit.cover,
@@ -255,6 +271,7 @@ class _CActivityState extends State<CActivity> {
                                           Expanded(
                                             flex:3,
                                             child: Text(
+                                              //preActivities[index]['date'],
                                               preActivities[index].date,
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
