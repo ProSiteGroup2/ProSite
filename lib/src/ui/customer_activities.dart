@@ -144,11 +144,12 @@ class _CActivityState extends State<CActivity> {
                         shadowColor: Colors.blueAccent,
                         margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: ListTile(
+                            visualDensity: VisualDensity(vertical: 4),
                             leading: Container(
-                              height: 50,
-                              width: 55,
+                              height: 100,
+                              width: 80,
                               // child: Image.asset('assets/imgs/${preActivities[index].profile}'),
                               decoration: BoxDecoration(
                                 border: Border.all(
