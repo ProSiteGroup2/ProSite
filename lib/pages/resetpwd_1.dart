@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:group2/pages/loginas_cons.dart';
@@ -18,13 +17,16 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
   String _userEmail = '';
   String _password = '';
 
-  void _trySubmitForm() {
+  bool? _trySubmitForm() {
+    
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
       debugPrint(_userEmail);
       debugPrint(_password);
     }
+    return isValid;
+   
   }
 
   @override
@@ -116,7 +118,7 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
 
                               if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
                                 return 'Please enter a valid email address';
-                              }
+                              } else {}
                               return null;
                             },
                             onChanged: (value) => _userEmail = value,
@@ -152,12 +154,14 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          _trySubmitForm();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ResetPwd_2()),
-                          );
+                          bool? x = _trySubmitForm();
+                          if (x == true) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ResetPwd_2()),
+                            );
+                          }
                         },
                         child: Text(
                           'Send',
