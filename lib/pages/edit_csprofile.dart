@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'customer_profileview.dart';
 import 'package:group2/globals.dart';
 import 'package:http/http.dart' as http;
-import 'package:group2/Classes/update_methods.dart';
+// import 'package:group2/Classes/update_methods.dart';
 
 class Editcsprofile extends StatefulWidget {
   const Editcsprofile({Key? key}) : super(key: key);

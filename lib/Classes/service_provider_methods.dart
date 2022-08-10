@@ -51,6 +51,34 @@ class SPMethods{
     
   }
 
+  getPastAppointment() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getPastAppointments');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getUpcomingAppointment() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getUpcomingAppointments');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   getContractors() async {
     try {
       return await dio.get('https://prositegroup2.herokuapp.com/getContractors');
@@ -176,5 +204,9 @@ class SPMethods{
           fontSize: 16.0);
     }
   }
+
+  // findSP(sp_email) async {
+  //   return await dio.get('https://prositegroup2.herokuapp.com/findSP');
+  // }
 
 }

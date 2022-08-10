@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/authenticate_service.dart';
 import 'package:group2/Classes/customer_pre_activities.dart';
+import 'package:group2/Classes/service_provider_methods.dart';
+import 'package:group2/globals.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../Classes/my_flutter_app_icons.dart';
@@ -14,15 +18,52 @@ class CActivity extends StatefulWidget {
 }
 
 class _CActivityState extends State<CActivity> {
+
+  @override
+  List preActivities = [
+    PreAct('worker1.jpg', 'hello', '2022-11-3'),
+    PreAct('worker2.jpg', 'Hi', '2022-09-3'),
+    PreAct('worker3.jpg', 'Wanda', '2022-06-3'),
+    PreAct('worker2.jpg', 'Hi', '2022-09-3'),
+  ];
+
+
+
+
+
+  // @override
+  // void initState() {
+  //   gettingPastAppointments();
+  //   super.initState();
+  // }
+
+  late List sp_contacts;
+  late List sp_profile;
+
+  GettingContacts(){
+    for(var i=0;i<preActivities.length;i++){
+
+    }
+  }
+
+  // Future<void> gettingPastAppointments() async {
+  //   var results=await SPMethods().getPastAppointment();
+  //   if(results.data['success']){
+  //     preActivities=results.data['appointments'];
+  //   }else{
+  //     Fluttertoast.showToast(
+  //         msg: results.data['msg'],
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         backgroundColor: Colors.red,
+  //         textColor: Colors.white,
+  //         fontSize: 16.0);
+  //   }
+  // }
+
+
   @override
   Widget build(BuildContext context) {
-    List<PreAct> preActivities = [
-      PreAct('worker1.jpg', 'hello', '2022-11-3'),
-      PreAct('worker2.jpg', 'Hi', '2022-09-3'),
-      PreAct('worker3.jpg', 'Wanda', '2022-06-3'),
-      PreAct('worker2.jpg', 'Hi', '2022-09-3'),
-    ];
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -59,10 +100,11 @@ class _CActivityState extends State<CActivity> {
                           flex: 2,
                           child: Center(
                             child: Text(
-                              'Rashan Fernando',
+                              '${consumer['username']}',
                               style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black87,
                               ),
                             ),
@@ -81,7 +123,7 @@ class _CActivityState extends State<CActivity> {
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
                                 image: DecorationImage(
-                                  image: AssetImage("assets/imgs/pro1.jpg"),
+                                  image: NetworkImage("${consumer['imageUrl']}"),
                                   fit: BoxFit.cover,
                                 ),
                               ),
