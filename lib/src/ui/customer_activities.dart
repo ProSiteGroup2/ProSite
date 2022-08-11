@@ -27,18 +27,24 @@ class _CActivityState extends State<CActivity> {
     PreAct('worker2.jpg', 'Hi', '2022-09-3'),
   ];
 
+  List upActivities=[];
+
 
   @override
   void initState() {
     gettingConsumerPastAppointments();
+    gettingConsumerUpcomingAppointments();
     super.initState();
 
   }
 
 
-  List sp_contacts = [];
-  List sp_profile = [];
-  List sp_name=[];
+  List sp_contacts_pre = [];
+  List sp_contacts_up=[];
+  List sp_profile_pre = [];
+  List sp_profile_up=[];
+  List sp_name_pre=[];
+  List sp_name_up=[];
 
   Future<void> gettingConsumerPastAppointments() async {
     var results = await SPMethods().getConsumerPastAppointment(consumer['_id']);
@@ -56,16 +62,16 @@ class _CActivityState extends State<CActivity> {
             name=sp_local['username'];
           }
           setState(() {
-            sp_contacts.add(sp_local['contactNo']);
-            sp_profile.add(sp_local['imageUrl']);
-            sp_name.add(name);
+            sp_contacts_pre.add(sp_local['contactNo']);
+            sp_profile_pre.add(sp_local['imageUrl']);
+            sp_name_pre.add(name);
           });
 
         }
       }
-      print(sp_contacts);
-      print(sp_profile);
-      print(sp_name);
+      print(sp_contacts_pre);
+      print(sp_profile_pre);
+      print(sp_name_pre);
     } else {
       Fluttertoast.showToast(
           msg: 'getting Past Appointments failed',
@@ -77,6 +83,42 @@ class _CActivityState extends State<CActivity> {
     }
   }
 
+  Future<void> gettingConsumerUpcomingAppointments() async {
+    var results = await SPMethods().getConsumerUpcomingAppointment(consumer['Id']);
+    if (results.data['success']) {
+      upActivities = results.data['appointments'];
+      print(upActivities);
+      for (var i = 0; i < upActivities.length; i++) {
+        var result2 = await SPMethods().findSP(upActivities[i]['sp_email']);
+        if (result2.data['success']) {
+          var sp_local = result2.data['sp'];
+          var name;
+          if(sp_local['contractorname']!=null){
+            name=sp_local['contractorname'];
+          }else{
+            name=sp_local['username'];
+          }
+          setState(() {
+            sp_contacts_up.add(sp_local['contactNo']);
+            sp_profile_up.add(sp_local['imageUrl']);
+            sp_name_up.add(name);
+          });
+
+        }
+      }
+      print(sp_contacts_up);
+      print(sp_profile_up);
+      print(sp_name_up);
+    } else {
+      Fluttertoast.showToast(
+          msg: 'getting Upcoming Appointments failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
 
   @override
@@ -216,8 +258,8 @@ class _CActivityState extends State<CActivity> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
                                 image: DecorationImage(
-                                  // NetworkImage("${sp_profile[index]}"),
-                                  image:NetworkImage('${sp_profile[index]}'),
+                                  // NetworkImage("${sp_profile_pre[index]}"),
+                                  image:NetworkImage('${sp_profile_pre[index]}'),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -245,7 +287,7 @@ class _CActivityState extends State<CActivity> {
                                             flex:3,
                                             child: Text(
                                               // preActivities[index].hired
-                                              sp_name[index],
+                                              sp_name_pre[index],
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
                                                 fontWeight: FontWeight.bold,
@@ -297,7 +339,7 @@ class _CActivityState extends State<CActivity> {
                                         Icons.add_call
                                     ),
                                     onPressed: (){
-                                      launch("tel://+94${sp_contacts[index].toString().substring(1)}");
+                                      launch("tel://+94${sp_contacts_pre[index].toString().substring(1)}");
                                     },
                                     color: Colors.black,
                                   ),
@@ -311,7 +353,7 @@ class _CActivityState extends State<CActivity> {
                                     MyFlutterApp.whatsapp,
                                   ),
                                   onPressed: (){
-                                    launchwhatsapp( number:"tel://+94${sp_contacts[index].toString().substring(1)}",message: "hello");
+                                    launchwhatsapp( number:"tel://+94${sp_contacts_pre[index].toString().substring(1)}",message: "hello");
                                   },
                                   color: Colors.green,
                                 ),)
