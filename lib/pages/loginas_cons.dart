@@ -21,7 +21,7 @@ class _Loginas_consState extends State<Loginas_cons> {
 
   String _userEmail = '';
   String _password = '';
-  var token;
+
 
 
 
