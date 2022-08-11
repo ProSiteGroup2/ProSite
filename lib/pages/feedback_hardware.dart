@@ -1,6 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/Feedback_list.dart';
-import 'package:group2/Classes/feedback_methods.dart';
+import 'package:group2/Classes/service_provider_methods.dart';
 
 import '../globals.dart';
 
@@ -202,7 +204,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                 borderRadius: BorderRadius.circular(20.0),
                               ))),
                               onPressed: () {
-                                FeedbackMethods().addFeedback(feedback);
+                                SPMethods().addFeedback(consumer['_id'], sp['email'],feedback);
                               },
                               child: Text(
                                 'Submit',

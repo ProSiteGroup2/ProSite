@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_new
+// ignore_for_file: unnecessary_new, non_constant_identifier_names
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +9,15 @@ class SPMethods{
   
   Dio dio=new Dio();
 
-  addFeedback(feedback) async {
+  addFeedback(consumerID,sp_email,feedback) async {
     try{
 
       return await dio.post('https://prositegroup2.herokuapp.com/addFeedback',
-      data: {"feedback": feedback},
+      data: {
+         "consumer":consumerID,
+        "sp_email":sp_email,        
+        "feedback": feedback
+        },
       options: Options(contentType: Headers.jsonContentType)
       );
 
