@@ -51,9 +51,9 @@ class SPMethods{
     
   }
 
-  getPastAppointment() async {
+  getConsumerPastAppointment(consumerID) async {
     try {
-      return await dio.get('https://prositegroup2.herokuapp.com/getPastAppointments');
+      return await dio.get('https://prositegroup2.herokuapp.com/getConsumerPastAppointments/$consumerID');
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: e.response?.data['msg'],
@@ -65,9 +65,37 @@ class SPMethods{
     }
   }
 
-  getUpcomingAppointment() async {
+  getSPPastAppointment(sp_email) async {
     try {
-      return await dio.get('https://prositegroup2.herokuapp.com/getUpcomingAppointments');
+      return await dio.get('https://prositegroup2.herokuapp.com/getSPPastAppointments/$sp_email');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getConsumerUpcomingAppointment(consumerID) async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getConsumerUpcomingAppointments/$consumerID');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  getSPUpcomingAppointment(sp_email) async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getSPUpcomingAppointments/$sp_email');
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: e.response?.data['msg'],
@@ -205,8 +233,18 @@ class SPMethods{
     }
   }
 
-  // findSP(sp_email) async {
-  //   return await dio.get('https://prositegroup2.herokuapp.com/findSP');
-  // }
+  findSP(sp_email) async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/findSP/$sp_email');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
 }
