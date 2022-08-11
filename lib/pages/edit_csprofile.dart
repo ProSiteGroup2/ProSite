@@ -46,6 +46,8 @@ class _EditcsprofileState extends State<Editcsprofile> {
     _districtController.text = consumer['district'];
   }
 
+  // String url = 'https://prositegroup2.herokuapp.com';
+  String url = 'http://10.0.2.2:5000';
   Future<void> savechanges (String username ,String email ,String contactNo ,String address ,String hometown ,String district) async{
     Map<String,dynamic> data = {
         "username" : username,
@@ -56,7 +58,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
         "district":district
     };
     try{
-          await UpdateServices().upadateData('http://10.0.2.2:5000/updateconsumerinfo',data);
+          await UpdateServices().upadateData('$url/updateconsumerinfo',data);
     }catch(err){
         print(err.toString());
     }

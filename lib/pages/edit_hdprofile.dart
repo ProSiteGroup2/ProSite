@@ -6,6 +6,7 @@ import 'package:group2/pages/hardware_profileview.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:group2/globals.dart';
 import 'package:http/http.dart' as http;
+import 'package:group2/Classes/update_methods.dart';
 
 class Edithdprofile extends StatefulWidget {
   const Edithdprofile({Key? key}) : super(key: key);
