@@ -46,7 +46,9 @@ class _EditcsprofileState extends State<Editcsprofile> {
     _districtController.text = consumer['district'];
   }
 
-  /*Future<void> savechanges (String username ,String email ,String contactNo ,String address ,String hometown ,String district) async{
+  // String url = 'https://prositegroup2.herokuapp.com';
+  String url = 'http://10.0.2.2:5000';
+  Future<void> savechanges (String username ,String email ,String contactNo ,String address ,String hometown ,String district) async{
     Map<String,dynamic> data = {
         "username" : username,
         "email": email,
@@ -55,13 +57,12 @@ class _EditcsprofileState extends State<Editcsprofile> {
         "hometown":hometown,
         "district":district
     };
-
     try{
-          await UpdateServices().upadateData('https://dashboard.heroku.com/apps/prositegroup2/updateconsumerinfo',data);
+          await UpdateServices().upadateData('$url/updateconsumerinfo',data);
     }catch(err){
         print(err.toString());
     }
-  }*/
+  }
 
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -415,7 +416,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {/*async{
+                        onPressed: () async{
                           if(_formkey.currentState!.validate()){
                             await savechanges(
                               _usernameController.text,
@@ -425,7 +426,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                               _hometwonController.text,
                               _districtController.text
                             );
-                          }*/
+                          }
 
                         },
                         child: const Text(

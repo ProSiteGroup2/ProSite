@@ -51,6 +51,7 @@ dependencies:
   equatable: ^1.2.5
   url_launcher: ^6.0.10
   flutter_rating_bar: ^4.0.1
+  http: ^0.13.5
   flutter_credit_card: ^3.0.2
   font_awesome_flutter: ^10.1.0
   stripe_payment: ^1.0.6

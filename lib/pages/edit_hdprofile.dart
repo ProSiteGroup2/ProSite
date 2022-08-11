@@ -1,10 +1,12 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/hardware_profileview.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:group2/globals.dart';
+import 'package:http/http.dart' as http;
+import 'package:group2/Classes/update_methods.dart';
 
 class Edithdprofile extends StatefulWidget {
   const Edithdprofile({Key? key}) : super(key: key);
@@ -21,6 +23,32 @@ class _EdithdprofileState extends State<Edithdprofile> {
     'assets/imgs/h5.jpg',
     'assets/imgs/h6.jpg',
   ];
+
+  final TextEditingController _hardwarenameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _contactnumController = TextEditingController();
+  final TextEditingController _hardwareaddressController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _districtController = TextEditingController();
+  final TextEditingController _regnoController = TextEditingController();
+  final TextEditingController _ownerController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _hardwarenameController.text = sp['hardwarename'];
+    _emailController.text = sp['email'];
+    _contactnumController.text = sp['contactNo'];
+    _hardwareaddressController.text = sp['address'];
+    _cityController.text = sp['city'];
+    _districtController.text = sp['district'];
+    _regnoController.text = sp['regno'];
+    _ownerController.text = sp['owner'];
+
+  }
+
+
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   File? image;
   Future pickImage(ImageSource source) async {
@@ -64,379 +92,491 @@ class _EdithdprofileState extends State<Edithdprofile> {
                   shape: BoxShape.rectangle,
                   color: Color(hexColor('#FEFEFE')),
                   borderRadius: const BorderRadius.all(Radius.circular(42.0))),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 70.0,
-                  ),
-                  Container(
-                      height: 150.0,
-                      //width: MediaQuery.of(context).size.width,
-                      //color: Colors.blue,
-                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                      /*padding:
-                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),*/
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.green[200],
-                      ),
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: items.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return SizedBox(
-                              height: 130,
-                              width: 120,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    10.0, 10.0, 5.0, 10.0),
-                                child: ClipRRect(
-                                  child: Image.asset(
-                                    items[index],
-                                    fit: BoxFit.fill,
+              child: Form(
+                key: _formkey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 70.0,
+                    ),
+                    Container(
+                        height: 150.0,
+                        //width: MediaQuery.of(context).size.width,
+                        //color: Colors.blue,
+                        margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                        /*padding:
+                            const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),*/
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: Colors.green[200],
+                        ),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: items.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return SizedBox(
+                                height: 130,
+                                width: 120,
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      10.0, 10.0, 5.0, 10.0),
+                                  child: ClipRRect(
+                                    child: Image.asset(
+                                      items[index],
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          })),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Color(hexColor('#1982BD')),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadiusDirectional.circular(16.0))),
-                      onPressed: () {},
-                      child: const Text(
-                        'Add your workshop photes',
-                        style: TextStyle(color: Colors.white),
+                              );
+                            })),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(hexColor('#1982BD')),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(16.0))),
+                        onPressed: () {},
+                        child: const Text(
+                          'Add your workshop photes',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Color(hexColor('#1982BD')),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadiusDirectional.circular(16.0))),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Additem()),
-                        );
-                      },
-                      child: const Text(
-                        'Add Items Post',
-                        style: TextStyle(color: Colors.white),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(hexColor('#1982BD')),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(16.0))),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Additem()),
+                          );
+                        },
+                        child: const Text(
+                          'Add Items Post',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Hardware Name:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'Hardware Name:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(7.0, 7.0),
-                        )
-                      ],
+                    const SizedBox(height: 5.0),
+                    Container(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.blueGrey[50],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 5.0,
+                            offset: Offset(7.0, 7.0),
+                          )
+                        ],
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                          child: TextFormField(
+                            controller: _hardwarenameController,
+                            validator: (value){
+                              if(value != null && value.length == 0){
+                                return '*Required Field';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
+                            cursorColor: Colors.black12,
+                          )),
                     ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Email:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'Email:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(7.0, 7.0),
-                        )
-                      ],
+                    const SizedBox(height: 5.0),
+                    Container(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.blueGrey[50],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 5.0,
+                            offset: Offset(7.0, 7.0),
+                          )
+                        ],
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                          child: TextFormField(
+                            controller: _emailController,
+                            validator: (value){
+                              if(value != null && value.length == 0){
+                                return '*Required Field';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
+                            cursorColor: Colors.black12,
+                          )),
                     ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Contact Number:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'Contact Number:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(7.0, 7.0),
-                        )
-                      ],
+                    const SizedBox(height: 5.0),
+                    Container(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.blueGrey[50],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 5.0,
+                            offset: Offset(7.0, 7.0),
+                          )
+                        ],
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                          child: TextFormField(
+                            controller: _contactnumController,
+                            validator: (value){
+                              if(value != null && value.length == 0){
+                                return '*Required Field';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
+                            cursorColor: Colors.black12,
+                          )),
                     ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Hardware Address:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'Hardware Address:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(7.0, 7.0),
-                        )
-                      ],
+                    const SizedBox(height: 5.0),
+                    Container(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.blueGrey[50],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 5.0,
+                            offset: Offset(7.0, 7.0),
+                          )
+                        ],
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                          child: TextFormField(
+                            controller: _hardwareaddressController,
+                            validator: (value){
+                              if(value != null && value.length == 0){
+                                return '*Required Field';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
+                            cursorColor: Colors.black12,
+                          )),
                     ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'City:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'City:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(7.0, 7.0),
-                        )
-                      ],
+                    const SizedBox(height: 5.0),
+                    Container(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.blueGrey[50],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 5.0,
+                            offset: Offset(7.0, 7.0),
+                          )
+                        ],
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                          child: TextFormField(
+                            controller: _cityController,
+                            validator: (value){
+                              if(value != null && value.length == 0){
+                                return '*Required Field';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
+                            cursorColor: Colors.black12,
+                          )),
                     ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Registation Number:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'District:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(7.0, 7.0),
-                        )
-                      ],
+                    const SizedBox(height: 5.0),
+                    Container(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                        const BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.blueGrey[50],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 5.0,
+                            offset: Offset(7.0, 7.0),
+                          )
+                        ],
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                          child: TextFormField(
+                            controller: _districtController,
+                            validator: (value){
+                              if(value != null && value.length == 0){
+                                return '*Required Field';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
+                            cursorColor: Colors.black12,
+                          )),
                     ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Owners Name:',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'Registation Number:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      color: Colors.blueGrey[50],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.blueGrey,
-                          blurRadius: 5.0,
-                          offset: Offset(7.0, 7.0),
-                        )
-                      ],
-                    ),
-                    child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-                        child: TextField(
-                          cursorColor: Colors.black12,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Center(
-                    child: ElevatedButton.icon(
-                      //label: Icon(Icons.lock),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.grey[700],
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadiusDirectional.circular(16.0))),
-                      onPressed: () {},
-                      icon: const Text(
-                        'Changed Password',
-                        style: TextStyle(color: Colors.white),
+                    const SizedBox(height: 5.0),
+                    Container(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.blueGrey[50],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 5.0,
+                            offset: Offset(7.0, 7.0),
+                          )
+                        ],
                       ),
-                      label: const Icon(Icons.lock),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                          child: TextFormField(
+                            controller: _regnoController,
+                            validator: (value){
+                              if(value != null && value.length == 0){
+                                return '*Required Field';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
+                            cursorColor: Colors.black12,
+                          )),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 0.0,
-                  ),
-                  const Divider(
-                    height: 20.0,
-                    color: Colors.black,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Color(hexColor('#1982BD')),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadiusDirectional.circular(16.0))),
-                      onPressed: () {},
-                      child: const Text(
-                        'Save changes',
-                        style: TextStyle(color: Colors.white),
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'Owners Name:',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                ],
+                    const SizedBox(height: 5.0),
+                    Container(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.blueGrey[50],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 5.0,
+                            offset: Offset(7.0, 7.0),
+                          )
+                        ],
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                          child: TextFormField(
+                            controller: _ownerController,
+                            validator: (value){
+                              if(value != null && value.length == 0){
+                                return '*Required Field';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
+                            cursorColor: Colors.black12,
+                          )),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    Center(
+                      child: ElevatedButton.icon(
+                        //label: Icon(Icons.lock),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.grey[700],
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(16.0))),
+                        onPressed: () {},
+                        icon: const Text(
+                          'Changed Password',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        label: const Icon(Icons.lock),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 0.0,
+                    ),
+                    const Divider(
+                      height: 20.0,
+                      color: Colors.black,
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(hexColor('#1982BD')),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(16.0))),
+                        onPressed: () {},
+                        child: const Text(
+                          'Save changes',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                  ],
+                ),
               ),
             ),
             Positioned(
