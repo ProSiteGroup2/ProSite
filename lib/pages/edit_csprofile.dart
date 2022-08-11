@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:group2/Classes/update_methods.dart';
 import 'package:group2/pages/changepw.dart';
 import 'package:image_picker/image_picker.dart';
 import 'customer_profileview.dart';
