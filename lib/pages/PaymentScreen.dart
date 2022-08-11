@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new, unnecessary_string_interpolations
+// ignore_for_file: prefer_const_constructors, unnecessary_new, unnecessary_string_interpolations, library_private_types_in_public_api, no_logic_in_create_state
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:group2/globals.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 import 'dart:io';
 
@@ -32,12 +33,12 @@ class _PaymentState extends State<Payment> {
   String amount;
   String cardNumber;
   _PaymentState(this.amount, this.cardNumber);
-  int myInt = int.parse("133");
+  int myInt = int.parse("${product['price']}");
 
   ScrollController _controller = ScrollController();
 
   final CreditCard testCard = CreditCard(
-    number: "4222 2222 2222 2222",
+    number: "4222 2222 2222 3333",
     expMonth: 09,
     expYear: 22,
   );

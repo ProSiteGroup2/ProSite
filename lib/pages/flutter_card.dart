@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:group2/Classes/payment_methods.dart';
+import 'package:group2/globals.dart';
 import 'package:group2/pages/PaymentScreen.dart';
 import 'package:group2/pages/ppayment.dart';
 
 class MySample extends StatefulWidget {
+  final String amount = '';
   @override
   State<StatefulWidget> createState() {
     return MySampleState();
@@ -13,6 +15,7 @@ class MySample extends StatefulWidget {
 }
 
 class MySampleState extends State<MySample> {
+  String amount = '';
   String cardNumber = '';
   String expiryDate = '';
   String cardHolderName = '';
@@ -227,12 +230,16 @@ class MySampleState extends State<MySample> {
                           ),
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              PaymentMethods().addCard(cardNumber, expiryDate, cvvCode, cardHolderName);
+                              PaymentMethods().addCard(cardNumber, expiryDate,
+                                  cvvCode, cardHolderName);
                               print('valid!');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Payment(amount: '5000',cardNumber:cardNumber,)),
+                                    builder: (context) => Payment(
+                                          amount: '${product['price']}',
+                                          cardNumber: cardNumber,
+                                        )),
                               );
                             } else {
                               print('invalid!');
