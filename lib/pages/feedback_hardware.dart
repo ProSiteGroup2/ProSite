@@ -191,9 +191,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                 keyboardType: TextInputType.text,
                                 maxLines: 9,
                               ),
-                               
                             ),
-                            
                           ),
                           Center(
                             child: ElevatedButton(
@@ -204,7 +202,11 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                 borderRadius: BorderRadius.circular(20.0),
                               ))),
                               onPressed: () {
-                                SPMethods().addFeedback(consumer['_id'], sp['email'],feedback);
+                                var result = SPMethods().addFeedback(
+                                    consumer['_id'], sp['email'], feedback);
+                                if (result.data['success']) {
+                                  print(result.data['feedback']);
+                                }
                               },
                               child: Text(
                                 'Submit',
