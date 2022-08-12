@@ -37,7 +37,7 @@ class _PaymentState extends State<Payment> {
 
   ScrollController _controller = ScrollController();
 
-  late CreditCard testCard = CreditCard(
+  final CreditCard testCard = CreditCard(
     number: "4222 2222 2222 3333",
     expMonth: 09,
     expYear: 22,
@@ -48,12 +48,6 @@ class _PaymentState extends State<Payment> {
   @override
   initState() {
     super.initState();
-
-    testCard = CreditCard(
-    number: cardNumber,
-    expMonth: 09,
-    expYear: 22,
-  );
 
     StripePayment.setOptions(StripeOptions(
         publishableKey:
