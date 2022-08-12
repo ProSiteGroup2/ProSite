@@ -70,10 +70,7 @@ class _EdithdprofileState extends State<Edithdprofile> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Hardwareprofile()),
-            );
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
