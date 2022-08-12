@@ -1,4 +1,3 @@
-
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors, avoid_unnecessary_containers, deprecated_member_use, unnecessary_new, unused_field, non_constant_identifier_names, override_on_non_overriding_member, must_call_super, prefer_final_fields, camel_case_types
 
 import 'package:flutter/material.dart';

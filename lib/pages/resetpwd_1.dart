@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/reguser.dart';
 import 'package:group2/pages/resetpwd_2.dart';
+
+import '../Classes/authenticate_service.dart';
 
 class ResetPwd_1 extends StatefulWidget {
   const ResetPwd_1({Key? key}) : super(key: key);
@@ -16,17 +19,44 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
 
   String _userEmail = '';
   String _password = '';
+  String _userConNum = '';
 
   bool? _trySubmitForm() {
-    
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
-      debugPrint(_userEmail);
+      debugPrint(_userConNum);
       debugPrint(_password);
+
+      try {
+        AuthService().otpForgotPass( _userConNum).then((val) {
+          if (val.data['success']) {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text('OTP sent'),
+                content: Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                  size: 60,
+                ),
+              ),
+            );
+          } else {
+            Fluttertoast.showToast(
+                msg: val.data['msg'],
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+        });
+      } on Exception catch (e) {
+        debugPrint('An error occured');
+      }
     }
     return isValid;
-   
   }
 
   @override
@@ -99,7 +129,7 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
                               filled: true,
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.never,
-                              hintText: 'Enter Email Address',
+                              hintText: 'Enter Mobile Number',
                               hintStyle: const TextStyle(
                                 color: Colors.grey,
                               ),
@@ -109,19 +139,19 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              labelText: 'Email Address',
+                              labelText: 'Mobile Number',
                             ),
                             validator: (value) {
                               if (value == null || value.trim().isEmpty) {
-                                return 'Please enter your email address';
+                                return 'Please enter your mobile number';
                               }
 
-                              if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                                return 'Please enter a valid email address';
-                              } else {}
+                              // if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                              //   return 'Please enter a valid mobile number';
+                              // } else {}
                               return null;
                             },
-                            onChanged: (value) => _userEmail = value,
+                            onChanged: (value) => _userConNum = value,
                           ),
                         ),
                         Container(
