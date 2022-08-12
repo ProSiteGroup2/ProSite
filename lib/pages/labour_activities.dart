@@ -182,7 +182,7 @@ class _LActivityState extends State<LActivity> {
                     border:Border.all(color: Colors.white,width: 1),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  height: 250,
+                  height: 220,
                   width: 400,
                   child: (alert_up!='')? Center(child: Text(alert_up,style: TextStyle(color: Colors.black),)) : ListView.builder(
                     scrollDirection: Axis.vertical,
@@ -196,12 +196,12 @@ class _LActivityState extends State<LActivity> {
                         shadowColor: Colors.blueAccent,
                         margin: EdgeInsets.fromLTRB(10.0, 0,10.0,10.0),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: ListTile(
-
+                            visualDensity: VisualDensity(vertical: 4),
                             leading: Container(
-                              height:50,
-                              width: 50,
+                              height:100,
+                              width: 80,
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     width: 1, color: Colors.grey.shade200),
@@ -214,45 +214,92 @@ class _LActivityState extends State<LActivity> {
                               ),
                             ),
                             title:Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  flex:4,
+                                  flex:6,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        l_schedule[index]['consumer']['username'],
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 13.0,
-                                          fontWeight: FontWeight.bold
-                                        ),
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:2,
+                                            child: Text(
+                                              'HiredBy',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:4,
+                                            child: Text(
+                                              // preActivities[index].hired
+                                              l_schedule[index]['consumer']['username'],
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
+                                        children: <Widget>[
                                           Expanded(
+                                            flex:2,
+                                            child: Text(
+                                              'Date',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:4,
                                             child: Text(
                                               l_schedule[index]['date'].toString().substring(0,10),
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
+                                                fontSize: 13.0,
                                                 color: Colors.black54,
-                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                          SizedBox(width: 5,),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: <Widget>[
                                           Expanded(
-                                              child:Text(
-                                                '${l_schedule[index]['time']} (24 Hours)',
-                                                style: TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 12.0,
-                                                  color: Colors.black54,
-                                                ),
-                                              )
-                                          )
+                                            flex:1,
+                                            child: Text(
+                                              'Time',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              //preActivities[index]['date'],
+                                              '${l_schedule[index]['time']}  (24 Hours)',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -271,6 +318,7 @@ class _LActivityState extends State<LActivity> {
                                     },
                                     color: Colors.black,
                                   ),),
+                                SizedBox(width: 5.0),
                                 Expanded(
                                   flex:1,
                                   child: IconButton(
@@ -312,7 +360,7 @@ class _LActivityState extends State<LActivity> {
                     border:Border.all(color: Colors.white,width: 1),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  height: 250,
+                  height: 220,
                   width: 400,
                   child: (alert_pre!='')? Center(child: Text(alert_pre,style: TextStyle(color: Colors.black),)) : ListView.builder(
                     scrollDirection: Axis.vertical,
@@ -326,12 +374,12 @@ class _LActivityState extends State<LActivity> {
                         shadowColor: Colors.blueAccent,
                         margin: EdgeInsets.fromLTRB(10.0, 0,10.0,10.0),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: ListTile(
-
+                            visualDensity: VisualDensity(vertical: 4),
                             leading: Container(
-                              height:50,
-                              width: 50,
+                              height:100,
+                              width: 80,
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     width: 1, color: Colors.grey.shade200),
@@ -344,10 +392,9 @@ class _LActivityState extends State<LActivity> {
                               ),
                             ),
                             title:Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  flex:4,
+                                  flex:6,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
