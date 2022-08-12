@@ -239,6 +239,7 @@ class MySampleState extends State<MySample> {
                                     builder: (context) => Payment(
                                           amount: '${product['price']}',
                                           cardNumber: cardNumber,
+                                          // expiryDate: expiryDate,
                                         )),
                               );
                             } else {
