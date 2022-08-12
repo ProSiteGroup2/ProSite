@@ -112,57 +112,71 @@ class _LActivityState extends State<LActivity> {
                   ),
                 ),
               ),
-              Card(
-                color: Colors.cyanAccent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 14.0,
-                shadowColor: Color(0x802196F3),
-                margin: EdgeInsets.fromLTRB(30.0, 10.0, 30.0,10.0),
-                child:Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex:2,
-                          child: Column(
-                            children: [
-                              Text(
-                                'Rashan Fernando',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 17.0,
-                                  color: Colors.black87,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Rating: $avg_rating / 5 ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex:1,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0,8.0,16.0,10.0),
-                            child: Container(
-                                height: 75,
-                                width: 75,
-                                child: Image.asset('assets/imgs/pro1.jpg')),
-                          ),),
-                      ],
-                    ),
-              ),
+              SizedBox(height: 20,),
+              // Card(
+              //   color: Colors.cyanAccent,
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(20),
+              //   ),
+              //   elevation: 14.0,
+              //   shadowColor: Color(0x802196F3),
+              //   margin: EdgeInsets.fromLTRB(30.0, 10.0, 30.0,10.0),
+              //   child:Column(
+              //     children: [
+              //       Row(
+              //             children: <Widget>[
+              //               Expanded(
+              //                 flex:2,
+              //                 child: Column(
+              //                   children: [
+              //                     Text(
+              //                       'Rashan Fernando',
+              //                       style: TextStyle(
+              //                         fontFamily: 'Poppins',
+              //                         fontSize: 17.0,
+              //                         color: Colors.black87,
+              //                         fontWeight: FontWeight.bold,
+              //                       ),
+              //                     ),
+              //                     Row(
+              //                       mainAxisAlignment: MainAxisAlignment.center,
+              //                       children: [
+              //                         Text('Rating: $avg_rating / 5 ',
+              //                         style: TextStyle(
+              //                           fontWeight: FontWeight.bold,
+              //                         ),),
+              //                         Icon(
+              //                           Icons.star,
+              //                           color: Colors.amber,
+              //                         )
+              //                       ],
+              //                     ),
+              //                   ],
+              //                 ),
+              //               ),
+              //               Padding(
+              //                 padding: const EdgeInsets.fromLTRB(0, 8.0, 16.0, 0),
+              //                 child: Container(
+              //                   width: 120,
+              //                   height: 80,
+              //                   decoration: BoxDecoration(
+              //                     border: Border.all(
+              //                         width: 1, color: Colors.grey.shade200),
+              //                     borderRadius: BorderRadius.circular(20),
+              //                     color: Colors.white,
+              //                     image: DecorationImage(
+              //                       image: NetworkImage("${sp['imageUrl']}"),
+              //                       fit: BoxFit.cover,
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //       SizedBox(height: 6.0,)
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0,5.0,0,5.0),
                 child: Text(
@@ -277,7 +291,7 @@ class _LActivityState extends State<LActivity> {
                                       Row(
                                         children: <Widget>[
                                           Expanded(
-                                            flex:1,
+                                            flex:2,
                                             child: Text(
                                               'Time',
                                               style: TextStyle(
@@ -288,7 +302,7 @@ class _LActivityState extends State<LActivity> {
                                             ),
                                           ),
                                           Expanded(
-                                            flex:3,
+                                            flex:4,
                                             child: Text(
                                               //preActivities[index]['date'],
                                               '${l_schedule[index]['time']}  (24 Hours)',
@@ -396,40 +410,88 @@ class _LActivityState extends State<LActivity> {
                                 Expanded(
                                   flex:6,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        l_preActivity[index]['consumer']['username'],
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 13.0,
-                                            fontWeight: FontWeight.bold
-                                        ),
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:2,
+                                            child: Text(
+                                              'HiredBy',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:4,
+                                            child: Text(
+                                              // preActivities[index].hired
+                                              l_preActivity[index]['consumer']['username'],
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
+                                        children: <Widget>[
                                           Expanded(
+                                            flex:2,
+                                            child: Text(
+                                              'Date',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:4,
                                             child: Text(
                                               l_preActivity[index]['date'].toString().substring(0,10),
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
+                                                fontSize: 13.0,
                                                 color: Colors.black54,
-                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                          SizedBox(width: 5,),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: <Widget>[
                                           Expanded(
-                                              child:Text(
-                                                '${l_preActivity[index]['time']} (24 Hours)',
-                                                style: TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 12.0,
-                                                  color: Colors.black54,
-                                                ),
-                                              )
-                                          )
+                                            flex:2,
+                                            child: Text(
+                                              'Time',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:4,
+                                            child: Text(
+                                              //preActivities[index]['date'],
+                                              '${l_preActivity[index]['time']}  (24 Hours)',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -448,7 +510,7 @@ class _LActivityState extends State<LActivity> {
                                     },
                                     color: Colors.black,
                                   ),),
-
+                                SizedBox(width: 5.0,),
                                 Expanded(
                                   flex:1,
                                   child: IconButton(
