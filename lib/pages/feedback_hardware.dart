@@ -15,6 +15,7 @@ class FeedbackHd extends StatefulWidget {
 
 class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
   String feedback = '';
+
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 2, vsync: this);
@@ -204,9 +205,10 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                               onPressed: () {
                                 var result = SPMethods().addFeedback(
                                     consumer['_id'], sp['email'], feedback);
-                                if (result.data['success']) {
-                                  print(result.data['feedback']);
-                                }
+
+                                print(feedback);
+                                 _feedbackController.clear();
+
                               },
                               child: Text(
                                 'Submit',
