@@ -9,14 +9,12 @@ import '../Classes/authenticate_service.dart';
 
 class ResetPwd_1 extends StatefulWidget {
   const ResetPwd_1({Key? key}) : super(key: key);
-
   @override
   State<ResetPwd_1> createState() => _ResetPwd_1State();
 }
 
 class _ResetPwd_1State extends State<ResetPwd_1> {
   final _formKey = GlobalKey<FormState>();
-
   String _userEmail = '';
   String _password = '';
   String _userConNum = '';
@@ -29,7 +27,7 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
       debugPrint(_password);
 
       try {
-        AuthService().otpForgotPass( _userConNum).then((val) {
+        AuthService().otpForgotPass(_userConNum).then((val) {
           if (val.data['success']) {
             showDialog(
               context: context,
@@ -189,7 +187,7 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ResetPwd_2()),
+                                  builder: (context) => ResetPwd_2(contactNo: _userConNum)),
                             );
                           }
                         },
