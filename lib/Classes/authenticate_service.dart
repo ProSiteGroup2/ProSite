@@ -62,6 +62,26 @@ class AuthService{
     }
   }
 
+  otpForgotPass(contactNo) async {
+    try{
+      return await dio.post('https://prositegroup2.herokuapp.com/otpForgotPass',
+      data:{
+       
+        "contactNo":contactNo,
+        
+      },
+      options: Options(contentType:Headers.jsonContentType));
+    } on DioError catch(e){
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   addContractor(contractorname,email,contactNo,address,hometown,district,regno,no_of_workers,password) async {
     try{
       return await dio.post('https://prositegroup2.herokuapp.com/addContractor',
