@@ -55,9 +55,9 @@ class SPMethods{
     
   }
 
-  getSPFeedback(sp_email) async {
+  getFeedback(sp_email) async {
     try {
-      return await dio.get('https://prositegroup2.herokuapp.com/getSPFeedback/$sp_email');
+      return await dio.get('https://prositegroup2.herokuapp.com/getFeedback/$sp_email');
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: e.response?.data['msg'],

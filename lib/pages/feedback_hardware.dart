@@ -1,8 +1,11 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable
+// ignore_for_file: prefer_const_constructors, unused_local_variable, body_might_complete_normally_nullable
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/Feedback_list.dart';
 import 'package:group2/Classes/service_provider_methods.dart';
+import 'package:group2/components/image_causerol_con_feed.dart';
+import 'package:group2/components/image_causerol_cont.dart';
 
 import '../globals.dart';
 
@@ -15,6 +18,25 @@ class FeedbackHd extends StatefulWidget {
 
 class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
   String feedback = '';
+
+  Future<List<dynamic>?> gettingFeedbacks() async {
+    var results = await SPMethods().getFeedback(sp['email']);
+    if (results.data['success']) {
+      // return results.data[sp['email']];
+      setState(() {
+        var preActivities = results.data['feedback'];
+      });
+    }
+    else{
+       Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +58,9 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
           style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
-              onPressed: () => Navigator.of(context).pop(),
-            ), 
+          icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -106,49 +128,64 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                           scrollDirection: Axis.vertical,
                           itemCount: feedbacks.length,
                           itemBuilder: (context, index) {
-                            return Card(
-                              // color: Colors.cyanAccent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              elevation: 10.0,
-                              shadowColor: Colors.blueAccent,
-                              margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ListTile(
-                                  leading: Container(
-                                    height: 50,
-                                    width: 50,
-                                    child: Image.asset(
-                                        'assets/imgs/${feedbacks[index].profile}'),
-                                  ),
-                                  title: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      Text(
-                                        feedbacks[index].feedback,
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                      SizedBox(height: 4.0),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            feedbacks[index].cName,
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 11.0,
-                                            ),
+                            return Container(
+                                // child: FutureBuilder<List<dynamic>?>(
+                                //         future: gettingFeedbacks(),
+                                //         builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                //           if(snapshot.hasData){
+                                //             return ImageCauserol_cont_feed(
+                                //               tags: snapshot.data!,
+                                //             );
+                                //           }else{
+                                //             return CircularProgressIndicator();
+                                //           }
+                                //         },
+                                //       )
+                              child: Card(
+                                // color: Colors.cyanAccent,
+                                
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                elevation: 10.0,
+                                shadowColor: Colors.blueAccent,
+                                margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ListTile(
+                                    leading: Container(
+                                      height: 50,
+                                      width: 50,
+                                      child: Image.asset(
+                                          'assets/imgs/${feedbacks[index].profile}'),
+                                    ),
+                                    title: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        Text(
+                                          feedbacks[index].feedback,
+                                          style: TextStyle(
+                                            fontFamily: 'Poppins',
                                           ),
-                                        ],
-                                      )
-                                    ],
+                                        ),
+                                        SizedBox(height: 4.0),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              feedbacks[index].cName,
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 11.0,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
