@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
+import 'package:group2/Classes/cart_methods.dart';
 import 'package:group2/pages/loginas_cons.dart';
 
 class RegUser extends StatefulWidget {
@@ -67,32 +68,38 @@ class _RegUserState extends State<RegUser> {
       debugPrint(_userDistrict);
 
        try {
-         AuthService().addConsumer(_userName, _userEmail, _userConNum, _userAddress, _userTown, _userDistrict, _password).then((val){
+         AuthService().addConsumer(_userName, _userEmail, _userConNum, _userAddress, _userTown, _userDistrict, _password).then((val) async {
           if(val.data['success']){
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('Registered Successfully'),
-                content: Icon(
-                  Icons.check_circle,
-                  color: Colors.green,
-                  size: 60,
-                ),
-                actions: [
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Loginas_cons()),
-                        );
-                      },
-                      child: Text('Done'),
+            var consumer_local=val.data['consumer'];
+            await CartMethods().addCart(consumer_local['_id']).then((val2){
+              if(val2.data['success']){
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Registered Successfully'),
+                    content: Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                      size: 60,
                     ),
-                  )
-                ],
-              ),
-            );
+                    actions: [
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Loginas_cons()),
+                            );
+                          },
+                          child: Text('Done'),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
+            });
+
           }else{
             Fluttertoast.showToast(
                 msg: val.data['msg'],
