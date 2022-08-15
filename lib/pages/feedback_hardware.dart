@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/Feedback_list.dart';
@@ -35,6 +35,10 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
           'Feedbacks',
           style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
         ),
+        leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
+            ), 
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -207,8 +211,19 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                     consumer['_id'], sp['email'], feedback);
 
                                 print(feedback);
-                                 _feedbackController.clear();
-
+                                _feedbackController.clear();
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text(
+                                        'Your feedback added successfully!'),
+                                    content: Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                      size: 60,
+                                    ),
+                                  ),
+                                );
                               },
                               child: Text(
                                 'Submit',

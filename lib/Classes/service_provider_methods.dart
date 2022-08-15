@@ -55,6 +55,20 @@ class SPMethods{
     
   }
 
+  getSPFeedback(sp_email) async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getSPFeedback/$sp_email');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.response?.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   getConsumerPastAppointment(consumerID) async {
     try {
       return await dio.get('https://prositegroup2.herokuapp.com/getConsumerPastAppointments/$consumerID');
