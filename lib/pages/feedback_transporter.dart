@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/Feedback_list.dart';
+import 'package:group2/Classes/service_provider_methods.dart';
 
 import '../globals.dart';
 class FeedbackTran extends StatefulWidget {
@@ -10,6 +11,8 @@ class FeedbackTran extends StatefulWidget {
 }
 
 class _FeedbackTranState extends State<FeedbackTran> with TickerProviderStateMixin {
+  String feedback = '';
+  
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 2, vsync: this);
@@ -29,6 +32,10 @@ class _FeedbackTranState extends State<FeedbackTran> with TickerProviderStateMix
             fontFamily: 'Poppins',
             fontWeight: FontWeight.bold
         ),),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -173,6 +180,7 @@ class _FeedbackTranState extends State<FeedbackTran> with TickerProviderStateMix
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: TextField(
+                                onChanged: (value) => feedback = value,
                                 controller: _feedbackController,
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -191,12 +199,28 @@ class _FeedbackTranState extends State<FeedbackTran> with TickerProviderStateMix
                             child: ElevatedButton(
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
+                                          RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20.0),
-                                      ))),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ))),
                               onPressed: () {
-                                print(_feedbackController.text);
+                                var result = SPMethods().addFeedback(
+                                    consumer['_id'], sp['email'], feedback);
+
+                                print(feedback);
+                                _feedbackController.clear();
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text(
+                                        'Your feedback added successfully!'),
+                                    content: Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                      size: 60,
+                                    ),
+                                  ),
+                                );
                               },
                               child: Text(
                                 'Submit',

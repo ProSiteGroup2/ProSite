@@ -461,7 +461,7 @@ class _CslabourviewState extends State<Cslabourview> {
                                   );
                                 },
                                 child: const Text(
-                                  'Apointment',
+                                  'Appointment',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
