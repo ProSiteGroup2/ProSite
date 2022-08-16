@@ -42,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
       try {
         await AuthService().SPLogin(_spEmail, _sppassword).then((val){
           if (val.data['success']) {
+            consumer={};
             token = val.data['token'];
             if(val.data['role']=='labour'){
               AuthService().getLabourInfo(token).then((val2){

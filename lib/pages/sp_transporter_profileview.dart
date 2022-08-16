@@ -226,10 +226,10 @@ class _TransporterpviewState extends State<Transporterpview> {
                     width: 115.0,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
-                        child: Image.network(
+                        child: sp['imageUrl']!=null?Image.network(
                           '${sp['imageUrl']}',
                           fit: BoxFit.fill,
-                        )),
+                        ):Image.asset('assets/imgs/profile.jpg')),
                   ),
                 ))
               ],
