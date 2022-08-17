@@ -226,31 +226,28 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                                 ],
                               ),
 
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                            ],
-                          )),
-                    ],
-                  ),
-                ),
-                Positioned(
-                    child: Center(
-                  child: SizedBox(
-                    height: 107.0,
-                    width: 115.0,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16.0),
-                        child: Image.network(
-                          '${sp['imageUrl']}',
-                          fit: BoxFit.fill,
-                        )),
-                  ),
-                ))
-              ],
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                        ],
+                      )),
+                ],
+              ),
             ),
-            ],
-          ),
+            Positioned(
+                child: Center(
+              child: SizedBox(
+                height: 107.0,
+                width: 115.0,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: sp['imageUrl']!=null?Image.network(
+                      '${sp['imageUrl']}',
+                      fit: BoxFit.fill,
+                    ):Image.asset('assets/imgs/profile.jpg')),
+              ),
+            ))
+          ],
         ),
       ),
     );

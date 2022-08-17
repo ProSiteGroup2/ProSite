@@ -2,6 +2,8 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/cart_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/pages/addcart.dart';
 import 'package:group2/pages/customer_hdprofileview.dart';
@@ -477,88 +479,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                    
                                 ),
                         ),
-                                                      
-                        // child: Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //   children: [
-                        //     Container(
-                        //       //buy now text
-                        //       alignment: Alignment.centerRight,
-                        //       child: Text(
-                        //         "Buy Now",
-                        //         style: TextStyle(
-                        //             fontFamily: "poppins",
-                        //             fontWeight: FontWeight.bold,
-                        //             color: Colors.black),
-                        //       ),
-                        //     ),
-                        //     Container(
-                        //       //buy now icon
-                        //       child: IconButton(
-                        //         icon: Icon(Icons.account_balance_wallet_rounded,
-                        //             color: Colors.black),
-                        //         onPressed: () {
-                        //           paynow();
-                        //         },
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
                       ),
-                    //   Container(
-                    //     //add to cart
-                    //     width: kPropWidth(context, 0.37),
-                    //     height: kPropHeight(context, 0.06),
-                    //     margin: EdgeInsets.only(left: 10),
-                    //     padding: EdgeInsets.only(right: 5, left: 5),
-                    //     decoration: BoxDecoration(
-                    //       color: Colors.cyan[300],
-                    //       borderRadius: BorderRadius.circular(10),
-                    //       boxShadow: [
-                    //         BoxShadow(
-                    //           color: Colors.grey.withOpacity(0.25),
-                    //           spreadRadius: 10,
-                    //           blurRadius: 7,
-                    //           offset:
-                    //               Offset(2, 5), // changes position of shadow
-                    //         ),
-                    //         BoxShadow(
-                    //           color: Colors.white.withOpacity(0.8),
-                    //           spreadRadius: 10,
-                    //           blurRadius: 7,
-                    //           offset: Offset(
-                    //               -10, -10), // changes position of shadow
-                    //         ),
-                    //       ],
-                    //     ),
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //       children: [
-                    //         Container(
-                    //           //add cart text
-                    //           alignment: Alignment.centerRight,
-                    //           child: Text(
-                    //             "Add to Cart",
-                    //             style: TextStyle(
-                    //                 fontFamily: "poppins",
-                    //                 fontWeight: FontWeight.bold,
-                    //                 color: Colors.black),
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           //add cart icon
-                    //           child: IconButton(
-                    //             icon: Icon(Icons.shopping_bag_rounded,
-                    //                 color: Colors.black),
-                    //             onPressed: () {
-                    //               print("add to cart");
-                    //             },
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // 
                     Container(
                         //buy now
                         width: kPropWidth(context, 0.37),
@@ -590,13 +511,45 @@ class _ItemDetailsState extends State<ItemDetails>
                         height: kPropHeight(context, 0.06),
                           child: ElevatedButton.icon(
                                                       
-                                  onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => addcart()),
-                                      );
-                                      
-                                    },
+                                  onPressed: () async {
+                                    var buyerID;
+                                    if(consumer.isNotEmpty){
+                                      buyerID=consumer['_id'];
+                                    }else{
+                                      buyerID=sp['_id'];
+                                    }
+
+                                    var result= await CartMethods().addCartProduct(buyerID, product['_id'], 11, product['price']*11);
+                                    if(result.data['success']){
+                                      var local_cartproduct=result.data['cartproduct'];
+                                      var result2=await CartMethods().addProducttoCart(buyerID, local_cartproduct['_id']);
+                                      if(result2.data['success']){
+                                        Fluttertoast.showToast(
+                                            msg: result2.data['msg'],
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.BOTTOM,
+                                            backgroundColor: Colors.green,
+                                            textColor: Colors.white,
+                                            fontSize: 16.0);
+                                      }else{
+                                        Fluttertoast.showToast(
+                                            msg: 'Adding product to cart failed',
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.BOTTOM,
+                                            backgroundColor: Colors.red,
+                                            textColor: Colors.white,
+                                            fontSize: 16.0);
+                                      }
+                                    }else{
+                                      Fluttertoast.showToast(
+                                          msg: 'Adding cartProduct failed',
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
+                                    }
+                                  },
                                     style: ElevatedButton.styleFrom(
                                       primary: Colors.cyan[300],
                                       

@@ -105,7 +105,7 @@ class _ImageCauserol_transState extends State<ImageCauserol_trans> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                           image: DecorationImage(
-                            image: NetworkImage("${tags[i]['imageUrl']}"),
+                            image:  tags[i]['imageUrl']!=null? NetworkImage("${tags[i]['imageUrl']}"):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                             fit: BoxFit.cover,
                           ),
                         ),

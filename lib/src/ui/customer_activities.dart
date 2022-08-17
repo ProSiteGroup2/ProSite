@@ -203,7 +203,7 @@ class _CActivityState extends State<CActivity> {
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
                                 image: DecorationImage(
-                                  image: NetworkImage("${consumer['imageUrl']}"),
+                                  image: consumer['imageUrl']!=null?NetworkImage("${consumer['imageUrl']}"):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -386,7 +386,7 @@ class _CActivityState extends State<CActivity> {
                 ),
               ),
 
-              SizedBox(height: 15.0),
+              SizedBox(height: 25.0),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
                 child: Text(

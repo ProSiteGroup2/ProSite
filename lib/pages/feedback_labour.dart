@@ -49,7 +49,7 @@ class _FeedbackLabState extends State<FeedbackLab> with TickerProviderStateMixin
               SizedBox(height: 10.0),
               Center(
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage('${sp['imageUrl']}'),
+                  backgroundImage: sp['imageUrl']!=null? NetworkImage('${sp['imageUrl']}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                   radius: 40.0,
                 ),
               ),
