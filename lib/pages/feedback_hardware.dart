@@ -82,9 +82,9 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                         child: Text(
                                           '${sp['hardwarename']}',
                                           style: TextStyle(
-                                            
+                                            color: Colors.white,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 20.0,
+                                            fontSize: 24.0,
                                           ),
                                         ),
                                       ),
