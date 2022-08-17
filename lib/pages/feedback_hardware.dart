@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, body_might_complete_normally_nullable
+// ignore_for_file: prefer_const_constructors, unused_local_variable, body_might_complete_normally_nullable, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -23,10 +23,10 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
   Future<List<dynamic>?> gettingFeedbacks() async {
     var results = await SPMethods().getFeedback(sp['email']);
     if (results.data['success']) {
-      // return results.data[sp['email']];
-      setState(() {
-        var preActivities = results.data['feedback'];
-      });
+      return results.data['feedbacks'];
+      // setState(() {
+      //   var preActivities = results.data['feedback'];
+      // });
     }
     else{
        Fluttertoast.showToast(
@@ -55,62 +55,62 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Color(0xFF60A3D9),
-            title: Text(
-              'Feedbacks',
-              style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
-            ),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            centerTitle: true,
-            bottom: PreferredSize( preferredSize: Size.fromHeight(kPropHeight(context, 0.2)),
-            
-            child: Column(
-              children:[
-                   SizedBox(height: 10.0),
-                  Center(
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage('${sp['imageUrl']}'),
-                      radius: 40.0,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      '${sp['hardwarename']}',
-                      style: TextStyle(
-                        
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0,
+                    appBar: AppBar(
+                          backgroundColor: Color(0xFF60A3D9),
+                          title: Text(
+                            'Feedbacks',
+                            style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+                          ),
+                          leading: IconButton(
+                            icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                          centerTitle: true,
+                          bottom: PreferredSize( preferredSize: Size.fromHeight(kPropHeight(context, 0.2)),
+                          
+                                child: Column(
+                                  children:[
+                                      // SizedBox(height: 10.0),
+                                      Center(
+                                        child: CircleAvatar(
+                                          backgroundImage: NetworkImage('${sp['imageUrl']}'),
+                                          radius: 40.0,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 10.0),
+                                        child: Text(
+                                          '${sp['hardwarename']}',
+                                          style: TextStyle(
+                                            
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20.0,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 5.0),
+                                      Container(
+                                        child: const TabBar(
+                                                      labelPadding: EdgeInsets.only(left: 30, right: 30),
+                                                      
+                                                      labelColor: Colors.black87,
+                                                      labelStyle: TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight: FontWeight.bold,
+                                                          fontFamily: "Poppins"),
+                                                      unselectedLabelColor: Colors.black26,
+                                                      isScrollable: true,
+                                                      indicatorSize: TabBarIndicatorSize.label,
+                                                      tabs: [Tab(text: "View feedbacks"), Tab(text: "Give feedbacks")],
+                                                    ),
+                                      ),
+                                  ]
+                                ),
+                                
                       ),
                     ),
-                  ),
-                  SizedBox(height: 5.0),
-                  Container(
-                    child: const TabBar(
-                                  labelPadding: EdgeInsets.only(left: 30, right: 30),
-                                  
-                                  labelColor: Colors.black87,
-                                  labelStyle: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "Poppins"),
-                                  unselectedLabelColor: Colors.black26,
-                                  isScrollable: true,
-                                  indicatorSize: TabBarIndicatorSize.label,
-                                  tabs: [Tab(text: "View feedbacks"), Tab(text: "Give feedbacks")],
-                                ),
-                  ),
-              ]
-            ),
-            
-            ),
-          ),
-          
-          backgroundColor: Colors.white,
+                    
+                    backgroundColor: Colors.white,
           body: TabBarView(
             //tabbarview
             children: [
@@ -118,70 +118,85 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                       Container(
                         //view feedback tab
                         width: kPropWidth(context, 1),
-                          height: kPropHeight(context, 1),
-                          padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 0.0),
+                        height: kPropHeight(context, 1),
+                        padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 0.0),
                         child: SingleChildScrollView(
                           child: Column(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+
                               Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white, width: 1),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount: feedbacks.length,
-                            itemBuilder: (context, index) => Card(
-                                // color: Colors.cyanAccent,
+                                child: FutureBuilder<List<dynamic>?>(
+                                        future: gettingFeedbacks(),
+                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                          if(snapshot.hasData){
+                                            return ImageCauserol_cont_feed(
+                                              tags: snapshot.data!,
+                                            );
+                                          }else{
+                                            return CircularProgressIndicator();
+                                          }
+                                        },
+                                      )
+                              )
+                        //       Container(
+                        //         decoration: BoxDecoration(
+                        //           border: Border.all(color: Colors.white, width: 1),
+                        //           borderRadius: BorderRadius.circular(15.0),
+                        //         ),
+                        //         child: ListView.builder(
+                        //           scrollDirection: Axis.vertical,
+                        //           itemCount: feedbacks.length,
+                        //           itemBuilder: (context, index) => Card(
+                        //         // color: Colors.cyanAccent,
                                 
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                elevation: 10.0,
-                                shadowColor: Colors.blueAccent,
-                                margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ListTile(
-                                    leading: Container(
-                                      height: 50,
-                                      width: 50,
-                                      child: Image.asset(
-                                          'assets/imgs/${feedbacks[index].profile}'),
-                                    ),
-                                    title: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        Text(
-                                          feedbacks[index].feedback,
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                          ),
-                                        ),
-                                        SizedBox(height: 4.0),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              feedbacks[index].cName,
-                                              style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 11.0,
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          ),
-                        ),
+                        //         shape: RoundedRectangleBorder(
+                        //           borderRadius: BorderRadius.circular(10.0),
+                        //         ),
+                        //         elevation: 10.0,
+                        //         shadowColor: Colors.blueAccent,
+                        //         margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
+                        //         child: Padding(
+                        //           padding: const EdgeInsets.all(8.0),
+                        //           child: ListTile(
+                        //             leading: Container(
+                        //               height: 50,
+                        //               width: 50,
+                        //               child: Image.asset(
+                        //                   'assets/imgs/${feedbacks[index].profile}'),
+                        //             ),
+                        //             title: Column(
+                        //               crossAxisAlignment:
+                        //                   CrossAxisAlignment.stretch,
+                        //               children: [
+                        //                 Text(
+                        //                   feedbacks[index].feedback,
+                        //                   style: TextStyle(
+                        //                     fontFamily: 'Poppins',
+                        //                   ),
+                        //                 ),
+                        //                 SizedBox(height: 4.0),
+                        //                 Row(
+                        //                   mainAxisAlignment:
+                        //                       MainAxisAlignment.end,
+                        //                   children: [
+                        //                     Text(
+                        //                       feedbacks[index].cName,
+                        //                       style: TextStyle(
+                        //                         fontFamily: 'Poppins',
+                        //                         fontWeight: FontWeight.bold,
+                        //                         fontSize: 11.0,
+                        //                       ),
+                        //                     ),
+                        //                   ],
+                        //                 )
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //   ),
+                        // ),
                                  
                                 
                           ],
@@ -190,9 +205,11 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                       ),
                       Container(
                         //add feedback
-                                
+                                height: kPropHeight(context, 1),
                                 child: Column(
+                                  
                                   children: [
+                                    SizedBox(height:10.0),
                                     Text(
                                             'Add Your feedback here',
                                             style: TextStyle(
@@ -211,7 +228,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                           borderRadius: BorderRadius.circular(15.0),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
+                                          padding: const EdgeInsets.fromLTRB(10,10,10,6),
                                           child: TextField(
                                             onChanged: (value) => feedback = value,
                                             controller: _feedbackController,
@@ -224,7 +241,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                               border: InputBorder.none,
                                             ),
                                             keyboardType: TextInputType.text,
-                                            maxLines: 9,
+                                            maxLines: 5,
                                           ),
                                         ),
                                       ),

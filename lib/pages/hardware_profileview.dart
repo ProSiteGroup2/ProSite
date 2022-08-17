@@ -234,7 +234,7 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                 ],
               ),
             ),
-            Positioned(
+                Positioned(
                 child: Center(
               child: SizedBox(
                 height: 107.0,
@@ -247,10 +247,14 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                     ):Image.asset('assets/imgs/profile.jpg')),
               ),
             ))
-          ],
-        ),
-      ),
+              ],
+              ),
+            ]
+           ),
+        )
+      )
     );
+
   }
 
   void onSelete(BuildContext context, int item) {

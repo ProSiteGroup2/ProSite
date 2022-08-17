@@ -118,7 +118,7 @@ class _ImageCauserol_cont_feedState extends State<ImageCauserol_cont_feed> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            child: Text(tags[i]['feedbacks']['feedback'],
+                            child: Text(tags[i]['feedback'],
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: "poppins",
