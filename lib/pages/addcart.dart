@@ -30,9 +30,7 @@ class _addcartState extends State<addcart> {
   }
 
   String alert_text='';
-  late int total_price;
-  List<int> cartProduct_price=[];
-  List<int> cartProduct_quantity=[];
+ int total_price=0;
 
   gettingCartItems() async {
     try {
@@ -50,6 +48,11 @@ class _addcartState extends State<addcart> {
         });
         if(tags.isEmpty){
           alert_text='There are no cart items';
+        }
+        if(tags.isNotEmpty){
+          for(var i=0;i<tags.length;i++){
+            total_price=total_price +(tags[i]['quantity']*tags[i]['product']['price']) as int;
+          }
         }
         print(tags);
       }else{
@@ -278,7 +281,40 @@ class _addcartState extends State<addcart> {
 
                     }),
               ),
+              SizedBox(height:15.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Total Price:  Rs. ',
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold
 
+                  ),),
+                  Text('$total_price',
+                    style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent
+                    ),),
+                ],
+              ),
+              SizedBox(height: 20,),
+              ElevatedButton(
+                  onPressed: (){},
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF9C9EFE),
+                ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text('Checkout',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold
+                    ),),
+                  ),
+              )
             ],
         ),
       ),
