@@ -23,12 +23,7 @@ class CActivity extends StatefulWidget {
 class _CActivityState extends State<CActivity> {
 
   @override
-  List preActivities = [
-    PreAct('worker1.jpg', 'hell', '2022-11-3'),
-    PreAct('worker2.jpg', 'Hi', '2022-09-3'),
-    PreAct('worker3.jpg', 'Wanda', '2022-06-3'),
-    PreAct('worker2.jpg', 'Hi', '2022-09-3'),
-  ];
+  List preActivities = [];
 
   List upActivities=[];
 

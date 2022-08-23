@@ -417,7 +417,7 @@ class _LabourpviewState extends State<Labourpview> {
                         borderRadius: BorderRadius.circular(16.0),
                         child: sp['imageUrl']!=null?Image.network(
                           '${sp['imageUrl']}',
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ):Image.asset('assets/imgs/profile.jpg')),
                   ),
                 ))
