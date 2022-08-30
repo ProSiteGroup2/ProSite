@@ -1,31 +1,16 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:group2/Classes/update_methods.dart';
-import 'package:group2/pages/changepw.dart';
-import 'package:image_picker/image_picker.dart';
-import 'customer_profileview.dart';
-import 'package:group2/globals.dart';
-import 'package:http/http.dart' as http;
-// import 'package:group2/Classes/update_methods.dart';
+
 
 class Editcsprofile extends StatefulWidget {
-  const Editcsprofile({Key? key}) : super(key: key);
+  Map<String, dynamic> data;
+  Editcsprofile(this.data);
 
   @override
   State<Editcsprofile> createState() => _EditcsprofileState();
 }
 
 class _EditcsprofileState extends State<Editcsprofile> {
-  List<String> items = [
-    'assets/imgs/aaa.jpg',
-    'assets/imgs/bbb.jpg',
-    'assets/imgs/ccc.jpeg',
-    'assets/imgs/ddd.jpg',
-    'assets/imgs/eee.jpg',
-    'assets/imgs/kkk.jpg',
-    'assets/imgs/ppp.jfif',
-  ];
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -39,12 +24,12 @@ class _EditcsprofileState extends State<Editcsprofile> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _usernameController.text = consumer['username'];
-    _emailController.text = consumer['email'];
-    _contactnumController.text = consumer['contactNo'];
-    _addressController.text = consumer['address'];
-    _hometwonController.text = consumer['hometown'];
-    _districtController.text = consumer['district'];
+    _usernameController.text = widget.data['username'];
+    _emailController.text = widget.data['email'];
+    _contactnumController.text = widget.data['contactNo'];
+    _addressController.text = widget.data['address'];
+    _hometwonController.text = widget.data['hometown'];
+    _districtController.text = widget.data['district'];
   }
 
   //String url = 'https://prositegroup2.herokuapp.com';
@@ -60,27 +45,18 @@ class _EditcsprofileState extends State<Editcsprofile> {
     };
     try{
           await UpdateServices().upadateData('$url/updateconsumerinfo',data);
+          Navigator.pop(context);
     }catch(err){
         print(err.toString());
+        var snackbar =const SnackBar(
+          content: Text('Error: Update is failed'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackbar);
     }
   }
 
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-
-  File? image;
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print('Failed to pick image:$e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +77,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
         child: Stack(
           children: [
             Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
@@ -113,7 +89,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 70.0,
+                      height: 50.0,
                     ),
                     const Padding(
                       padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
@@ -191,6 +167,9 @@ class _EditcsprofileState extends State<Editcsprofile> {
                           padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                           child: TextFormField(
                             controller: _emailController,
+                            /*decoration: InputDecoration(
+                              border: OutlineInputBorder()
+                            ),*/
                             validator: (value){
                               if(value != null && value.length == 0){
                                 return '*Required Field';
@@ -386,31 +365,6 @@ class _EditcsprofileState extends State<Editcsprofile> {
                       height: 20.0,
                     ),
                     Center(
-                      child: ElevatedButton.icon(
-                        //label: Icon(Icons.lock),
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[700],
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Change_pw()),
-                          );
-                        },
-                        icon: const Text(
-                          'Changed Password',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        label: const Icon(Icons.lock),
-                      ),
-                    ),
-                    const Divider(
-                      height: 20.0,
-                      color: Colors.black,
-                    ),
-                    Center(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: Color(hexColor('#1982BD')),
@@ -443,96 +397,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
                 ),
               ),
             ),
-            Positioned(
-                child: Center(
-              child: Stack(children: [
-                SizedBox(
-                  height: 107.0,
-                  width: 115.0,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: image != null
-                          ? Image.file(
-                              image!,
-                              width: 115.0,
-                              height: 107.0,
-                              fit: BoxFit.fill,
-                            )
-                          : Image.asset(
-                              'assets/imgs/user1.webp',
-                              fit: BoxFit.fill,
-                            )),
-                ),
-                Positioned(
-                    bottom: -5.0,
-                    right: -5.0,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.add_a_photo_outlined,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              height: 100.0,
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 20.0),
-                              child: Column(
-                                children: [
-                                  Text('Choose profile photo'),
-                                  const SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.gallery);
-                                        },
-                                        child: const Text(
-                                          'Add from galery',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.camera);
-                                        },
-                                        child: const Text(
-                                          'Add from Camera',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ))
-              ]),
-            ))
+
           ],
         ),
       ),
