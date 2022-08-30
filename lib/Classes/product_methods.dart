@@ -114,4 +114,22 @@ class ProductMethods{
           fontSize: 16.0);
     }
   }
+  
+  productStockUpdate(productID,stock) async {
+    try {
+      return await dio.put('https://prositegroup2.herokuapp.com/updateStock/$productID',
+      data: {
+        "stock":stock
+      },
+      options: Options(contentType: Headers.jsonContentType));
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'Product Stock Update Failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 }

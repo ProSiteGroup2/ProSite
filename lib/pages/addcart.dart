@@ -103,7 +103,7 @@ class _addcartState extends State<addcart> {
                 alignment: Alignment.bottomCenter,
                 width: kPropWidth(context, 1) ,
                 height:550,
-                child: alert_text!=''?Center(child: Text(alert_text)): ListView.builder(
+                child: alert_text!=''?Center(child:Text('Cart is Empty',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)): tags.isEmpty?Center(child: CircularProgressIndicator()): ListView.builder(
 
                     controller: _scrollController,
                     scrollDirection: Axis.vertical,
@@ -149,7 +149,6 @@ class _addcartState extends State<addcart> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
-
 
 
                           child: Row(
@@ -219,8 +218,14 @@ class _addcartState extends State<addcart> {
                                               if (tags[i]['product']['stock']>tags[i]['quantity']) {
                                                 tags[i]['quantity']++;
                                               }
+                                              total_price=0;
+                                              for(var i=0;i<tags.length;i++){
+                                                total_price=total_price +(tags[i]['quantity']*tags[i]['product']['price']) as int;
+                                              }
                                             });
+
                                             await CartMethods().updateCartProduct(tags[i]['_id'], tags[i]['quantity'], tags[i]['quantity']*tags[i]['product']['price']);
+                                            await CartMethods().updateCartPrice(local_cartID, total_price);
                                           },
                                           splashColor: Colors.lightBlueAccent,
                                           splashRadius: 20.0,
@@ -240,8 +245,13 @@ class _addcartState extends State<addcart> {
                                               if (tags[i]['quantity']>1) {
                                                 tags[i]['quantity']--;
                                               }
+                                              total_price=0;
+                                              for(var i=0;i<tags.length;i++){
+                                                total_price=total_price +(tags[i]['quantity']*tags[i]['product']['price']) as int;
+                                              }
                                             });
                                             await CartMethods().updateCartProduct(tags[i]['_id'], tags[i]['quantity'], tags[i]['quantity']*tags[i]['product']['price']);
+                                            await CartMethods().updateCartPrice(local_cartID, total_price);
                                           },
                                           splashColor: Colors.lightBlueAccent,
                                           splashRadius: 20.0,
@@ -269,7 +279,13 @@ class _addcartState extends State<addcart> {
                                       }
                                       setState(() {
                                         tags.removeAt(i);
+                                        total_price=0;
+                                        for(var i=0;i<tags.length;i++){
+                                          total_price=total_price +(tags[i]['quantity']*tags[i]['product']['price']) as int;
+                                        }
                                       });
+
+                                      await CartMethods().updateCartPrice(local_cartID, total_price);
                                     },
                                     icon: Icon(Icons.delete),
                                 color: Colors.red,),
@@ -301,7 +317,9 @@ class _addcartState extends State<addcart> {
               ),
               SizedBox(height: 20,),
               ElevatedButton(
-                  onPressed: (){},
+                  onPressed: () async {
+                    await CartMethods().updateCartPrice(local_cartID, total_price);
+                  },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFF9C9EFE),
                 ),
