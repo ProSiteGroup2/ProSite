@@ -350,7 +350,7 @@ class _CstransporterviewState extends State<Cstransporterview> {
                     borderRadius: BorderRadius.circular(16.0),
                     child: sp['imageUrl']!=null?Image.network(
                       '${sp['imageUrl']}',
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ):Image.asset('assets/imgs/profile.jpg')),
               ),
             ))

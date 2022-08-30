@@ -59,7 +59,7 @@ class CartMethods{
 
   getCartItem(buyerID) async {
     try {
-      return await dio.put('https://prositegroup2.herokuapp.com/getCartItem/$buyerID');
+      return await dio.get('https://prositegroup2.herokuapp.com/getCartItem/$buyerID');
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: "Getting Cart Item Failed",
@@ -91,6 +91,43 @@ class CartMethods{
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: "Deleting Products in Cart Failed",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  updateCartProduct(cartProductID,quantity,price) async {
+    try {
+      return await dio.put('https://prositegroup2.herokuapp.com/updateCartProduct/$cartProductID',
+      data: {
+        "quantity":quantity,
+        "price":price
+      },
+      options: Options(contentType: Headers.jsonContentType));
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: "CartProduct Update is Failed",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  removeCPfromCart(CartID, cartProductID) async {
+    try {
+      return await dio.put('https://prositegroup2.herokuapp.com/removeCPfromCart/$CartID',
+      data: {
+        "cartProduct":cartProductID
+      },
+      options: Options(contentType: Headers.jsonContentType));
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: "Remove the cartProduct from Cart is Failed",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,
