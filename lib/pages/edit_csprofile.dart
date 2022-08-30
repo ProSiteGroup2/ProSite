@@ -74,9 +74,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Container(
+        child:Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -398,8 +396,7 @@ class _EditcsprofileState extends State<Editcsprofile> {
               ),
             ),
 
-          ],
-        ),
+
       ),
     );
   }
