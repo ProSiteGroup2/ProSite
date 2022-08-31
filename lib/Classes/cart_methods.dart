@@ -135,4 +135,22 @@ class CartMethods{
           fontSize: 16.0);
     }
   }
+  
+  updateCartPrice(CartID,totalPrice) async {
+    try {
+      return await dio.put('https://prositegroup2.herokuapp.com/updateCartPrice/$CartID',
+      data: {
+        "totalPrice":totalPrice
+      },
+      options: Options(contentType: Headers.jsonContentType));
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: "Cart Price Update Failed",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 }
