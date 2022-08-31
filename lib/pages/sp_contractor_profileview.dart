@@ -415,10 +415,10 @@ class _ContractorpviewState extends State<Contractorpview> {
                     width: 115.0,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
-                        child: Image.network(
+                        child: sp['imageUrl']!=null?Image.network(
                           '${sp['imageUrl']}',
-                          fit: BoxFit.fill,
-                        )),
+                          fit: BoxFit.cover,
+                        ):Image.asset('assets/imgs/profile.jpg')),
                   ),
                 ))
               ],

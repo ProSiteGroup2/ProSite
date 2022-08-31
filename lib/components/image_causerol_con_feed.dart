@@ -9,26 +9,26 @@ import '../globals.dart';
 //import '../common/color.dart';
 
 // ignore: must_be_immutable
-class ImageCauserol_cont extends StatefulWidget {
+class ImageCauserol_cont_feed extends StatefulWidget {
 
   List<dynamic> tags;
 
-  ImageCauserol_cont({Key? key, required this.tags})
+  ImageCauserol_cont_feed({Key? key, required this.tags})
       : super(key: key);
 
   @override
-  State<ImageCauserol_cont> createState() =>
+  State<ImageCauserol_cont_feed> createState() =>
       // ignore: no_logic_in_create_state
-  _ImageCauserol_contState(tags: tags);
+  _ImageCauserol_cont_feedState(tags: tags);
 }
 
-class _ImageCauserol_contState extends State<ImageCauserol_cont> {
+class _ImageCauserol_cont_feedState extends State<ImageCauserol_cont_feed> {
   int photo = 1;
 
 
   List<dynamic> tags;
 
-  _ImageCauserol_contState({required this.tags});
+  _ImageCauserol_cont_feedState({required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -36,17 +36,17 @@ class _ImageCauserol_contState extends State<ImageCauserol_cont> {
   Widget build(BuildContext context) {
     return Container(
       width: kPropWidth(context, 1),
-      height: 140,
+      height: kPropHeight(context, 1),
       child: ListView.builder(
           controller: _scrollController,
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           itemCount: tags.length,
           itemBuilder: (context, i) {
             return Container(
 
               margin: const EdgeInsets.all(20),
-              width: 260,
-              height: 100,
+              // width: krp,
+              // height: 100,
 
               // margin: EdgeInsets.only( right:20,top: 15),
               decoration: BoxDecoration(
@@ -73,10 +73,10 @@ class _ImageCauserol_contState extends State<ImageCauserol_cont> {
 
                 onPressed: () {
                   sp=tags[i];
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>const Cscontractorview()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) =>const Cscontractorview()),
+                  // );
                 },
                 style: ElevatedButton.styleFrom(
 
@@ -93,24 +93,24 @@ class _ImageCauserol_contState extends State<ImageCauserol_cont> {
 
                 child: Row(
                   children: [
-                    Expanded(
-                      flex:1,
-                      child: Container(
-                        //image
-                        alignment: Alignment.centerLeft,
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: Colors.grey.shade200),
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
-                          image: DecorationImage(
-                            image: tags[i]['imageUrl']!=null? NetworkImage("${tags[i]['imageUrl']}"):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Expanded(
+                    //   flex:1,
+                    //   child: Container(
+                    //     //image
+                    //     alignment: Alignment.centerLeft,
+                    //     width: 100,
+                    //     height: 100,
+                    //     decoration: BoxDecoration(
+                    //       border: Border.all(width: 1, color: Colors.grey.shade200),
+                    //       borderRadius: BorderRadius.circular(20),
+                    //       color: Colors.white,
+                    //       image: DecorationImage(
+                    //         image: NetworkImage("${tags[i].feedbacks['feedback']}"),
+                    //         fit: BoxFit.cover,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     Expanded(
                       flex:2,
                       child: Column(
@@ -118,7 +118,7 @@ class _ImageCauserol_contState extends State<ImageCauserol_cont> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            child: Text(tags[i]['contractorname'],
+                            child: Text(tags[i]['feedback'],
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: "poppins",
@@ -127,22 +127,22 @@ class _ImageCauserol_contState extends State<ImageCauserol_cont> {
                                   fontWeight: FontWeight.bold,),),
                           ),
                           SizedBox(height: 3.0,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(Icons.location_on,size: 13.0,color: Colors.red,),
-                              SizedBox(width: 3.0,),
-                              Text(
-                                "${tags[i]['hometown']}",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13),
-                                maxLines:3,
-                                softWrap: false,
-                              )
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   crossAxisAlignment: CrossAxisAlignment.center,
+                          //   children: [
+                          //     Icon(Icons.location_on,size: 13.0,color: Colors.red,),
+                          //     SizedBox(width: 3.0,),
+                          //     Text(
+                          //       "${tags[i]['hometown']}",
+                          //       style: TextStyle(
+                          //           color: Colors.black,
+                          //           fontSize: 13),
+                          //       maxLines:3,
+                          //       softWrap: false,
+                          //     )
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),

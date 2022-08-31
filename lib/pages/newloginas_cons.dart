@@ -1,5 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/pages/loginas_cons.dart';
+
+import '../Classes/authenticate_service.dart';
 
 class NewLoginas_cons extends StatefulWidget {
   const NewLoginas_cons({Key? key}) : super(key: key);
@@ -11,18 +14,54 @@ class NewLoginas_cons extends StatefulWidget {
 class _NewLoginas_consState extends State<NewLoginas_cons> {
   final _formKey = GlobalKey<FormState>();
 
-  String _userEmail = '';
+  String _contactNo = '';
   String _password = '';
   String _confirmPassword = '';
 
-  void _trySubmitForm() {
+  bool? _trySubmitForm() {
+    // onPressed:
+    // () {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => Loginas_cons()),
+    //   );
+    // };
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
-      debugPrint(_userEmail);
+      debugPrint(_contactNo);
       debugPrint(_password);
       debugPrint(_confirmPassword);
+
+      try {
+        AuthService().forgotPassword(_contactNo, _password).then((val) {
+          if (val.data['success']) {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text('OTP verified'),
+                content: Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                  size: 60,
+                ),
+              ),
+            );
+          } else {
+            Fluttertoast.showToast(
+                msg: val.data['msg'],
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+        });
+      } on Exception catch (e) {
+        debugPrint('An error occured');
+      }
     }
+    return isValid;
   }
 
   @override
@@ -211,7 +250,17 @@ class _NewLoginas_consState extends State<NewLoginas_cons> {
                     Center(
                       child: ElevatedButton(
                         //onPressed: () {},
-                        onPressed: _trySubmitForm,
+                        // onPressed: _trySubmitForm,
+                        onPressed: () {
+                          bool? x = _trySubmitForm();
+                          if (x == true) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Loginas_cons()),
+                            );
+                          }
+                        },
                         child: Text(
                           'Submit',
                           style: TextStyle(

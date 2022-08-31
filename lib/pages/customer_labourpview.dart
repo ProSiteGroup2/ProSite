@@ -461,7 +461,7 @@ class _CslabourviewState extends State<Cslabourview> {
                                   );
                                 },
                                 child: const Text(
-                                  'Apointment',
+                                  'Appointment',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -530,10 +530,10 @@ class _CslabourviewState extends State<Cslabourview> {
                 width: 115.0,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: Image.network(
+                    child: sp['imageUrl']!=null?Image.network(
                       '${sp['imageUrl']}',
                       fit: BoxFit.cover,
-                    )),
+                    ):Image.asset('assets/imgs/profile.jpg')),
               ),
             ))
           ],
