@@ -9,7 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:group2/Classes/update_methods.dart';
 
 class Edithdprofile extends StatefulWidget {
-  const Edithdprofile({Key? key}) : super(key: key);
+  Map<String, dynamic> data;
+  Edithdprofile(this.data);
 
   @override
   State<Edithdprofile> createState() => _EdithdprofileState();
@@ -36,15 +37,25 @@ class _EdithdprofileState extends State<Edithdprofile> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _hardwarenameController.text = sp['hardwarename'];
-    _emailController.text = sp['email'];
-    _contactnumController.text = sp['contactNo'];
-    _hardwareaddressController.text = sp['address'];
-    _cityController.text = sp['city'];
-    _districtController.text = sp['district'];
-    _regnoController.text = sp['regno'];
-    _ownerController.text = sp['owner'];
+    _hardwarenameController.text = widget.data['hardwarename'];
+    _emailController.text = widget.data['email'];
+    _contactnumController.text = widget.data['contactNo'];
+    _hardwareaddressController.text = widget.data['address'];
+    _cityController.text = widget.data['city'];
+    _districtController.text = widget.data['district'];
+    _regnoController.text = widget.data['regno'];
+    _ownerController.text = widget.data['owner'];
 
+  }
+
+  Future<void> savechanges(String hardwarename , String email, String contactnum, String hardwareaddress, String city,String district,String regno, String owner)async {
+    Map<String,dynamic> data = {
+      "hardwarename" : hardwarename,
+      "email" : email,
+      "contactNo" : contactnum,
+
+
+    };
   }
 
 
@@ -80,9 +91,7 @@ class _EdithdprofileState extends State<Edithdprofile> {
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Container(
+        child:Container(
               margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -157,10 +166,10 @@ class _EdithdprofileState extends State<Edithdprofile> {
                                 borderRadius:
                                     BorderRadiusDirectional.circular(16.0))),
                         onPressed: () {
-                          Navigator.push(
+                          /*Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => Additem()),
-                          );
+                          );*/
                         },
                         child: const Text(
                           'Add Items Post',
@@ -532,29 +541,7 @@ class _EdithdprofileState extends State<Edithdprofile> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Center(
-                      child: ElevatedButton.icon(
-                        //label: Icon(Icons.lock),
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[700],
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {},
-                        icon: const Text(
-                          'Changed Password',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        label: const Icon(Icons.lock),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 0.0,
-                    ),
-                    const Divider(
-                      height: 20.0,
-                      color: Colors.black,
-                    ),
+
                     Center(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -562,7 +549,20 @@ class _EdithdprofileState extends State<Edithdprofile> {
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {},
+                        onPressed: () async{
+                            if(_formkey.currentState!.validate()){
+                                  await savechanges(
+                                      _hardwarenameController.text,
+                                      _emailController.text,
+                                      _contactnumController.text,
+                                      _hardwareaddressController.text,
+                                      _cityController.text,
+                                      _districtController.text,
+                                      _regnoController.text,
+                                      _ownerController.text
+                                  );
+                            }
+                        },
                         child: const Text(
                           'Save changes',
                           style: TextStyle(color: Colors.white),
@@ -576,98 +576,6 @@ class _EdithdprofileState extends State<Edithdprofile> {
                 ),
               ),
             ),
-            Positioned(
-                child: Center(
-              child: Stack(children: [
-                SizedBox(
-                  height: 107.0,
-                  width: 115.0,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: image != null
-                          ? Image.file(
-                              image!,
-                              width: 115.0,
-                              height: 107.0,
-                              fit: BoxFit.fill,
-                            )
-                          : Image.asset(
-                              'assets/imgs/hshop1.jpg',
-                              fit: BoxFit.fill,
-                            )),
-                ),
-                Positioned(
-                    bottom: -5.0,
-                    right: -5.0,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.add_a_photo_outlined,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              height: 100.0,
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 20.0),
-                              child: Column(
-                                children: [
-                                  Text('Choose profile photo'),
-                                  const SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.gallery);
-                                        },
-                                        child: const Text(
-                                          'Add from galery',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.camera);
-                                        },
-                                        child: const Text(
-                                          'Add from Camera',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ))
-              ]),
-            ))
-          ],
-        ),
       ),
     );
   }
