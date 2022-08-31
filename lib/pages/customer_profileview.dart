@@ -17,7 +17,7 @@ class Customerpview extends StatefulWidget {
 
 class _CustomerpviewState extends State<Customerpview> {
 
-  String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
 
   Future<Map<String, dynamic>?> getData ()async {
     try{
