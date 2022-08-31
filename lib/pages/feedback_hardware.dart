@@ -74,6 +74,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                       Center(
                                         child: CircleAvatar(
                                           backgroundImage: NetworkImage('${sp['imageUrl']}'),
+                                          // backgroundImage:sp['imageUrl']!=null? NetworkImage('${sp['imageUrl']}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                                           radius: 40.0,
                                         ),
                                       ),
@@ -139,66 +140,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                         },
                                       )
                               )
-                        //       Container(
-                        //         decoration: BoxDecoration(
-                        //           border: Border.all(color: Colors.white, width: 1),
-                        //           borderRadius: BorderRadius.circular(15.0),
-                        //         ),
-                        //         child: ListView.builder(
-                        //           scrollDirection: Axis.vertical,
-                        //           itemCount: feedbacks.length,
-                        //           itemBuilder: (context, index) => Card(
-                        //         // color: Colors.cyanAccent,
-                                
-                        //         shape: RoundedRectangleBorder(
-                        //           borderRadius: BorderRadius.circular(10.0),
-                        //         ),
-                        //         elevation: 10.0,
-                        //         shadowColor: Colors.blueAccent,
-                        //         margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
-                        //         child: Padding(
-                        //           padding: const EdgeInsets.all(8.0),
-                        //           child: ListTile(
-                        //             leading: Container(
-                        //               height: 50,
-                        //               width: 50,
-                        //               child: Image.asset(
-                        //                   'assets/imgs/${feedbacks[index].profile}'),
-                        //             ),
-                        //             title: Column(
-                        //               crossAxisAlignment:
-                        //                   CrossAxisAlignment.stretch,
-                        //               children: [
-                        //                 Text(
-                        //                   feedbacks[index].feedback,
-                        //                   style: TextStyle(
-                        //                     fontFamily: 'Poppins',
-                        //                   ),
-                        //                 ),
-                        //                 SizedBox(height: 4.0),
-                        //                 Row(
-                        //                   mainAxisAlignment:
-                        //                       MainAxisAlignment.end,
-                        //                   children: [
-                        //                     Text(
-                        //                       feedbacks[index].cName,
-                        //                       style: TextStyle(
-                        //                         fontFamily: 'Poppins',
-                        //                         fontWeight: FontWeight.bold,
-                        //                         fontSize: 11.0,
-                        //                       ),
-                        //                     ),
-                        //                   ],
-                        //                 )
-                        //               ],
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //   ),
-                        // ),
-                                 
-                                
+                         
                           ],
                           ),
                         ),

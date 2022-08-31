@@ -73,10 +73,7 @@ class _ImageCauserol_cont_feedState extends State<ImageCauserol_cont_feed> {
 
                 onPressed: () {
                   sp=tags[i];
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) =>const Cscontractorview()),
-                  // );
+                 
                 },
                 style: ElevatedButton.styleFrom(
 
@@ -93,24 +90,7 @@ class _ImageCauserol_cont_feedState extends State<ImageCauserol_cont_feed> {
 
                 child: Row(
                   children: [
-                    // Expanded(
-                    //   flex:1,
-                    //   child: Container(
-                    //     //image
-                    //     alignment: Alignment.centerLeft,
-                    //     width: 100,
-                    //     height: 100,
-                    //     decoration: BoxDecoration(
-                    //       border: Border.all(width: 1, color: Colors.grey.shade200),
-                    //       borderRadius: BorderRadius.circular(20),
-                    //       color: Colors.white,
-                    //       image: DecorationImage(
-                    //         image: NetworkImage("${tags[i].feedbacks['feedback']}"),
-                    //         fit: BoxFit.cover,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    
                     Expanded(
                       flex:2,
                       child: Column(
@@ -127,22 +107,7 @@ class _ImageCauserol_cont_feedState extends State<ImageCauserol_cont_feed> {
                                   fontWeight: FontWeight.bold,),),
                           ),
                           SizedBox(height: 3.0,),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   crossAxisAlignment: CrossAxisAlignment.center,
-                          //   children: [
-                          //     Icon(Icons.location_on,size: 13.0,color: Colors.red,),
-                          //     SizedBox(width: 3.0,),
-                          //     Text(
-                          //       "${tags[i]['hometown']}",
-                          //       style: TextStyle(
-                          //           color: Colors.black,
-                          //           fontSize: 13),
-                          //       maxLines:3,
-                          //       softWrap: false,
-                          //     )
-                          //   ],
-                          // ),
+                        
                         ],
                       ),
                     ),
