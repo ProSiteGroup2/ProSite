@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:group2/globals.dart';
+import 'package:group2/pages/ppayment.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 import 'dart:io';
 
@@ -91,7 +92,7 @@ class _PaymentState extends State<Payment> {
         padding: const EdgeInsets.all(20),
         children: <Widget>[
           RaisedButton(
-            child: Text("Create Source"),
+            child: Text("Create Payment"),
             onPressed: () {
               StripePayment.createSourceWithParams(SourceParams(
                 type: 'ideal',
@@ -100,6 +101,10 @@ class _PaymentState extends State<Payment> {
                 currency: 'eur',
                 returnURL: 'example://stripe-redirect',
               )).then((source) {
+                 Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ppayment()),
+                          );
                 _scaffoldKey.currentState!.showSnackBar(
                     SnackBar(content: Text('Received ${source.sourceId}')));
                 setState(() {
