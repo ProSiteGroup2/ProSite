@@ -59,6 +59,8 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
           resizeToAvoidBottomInset: true,
           // resizeToAvoidBottomInset: true,
                     appBar: AppBar(
+                          automaticallyImplyLeading: false,
+
                           backgroundColor: Color(0xFF60A3D9),
                           title: Text(
                             'Feedbacks',
