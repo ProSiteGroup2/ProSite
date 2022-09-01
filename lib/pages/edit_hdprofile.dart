@@ -47,33 +47,35 @@ class _EdithdprofileState extends State<Edithdprofile> {
     _ownerController.text = widget.data['owner'];
 
   }
+  String url = 'https://prositegroup2.herokuapp.com';
+  //String url = 'http://10.0.2.2:5000';
 
   Future<void> savechanges(String hardwarename , String email, String contactnum, String hardwareaddress, String city,String district,String regno, String owner)async {
     Map<String,dynamic> data = {
       "hardwarename" : hardwarename,
       "email" : email,
       "contactNo" : contactnum,
-
-
+      "address" : hardwareaddress,
+      "city": city,
+      "district": district,
+      "regno":regno,
+      "owner":owner
     };
+
+    try {
+      await UpdateServices().upadateData('$url/updatehardwareinfo', data);
+      Navigator.pop(context);
+    } catch (err) {
+      print(err.toString());
+      var snackbar = const SnackBar(
+        content: Text('Error: Update is failed'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    }
   }
 
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-
-  File? image;
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print('Failed to pick image:$e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +94,7 @@ class _EdithdprofileState extends State<Edithdprofile> {
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
         child:Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
@@ -104,9 +106,9 @@ class _EdithdprofileState extends State<Edithdprofile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 70.0,
+                      height: 50.0,
                     ),
-                    Container(
+                    /*Container(
                         height: 150.0,
                         //width: MediaQuery.of(context).size.width,
                         //color: Colors.blue,
@@ -136,11 +138,11 @@ class _EdithdprofileState extends State<Edithdprofile> {
                                   ),
                                 ),
                               );
-                            })),
-                    const SizedBox(
+                            })),*/
+                    /*const SizedBox(
                       height: 10.0,
-                    ),
-                    Center(
+                    ),*/
+                    /*Center(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: Color(hexColor('#1982BD')),
@@ -153,11 +155,11 @@ class _EdithdprofileState extends State<Edithdprofile> {
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    ),
-                    const SizedBox(
+                    ),*/
+                    /*const SizedBox(
                       height: 10.0,
-                    ),
-                    Padding(
+                    ),*/
+                    /*Padding(
                       padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -176,10 +178,10 @@ class _EdithdprofileState extends State<Edithdprofile> {
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    ),
-                    const SizedBox(
+                    ),*/
+                    /*const SizedBox(
                       height: 20.0,
-                    ),
+                    ),*/
                     const Padding(
                       padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                       child: Text(
