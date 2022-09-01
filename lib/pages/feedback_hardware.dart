@@ -55,6 +55,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
                     appBar: AppBar(
                           backgroundColor: Color(0xFF60A3D9),
                           title: Text(

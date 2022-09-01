@@ -25,10 +25,11 @@ class _NavBarState extends State<NavBar> {
     
     return Scaffold(
       // resizeToAvoidBottomPadding: true,
-      body: IndexedStack(
-        index: currindex,
-        children: screens,
-      ),
+      // body: IndexedStack(
+      //   index: currindex,
+      //   children: screens,
+      // ),
+      body: screens.elementAt(currindex),
       bottomNavigationBar: ClipRRect(
         
         borderRadius: BorderRadius.only(

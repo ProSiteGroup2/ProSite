@@ -56,8 +56,7 @@ class _FeedbackLabState extends State<FeedbackLab> with TickerProviderStateMixin
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          
-          resizeToAvoidBottomInset: true,
+          resizeToAvoidBottomInset: false,
                     appBar: AppBar(
                           backgroundColor: Color(0xFF60A3D9),
                           title: Text(
