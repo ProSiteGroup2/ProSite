@@ -542,7 +542,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                     if(product['stock']>=local_quantity){
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => paynow()),
+                                        MaterialPageRoute(builder: (context) => paynow(quantity:local_quantity)),
                                       );
                                     }else{
                                       Fluttertoast.showToast(
