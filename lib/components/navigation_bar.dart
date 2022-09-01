@@ -24,6 +24,7 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     
     return Scaffold(
+      // resizeToAvoidBottomPadding: true,
       body: IndexedStack(
         index: currindex,
         children: screens,

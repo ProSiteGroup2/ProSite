@@ -56,6 +56,8 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          // resizeToAvoidBottomInset: true,
                     appBar: AppBar(
                           backgroundColor: Color(0xFF60A3D9),
                           title: Text(
@@ -67,45 +69,43 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                             onPressed: () => Navigator.of(context).pop(),
                           ),
                           centerTitle: true,
-                          bottom: PreferredSize( preferredSize: Size.fromHeight(kPropHeight(context, 0.2)),
+                          bottom: PreferredSize( preferredSize: Size.fromHeight(kPropHeight(context, 0.15)),
                           
                                 child: Column(
                                   children:[
-                                      // SizedBox(height: 10.0),
-                                      Center(
-                                        child: CircleAvatar(
-                                          // backgroundImage: NetworkImage('${sp['imageUrl']}'),
-                                          backgroundImage:sp['imageUrl']!=null? NetworkImage('${sp['imageUrl']}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
-                                          radius: 40.0,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 10.0),
-                                        child: Text(
-                                          '${sp['contractorname']}',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 24.0,
-                                          ),
-                                        ),
-                                      ),
+                                      SizedBox(height: 10.0),
+                                      // Center(
+                                      //   child: CircleAvatar(
+                                      //     // backgroundImage: NetworkImage('${sp['imageUrl']}'),
+                                      //     backgroundImage:sp['imageUrl']!=null? NetworkImage('${sp['imageUrl']}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
+                                      //     radius: 40.0,
+                                      //   ),
+                                      // ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.only(top: 10.0),
+                                      //   child: Text(
+                                      //     '${sp['contractorname']}',
+                                      //     style: TextStyle(
+                                      //       color: Colors.white,
+                                      //       fontWeight: FontWeight.bold,
+                                      //       fontSize: 24.0,
+                                      //     ),
+                                      //   ),
+                                      // ),
                                       // SizedBox(height: 5.0),
-                                      Container(
-                                        child: const TabBar(
-                                                      labelPadding: EdgeInsets.only(left: 30, right: 30),
-                                                      
-                                                      labelColor: Colors.black87,
-                                                      labelStyle: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight: FontWeight.bold,
-                                                          fontFamily: "Poppins"),
-                                                      unselectedLabelColor: Colors.black26,
-                                                      isScrollable: true,
-                                                      indicatorSize: TabBarIndicatorSize.label,
-                                                      tabs: [Tab(text: "View feedbacks"), Tab(text: "Give feedbacks")],
-                                                    ),
-                                      ),
+                                      const TabBar(
+                                                    labelPadding: EdgeInsets.only(left: 30, right: 30),
+                                                    
+                                                    labelColor: Colors.black87,
+                                                    labelStyle: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontFamily: "Poppins"),
+                                                    unselectedLabelColor: Colors.black26,
+                                                    isScrollable: true,
+                                                    indicatorSize: TabBarIndicatorSize.label,
+                                                    tabs: [Tab(text: "View feedbacks"), Tab(text: "Give feedbacks")],
+                                                  ),
                                   ]
                                 ),
                                 
@@ -113,6 +113,7 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                     ),
                         backgroundColor: Colors.white,
                     body: TabBarView(
+                      
                       //tabbarview
                       children: [
                       
@@ -145,14 +146,17 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                                     ),
                                   ),
                                 ),
-                                Container(
+                                Flexible(
                                   //add feedback
                                   
                                           // height: kPropHeight(context, 0.1),
+                                  //          width: kPropWidth(context, 1),
+                                  // height: kPropHeight(context, 0.1),
+                                  // margin: EdgeInsets.only(top: 20),
                                           child: Column(
                                             
                                             children: [
-                                              SizedBox(height:10.0),
+                                              // SizedBox(height:100.0),
                                               // Text(
                                               //         'Add Your feedback here',
                                               //         style: TextStyle(
@@ -161,7 +165,7 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                                               //           fontWeight: FontWeight.bold,
                                               //         ),
                                               //       ),
-                                                Expanded(
+                                                Container(
                                                 child: Card(
                                                   color: Colors.grey[50],
                                                   elevation: 25.0,
@@ -172,7 +176,7 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                                                   ),
                                                   child: Column(
                                                     children: [
-                                                      TextField(
+                                                      TextFormField(
                                                         onChanged: (value) => feedback = value,
                                                         controller: _feedbackController,
                                                         style: TextStyle(
@@ -183,7 +187,7 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                                                           hintText: 'Type Here...',
                                                           border: InputBorder.none,
                                                         ),
-                                                        keyboardType: TextInputType.text,
+                                                        // keyboardType: TextInputType.text,
                                                         maxLines: 3,
                                                       ),
                                                       
@@ -212,7 +216,7 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                                                       content: Icon(
                                                         Icons.check_circle,
                                                         color: Colors.green,
-                                                        size: 60,
+                                                        size: 20,
                                                       ),
                                                     ),
                                                   );
