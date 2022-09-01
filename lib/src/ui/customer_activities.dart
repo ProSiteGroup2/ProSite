@@ -214,177 +214,6 @@ class _CActivityState extends State<CActivity> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
                 child: Text(
-                  'Past Appointments',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Roboto',
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10.0),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5.0, 0, 0, 0),
-                child:Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 1),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  height: 220,
-                  width: 400,
-                  child:  (alert_pre!='')?Center(child: Text(alert_pre,style: TextStyle(color: Colors.black),)) : ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: preActivities.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        // color: Colors.cyanAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        elevation: 10.0,
-                        shadowColor: Colors.blueAccent,
-                        margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: ListTile(
-                            onTap: () async {
-                                var sp_email=preActivities[index]['sp_email'];
-                                var result=await SPMethods().findSP(sp_email);
-                                if(result.data['success']){
-                                  sp=result.data['sp'];
-                                  if(result.data['role']=="contractor"){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Cscontractorview()));
-                                  }else if(result.data['role']=="transporter"){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Cstransporterview()));
-                                  }else if(result.data['role']=="labour"){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Cslabourview()));
-                                  }
-                                }
-                            },
-                            visualDensity: VisualDensity(vertical: 4),
-                            leading: Container(
-                              height: 100,
-                              width: 80,
-                              // child: Image.asset('assets/imgs/${preActivities[index].profile}'),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1, color: Colors.grey.shade200),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                image: DecorationImage(
-                                  // NetworkImage("${sp_profile_pre[index]}"),
-                                  image:NetworkImage('${sp_profile_pre[index]}'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            title: Row(
-                              children: [
-                                Expanded(
-                                  flex:6,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Row(
-                                        children: <Widget>[
-                                          Expanded(
-                                            flex:1,
-                                            child: Text(
-                                              'Hired',
-                                              style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex:3,
-                                            child: Text(
-                                              // preActivities[index].hired
-                                              sp_name_pre[index],
-                                              style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13.0,
-                                                color: Colors.black54,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 5.0),
-                                      Row(
-                                        children: <Widget>[
-                                          Expanded(
-                                            flex:1,
-                                            child: Text(
-                                              'Date',
-                                              style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex:3,
-                                            child: Text(
-                                              //preActivities[index]['date'],
-                                              preActivities[index]['date'].toString().substring(0,10),
-                                              style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 13.0,
-                                                color: Colors.black54,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                                Expanded(
-                                  flex:1,
-                                  child: IconButton(
-                                    splashColor: Colors.lightBlueAccent,
-                                    icon: Icon(
-                                        Icons.add_call
-                                    ),
-                                    onPressed: (){
-                                      launch("tel://+94${sp_contacts_pre[index].toString().substring(1)}");
-                                    },
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(width: 15),
-                                Expanded(
-                                  flex:1,
-                                  child: IconButton(
-                                  splashColor: Colors.lightGreen,
-                                  icon: Icon(
-                                    MyFlutterApp.whatsapp,
-                                  ),
-                                  onPressed: (){
-                                    launchwhatsapp( number:"tel://+94${sp_contacts_pre[index].toString().substring(1)}",message: "hello");
-                                  },
-                                  color: Colors.green,
-                                ),)
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 25.0),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                child: Text(
                   'Upcoming Appointments',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -403,7 +232,7 @@ class _CActivityState extends State<CActivity> {
                   ),
                   height: 220,
                   width: 400,
-                  child: (alert_up!='')?Center(child: Text(alert_up,style: TextStyle(color: Colors.black),)): ListView.builder(
+                  child: (alert_up!='')?Center(child: Text(alert_up,style: TextStyle(color: Colors.black),)): upActivities.isEmpty?Center(child: CircularProgressIndicator()): ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: upActivities.length,
                     itemBuilder: (context, index) {
@@ -567,6 +396,178 @@ class _CActivityState extends State<CActivity> {
                                     ),
                                     onPressed: (){
                                       launchwhatsapp( number:"tel://+94${sp_contacts_up[index].toString().substring(1)}",message: "hello");
+                                    },
+                                    color: Colors.green,
+                                  ),)
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+
+
+              SizedBox(height: 25.0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+                child: Text(
+                  'Past Appointments',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto',
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(5.0, 0, 0, 0),
+                child:Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  height: 220,
+                  width: 400,
+                  child:  (alert_pre!='')?Center(child: Text(alert_pre,style: TextStyle(color: Colors.black),)) : preActivities.isEmpty?Center(child: CircularProgressIndicator()):ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: preActivities.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        // color: Colors.cyanAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        elevation: 10.0,
+                        shadowColor: Colors.blueAccent,
+                        margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: ListTile(
+                            onTap: () async {
+                              var sp_email=preActivities[index]['sp_email'];
+                              var result=await SPMethods().findSP(sp_email);
+                              if(result.data['success']){
+                                sp=result.data['sp'];
+                                if(result.data['role']=="contractor"){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Cscontractorview()));
+                                }else if(result.data['role']=="transporter"){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Cstransporterview()));
+                                }else if(result.data['role']=="labour"){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Cslabourview()));
+                                }
+                              }
+                            },
+                            visualDensity: VisualDensity(vertical: 4),
+                            leading: Container(
+                              height: 100,
+                              width: 80,
+                              // child: Image.asset('assets/imgs/${preActivities[index].profile}'),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: Colors.grey.shade200),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                  // NetworkImage("${sp_profile_pre[index]}"),
+                                  image:NetworkImage('${sp_profile_pre[index]}'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            title: Row(
+                              children: [
+                                Expanded(
+                                  flex:6,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'Hired',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              // preActivities[index].hired
+                                              sp_name_pre[index],
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5.0),
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'Date',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              //preActivities[index]['date'],
+                                              preActivities[index]['date'].toString().substring(0,10),
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+                                Expanded(
+                                  flex:1,
+                                  child: IconButton(
+                                    splashColor: Colors.lightBlueAccent,
+                                    icon: Icon(
+                                        Icons.add_call
+                                    ),
+                                    onPressed: (){
+                                      launch("tel://+94${sp_contacts_pre[index].toString().substring(1)}");
+                                    },
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                SizedBox(width: 15),
+                                Expanded(
+                                  flex:1,
+                                  child: IconButton(
+                                    splashColor: Colors.lightGreen,
+                                    icon: Icon(
+                                      MyFlutterApp.whatsapp,
+                                    ),
+                                    onPressed: (){
+                                      launchwhatsapp( number:"tel://+94${sp_contacts_pre[index].toString().substring(1)}",message: "hello");
                                     },
                                     color: Colors.green,
                                   ),)
