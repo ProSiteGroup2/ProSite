@@ -539,10 +539,21 @@ class _ItemDetailsState extends State<ItemDetails>
                           child: ElevatedButton.icon(
                                                       
                                   onPressed: () {
+                                    if(product['stock']>=local_quantity){
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) => paynow()),
                                       );
+                                    }else{
+                                      Fluttertoast.showToast(
+                                          msg: "Entered Quantity is greater than Stock",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
+                                    }
+
                                       
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -594,28 +605,38 @@ class _ItemDetailsState extends State<ItemDetails>
                           child: ElevatedButton.icon(
                                                       
                                   onPressed: () async {
-                                    var buyerID;
-                                    if(consumer.isNotEmpty){
-                                      buyerID=consumer['_id'];
-                                    }else{
-                                      buyerID=sp['_id'];
-                                    }
+                                    if(product['stock']>=local_quantity){
+                                      var buyerID;
+                                      if(consumer.isNotEmpty){
+                                        buyerID=consumer['_id'];
+                                      }else{
+                                        buyerID=sp['_id'];
+                                      }
 
-                                    var result= await CartMethods().addCartProduct(buyerID, product['_id'], local_quantity, product['price']*local_quantity);
-                                    if(result.data['success']){
-                                      var local_cartproduct=result.data['cartproduct'];
-                                      var result2=await CartMethods().addProducttoCart(buyerID, local_cartproduct['_id']);
-                                      if(result2.data['success']){
-                                        Fluttertoast.showToast(
-                                            msg: result2.data['msg'],
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                            backgroundColor: Colors.green,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0);
+                                      var result= await CartMethods().addCartProduct(buyerID, product['_id'], local_quantity, product['price']*local_quantity);
+                                      if(result.data['success']){
+                                        var local_cartproduct=result.data['cartproduct'];
+                                        var result2=await CartMethods().addProducttoCart(buyerID, local_cartproduct['_id']);
+                                        if(result2.data['success']){
+                                          Fluttertoast.showToast(
+                                              msg: result2.data['msg'],
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              backgroundColor: Colors.green,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        }else{
+                                          Fluttertoast.showToast(
+                                              msg: 'Adding product to cart failed',
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              backgroundColor: Colors.red,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        }
                                       }else{
                                         Fluttertoast.showToast(
-                                            msg: 'Adding product to cart failed',
+                                            msg: 'Adding cartProduct failed',
                                             toastLength: Toast.LENGTH_SHORT,
                                             gravity: ToastGravity.BOTTOM,
                                             backgroundColor: Colors.red,
@@ -624,13 +645,14 @@ class _ItemDetailsState extends State<ItemDetails>
                                       }
                                     }else{
                                       Fluttertoast.showToast(
-                                          msg: 'Adding cartProduct failed',
+                                          msg: 'Entered Quantity is greater than Stock',
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                           backgroundColor: Colors.red,
                                           textColor: Colors.white,
                                           fontSize: 16.0);
                                     }
+
                                   },
                                     style: ElevatedButton.styleFrom(
                                       primary: Colors.cyan[300],

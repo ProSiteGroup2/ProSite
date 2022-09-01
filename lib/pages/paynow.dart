@@ -235,14 +235,15 @@ class _paynowState extends State<paynow> {
                             children: [
                               Container(
                                 //item name
-                                margin: EdgeInsets.fromLTRB(15,10,15,20),
+                                margin: EdgeInsets.fromLTRB(0,10,15,20),
                                 alignment: Alignment.topCenter,
                                 child: Text("${product['productname']}",style: TextStyle(
                                 fontFamily: "Poppins",
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   height: 1.15
-                              ),), 
+                              ),
+                                softWrap: true,),
                               ),
                               Container(
                                 //price and qty
@@ -250,7 +251,7 @@ class _paynowState extends State<paynow> {
                                   children: [
                                     Container(
                                       //price
-                                      margin: EdgeInsets.fromLTRB(15,5,15,10),
+                                      margin: EdgeInsets.fromLTRB(0,5,15,10),
                                       alignment: Alignment.topCenter,
                                       child: Text("Rs. ${product['price']}",style: TextStyle(
                                       fontFamily: "Poppins",
