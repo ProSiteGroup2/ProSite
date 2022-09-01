@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../Classes/update_methods.dart';
 
-class Change_pw extends StatefulWidget {
-  const Change_pw({Key? key}) : super(key: key);
+class Changehd_pw extends StatefulWidget {
+  const Changehd_pw({Key? key}) : super(key: key);
 
   @override
-  State<Change_pw> createState() => _Change_pwState();
+  State<Changehd_pw> createState() => _Changehd_pwState();
 }
 
-class _Change_pwState extends State<Change_pw> {
+class _Changehd_pwState extends State<Changehd_pw> {
   String error = '';
   final TextEditingController _oldpwControler = TextEditingController();
   final TextEditingController _newpwControler = TextEditingController();
@@ -23,7 +23,7 @@ class _Change_pwState extends State<Change_pw> {
     };
 
     try{
-      await UpdateServices().updatePw('$url/changeConsumerPw',data);
+      await UpdateServices().updatePw('$url/changeHardwarePw',data);
       Navigator.pop(context);
     }
     catch(err){
@@ -201,19 +201,19 @@ class _Change_pwState extends State<Change_pw> {
                           primary: Color(hexColor('#1982BD')),
                           shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadiusDirectional.circular(16.0))),
+                              BorderRadiusDirectional.circular(16.0))),
                       onPressed: () async{
                         if(_formkey.currentState!.validate()){
-                            if(_newpwControler.text == _confirmnewpwControler.text){
-                              await savechanges(
-                                  _oldpwControler.text,
-                                  _newpwControler.text
-                              );
-                            }else{
-                              setState(() {
-                                error ="Not match new password";
-                              });
-                            }
+                          if(_newpwControler.text == _confirmnewpwControler.text){
+                            await savechanges(
+                                _oldpwControler.text,
+                                _newpwControler.text
+                            );
+                          }else{
+                            setState(() {
+                              error ="Not match new password";
+                            });
+                          }
                         }
                       },
                       child: const Text(
@@ -229,7 +229,7 @@ class _Change_pwState extends State<Change_pw> {
                           primary: Color(hexColor('#1982BD')),
                           shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadiusDirectional.circular(16.0))),
+                              BorderRadiusDirectional.circular(16.0))),
                       onPressed: () {
                         Navigator.pop(context);
                       },

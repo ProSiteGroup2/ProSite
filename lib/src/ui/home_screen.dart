@@ -27,6 +27,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
+
+
   Future<List<dynamic>?> gettingTransporters() async {
     var results=await SPMethods().getTransporters();
     if(results.data['success']){
@@ -298,6 +300,7 @@ Map<String, dynamic> data = {
                   //tabbarview
                     children: [
                       Container(
+                        //categories
                         width: kPropWidth(context, 1),
                         height: kPropHeight(context, 1),
                         padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 0.0),

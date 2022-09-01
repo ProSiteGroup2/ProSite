@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        
         //  home: HomeScreen(),
         //  home: NavBar(),
         initialRoute: '/start',

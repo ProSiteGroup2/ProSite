@@ -58,14 +58,14 @@ class _LabourpviewState extends State<Labourpview> {
                        Center(
                         child: Text(
                           '${sp['username']}', //username
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 30.0, fontWeight: FontWeight.bold),
                         ),
                       ),
                        Center(
                         child: Text(
                           '${sp['profession']}',
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
                       ),
