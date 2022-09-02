@@ -203,10 +203,10 @@ class _CustomerpviewState extends State<Customerpview> {
                               width: 115.0,
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(16.0),
-                                  child: Image.network(
+                                  child: snapshot.data!['imageUrl']!=null?Image.network(
                                     '${snapshot.data!['imageUrl']}',
                                     fit: BoxFit.cover,
-                                  )),
+                                  ):Image.asset('assets/imgs/profile.jpg')),
                             ),
                             Positioned(
                                 bottom: -5.0,
