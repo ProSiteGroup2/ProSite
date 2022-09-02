@@ -320,7 +320,7 @@ class _addcartState extends State<addcart> {
               ElevatedButton(
                   onPressed: () async {
                     await CartMethods().updateCartPrice(local_cartID, total_price);
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>paynow_cart(total_price: total_price)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>paynow_cart(total_price: total_price,tags:tags)));
                   },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFF9C9EFE),

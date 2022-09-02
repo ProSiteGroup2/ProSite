@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/order_methods.dart';
+import 'package:group2/Classes/product_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/globals.dart';
 import 'package:group2/pages/flutter_card.dart';
 
 class paynow_cart extends StatefulWidget {
-
+  final List<dynamic> tags;
   final total_price;
   const paynow_cart({
     Key? key,
-    required this.total_price
+    required this.total_price,
+    required this.tags
   }) : super(key: key);
 
   @override
-  State<paynow_cart> createState() => _paynow_cartState();
+  State<paynow_cart> createState() => _paynow_cartState(tags:tags);
 }
 
 class _paynow_cartState extends State<paynow_cart> {
-
+  List<dynamic> tags;
+  _paynow_cartState({required this.tags});
   final _formKey = GlobalKey<FormState>();
 
   String _contactNo = '';
@@ -31,13 +36,11 @@ class _paynow_cartState extends State<paynow_cart> {
     }
   }
 
+
   @override
   final cons_emailController = TextEditingController();
   final cons_passwordController = TextEditingController();
   late bool _passwordVisible;
-  void initState() {
-    _passwordVisible = false;
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -315,7 +318,23 @@ class _paynow_cartState extends State<paynow_cart> {
                                 ],
                               ),
                               child: ElevatedButton(
-                                onPressed: () {
+                                onPressed: () async {
+                                  for(var i=0;i<tags.length;i++){
+                                    setState(() {
+                                      tags[i]['product']['stock']=tags[i]['product']['stock']-tags[i]['quantity'];
+                                    });
+                                    await ProductMethods().productStockUpdate(tags[i]['product']['_id'], tags[i]['product']['stock']);
+                                  }
+                                  var buyerID;
+                                  if(consumer.isNotEmpty){
+                                    buyerID=consumer['_id'];
+                                  }else{
+                                    buyerID=sp['_id'];
+                                  }
+                                  for(var i=0;i<tags.length;i++){
+                                    await OrderMethods().addOrder(buyerID, tags[i]['product']['_id'], tags[i]['quantity'], tags[i]['price'], tags[i]['product']['seller']);
+
+                                  }
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(

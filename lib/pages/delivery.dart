@@ -5,6 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/service_provider_methods.dart';
 
 import '../common/size.dart';
+import '../globals.dart';
+import 'customer_transporterview.dart';
 
 class delivery extends StatefulWidget {
   const delivery({Key? key}) : super(key: key);
@@ -119,7 +121,10 @@ class _deliveryState extends State<delivery> {
                         ),
                         child: ElevatedButton(
 
-                          onPressed: () {},
+                          onPressed: () {
+                            sp=transporters[i];
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Cstransporterview()));
+                          },
                           style: ElevatedButton.styleFrom(
 
                             primary: Colors.white,

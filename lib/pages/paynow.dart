@@ -8,6 +8,7 @@ import 'package:group2/pages/add_card_details.dart';
 import 'package:group2/pages/flutter_card.dart';
 import 'package:group2/pages/ppayment.dart';
 
+import '../Classes/order_methods.dart';
 import '../Classes/product_methods.dart';
 
 
@@ -376,6 +377,15 @@ class _paynowState extends State<paynow> {
                                         product['stock']=product['stock']-widget.quantity;
                                       });
                                       await ProductMethods().productStockUpdate(product['_id'], product['stock']);
+                                      var buyerID;
+                                      if(consumer.isNotEmpty){
+                                        buyerID=consumer['_id'];
+                                      }else{
+                                        buyerID=sp['_id'];
+                                      }
+
+                                      await OrderMethods().addOrder(buyerID,product['_id'], widget.quantity, product['price']*widget.quantity, product['seller']);
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(

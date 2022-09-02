@@ -198,7 +198,7 @@ class _LActivityState extends State<LActivity> {
                   ),
                   height: 220,
                   width: 400,
-                  child: (alert_up!='')? Center(child: Text(alert_up,style: TextStyle(color: Colors.black),)) : ListView.builder(
+                  child: (alert_up!='')? Center(child: Text(alert_up,style: TextStyle(color: Colors.black),)) : l_schedule.isEmpty?Center(child: CircularProgressIndicator(),): ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: l_schedule.length,
                     itemBuilder: (context,index){
@@ -222,7 +222,7 @@ class _LActivityState extends State<LActivity> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
                                 image: DecorationImage(
-                                  image: NetworkImage('${l_schedule[index]['consumer']['imageUrl']}'),
+                                  image: l_schedule[index]['consumer']['imageUrl']!=null?NetworkImage('${l_schedule[index]['consumer']['imageUrl']}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -355,6 +355,7 @@ class _LActivityState extends State<LActivity> {
                   ),
                 ),
               ),
+              SizedBox(height: 20.0,),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0,5.0,0,5.0),
                 child: Text(
@@ -376,7 +377,7 @@ class _LActivityState extends State<LActivity> {
                   ),
                   height: 220,
                   width: 400,
-                  child: (alert_pre!='')? Center(child: Text(alert_pre,style: TextStyle(color: Colors.black),)) : ListView.builder(
+                  child: (alert_pre!='')? Center(child: Text(alert_pre,style: TextStyle(color: Colors.black),)) : l_preActivity.isEmpty?Center(child: CircularProgressIndicator(),): ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: l_preActivity.length,
                     itemBuilder: (context,index){
@@ -400,7 +401,7 @@ class _LActivityState extends State<LActivity> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
                                 image: DecorationImage(
-                                  image: NetworkImage('${l_preActivity[index]['consumer']['imageUrl']}'),
+                                  image: l_preActivity[index]['consumer']['imageUrl']!=null?NetworkImage('${l_preActivity[index]['consumer']['imageUrl']}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                                   fit: BoxFit.cover,
                                 ),
                               ),

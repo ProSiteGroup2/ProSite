@@ -273,7 +273,7 @@ class _CActivityState extends State<CActivity> {
                                 color: Colors.white,
                                 image: DecorationImage(
                                   // NetworkImage("${sp_profile_pre[index]}"),
-                                  image:NetworkImage('${sp_profile_up[index]}'),
+                                  image:sp_profile_up[index]!=null?NetworkImage('${sp_profile_up[index]}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -473,7 +473,7 @@ class _CActivityState extends State<CActivity> {
                                 color: Colors.white,
                                 image: DecorationImage(
                                   // NetworkImage("${sp_profile_pre[index]}"),
-                                  image:NetworkImage('${sp_profile_pre[index]}'),
+                                  image:sp_profile_pre[index]!=null?NetworkImage('${sp_profile_pre[index]}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                                   fit: BoxFit.cover,
                                 ),
                               ),
