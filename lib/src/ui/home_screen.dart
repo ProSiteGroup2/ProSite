@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print, unused_import
+// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print, unused_import, body_might_complete_normally_nullable
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -153,6 +153,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     var results=await SPMethods().getPainter();
     if(results.data['success']){
       return results.data['painters'];
+    }else{
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<List<dynamic>?> gettingProducts() async {
+    var results=await ProductMethods().getProducts();
+    if(results.data['success']){
+      return results.data['products'];
     }else{
       Fluttertoast.showToast(
           msg: results.data['msg'],
@@ -349,9 +364,22 @@ Map<String, dynamic> data = {
                                         ),
                                         child: IconButton(
                                               icon: const Icon(Icons.search, color: Colors.white),                                  
-                                              onPressed: () {
-                                                print("b"); 
-                                              },
+                                              onPressed: ()async {
+                                                        await ProductMethods().getProducts().then((val){
+                                                          if(val.data['success']){
+                                                            data['_userList']=val.data['products'];
+                                                          }else{
+                                                            Fluttertoast.showToast(
+                                                                msg: val.data['msg'],
+                                                                toastLength: Toast.LENGTH_SHORT,
+                                                                gravity: ToastGravity.BOTTOM,
+                                                                backgroundColor: Colors.red,
+                                                                textColor: Colors.white,
+                                                                fontSize: 16.0);
+                                                          }
+                                                        });
+                                                          
+                                                        },
                                             ),
                                       ),
                                     ],
