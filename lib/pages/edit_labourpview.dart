@@ -1,14 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:group2/pages/sp_labour_profileview.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter/services.dart';
-import 'package:group2/globals.dart';
-import 'package:http/http.dart' as http;
-import 'package:group2/Classes/update_methods.dart';
 
 class Editlabour extends StatefulWidget {
-  const Editlabour({Key? key}) : super(key: key);
+  Map<String, dynamic> data;
+  Editlabour(this.data);
 
   @override
   State<Editlabour> createState() => _EditlabourState();
@@ -39,32 +33,20 @@ class _EditlabourState extends State<Editlabour> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _usernameController.text = sp['username'];
-    _professionController.text = sp['profession'];
-    _emailController.text = sp['email'];
-    _contactnumController.text = sp['contactNo'];
-    _addressController.text = sp['address'];
-    _hometwonController.text = sp['hometown'];
-    _districtController.text = sp['district'];
-    _qulificationController.text = sp['qualification'];
-    _experienceController.text = sp['experience'];
+    _usernameController.text = widget.data['username'];
+    _professionController.text = widget.data['profession'];
+    _emailController.text = widget.data['email'];
+    _contactnumController.text = widget.data['contactNo'];
+    _addressController.text = widget.data['address'];
+    _hometwonController.text = widget.data['hometown'];
+    _districtController.text = widget.data['district'];
+    _qulificationController.text = widget.data['qualification'];
+    _experienceController.text = widget.data['experience'];
   }
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  File? image;
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print('Failed to pick image:$e');
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +54,7 @@ class _EditlabourState extends State<Editlabour> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Labourpview()),
-            );
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
@@ -507,26 +486,7 @@ class _EditlabourState extends State<Editlabour> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Center(
-                      child: ElevatedButton.icon(
-                        //label: Icon(Icons.lock),
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[700],
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {},
-                        icon: const Text(
-                          'Changed Password',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        label: const Icon(Icons.lock),
-                      ),
-                    ),
-                    const Divider(
-                      height: 20.0,
-                      color: Colors.black,
-                    ),
+
                     Center(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -548,96 +508,7 @@ class _EditlabourState extends State<Editlabour> {
                 ),
               ),
             ),
-            Positioned(
-                child: Center(
-              child: Stack(children: [
-                SizedBox(
-                  height: 107.0,
-                  width: 115.0,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: image != null
-                          ? Image.file(
-                              image!,
-                              width: 115.0,
-                              height: 107.0,
-                              fit: BoxFit.fill,
-                            )
-                          : Image.asset(
-                              'assets/imgs/suplier.jpg',
-                              fit: BoxFit.fill,
-                            )),
-                ),
-                Positioned(
-                    bottom: -5.0,
-                    right: -5.0,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.add_a_photo_outlined,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              height: 100.0,
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 20.0),
-                              child: Column(
-                                children: [
-                                  Text('Choose profile photo'),
-                                  const SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.gallery);
-                                        },
-                                        child: const Text(
-                                          'Add from galery',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.camera);
-                                        },
-                                        child: const Text(
-                                          'Add from Camera',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ))
-              ]),
-            ))
+
           ],
         ),
       ),

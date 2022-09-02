@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import '../Classes/update_methods.dart';
 
-class Changehd_pw extends StatefulWidget {
-  const Changehd_pw({Key? key}) : super(key: key);
+class Changecontra_pw extends StatefulWidget {
+  const Changecontra_pw({Key? key}) : super(key: key);
 
   @override
-  State<Changehd_pw> createState() => _Changehd_pwState();
+  State<Changecontra_pw> createState() => _Changecontra_pwState();
 }
 
-class _Changehd_pwState extends State<Changehd_pw> {
+class _Changecontra_pwState extends State<Changecontra_pw> {
   String error = '';
   final TextEditingController _oldpwControler = TextEditingController();
   final TextEditingController _newpwControler = TextEditingController();
   final TextEditingController _confirmnewpwControler = TextEditingController();
 
-  //String url = 'http://10.0.2.2:5000';
-  String url = 'https://prositegroup2.herokuapp.com';
+  //String url = 'https://prositegroup2.herokuapp.com';
+  String url = 'http://10.0.2.2:5000';
+
   Future<void> savechanges(String oldpw, String newpw)async {
     Map<String,dynamic> data = {
       "password" : oldpw,
@@ -23,7 +24,7 @@ class _Changehd_pwState extends State<Changehd_pw> {
     };
 
     try{
-      await UpdateServices().updatePw('$url/changeHardwarePw',data);
+      await UpdateServices().updatePw('$url/changeContractorPw',data);
       Navigator.pop(context);
     }
     catch(err){

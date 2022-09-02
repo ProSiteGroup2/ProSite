@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../Classes/update_methods.dart';
 
-class Changehd_pw extends StatefulWidget {
-  const Changehd_pw({Key? key}) : super(key: key);
+class Changelb_pw extends StatefulWidget {
+  const Changelb_pw({Key? key}) : super(key: key);
 
   @override
-  State<Changehd_pw> createState() => _Changehd_pwState();
+  State<Changelb_pw> createState() => _Changelb_pwState();
 }
 
-class _Changehd_pwState extends State<Changehd_pw> {
+class _Changelb_pwState extends State<Changelb_pw> {
   String error = '';
   final TextEditingController _oldpwControler = TextEditingController();
   final TextEditingController _newpwControler = TextEditingController();
@@ -202,7 +202,7 @@ class _Changehd_pwState extends State<Changehd_pw> {
                           shape: RoundedRectangleBorder(
                               borderRadius:
                               BorderRadiusDirectional.circular(16.0))),
-                      onPressed: () async{
+                      onPressed: () { },/*async{
                         if(_formkey.currentState!.validate()){
                           if(_newpwControler.text == _confirmnewpwControler.text){
                             await savechanges(
@@ -215,7 +215,7 @@ class _Changehd_pwState extends State<Changehd_pw> {
                             });
                           }
                         }
-                      },
+                      },*/
                       child: const Text(
                         'Save',
                         style: TextStyle(color: Colors.white, fontSize: 20.0),
