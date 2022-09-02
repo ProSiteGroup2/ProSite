@@ -23,8 +23,8 @@ class _LabourpviewState extends State<Labourpview> {
     'assets/imgs/ppp.jfif',
   ];
 
-  //String url = 'https://prositegroup2.herokuapp.com';
-  String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
+  //String url = 'http://10.0.2.2:5000';
   Future<Map<String, dynamic>?> getData() async {
     try {
       print('1');

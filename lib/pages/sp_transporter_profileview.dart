@@ -19,7 +19,7 @@ class _TransporterpviewState extends State<Transporterpview> {
     'assets/imgs/t4.webp',
     'assets/imgs/t5.jpg',
   ];
-  String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
 
   Future<Map<String, dynamic>?> getData() async {
     try {
