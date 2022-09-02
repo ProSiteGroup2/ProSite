@@ -27,6 +27,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
+
+
   Future<List<dynamic>?> gettingTransporters() async {
     var results=await SPMethods().getTransporters();
     if(results.data['success']){
@@ -214,6 +216,7 @@ Map<String, dynamic> data = {
       home: DefaultTabController(
         length: 2,
            child:Scaffold(
+             resizeToAvoidBottomInset: false,
                 appBar: AppBar(
 
                       backgroundColor: const Color(0xE5E5E5),
@@ -231,7 +234,7 @@ Map<String, dynamic> data = {
                                   
                                         PopupMenuItem<int>(
                                             value: 0,
-                                            child: Text("About and Settings"),
+                                            child: Text("About"),
                                         ),
 
                                         PopupMenuItem<int>(

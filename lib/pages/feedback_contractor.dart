@@ -50,14 +50,17 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
       Feedbacks('He is very Experienced', 'Sudesh', 'worker2.jpg'),
       Feedbacks('He is a clever labour', 'Raveen Wick', 'worker3.jpg'),
       Feedbacks('He is a good labour', 'Heshan Moma', 'worker1.jpg'),
-      Feedbacks(
-          'He is experienced labour', 'Dinuranga Priyasad', 'worker2.jpg'),
+      Feedbacks('He is experienced labour', 'Dinuranga Priyasad', 'worker2.jpg'),
     ];
     return MaterialApp(
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          
                     appBar: AppBar(
+                          automaticallyImplyLeading: false,
+
                           backgroundColor: Color(0xFF60A3D9),
                           title: Text(
                             'Feedbacks',
@@ -72,7 +75,7 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                           
                                 child: Column(
                                   children:[
-                                      // SizedBox(height: 10.0),
+                                      SizedBox(height: 10.0),
                                       Center(
                                         child: CircleAvatar(
                                           // backgroundImage: NetworkImage('${sp['imageUrl']}'),
@@ -92,150 +95,153 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                                         ),
                                       ),
                                       // SizedBox(height: 5.0),
-                                      Container(
-                                        child: const TabBar(
-                                                      labelPadding: EdgeInsets.only(left: 30, right: 30),
-                                                      
-                                                      labelColor: Colors.black87,
-                                                      labelStyle: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight: FontWeight.bold,
-                                                          fontFamily: "Poppins"),
-                                                      unselectedLabelColor: Colors.black26,
-                                                      isScrollable: true,
-                                                      indicatorSize: TabBarIndicatorSize.label,
-                                                      tabs: [Tab(text: "View feedbacks"), Tab(text: "Give feedbacks")],
-                                                    ),
-                                      ),
+                                      const TabBar(
+                                                    labelPadding: EdgeInsets.only(left: 30, right: 30),
+                                                    
+                                                    labelColor: Colors.black87,
+                                                    labelStyle: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontFamily: "Poppins"),
+                                                    unselectedLabelColor: Colors.black26,
+                                                    isScrollable: true,
+                                                    indicatorSize: TabBarIndicatorSize.label,
+                                                    tabs: [Tab(text: "View feedbacks"), Tab(text: "Give feedbacks")],
+                                                  ),
                                   ]
                                 ),
                                 
                       ),
                     ),
-                    
-                    backgroundColor: Colors.white,
-          body: TabBarView(
-            //tabbarview
-            children: [
-            
-                      Container(
-                        //view feedback tab
-                        width: kPropWidth(context, 1),
-                        height: kPropHeight(context, 1),
-                        padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 0.0),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                        backgroundColor: Colors.white,
+                    body: TabBarView(
+                      
+                      //tabbarview
+                      children: [
+                      
+                                Container(
+                                  //view feedback tab
+                                  width: kPropWidth(context, 1),
+                                  height: kPropHeight(context, 1),
+                                  padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 0.0),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
 
-                              Container(
-                                child: FutureBuilder<List<dynamic>?>(
-                                        future: gettingFeedbacks(),
-                                        builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
-                                          if(snapshot.hasData){
-                                            return ImageCauserol_cont_feed(
-                                              tags: snapshot.data!,
-                                            );
-                                          }else{
-                                            return CircularProgressIndicator();
-                                          }
-                                        },
-                                      )
-                              )
-                         
-                          ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        //add feedback
-                                height: kPropHeight(context, 1),
-                                child: Column(
+                                        Container(
+                                          child: FutureBuilder<List<dynamic>?>(
+                                                  future: gettingFeedbacks(),
+                                                  builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
+                                                    if(snapshot.hasData){
+                                                      return ImageCauserol_cont_feed(
+                                                        tags: snapshot.data!,
+                                                      );
+                                                    }else{
+                                                      return CircularProgressIndicator();
+                                                    }
+                                                  },
+                                                )
+                                        )
                                   
-                                  children: [
-                                    SizedBox(height:10.0),
-                                    Text(
-                                            'Add Your feedback here',
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                      Container(
-                                      child: Card(
-                                        color: Colors.grey[50],
-                                        elevation: 25.0,
-                                        shadowColor: Colors.blueAccent,
-                                        margin: EdgeInsets.fromLTRB(20,20,20,0),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(15.0),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(10,10,10,6),
-                                          child: TextField(
-                                            onChanged: (value) => feedback = value,
-                                            controller: _feedbackController,
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 15.0,
-                                            ),
-                                            decoration: InputDecoration(
-                                              hintText: 'Type Here...',
-                                              border: InputBorder.none,
-                                            ),
-                                            keyboardType: TextInputType.text,
-                                            maxLines: 3,
-                                          ),
-                                        ),
-                                      ),
+                                    ],
                                     ),
-                                    ElevatedButton(
-                                      style: ButtonStyle(
-                                          shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20.0),
-                                      ))),
-                                      onPressed: () {
-                                        var result = SPMethods().addFeedback(
-                                            consumer['_id'], sp['email'], feedback);
-                              
-                                        print(feedback);
-                                        _feedbackController.clear();
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                            title: Text(
-                                                'Your feedback added successfully!'),
-                                            content: Icon(
-                                              Icons.check_circle,
-                                              color: Colors.green,
-                                              size: 60,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: Text(
-                                        'Submit',
-                                        style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    )
-                                  
-                            
-                                  
-                                  ],
+                                  ),
                                 ),
+                                Flexible(
+                                  //add feedback
+                                  
+                                          // height: kPropHeight(context, 0.1),
+                                  //          width: kPropWidth(context, 1),
+                                  // height: kPropHeight(context, 0.1),
+                                  // margin: EdgeInsets.only(top: 20),
+                                          child: Column(
+                                            
+                                            children: [
+                                              // SizedBox(height:100.0),
+                                              // Text(
+                                              //         'Add Your feedback here',
+                                              //         style: TextStyle(
+                                              //           fontFamily: 'Poppins',
+                                              //           fontSize: 16,
+                                              //           fontWeight: FontWeight.bold,
+                                              //         ),
+                                              //       ),
+                                                Container(
+                                                child: Card(
+                                                  color: Colors.grey[50],
+                                                  elevation: 25.0,
+                                                  shadowColor: Colors.blueAccent,
+                                                  margin: EdgeInsets.fromLTRB(20,20,20,0),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(15.0),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      TextFormField(
+                                                        onChanged: (value) => feedback = value,
+                                                        controller: _feedbackController,
+                                                        style: TextStyle(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 15.0,
+                                                        ),
+                                                        decoration: InputDecoration(
+                                                          hintText: 'Type Here...',
+                                                          border: InputBorder.none,
+                                                        ),
+                                                        // keyboardType: TextInputType.text,
+                                                        maxLines: 3,
+                                                      ),
+                                                      
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              ElevatedButton(
+                                                style: ButtonStyle(
+                                                    shape: MaterialStateProperty.all<
+                                                            RoundedRectangleBorder>(
+                                                        RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(20.0),
+                                                ))),
+                                                onPressed: () {
+                                                  var result = SPMethods().addFeedback(
+                                                      consumer['_id'], sp['email'], feedback);
                                         
-                                    ),
-             
-             
-            ],
-          ),
+                                                  print(feedback);
+                                                  _feedbackController.clear();
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (context) => AlertDialog(
+                                                      title: Text(
+                                                          'Your feedback added successfully!'),
+                                                      content: Icon(
+                                                        Icons.check_circle,
+                                                        color: Colors.green,
+                                                        size: 20,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                child: Text(
+                                                  'Submit',
+                                                  style: TextStyle(
+                                                    fontSize: 16.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              )
+                                            
+                                      
+                                            
+                                            ],
+                                          ),
+                                                  
+                                              ),
+                      
+                      ],
+                    ),
         ),
       ),
     );

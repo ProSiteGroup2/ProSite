@@ -23,9 +23,19 @@ class ItemDetails extends StatefulWidget {
 
 class _ItemDetailsState extends State<ItemDetails>
     with TickerProviderStateMixin {
+  TextEditingController quantityController=TextEditingController();
+  @override
+  void initState() {
+    quantityController.text="1";
+    // TODO: implement initState
+    super.initState();
+  }
+  var local_quantity=1;
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xE5E5E5),
@@ -94,12 +104,16 @@ class _ItemDetailsState extends State<ItemDetails>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('${product['productname']}',
-                        style: TextStyle(
-                            fontFamily: "poppins",
-                            fontSize: 22,
-                            fontWeight: FontWeight.w700,
-                            height: 2)),
+                    Expanded(
+                      child: Text('${product['productname']}',
+                          style: TextStyle(
+                              fontFamily: "poppins",
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                              height: 2),
+                        softWrap: true,
+                      ),
+                    ),
                     Container(
                       //price
                       width: kPropWidth(context, 0.22),
@@ -144,14 +158,14 @@ class _ItemDetailsState extends State<ItemDetails>
                 ),
               ),
               Container(
-                height: 200,
+                height: 180,
                 width: double.maxFinite,
                 child: TabBarView(
                   controller: _tabController,
                   children: [
                     Container(
                       //specifications tab
-                      margin: EdgeInsets.only(top: 15),
+                      margin: EdgeInsets.only(top: 05),
                       child: Column(
                         children: [
                           Container(
@@ -251,7 +265,7 @@ class _ItemDetailsState extends State<ItemDetails>
                     ),
                     Container(
                       //about seller tab
-                      margin: EdgeInsets.only(left: 30, top: 18),
+                      margin: EdgeInsets.only(left: 30, top: 10),
                       child: Column(
                         children: [
                           Container(
@@ -265,7 +279,8 @@ class _ItemDetailsState extends State<ItemDetails>
                                   fontFamily: "poppins",
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
-                                  height: 1.15),
+                                  // height: 1.15
+                              ),
                             ),
                           ),
                           Container(
@@ -417,6 +432,73 @@ class _ItemDetailsState extends State<ItemDetails>
                   ],
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(25.0,0,0,0),
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('Quantity',
+                        style: TextStyle(
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.bold
+                        ),),
+                      SizedBox(height: 5,),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: (){
+                                setState(() {
+                                  if(product['stock']>local_quantity){
+                                    local_quantity++;
+                                    quantityController.text=local_quantity.toString();
+                                  }
+                                  print(local_quantity);
+                                });
+                              },
+                              icon: Icon(Icons.add)
+                          ),
+                          SizedBox(width: 100,height: 40,
+                          child: TextField(
+                             keyboardType: TextInputType.number,
+
+                            textAlign: TextAlign.center,
+                            controller: quantityController,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black
+                            ),
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
+                            onChanged: (value){
+                               setState(() {
+                                 local_quantity=int.parse(value);
+                                 print(local_quantity);
+                               });
+                            },
+                            
+                          ),),
+                          IconButton(
+                              onPressed: (){
+                                setState(() {
+                                  if(local_quantity>1){
+                                    local_quantity--;
+                                    quantityController.text=local_quantity.toString();
+                                  }
+                                  print(local_quantity);
+                                });
+                              },
+                              icon: Icon(Icons.remove)
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height:20.0),
               Container(
                 //buttons
                 margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -437,15 +519,15 @@ class _ItemDetailsState extends State<ItemDetails>
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.25),
-                              spreadRadius: 10,
-                              blurRadius: 7,
+                              spreadRadius: 5,
+                              blurRadius: 3,
                               offset:
                                   Offset(2, 5), // changes position of shadow
                             ),
                             BoxShadow(
                               color: Colors.white.withOpacity(0.8),
-                              spreadRadius: 10,
-                              blurRadius: 7,
+                              spreadRadius: 5,
+                              blurRadius: 3,
                               offset: Offset(
                                   -10, -10), // changes position of shadow
                             ),
@@ -457,10 +539,21 @@ class _ItemDetailsState extends State<ItemDetails>
                           child: ElevatedButton.icon(
                                                       
                                   onPressed: () {
+                                    if(product['stock']>=local_quantity){
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => paynow()),
+                                        MaterialPageRoute(builder: (context) => paynow(quantity:local_quantity)),
                                       );
+                                    }else{
+                                      Fluttertoast.showToast(
+                                          msg: "Entered Quantity is greater than Stock",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
+                                    }
+
                                       
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -492,15 +585,15 @@ class _ItemDetailsState extends State<ItemDetails>
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.25),
-                              spreadRadius: 10,
-                              blurRadius: 7,
+                              spreadRadius: 5,
+                              blurRadius: 3,
                               offset:
                                   Offset(2, 5), // changes position of shadow
                             ),
                             BoxShadow(
                               color: Colors.white.withOpacity(0.8),
-                              spreadRadius: 10,
-                              blurRadius: 7,
+                              spreadRadius: 5,
+                              blurRadius: 3,
                               offset: Offset(
                                   -10, -10), // changes position of shadow
                             ),
@@ -512,28 +605,38 @@ class _ItemDetailsState extends State<ItemDetails>
                           child: ElevatedButton.icon(
                                                       
                                   onPressed: () async {
-                                    var buyerID;
-                                    if(consumer.isNotEmpty){
-                                      buyerID=consumer['_id'];
-                                    }else{
-                                      buyerID=sp['_id'];
-                                    }
+                                    if(product['stock']>=local_quantity){
+                                      var buyerID;
+                                      if(consumer.isNotEmpty){
+                                        buyerID=consumer['_id'];
+                                      }else{
+                                        buyerID=sp['_id'];
+                                      }
 
-                                    var result= await CartMethods().addCartProduct(buyerID, product['_id'], 11, product['price']*11);
-                                    if(result.data['success']){
-                                      var local_cartproduct=result.data['cartproduct'];
-                                      var result2=await CartMethods().addProducttoCart(buyerID, local_cartproduct['_id']);
-                                      if(result2.data['success']){
-                                        Fluttertoast.showToast(
-                                            msg: result2.data['msg'],
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                            backgroundColor: Colors.green,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0);
+                                      var result= await CartMethods().addCartProduct(buyerID, product['_id'], local_quantity, product['price']*local_quantity);
+                                      if(result.data['success']){
+                                        var local_cartproduct=result.data['cartproduct'];
+                                        var result2=await CartMethods().addProducttoCart(buyerID, local_cartproduct['_id']);
+                                        if(result2.data['success']){
+                                          Fluttertoast.showToast(
+                                              msg: result2.data['msg'],
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              backgroundColor: Colors.green,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        }else{
+                                          Fluttertoast.showToast(
+                                              msg: 'Adding product to cart failed',
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              backgroundColor: Colors.red,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        }
                                       }else{
                                         Fluttertoast.showToast(
-                                            msg: 'Adding product to cart failed',
+                                            msg: 'Adding cartProduct failed',
                                             toastLength: Toast.LENGTH_SHORT,
                                             gravity: ToastGravity.BOTTOM,
                                             backgroundColor: Colors.red,
@@ -542,13 +645,14 @@ class _ItemDetailsState extends State<ItemDetails>
                                       }
                                     }else{
                                       Fluttertoast.showToast(
-                                          msg: 'Adding cartProduct failed',
+                                          msg: 'Entered Quantity is greater than Stock',
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                           backgroundColor: Colors.red,
                                           textColor: Colors.white,
                                           fontSize: 16.0);
                                     }
+
                                   },
                                     style: ElevatedButton.styleFrom(
                                       primary: Colors.cyan[300],

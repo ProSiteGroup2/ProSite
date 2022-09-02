@@ -130,7 +130,7 @@ class _CustomerpviewState extends State<Customerpview> {
                                             width: 5.0,
                                           ),
                                           Text(
-                                            '${snapshot.data!['hometown']}',
+                                            '${snapshot.data!['hometown']}, ${snapshot.data!['district']}',
                                             style: const TextStyle(
                                               fontSize: 20.0,
                                             ),

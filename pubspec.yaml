@@ -55,6 +55,7 @@ dependencies:
   flutter_credit_card: ^3.0.2
   font_awesome_flutter: ^10.1.0
   stripe_payment: ^1.0.6
+  flutter_keyboard_size: ^0.1.2+2
   
 
 dev_dependencies:

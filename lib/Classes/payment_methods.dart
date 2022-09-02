@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class PaymentMethods {
   Dio dio = new Dio();
 
-  addCard(cardNumber,expiryDate,cvvCode,cardHolderName) async {
+  addCard(cardNumber,expiryDate,cvvCode,cardHolderName,amount) async {
 
     try{
       return await dio.post('https://prositegroup2.herokuapp.com/addCard',
@@ -14,7 +14,8 @@ class PaymentMethods {
         "cardNumber":cardNumber,
         "expiryDate":expiryDate,
         "cvvCode":cvvCode,
-        "cardHolderName":cardHolderName, 
+        "cardHolderName":cardHolderName,
+        "amount":amount
       },options: Options(contentType: Headers.jsonContentType));
       
     }

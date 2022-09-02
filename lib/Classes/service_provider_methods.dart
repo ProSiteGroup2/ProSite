@@ -144,7 +144,7 @@ class SPMethods{
       return await dio.get('https://prositegroup2.herokuapp.com/getTransporters');
     } on DioError catch (e) {
       Fluttertoast.showToast(
-          msg: e.response?.data['msg'],
+          msg:"Getting Transporters Failed",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,

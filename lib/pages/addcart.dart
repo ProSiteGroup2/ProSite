@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/cart_methods.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/pages/paynow_cart.dart';
 
 import '../globals.dart';
 
@@ -319,6 +320,7 @@ class _addcartState extends State<addcart> {
               ElevatedButton(
                   onPressed: () async {
                     await CartMethods().updateCartPrice(local_cartID, total_price);
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>paynow_cart(total_price: total_price)));
                   },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFF9C9EFE),
