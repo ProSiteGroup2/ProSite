@@ -7,7 +7,13 @@ import 'package:group2/pages/PaymentScreen.dart';
 import 'package:group2/pages/ppayment.dart';
 
 class MySample extends StatefulWidget {
-  final String amount = '';
+  final amount;
+
+  const MySample({
+    Key? key,
+    required this.amount
+  }) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return MySampleState();
@@ -15,7 +21,6 @@ class MySample extends StatefulWidget {
 }
 
 class MySampleState extends State<MySample> {
-  String amount = '';
   String cardNumber = '';
   String expiryDate = '';
   String cardHolderName = '';
@@ -231,13 +236,13 @@ class MySampleState extends State<MySample> {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               PaymentMethods().addCard(cardNumber, expiryDate,
-                                  cvvCode, cardHolderName);
+                                  cvvCode, cardHolderName,widget.amount);
                               print('valid!');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Payment(
-                                          amount: '${product['price']}',
+                                          amount: '${widget.amount}',
                                           cardNumber: cardNumber,
                                         )),
                               );
