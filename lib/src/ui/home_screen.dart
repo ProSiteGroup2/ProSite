@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Future<List<dynamic>?> gettingTransporters() async {
     var results=await SPMethods().getTransporters();
     if(results.data['success']){
+      print(results.data['transporters']);
       return results.data['transporters'];
     }else{
       Fluttertoast.showToast(
@@ -1021,7 +1022,7 @@ Map<String, dynamic> data = {
                                                 return CircularProgressIndicator();
                                               }
                                             },
-                                          ),
+                                          )
                                         ),
                                       ],
                                     ),
