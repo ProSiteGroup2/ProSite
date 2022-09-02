@@ -90,7 +90,7 @@ class _ppaymentState extends State<ppayment> {
                 height: kPropHeight(context, 0.05),
                 margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 
-                child: Text("To find a delivery partner click below button ",
+                child: Text("If You want a Delivery Service Click Below... ",
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontFamily: "Poppins",
@@ -140,7 +140,7 @@ class _ppaymentState extends State<ppayment> {
                                           borderRadius: BorderRadius.circular(10.0),
                                         ),
                                       ),
-                                    label: const Text("Find Vehicle",
+                                    label: const Text("Find Transporter",
                                     style: TextStyle(
                                       fontFamily: "Poppins",
                                       fontWeight: FontWeight.bold,
