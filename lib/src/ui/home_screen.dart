@@ -18,6 +18,8 @@ import 'package:group2/src/ui/Bricks.dart';
 import 'package:group2/src/ui/Cement.dart';
 import 'package:group2/src/ui/Sand.dart';
 import 'package:group2/src/ui/Steel.dart';
+import 'package:group2/src/ui/Suggestion.dart';
+import 'package:group2/src/ui/item_details.dart';
 import 'package:group2/src/ui/user_api.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -318,6 +320,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         padding: const EdgeInsets.only(right: 15, left: 15),
                         margin: const EdgeInsets.only(top: 15, bottom: 15),
                         child: TypeAheadField<User?>(
+                          hideSuggestionsOnKeyboardHide: true,
                           textFieldConfiguration: TextFieldConfiguration(
                               autofocus: true,
                               style: DefaultTextStyle.of(context)
@@ -342,9 +345,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           itemBuilder: (context, User? suggestion) {
                             final user = suggestion!;
                             return ListTile(
-                              leading: Image.network(user.imageUrl),
-                              title: Text(user.productname),
-                              subtitle: Text('Rs.'+'${user.price}'),
+                              leading: Image.network(
+                                user.imageUrl,
+                              ),
+                              title: Text(
+                                user.productname,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text('Rs.' + '${user.price}'),
                             );
                           },
                           noItemsFoundBuilder: (context) => Container(
@@ -357,9 +365,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
                           ),
                           onSuggestionSelected: (User? suggestion) {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) =>
-                            //         ProductPage(product: suggestion)));
+                            final user = suggestion!;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Suggestions_det(user: user)),
+                            );
+                           
                           },
                         ),
                       ),
