@@ -232,7 +232,8 @@ class _HrdDashboardState extends State<HrdDashboard> {
                                          
                                             ]),
                                           ),         
-                                      Container( 
+                                      Container(
+                                        height: 400,
                                         child: FutureBuilder<List<dynamic>?>(
                                           future: gettingProducts(),
                                           builder: (context,AsyncSnapshot<List<dynamic>?> snapshot){
@@ -241,7 +242,7 @@ class _HrdDashboardState extends State<HrdDashboard> {
                                                 tags: snapshot.data!,
                                               );
                                             }else{
-                                              return CircularProgressIndicator();
+                                              return Center(child: CircularProgressIndicator());
                                             }
                                           },
                                         )

@@ -56,6 +56,7 @@ class _paynowState extends State<paynow> {
     return Scaffold(
       appBar: AppBar(
          backgroundColor: Color(0xE5E5E5),
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         toolbarHeight: 50,
         bottom: PreferredSize(
@@ -64,7 +65,7 @@ class _paynowState extends State<paynow> {
              mainAxisAlignment: MainAxisAlignment.center,
             children: [
                Container(
-                margin: EdgeInsets.all(20),
+                margin: EdgeInsets.all(10),
                 alignment: Alignment.bottomCenter,
                 child: Text("Pay Now",
                 style: TextStyle(

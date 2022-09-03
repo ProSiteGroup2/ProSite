@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/cart_methods.dart';
 import 'package:group2/Classes/order_methods.dart';
 import 'package:group2/Classes/product_methods.dart';
 import 'package:group2/common/size.dart';
@@ -46,6 +47,7 @@ class _paynow_cartState extends State<paynow_cart> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xE5E5E5),
+          iconTheme: IconThemeData(color: Colors.black),
           elevation: 0,
           toolbarHeight: 50,
           bottom: PreferredSize(
@@ -54,7 +56,7 @@ class _paynow_cartState extends State<paynow_cart> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.all(10),
                   alignment: Alignment.bottomCenter,
                   child: Text("Pay Now",
                     style: TextStyle(
@@ -342,6 +344,8 @@ class _paynow_cartState extends State<paynow_cart> {
                                               MySample(amount:widget.total_price))
                                     // Payment(amount:"55")),
                                   );
+                                  var result=await CartMethods().deleteProductsinCart(buyerID);
+                                  var result2=await CartMethods().deleteCartProducts(buyerID);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.greenAccent[100],

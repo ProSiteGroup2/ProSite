@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/pages/product_edit.dart';
 import 'package:group2/src/ui/item_details.dart';
 
+import '../Classes/product_methods.dart';
 import '../globals.dart';
 
 //import '../common/color.dart';
@@ -46,9 +48,9 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
           itemBuilder: (context, i) {
             return Container(
 
-              margin: const EdgeInsets.all(20),
+              margin: const EdgeInsets.fromLTRB(10,10.0,10.0,0),
               width: 250,
-              height: 150,
+              height: 120,
 
               // margin: EdgeInsets.only( right:20,top: 15),
               decoration: BoxDecoration(
@@ -138,7 +140,10 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
                                 style: ElevatedButton.styleFrom(
                                   primary:Color(0xFF18978F),
                                 ),
-                                onPressed:(){},
+                                onPressed:(){
+                                  product=tags[i];
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>editProduct()));
+                                },
                                 child: Text('Edit',
                                 style: TextStyle(
                                   fontSize: 16.0,
@@ -151,7 +156,12 @@ class _ImageCauserol_bState extends State<ImageCauserol_b> {
                                 style: ElevatedButton.styleFrom(
                                   primary:Colors.red,
                                 ),
-                                onPressed:(){},
+                                onPressed:() async {
+                                  await ProductMethods().deleteProduct(tags[i]['_id']);
+                                  setState(() {
+                                    tags.removeAt(i);
+                                  });
+                                },
                                 child: Text('Delete',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
