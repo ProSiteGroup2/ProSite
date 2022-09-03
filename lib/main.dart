@@ -13,6 +13,7 @@ import 'package:group2/pages/customer_transporterview.dart';
 import 'package:group2/pages/hardware_dashboard.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/loginpage.dart';
+import 'package:group2/pages/product_edit.dart';
 import 'package:group2/pages/select.dart';
 import 'package:group2/pages/splashscreen.dart';
 import 'package:group2/pages/starting.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
           '/contractorNavBar':(context)=>ConNavBar(),
           '/hdNavBar':(context)=>HdNavBar(),
           '/select':(context)=>Select(),
+          '/editProduct':(context)=>editProduct(),
           // .....
           // ...... give other pages class name like above
         });

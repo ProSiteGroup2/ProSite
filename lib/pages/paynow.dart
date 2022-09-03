@@ -8,6 +8,7 @@ import 'package:group2/pages/add_card_details.dart';
 import 'package:group2/pages/flutter_card.dart';
 import 'package:group2/pages/ppayment.dart';
 
+import '../Classes/order_methods.dart';
 import '../Classes/product_methods.dart';
 
 
@@ -55,6 +56,7 @@ class _paynowState extends State<paynow> {
     return Scaffold(
       appBar: AppBar(
          backgroundColor: Color(0xE5E5E5),
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         toolbarHeight: 50,
         bottom: PreferredSize(
@@ -63,7 +65,7 @@ class _paynowState extends State<paynow> {
              mainAxisAlignment: MainAxisAlignment.center,
             children: [
                Container(
-                margin: EdgeInsets.all(20),
+                margin: EdgeInsets.all(10),
                 alignment: Alignment.bottomCenter,
                 child: Text("Pay Now",
                 style: TextStyle(
@@ -376,6 +378,15 @@ class _paynowState extends State<paynow> {
                                         product['stock']=product['stock']-widget.quantity;
                                       });
                                       await ProductMethods().productStockUpdate(product['_id'], product['stock']);
+                                      var buyerID;
+                                      if(consumer.isNotEmpty){
+                                        buyerID=consumer['_id'];
+                                      }else{
+                                        buyerID=sp['_id'];
+                                      }
+
+                                      await OrderMethods().addOrder(buyerID,product['_id'], widget.quantity, product['price']*widget.quantity, product['seller']);
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(

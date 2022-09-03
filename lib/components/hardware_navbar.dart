@@ -19,7 +19,7 @@ class HdNavBar extends StatefulWidget {
 
 class _HdNavBarState extends State<HdNavBar> {
   int currindex = 0;
-  final screens = [HrdDashboard(), CActivity(), Notifications(), Hardwareprofile()];
+  final screens = [HrdDashboard(), Center(child: Text('Hardware Ativities')), Notifications(), Hardwareprofile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

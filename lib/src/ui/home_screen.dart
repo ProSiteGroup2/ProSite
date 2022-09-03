@@ -29,9 +29,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Future<List<dynamic>?> gettingTransporters() async {
-    var results = await SPMethods().getTransporters();
-    if (results.data['success']) {
-      print(results.data['transporters']);
+    var results=await SPMethods().getTransporters();
+    if(results.data['success']){
       return results.data['transporters'];
     } else {
       Fluttertoast.showToast(
