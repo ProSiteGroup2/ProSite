@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print, unused_import, body_might_complete_normally_nullable
+// ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_const_constructors, avoid_print, unused_import, body_might_complete_normally_nullable, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -8,8 +8,10 @@ import 'package:group2/Classes/service_provider_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/components/image_causerol.dart';
 import 'package:group2/components/image_causerol_a.dart';
+import 'package:group2/components/image_causerol_b.dart';
 import 'package:group2/components/image_causerol_cont.dart';
 import 'package:group2/components/image_causerol_lab.dart';
+import 'package:group2/components/image_causerol_orders.dart';
 import 'package:group2/components/image_causerol_trans.dart';
 import 'package:group2/globals.dart';
 import 'package:group2/pages/about_setting.dart';
@@ -29,6 +31,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+
+
   Future<List<dynamic>?> gettingTransporters() async {
     var results=await SPMethods().getTransporters();
     if(results.data['success']){
@@ -48,6 +52,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     var results = await SPMethods().getContractors();
     if (results.data['success']) {
       return results.data['contractors'];
+    } else {
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+   Future<List<dynamic>?> gettingOrders() async {
+    var results = await SPMethods().getOrders();
+    if (results.data['success']) {
+      return results.data['orders'];
     } else {
       Fluttertoast.showToast(
           msg: results.data['msg'],
@@ -379,68 +398,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           },
                         ),
                       ),
-                      // Container(
-                      //   //search
-                      //   margin: const EdgeInsets.all(20),
-                      //   child: Container(
-                      //     padding: const EdgeInsets.only(right: 5, left: 5),
-                      //     child: Row(
-                      //       children: [
-                      //         Flexible(
-                      //           flex: 1,
-                      //           child: TextField(
-                      //             style: const TextStyle(height: 0.5),
-                      //             cursorColor: Colors.grey,
-                      //             decoration: InputDecoration(
-                      //               contentPadding: const EdgeInsets.only(
-                      //                   right: 15, left: 18),
-                      //               fillColor: Colors.white,
-                      //               filled: true,
-                      //               border: OutlineInputBorder(
-                      //                   borderRadius: BorderRadius.circular(15),
-                      //                   borderSide: BorderSide.none),
-                      //               hintText: 'Search Item...',
-                      //               hintStyle: const TextStyle(
-                      //                   fontFamily: 'Poppins',
-                      //                   color: Colors.grey,
-                      //                   fontSize: 16),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //         Container(
-                      //           margin: const EdgeInsets.only(left: 10),
-                      //           padding:
-                      //               const EdgeInsets.only(right: 5, left: 5),
-                      //           decoration: BoxDecoration(
-                      //               color: Theme.of(context).primaryColor,
-                      //               borderRadius: BorderRadius.circular(15)),
-                      //           child: IconButton(
-                      //             icon: const Icon(Icons.search,
-                      //                 color: Colors.white),
-                      //             onPressed: () async {
-                      //               await ProductMethods()
-                      //                   .getProducts()
-                      //                   .then((val) {
-                      //                 if (val.data['success']) {
-                      //                   data['_userList'] =
-                      //                       val.data['products'];
-                      //                 } else {
-                      //                   Fluttertoast.showToast(
-                      //                       msg: val.data['msg'],
-                      //                       toastLength: Toast.LENGTH_SHORT,
-                      //                       gravity: ToastGravity.BOTTOM,
-                      //                       backgroundColor: Colors.red,
-                      //                       textColor: Colors.white,
-                      //                       fontSize: 16.0);
-                      //                 }
-                      //               });
-                      //             },
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
+                     
                       Container(
                         //Categories
                         child: Column(
@@ -924,9 +882,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   ]),
                             ),
                             Container(
-                              child: ImageCauserol(
-                                tags: data['tags'],
-                              ),
+                              child: FutureBuilder<List<dynamic>?>(
+                                future: gettingOrders(),
+                                builder:
+                                    (context, AsyncSnapshot<List<dynamic>?> snapshot) {
+                                  if (snapshot.hasData) {
+                                    return ImageCauserol_orders(
+                                      tags: snapshot.data!,
+                                    );
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        },
+                      )
                             ),
                           ],
                         ),
@@ -955,12 +923,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     ),
                                   ]),
                             ),
-                            Container(
-                              child: ImageCauserol_a(
+                             Container(
+                          //constructor car
+                           child: ImageCauserol_a(
                                 context: context,
                                 tags: data['tags'],
                               ),
-                            ),
+                          ),
                           ],
                         ),
                       ),
