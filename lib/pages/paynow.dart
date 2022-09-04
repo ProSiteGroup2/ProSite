@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/notification_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/globals.dart';
 import 'package:group2/pages/PaymentScreen.dart';
@@ -386,6 +388,21 @@ class _paynowState extends State<paynow> {
                                       }
 
                                       await OrderMethods().addOrder(buyerID,product['_id'], widget.quantity, product['price']*widget.quantity, product['seller']);
+                                      var result=await NotificationMethods().purchaseNotify(buyerID, "${product['productname']} has been Purchased", product['seller'], product['_id']);
+                                      if(result.data['success']){
+                                        var local_notification=result.data['notification'];
+                                        await NotificationMethods().pushNotifytoSeller(product['seller']['_id'], local_notification['_id']);
+                                        var result2= await NotificationMethods().pushNotifytoBuyer(buyerID, local_notification['_id']);
+                                        if(result2.data['success']){
+                                          Fluttertoast.showToast(
+                                              msg: 'Notification added',
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              backgroundColor: Colors.green,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        }
+                                      }
 
                                       Navigator.push(
                                         context,
