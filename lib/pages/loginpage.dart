@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
 
   String _spEmail = '';
   String _sppassword = '';
-  var token;
+
 
 
 
@@ -42,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
       try {
         await AuthService().SPLogin(_spEmail, _sppassword).then((val){
           if (val.data['success']) {
+            consumer={};
             token = val.data['token'];
             if(val.data['role']=='labour'){
               AuthService().getLabourInfo(token).then((val2){
@@ -55,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0);
-                  Navigator.pushNamed(context, '/navbar');
+                  Navigator.pushNamed(context, '/labourNavBar');
                 }
               });
             }else if(val.data['role']=='contractor'){
@@ -69,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0);
-                  Navigator.pushNamed(context, '/navbar');
+                  Navigator.pushNamed(context, '/contractorNavBar');
                 }
               });
             }else if(val.data['role']=='hardware'){
@@ -83,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0);
-                  Navigator.pushNamed(context, '/hrddashboard');
+                  Navigator.pushNamed(context, '/hdNavBar');
                 }
               });
             }else if(val.data['role']=='transporter'){
@@ -97,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0);
-                  Navigator.pushNamed(context, '/navbar');
+                  Navigator.pushNamed(context, '/transporterNavBar');
                 }
               });
             }
@@ -152,8 +153,23 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0,left: 20),
+                            child: IconButton(
+                              icon: Icon(Icons.arrow_back_ios_new),
+                              onPressed: (){
+                                Navigator.pushNamedAndRemoveUntil(context, '/select', (route) => false);
+                              },
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 25.0, 10.0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10.0, 0),
                         child: Text(
                           "Login",
                           style: TextStyle(

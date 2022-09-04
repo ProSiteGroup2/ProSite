@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
-
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/cart_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/pages/addcart.dart';
 import 'package:group2/pages/customer_hdprofileview.dart';
@@ -13,7 +14,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../globals.dart';
 
 class ItemDetails extends StatefulWidget {
-  const ItemDetails({Key? key}) : super(key: key);
+  final Map product;
+  const ItemDetails({Key? key,  required this.product}) : super(key: key);
 
   @override
   State<ItemDetails> createState() => _ItemDetailsState();
@@ -21,9 +23,19 @@ class ItemDetails extends StatefulWidget {
 
 class _ItemDetailsState extends State<ItemDetails>
     with TickerProviderStateMixin {
+  TextEditingController quantityController = TextEditingController();
+  @override
+  void initState() {
+    quantityController.text = "1";
+    // TODO: implement initState
+    super.initState();
+  }
+
+  var local_quantity = 1;
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xE5E5E5),
@@ -35,18 +47,18 @@ class _ItemDetailsState extends State<ItemDetails>
             child: IconButton(
               icon: Icon(Icons.shopping_cart_outlined, color: Colors.black),
               onPressed: () {
-               Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => addcart()),
-                  );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => addcart()),
+                );
               },
             ),
           )
         ],
         leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
-              onPressed: () => Navigator.of(context).pop(),
-            ), 
+          icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -92,12 +104,17 @@ class _ItemDetailsState extends State<ItemDetails>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('${product['productname']}',
+                    Expanded(
+                      child: Text(
+                        '${product['productname']}',
                         style: TextStyle(
                             fontFamily: "poppins",
                             fontSize: 22,
                             fontWeight: FontWeight.w700,
-                            height: 2)),
+                            height: 2),
+                        softWrap: true,
+                      ),
+                    ),
                     Container(
                       //price
                       width: kPropWidth(context, 0.22),
@@ -142,14 +159,14 @@ class _ItemDetailsState extends State<ItemDetails>
                 ),
               ),
               Container(
-                height: 200,
+                height: 180,
                 width: double.maxFinite,
                 child: TabBarView(
                   controller: _tabController,
                   children: [
                     Container(
                       //specifications tab
-                      margin: EdgeInsets.only(top: 15),
+                      margin: EdgeInsets.only(top: 05),
                       child: Column(
                         children: [
                           Container(
@@ -224,7 +241,7 @@ class _ItemDetailsState extends State<ItemDetails>
                     ),
                     Container(
                       //details tab
-                      margin: EdgeInsets.only(top: 15,left: 10),
+                      margin: EdgeInsets.only(top: 15, left: 10),
                       child: Column(
                         children: [
                           Container(
@@ -232,7 +249,7 @@ class _ItemDetailsState extends State<ItemDetails>
                             width: kPropWidth(context, 1) - 32,
                             //height: kPropHeight(context, 0.4) - 32,
                             margin:
-                            EdgeInsets.only(left: 20, right: 20, top: 15),
+                                EdgeInsets.only(left: 20, right: 20, top: 15),
                             child: Text(
                               '${product['description']}',
                               textAlign: TextAlign.justify,
@@ -249,7 +266,7 @@ class _ItemDetailsState extends State<ItemDetails>
                     ),
                     Container(
                       //about seller tab
-                      margin: EdgeInsets.only(left: 30, top: 18),
+                      margin: EdgeInsets.only(left: 30, top: 10),
                       child: Column(
                         children: [
                           Container(
@@ -260,10 +277,11 @@ class _ItemDetailsState extends State<ItemDetails>
                               "Seller",
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  fontFamily: "poppins",
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.15),
+                                fontFamily: "poppins",
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                // height: 1.15
+                              ),
                             ),
                           ),
                           Container(
@@ -272,45 +290,46 @@ class _ItemDetailsState extends State<ItemDetails>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                    //seller icon
-                                          margin: const EdgeInsets.fromLTRB(0, 0, 2, 20),
-                                          width: kPropWidth(context, 0.2),
-                                          height: kPropHeight(context, 0.1),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          //  border: Border.all(width: 2, color: Colors.grey.shade200),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20)),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.grey.withOpacity(0.25),
-                                              spreadRadius: 10,
-                                              blurRadius: 7,
-                                              offset: const Offset(
-                                                  2, 5), // changes position of shadow
-                                            ),
-                                            BoxShadow(
-                                              color: Colors.white.withOpacity(0.8),
-                                              spreadRadius: 10,
-                                              blurRadius: 7,
+                                  //seller icon
+                                  margin:
+                                      const EdgeInsets.fromLTRB(0, 0, 2, 20),
+                                  width: kPropWidth(context, 0.2),
+                                  height: kPropHeight(context, 0.1),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    //  border: Border.all(width: 2, color: Colors.grey.shade200),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.25),
+                                        spreadRadius: 10,
+                                        blurRadius: 7,
+                                        offset: const Offset(
+                                            2, 5), // changes position of shadow
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.white.withOpacity(0.8),
+                                        spreadRadius: 10,
+                                        blurRadius: 7,
 
-                                              offset: const Offset(-10,
-                                                  -10), // changes position of shadow
-                                            ),
-                                          ],
-                                          image: DecorationImage(
-                                              image: NetworkImage('${product['seller']['imageUrl']}'),
-                                              fit: BoxFit.cover,     
-                                              ),
-                                        ),
-
-                                        
+                                        offset: const Offset(-10,
+                                            -10), // changes position of shadow
+                                      ),
+                                    ],
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          '${product['seller']['imageUrl']}'),
+                                      fit: BoxFit.cover,
                                     ),
+                                  ),
+                                ),
                                 Container(
                                   //seller details
-                                   margin: const EdgeInsets.fromLTRB(0, 0, 20, 20),
-                                    width: kPropWidth(context, 0.6),
-                                    height: kPropHeight(context, 0.1),
+                                  margin:
+                                      const EdgeInsets.fromLTRB(0, 0, 20, 20),
+                                  width: kPropWidth(context, 0.6),
+                                  height: kPropHeight(context, 0.1),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     //  border: Border.all(width: 2, color: Colors.grey.shade200),
@@ -336,7 +355,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                   ),
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      sp=product['seller'];
+                                      sp = product['seller'];
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -356,22 +375,21 @@ class _ItemDetailsState extends State<ItemDetails>
                                       ),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        
                                         Container(
                                           //details of a item
                                           margin: EdgeInsets.only(top: 20),
-                                           width: kPropWidth(context, 0.4),
-                                           height: kPropHeight(context, 0.1),
+                                          width: kPropWidth(context, 0.4),
+                                          height: kPropHeight(context, 0.1),
                                           child: Column(
-                                            
                                             children: [
                                               Container(
                                                 // width: kPropWidth(context, 0.5),
                                                 // margin: const EdgeInsets.fromLTRB(5, 2, 40, 0),
                                                 // padding: const EdgeInsets.only(left: 2.0, right: 2),
-                                                child:  Text(
+                                                child: Text(
                                                   '${product['seller']['hardwarename']}',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -388,11 +406,22 @@ class _ItemDetailsState extends State<ItemDetails>
                                                 // margin: const EdgeInsets.fromLTRB(10, 10, 0, 5),
                                                 // padding: const EdgeInsets.only(left: 2.0, right: 2),
                                                 child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
-                                                    Icon(Icons.location_on,color: Colors.red,),
-                                                    SizedBox(width: 5.0,),
-                                                    Text("${product['seller']['city']}", style: TextStyle(fontFamily: "Poppins",color: Colors.black),),
+                                                    Icon(
+                                                      Icons.location_on,
+                                                      color: Colors.red,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5.0,
+                                                    ),
+                                                    Text(
+                                                      "${product['seller']['city']}",
+                                                      style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          color: Colors.black),
+                                                    ),
                                                   ],
                                                 ),
                                               )
@@ -400,7 +429,10 @@ class _ItemDetailsState extends State<ItemDetails>
                                           ),
                                         ),
                                         Container(
-                                          child: Icon(Icons.arrow_forward_ios_rounded, color: Colors.black,),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                            color: Colors.black,
+                                          ),
                                         )
                                       ],
                                     ),
@@ -415,6 +447,74 @@ class _ItemDetailsState extends State<ItemDetails>
                   ],
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(25.0, 0, 0, 0),
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Quantity',
+                        style: TextStyle(
+                            fontSize: 17.0, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (product['stock'] > local_quantity) {
+                                    local_quantity++;
+                                    quantityController.text =
+                                        local_quantity.toString();
+                                  }
+                                  print(local_quantity);
+                                });
+                              },
+                              icon: Icon(Icons.add)),
+                          SizedBox(
+                            width: 100,
+                            height: 40,
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              controller: quantityController,
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  local_quantity = int.parse(value);
+                                  print(local_quantity);
+                                });
+                              },
+                            ),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (local_quantity > 1) {
+                                    local_quantity--;
+                                    quantityController.text =
+                                        local_quantity.toString();
+                                  }
+                                  print(local_quantity);
+                                });
+                              },
+                              icon: Icon(Icons.remove)),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
               Container(
                 //buttons
                 margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -435,15 +535,15 @@ class _ItemDetailsState extends State<ItemDetails>
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.25),
-                              spreadRadius: 10,
-                              blurRadius: 7,
+                              spreadRadius: 5,
+                              blurRadius: 3,
                               offset:
                                   Offset(2, 5), // changes position of shadow
                             ),
                             BoxShadow(
                               color: Colors.white.withOpacity(0.8),
-                              spreadRadius: 10,
-                              blurRadius: 7,
+                              spreadRadius: 5,
+                              blurRadius: 3,
                               offset: Offset(
                                   -10, -10), // changes position of shadow
                             ),
@@ -451,115 +551,49 @@ class _ItemDetailsState extends State<ItemDetails>
                         ),
                         child: SizedBox(
                           width: kPropWidth(context, 1),
-                        height: kPropHeight(context, 0.06),
+                          height: kPropHeight(context, 0.06),
                           child: ElevatedButton.icon(
-                                                      
-                                  onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => paynow()),
-                                      );
-                                      
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        shape: new RoundedRectangleBorder(
-                                          borderRadius: new BorderRadius.circular(10.0),
-                                        ),
-                                      ),
-                                    label: const Text("Buy Now",
-                                    style: TextStyle(
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.black),), 
-                                      icon: Icon(Icons.account_balance_wallet_rounded,color:Colors.black ,size: 20,) ,
-                                    
-                                   
-                                ),
+                            onPressed: () {
+                              if (product['stock'] >= local_quantity) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          paynow(quantity: local_quantity)),
+                                );
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "Entered Quantity is greater than Stock",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            label: const Text(
+                              "Buy Now",
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.black),
+                            ),
+                            icon: Icon(
+                              Icons.account_balance_wallet_rounded,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                          ),
                         ),
-                                                      
-                        // child: Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //   children: [
-                        //     Container(
-                        //       //buy now text
-                        //       alignment: Alignment.centerRight,
-                        //       child: Text(
-                        //         "Buy Now",
-                        //         style: TextStyle(
-                        //             fontFamily: "poppins",
-                        //             fontWeight: FontWeight.bold,
-                        //             color: Colors.black),
-                        //       ),
-                        //     ),
-                        //     Container(
-                        //       //buy now icon
-                        //       child: IconButton(
-                        //         icon: Icon(Icons.account_balance_wallet_rounded,
-                        //             color: Colors.black),
-                        //         onPressed: () {
-                        //           paynow();
-                        //         },
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
                       ),
-                    //   Container(
-                    //     //add to cart
-                    //     width: kPropWidth(context, 0.37),
-                    //     height: kPropHeight(context, 0.06),
-                    //     margin: EdgeInsets.only(left: 10),
-                    //     padding: EdgeInsets.only(right: 5, left: 5),
-                    //     decoration: BoxDecoration(
-                    //       color: Colors.cyan[300],
-                    //       borderRadius: BorderRadius.circular(10),
-                    //       boxShadow: [
-                    //         BoxShadow(
-                    //           color: Colors.grey.withOpacity(0.25),
-                    //           spreadRadius: 10,
-                    //           blurRadius: 7,
-                    //           offset:
-                    //               Offset(2, 5), // changes position of shadow
-                    //         ),
-                    //         BoxShadow(
-                    //           color: Colors.white.withOpacity(0.8),
-                    //           spreadRadius: 10,
-                    //           blurRadius: 7,
-                    //           offset: Offset(
-                    //               -10, -10), // changes position of shadow
-                    //         ),
-                    //       ],
-                    //     ),
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //       children: [
-                    //         Container(
-                    //           //add cart text
-                    //           alignment: Alignment.centerRight,
-                    //           child: Text(
-                    //             "Add to Cart",
-                    //             style: TextStyle(
-                    //                 fontFamily: "poppins",
-                    //                 fontWeight: FontWeight.bold,
-                    //                 color: Colors.black),
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           //add cart icon
-                    //           child: IconButton(
-                    //             icon: Icon(Icons.shopping_bag_rounded,
-                    //                 color: Colors.black),
-                    //             onPressed: () {
-                    //               print("add to cart");
-                    //             },
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // 
-                    Container(
+                      Container(
                         //buy now
                         width: kPropWidth(context, 0.37),
                         height: kPropHeight(context, 0.06),
@@ -571,15 +605,15 @@ class _ItemDetailsState extends State<ItemDetails>
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.25),
-                              spreadRadius: 10,
-                              blurRadius: 7,
+                              spreadRadius: 5,
+                              blurRadius: 3,
                               offset:
                                   Offset(2, 5), // changes position of shadow
                             ),
                             BoxShadow(
                               color: Colors.white.withOpacity(0.8),
-                              spreadRadius: 10,
-                              blurRadius: 7,
+                              spreadRadius: 5,
+                              blurRadius: 3,
                               offset: Offset(
                                   -10, -10), // changes position of shadow
                             ),
@@ -587,35 +621,87 @@ class _ItemDetailsState extends State<ItemDetails>
                         ),
                         child: SizedBox(
                           width: kPropWidth(context, 1),
-                        height: kPropHeight(context, 0.06),
+                          height: kPropHeight(context, 0.06),
                           child: ElevatedButton.icon(
-                                                      
-                                  onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => addcart()),
-                                      );
-                                      
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Colors.cyan[300],
-                                      
-                                        shape: new RoundedRectangleBorder(
-                                          borderRadius: new BorderRadius.circular(10.0),
-                                        ),
-                                      ),
-                                    label: const Text("Add to Cart",
-                                    style: TextStyle(
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.black),), 
-                                      icon: Icon(Icons.shopping_bag_rounded,color:Colors.black,size: 20,) ,
-                                    
-                                   
-                                ),
+                            onPressed: () async {
+                              if (product['stock'] >= local_quantity) {
+                                var buyerID;
+                                if (consumer.isNotEmpty) {
+                                  buyerID = consumer['_id'];
+                                } else {
+                                  buyerID = sp['_id'];
+                                }
+
+                                var result = await CartMethods().addCartProduct(
+                                    buyerID,
+                                    product['_id'],
+                                    local_quantity,
+                                    product['price'] * local_quantity);
+                                if (result.data['success']) {
+                                  var local_cartproduct =
+                                      result.data['cartproduct'];
+                                  var result2 = await CartMethods()
+                                      .addProducttoCart(
+                                          buyerID, local_cartproduct['_id']);
+                                  if (result2.data['success']) {
+                                    Fluttertoast.showToast(
+                                        msg: result2.data['msg'],
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        backgroundColor: Colors.green,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0);
+                                  } else {
+                                    Fluttertoast.showToast(
+                                        msg: 'Adding product to cart failed',
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        backgroundColor: Colors.red,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0);
+                                  }
+                                } else {
+                                  Fluttertoast.showToast(
+                                      msg: 'Adding cartProduct failed',
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                }
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        'Entered Quantity is greater than Stock',
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.cyan[300],
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            label: const Text(
+                              "Add to Cart",
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.black),
+                            ),
+                            icon: Icon(
+                              Icons.shopping_bag_rounded,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                          ),
                         ),
-                                                      
+
                         // child: Row(
                         //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         //   children: [
@@ -643,7 +729,6 @@ class _ItemDetailsState extends State<ItemDetails>
                         //   ],
                         // ),
                       ),
-                    
                     ],
                   ),
                 ),

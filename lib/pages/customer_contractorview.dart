@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:group2/pages/feedback_contractor.dart';
+import 'package:group2/pages/pick_date.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../globals.dart';
 
 class Cscontractorview extends StatefulWidget {
   const Cscontractorview({Key? key}) : super(key: key);
@@ -26,7 +31,9 @@ class _CscontractorviewState extends State<Cscontractorview> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
         ),
@@ -48,9 +55,9 @@ class _CscontractorviewState extends State<Cscontractorview> {
                   const SizedBox(
                     height: 70.0,
                   ),
-                  const Center(
+                  Center(
                     child: Text(
-                      'Aaron Graham',
+                      '${sp['contractorname']}',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.bold),
                     ),
@@ -284,13 +291,14 @@ class _CscontractorviewState extends State<Cscontractorview> {
                       child: Column(
                         children: [
                           Row(
-                            children: const [
-                              Icon(Icons.location_on),
+                            children:[
+                              Icon(Icons.location_on,
+                              color: Colors.red),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'From Gampaha',
+                                '${sp['hometown']}, ${sp['district']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -301,13 +309,13 @@ class _CscontractorviewState extends State<Cscontractorview> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
+                            children: [
                               Icon(Icons.home_filled),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'B 70/5A,Edurapotha,Kegalle',
+                                '${sp['address']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -318,13 +326,13 @@ class _CscontractorviewState extends State<Cscontractorview> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
+                            children:[
                               Icon(Icons.email_rounded),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'abcd@gmail.com',
+                                '${sp['email']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -335,13 +343,14 @@ class _CscontractorviewState extends State<Cscontractorview> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
-                              Icon(Icons.phone_in_talk_outlined),
+                            children: [
+                              Icon(Icons.phone_in_talk,
+                              color: Colors.green,),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                '0772222999',
+                                '${sp['contactNo']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -352,13 +361,13 @@ class _CscontractorviewState extends State<Cscontractorview> {
                             height: 10.0,
                           ),
                           Row(
-                            children: const [
+                            children:[
                               Icon(Icons.people_alt),
                               SizedBox(
                                 width: 5.0,
                               ),
                               Text(
-                                'No of workers:30',
+                                'No.of workers: ${sp['no_of_workers']}',
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -378,7 +387,12 @@ class _CscontractorviewState extends State<Cscontractorview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  launchwhatsapp(
+                                      number:
+                                      "tel://+94${sp['contactNo'].substring(1)}",
+                                      message: "Hello");
+                                },
                                 icon: const Text(
                                   'Chat',
                                   style: TextStyle(color: Colors.white),
@@ -395,7 +409,10 @@ class _CscontractorviewState extends State<Cscontractorview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  launch(
+                                      "tel://+94${sp['contactNo'].substring(1)}");
+                                },
                                 icon: const Text(
                                   'Call',
                                   style: TextStyle(color: Colors.white),
@@ -417,9 +434,15 @@ class _CscontractorviewState extends State<Cscontractorview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => pickdate()),
+                                  );
+                                },
                                 child: const Text(
-                                  'appointment',
+                                  'Appointment',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -433,7 +456,13 @@ class _CscontractorviewState extends State<Cscontractorview> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => FeedbackCon()),
+                                  );
+                                },
                                 child: const Text(
                                   'Give/View Feedback',
                                   style: TextStyle(color: Colors.white),
@@ -482,16 +511,21 @@ class _CscontractorviewState extends State<Cscontractorview> {
                 width: 115.0,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      'assets/imgs/suplier.jpg',
-                      fit: BoxFit.fill,
-                    )),
+                    child: sp['imageUrl']!=null?Image.network(
+                      '${sp['imageUrl']}',
+                      fit: BoxFit.cover,
+                    ):Image.asset('assets/imgs/profile.jpg')),
               ),
             ))
           ],
         ),
       ),
     );
+  }
+
+  void launchwhatsapp({@required number, @required message}) async {
+    String url = "whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url) ? launch(url) : print("cant't open whatsapp ");
   }
 }
 

@@ -45,6 +45,20 @@ class ProductMethods{
     }
   }
 
+  getProducts() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getProducts');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'getting products failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   getCementProduct() async {
     try {
       return await dio.get('https://prositegroup2.herokuapp.com/getCementProduct');
@@ -113,5 +127,50 @@ class ProductMethods{
           textColor: Colors.white,
           fontSize: 16.0);
     }
+  }
+  
+  productStockUpdate(productID,stock) async {
+    try {
+      return await dio.put('https://prositegroup2.herokuapp.com/updateStock/$productID',
+      data: {
+        "stock":stock
+      },
+      options: Options(contentType: Headers.jsonContentType));
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'Product Stock Update Failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+  
+  deleteProduct(productID) async {
+    try {
+      return await dio.delete('https://prositegroup2.herokuapp.com/deleteProduct/$productID');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'Deletion Failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+  
+  updateProduct(productID,productname,price,size,stock,brand,description,category) async {
+    return await dio.put('https://prositegroup2.herokuapp.com/updateProduct/$productID',
+    data: {
+      "productname":productname,
+      "price":price,
+      "size":size,
+      "stock":stock,
+      "brand":brand,
+      "description":description,
+      "category":category
+    });
   }
 }

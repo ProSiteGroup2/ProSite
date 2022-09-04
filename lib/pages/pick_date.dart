@@ -136,7 +136,7 @@ class _pickdateState extends State<pickdate> {
                             Center(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamedAndRemoveUntil(context, '/HomeScreen', (route) => false);
+                                  Navigator.pushNamedAndRemoveUntil(context, '/navbar', (route) => false);
                                 },
                                 child: Text('OK'),
                               ),

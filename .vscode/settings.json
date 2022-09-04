@@ -1,13 +1,18 @@
 {
 	"cSpell.words": [
 		"addcart",
+		"additem",
 		"cardnumber",
 		"Causerol",
+		"contractorview",
 		"Customerhdprofileview",
+		"Customerpview",
 		"fluttertoast",
+		"fresults",
 		"getstart",
 		"idelivery",
 		"imgs",
+		"labourpview",
 		"launchwhatsapp",
 		"loginas",
 		"loginpage",
@@ -18,9 +23,17 @@
 		"Perera",
 		"pickdate",
 		"ppayment",
+		"Productlist",
+		"productname",
 		"recieve",
 		"Roboto",
+		"spinkit",
+		"splashscreen",
 		"sppassword",
-		"sudesh"
-	]
+		"sudesh",
+		"transporterview",
+		"Userlist",
+		"Usermodel"
+	],
+	"java.configuration.updateBuildConfiguration": "automatic"
 }

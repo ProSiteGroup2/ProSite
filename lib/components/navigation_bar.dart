@@ -19,20 +19,26 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int currindex = 0;
   final screens = [HomeScreen(), CActivity(), Notifications(), Customerpview()];
+  
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      body: IndexedStack(
-        index: currindex,
-        children: screens,
-      ),
+      // resizeToAvoidBottomPadding: true,
+      // body: IndexedStack(
+      //   index: currindex,
+      //   children: screens,
+      // ),
+      body: screens.elementAt(currindex),
       bottomNavigationBar: ClipRRect(
+        
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
         child: BottomNavigationBar(
           currentIndex: currindex,
           onTap: (index) => setState(() => currindex = index),
           showUnselectedLabels: false,
+          
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),

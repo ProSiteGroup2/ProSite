@@ -131,7 +131,7 @@ class _steelState extends State<steel> {
                                               product=tags[i];
                                                   Navigator.push(
                                                     context,
-                                                    MaterialPageRoute(builder: (context) =>const ItemDetails()),
+                                                    MaterialPageRoute(builder: (context) => ItemDetails(product: product)),
                                                   );
                                                 },
                                                 style: ElevatedButton.styleFrom(

@@ -2,14 +2,27 @@
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/globals.dart';
+import 'package:group2/pages/PaymentScreen.dart';
 import 'package:group2/pages/add_card_details.dart';
 import 'package:group2/pages/flutter_card.dart';
 import 'package:group2/pages/ppayment.dart';
 
+import '../Classes/order_methods.dart';
+import '../Classes/product_methods.dart';
+
 
 
 class paynow extends StatefulWidget {
-  const paynow({Key? key}) : super(key: key);
+
+  final quantity;
+
+  const paynow({
+    Key? key,
+    required this.quantity
+
+  }
+      ) : super(key: key);
 
   @override
   State<paynow> createState() => _paynowState();
@@ -18,15 +31,15 @@ class paynow extends StatefulWidget {
 class _paynowState extends State<paynow> {
   final _formKey = GlobalKey<FormState>();
 
-  String _userEmail = '';
-  String _password = '';
+  String _contactNo = '';
+  String _email = '';
 
   void _trySubmitForm() {
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Everything looks good!');
-      debugPrint(_userEmail);
-      debugPrint(_password);
+      debugPrint(_contactNo);
+      debugPrint(_email);
     }
   }
 
@@ -43,6 +56,7 @@ class _paynowState extends State<paynow> {
     return Scaffold(
       appBar: AppBar(
          backgroundColor: Color(0xE5E5E5),
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         toolbarHeight: 50,
         bottom: PreferredSize(
@@ -51,7 +65,7 @@ class _paynowState extends State<paynow> {
              mainAxisAlignment: MainAxisAlignment.center,
             children: [
                Container(
-                margin: EdgeInsets.all(20),
+                margin: EdgeInsets.all(10),
                 alignment: Alignment.bottomCenter,
                 child: Text("Pay Now",
                 style: TextStyle(
@@ -125,13 +139,9 @@ class _paynowState extends State<paynow> {
                                           if (value == null || value.trim().isEmpty) {
                                             return 'Please enter your contact number';
                                           }
-
-                                          if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                                            return 'Please enter a valid number';
-                                          }
                                           return null;
                                         },
-                                        onChanged: (value) => _userEmail = value,
+                                        onChanged: (value) => _contactNo = value,
                                       ),
                                     
                           ),
@@ -192,7 +202,7 @@ class _paynowState extends State<paynow> {
                                           }
                                           return null;
                                         },
-                                        onChanged: (value) => _userEmail = value,
+                                        onChanged: (value) => _email = value,
                                       ),
                                     
                           ),
@@ -226,7 +236,7 @@ class _paynowState extends State<paynow> {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
                             image: DecorationImage(
-                              image: AssetImage("assets/imgs/logo.png"),
+                              image: NetworkImage("${product['imageUrl']}"),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -237,14 +247,15 @@ class _paynowState extends State<paynow> {
                             children: [
                               Container(
                                 //item name
-                                margin: EdgeInsets.fromLTRB(15,10,15,20),
+                                margin: EdgeInsets.fromLTRB(0,10,15,20),
                                 alignment: Alignment.topCenter,
-                                child: Text("Item Name",style: TextStyle(
+                                child: Text("${product['productname']}",style: TextStyle(
                                 fontFamily: "Poppins",
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   height: 1.15
-                              ),), 
+                              ),
+                                softWrap: true,),
                               ),
                               Container(
                                 //price and qty
@@ -252,12 +263,13 @@ class _paynowState extends State<paynow> {
                                   children: [
                                     Container(
                                       //price
-                                      margin: EdgeInsets.fromLTRB(15,5,15,10),
+                                      margin: EdgeInsets.fromLTRB(0,5,15,10),
                                       alignment: Alignment.topCenter,
-                                      child: Text("Rs.10,500",style: TextStyle(
+                                      child: Text("Rs. ${product['price']}",style: TextStyle(
                                       fontFamily: "Poppins",
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal,
+                                        color: Colors.red,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
                                         height: 1.15
                                     ),), 
                                     ),
@@ -265,10 +277,10 @@ class _paynowState extends State<paynow> {
                                       //price
                                       margin: EdgeInsets.fromLTRB(15,0,15,10),
                                       alignment: Alignment.topCenter,
-                                      child: Text("Qty:",style: TextStyle(
+                                      child: Text("Qty: ${widget.quantity}",style: TextStyle(
                                       fontFamily: "Poppins",
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
                                         height: 1.15
                                     ),), 
                                     ),
@@ -300,13 +312,13 @@ class _paynowState extends State<paynow> {
                       ),
                      Container(
                       margin: EdgeInsets.fromLTRB(30,10,30,20),
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                             Container(
                               //total final display bottom
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
                                     //total word
@@ -321,7 +333,7 @@ class _paynowState extends State<paynow> {
                                   Container(
                                     //final price
                                     margin: EdgeInsets.all(5),
-                                    child: Text("Rs.10,500",style: TextStyle(
+                                    child: Text("Rs. ${product['price']*widget.quantity}",style: TextStyle(
                                             fontFamily: "Poppins",
                                               fontSize: 25,
                                               fontWeight: FontWeight.bold,
@@ -332,9 +344,8 @@ class _paynowState extends State<paynow> {
                                 ],
                               ),
                             ),
+                            SizedBox(height:20.0),
                             Container(
-                                  //seller details
-                                  
                                    margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                                     width: kPropWidth(context, 0.32),
                                     height: kPropHeight(context, 0.08),
@@ -362,12 +373,26 @@ class _paynowState extends State<paynow> {
                                     ],
                                   ),
                                   child: ElevatedButton(
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      setState(() {
+                                        product['stock']=product['stock']-widget.quantity;
+                                      });
+                                      await ProductMethods().productStockUpdate(product['_id'], product['stock']);
+                                      var buyerID;
+                                      if(consumer.isNotEmpty){
+                                        buyerID=consumer['_id'];
+                                      }else{
+                                        buyerID=sp['_id'];
+                                      }
+
+                                      await OrderMethods().addOrder(buyerID,product['_id'], widget.quantity, product['price']*widget.quantity, product['seller']);
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                MySample()),
+                                             MySample(amount:product['price']*widget.quantity))
+                                                // Payment(amount:"55")),
                                       );
                                     },
                                     style: ElevatedButton.styleFrom(

@@ -592,7 +592,6 @@ Map<String, dynamic> data = {
                                    ),         
                                Container( 
                                  child: ImageCauserol(
-                                     context: context,
                                        tags: data['tags'],
                                        
                                      ),

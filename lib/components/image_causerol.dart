@@ -7,26 +7,25 @@ import 'package:group2/src/ui/item_details.dart';
 
 // ignore: must_be_immutable
 class ImageCauserol extends StatefulWidget {
-  BuildContext context;
+
   List<dynamic> tags;
 
-  ImageCauserol({Key? key, required this.context, required this.tags})
+  ImageCauserol({Key? key, required this.tags})
       : super(key: key);
 
   @override
   State<ImageCauserol> createState() =>
       // ignore: no_logic_in_create_state
-      _ImageCauserolState(context: context, tags: tags);
+      _ImageCauserolState(tags: tags);
 }
 
 class _ImageCauserolState extends State<ImageCauserol> {
   int photo = 1;
 
-  @override
-  BuildContext context;
+
   List<dynamic> tags;
 
-  _ImageCauserolState({required this.context, required this.tags});
+  _ImageCauserolState({required this.tags});
 
   final ScrollController _scrollController = ScrollController();
 

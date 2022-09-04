@@ -27,6 +27,7 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         /*leading: IconButton(
@@ -296,11 +297,14 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                                             BorderRadiusDirectional.circular(
                                                 16.0))),
                                 onPressed: () {
+                                  
                                   Navigator.push(
+                                    
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => FeedbackHd()),
                                   );
+                                  
                                 },
                                 child: const Text(
                                   'Give/View Feedback',
@@ -350,10 +354,10 @@ class _CustomerhdprofileviewState extends State<Customerhdprofileview> {
                 width: 115.0,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: Image.network(
+                    child: sp['imageUrl']!=null?Image.network(
                       '${sp['imageUrl']}',
-                      fit: BoxFit.fill,
-                    )),
+                      fit: BoxFit.cover,
+                    ):Image.asset('assets/imgs/profile.jpg')),
               ),
             ))
           ],

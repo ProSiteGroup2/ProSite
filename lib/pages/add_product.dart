@@ -96,7 +96,7 @@ class _AddProductState extends State<AddProduct> {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(context, '/hrddashboard', (route) => false);
+                            Navigator.pushNamedAndRemoveUntil(context, '/hdNavBar', (route) => false);
                           },
                           child: Text('Done'),
                         ),

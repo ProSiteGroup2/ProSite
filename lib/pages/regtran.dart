@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
+import 'package:group2/pages/loginpage.dart';
+
+import '../Classes/cart_methods.dart';
 
 class RegTran extends StatefulWidget {
   const RegTran({Key? key}) : super(key: key);
@@ -80,27 +83,37 @@ class _RegTranState extends State<RegTran> {
       debugPrint(_tranTransport);
 
       try {
-        await AuthService().addTransporter(_tranName, _tranEmail, _tranConNum, _tranAddress, _tranTown, _tranDistrict, _tranVehicle, _tranTransport, _tranpassword).then((val) {
+        await AuthService().addTransporter(_tranName, _tranEmail, _tranConNum, _tranAddress, _tranTown, _tranDistrict, _tranVehicle, _tranTransport, _tranpassword).then((val) async {
           if (val.data['success']) {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text(
-                    'Your request has been sent to the Admin.Please check your Email!'),
-                content: Icon(
-                  Icons.check_circle,
-                  color: Colors.green,
-                  size: 60,
-                ),
-              ),
-            );
-            // Fluttertoast.showToast(
-            //     msg: val.data['msg'],
-            //     toastLength: Toast.LENGTH_SHORT,
-            //     gravity: ToastGravity.BOTTOM,
-            //     backgroundColor: Colors.green,
-            //     textColor: Colors.white,
-            //     fontSize: 16.0);
+            var transporter_local=val.data['transporter'];
+            await CartMethods().addCart(transporter_local['_id']).then((val2){
+              if(val2.data['success']){
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Registered Successfully'),
+                    content: Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                      size: 60,
+                    ),
+                    actions: [
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginPage()),
+                            );
+                          },
+                          child: Text('Done'),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
+            });
           } else {
             Fluttertoast.showToast(
                 msg: val.data['msg'],
