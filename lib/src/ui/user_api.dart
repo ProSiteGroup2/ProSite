@@ -1,24 +1,44 @@
 import 'dart:convert';
 
+import 'package:group2/src/ui/Usermodel.dart';
 import 'package:http/http.dart' as http;
 
 class User {
-  final String productname;
-  final String imageUrl;
-  final int price;
-  final String category;
+  // Id id;
+  String productname;
+  String imageUrl;
+  int price;
+  String category;
+  String size;
+  int stock;
+  String brand;
+  String description;
+  // Id? seller;
 
-  const User(
-      {required this.productname,
-      required this.imageUrl,
-      required this.price,
-      required this.category});
+  User({
+    // required this.id,
+    required this.productname,
+    required this.imageUrl,
+    required this.price,
+    required this.category,
+    required this.size,
+    required this.stock,
+    required this.brand,
+    required this.description,
+    // required this.seller,
+  });
 
   static User fromJson(Map<String, dynamic> json) => User(
+        // id: json['_id'],
         productname: json['productname'],
         imageUrl: json['imageUrl'],
         price: json['price'],
         category: json['category'],
+        size: json['size'],
+        stock: json['stock'],
+        brand: json['brand'],
+        description: json['description'],
+        // seller: json['seller'] != null ? Id.fromJson(json['seller']) : null,
       );
 }
 

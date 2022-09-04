@@ -368,12 +368,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
                           ),
                           onSuggestionSelected: (User? suggestion) {
-                            product = suggestion! as Map;
+                            User user = suggestion!;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      ItemDetails(product: product)),
+                                      Suggestions_det(user: user)),
                             );
                            
                           },

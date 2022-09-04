@@ -198,7 +198,7 @@ class _Suggestions_detState extends State<Suggestions_det>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Size  -   ${product['size']}",
+                                    "Size  -   ${widget.user.size}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
@@ -212,7 +212,7 @@ class _Suggestions_detState extends State<Suggestions_det>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Stock  -   ${product['stock']}",
+                                    "Stock  -   ${widget.user.stock}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
@@ -226,7 +226,7 @@ class _Suggestions_detState extends State<Suggestions_det>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Brand  -   ${product['brand']}",
+                                    "Brand  -   ${widget.user.brand}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
@@ -255,7 +255,7 @@ class _Suggestions_detState extends State<Suggestions_det>
                             margin:
                                 EdgeInsets.only(left: 20, right: 20, top: 15),
                             child: Text(
-                              '${product['description']}',
+                              '${widget.user.description}',
                               textAlign: TextAlign.justify,
                               style: TextStyle(
                                   fontFamily: "poppins",
