@@ -16,7 +16,9 @@ import '../../globals.dart';
 
 class Suggestions_det extends StatefulWidget {
   final User user;
-  const Suggestions_det({Key? key, required this.user}) : super(key: key);
+  const Suggestions_det({
+    Key? key, required this.user,
+  }) : super(key: key);
 
   @override
   State<Suggestions_det> createState() => _Suggestions_detState();

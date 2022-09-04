@@ -387,7 +387,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
                           ),
                           onSuggestionSelected: (User? suggestion) {
-                            User user = suggestion!;
+                            final user = suggestion!;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
