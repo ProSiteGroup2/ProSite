@@ -41,6 +41,7 @@ class AuthService {
       username, email, contactNo, address, hometown, district, password) async {
     try {
       return await dio.post('https://prositegroup2.herokuapp.com/addConsumer',
+      
           data: {
             "username": username,
             "email": email,
