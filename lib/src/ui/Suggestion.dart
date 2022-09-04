@@ -24,6 +24,7 @@ class Suggestions_det extends StatefulWidget {
 
 class _Suggestions_detState extends State<Suggestions_det>
     with TickerProviderStateMixin {
+  late User user;
   TextEditingController quantityController = TextEditingController();
   @override
   void initState() {
@@ -92,7 +93,9 @@ class _Suggestions_detState extends State<Suggestions_det>
                   ],
                   color: Colors.white,
                   image: DecorationImage(
-                    image: NetworkImage('${product['imageUrl']}'),
+                    image: NetworkImage(
+                      widget.user.imageUrl,
+                    ),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -107,7 +110,7 @@ class _Suggestions_detState extends State<Suggestions_det>
                   children: [
                     Expanded(
                       child: Text(
-                        '${product['productname']}',
+                        widget.user.productname,
                         style: TextStyle(
                             fontFamily: "poppins",
                             fontSize: 22,
@@ -125,7 +128,7 @@ class _Suggestions_detState extends State<Suggestions_det>
                         color: Colors.blue[700]!.withOpacity(0.4),
                       ),
                       child: Text(
-                        'Rs. ${product['price']}',
+                        'Rs. ${widget.user.price}',
                         style: TextStyle(
                             fontFamily: "poppins",
                             fontWeight: FontWeight.bold,
@@ -181,7 +184,7 @@ class _Suggestions_detState extends State<Suggestions_det>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Category  -   ${product['category']}",
+                                    'Category  -   ${widget.user.category}',
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",

@@ -11,6 +11,7 @@ import 'package:group2/components/image_causerol_a.dart';
 import 'package:group2/components/image_causerol_cont.dart';
 import 'package:group2/components/image_causerol_lab.dart';
 import 'package:group2/components/image_causerol_trans.dart';
+import 'package:group2/globals.dart';
 import 'package:group2/pages/about_setting.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/loginpage.dart';
@@ -321,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         child: TypeAheadField<User?>(
                           hideSuggestionsOnKeyboardHide: true,
                           textFieldConfiguration: TextFieldConfiguration(
-                              autofocus: true,
+                              autofocus: false,
                               style: DefaultTextStyle.of(context)
                                   .style
                                   .copyWith(fontStyle: FontStyle.italic),
@@ -331,9 +332,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     const EdgeInsets.only(right: 15, left: 18),
                                 fillColor: Colors.white,
                                 filled: true,
+                                
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15),
+                                    
                                     borderSide: BorderSide.none),
+                                    
                                 hintText: 'Search Item...',
                                 hintStyle: const TextStyle(
                                     fontFamily: 'Poppins',
@@ -364,12 +368,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
                           ),
                           onSuggestionSelected: (User? suggestion) {
-                            final user = suggestion!;
+                            product = suggestion! as Map;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      Suggestions_det(user: user)),
+                                      ItemDetails(product: product)),
                             );
                            
                           },
@@ -973,55 +977,55 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Container(
-                        child: Container(
-                          margin: const EdgeInsets.all(20),
-                          //search content
-                          padding: const EdgeInsets.only(right: 5, left: 5),
-                          child: Row(
-                            children: [
-                              Flexible(
-                                // TEXTFIELD
-                                flex: 1,
-                                child: TextField(
-                                  style: const TextStyle(height: 0.5),
-                                  cursorColor: Colors.grey,
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.only(
-                                        right: 15, left: 18),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                        borderSide: BorderSide.none),
-                                    hintText: 'Search Category...',
-                                    hintStyle: const TextStyle(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.grey,
-                                        fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                //search button
-                                margin: const EdgeInsets.only(left: 10),
-                                padding:
-                                    const EdgeInsets.only(right: 5, left: 5),
-                                decoration: BoxDecoration(
-                                    color: Theme.of(context).primaryColor,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: IconButton(
-                                  icon: const Icon(Icons.search,
-                                      color: Colors.white),
-                                  onPressed: () {
-                                    print("b");
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   child: Container(
+                      //     margin: const EdgeInsets.all(20),
+                      //     //search content
+                      //     padding: const EdgeInsets.only(right: 5, left: 5),
+                      //     child: Row(
+                      //       children: [
+                      //         Flexible(
+                      //           // TEXTFIELD
+                      //           flex: 1,
+                      //           child: TextField(
+                      //             style: const TextStyle(height: 0.5),
+                      //             cursorColor: Colors.grey,
+                      //             decoration: InputDecoration(
+                      //               contentPadding: const EdgeInsets.only(
+                      //                   right: 15, left: 18),
+                      //               fillColor: Colors.white,
+                      //               filled: true,
+                      //               border: OutlineInputBorder(
+                      //                   borderRadius: BorderRadius.circular(15),
+                      //                   borderSide: BorderSide.none),
+                      //               hintText: 'Search Category...',
+                      //               hintStyle: const TextStyle(
+                      //                   fontFamily: 'Poppins',
+                      //                   color: Colors.grey,
+                      //                   fontSize: 16),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //         Container(
+                      //           //search button
+                      //           margin: const EdgeInsets.only(left: 10),
+                      //           padding:
+                      //               const EdgeInsets.only(right: 5, left: 5),
+                      //           decoration: BoxDecoration(
+                      //               color: Theme.of(context).primaryColor,
+                      //               borderRadius: BorderRadius.circular(15)),
+                      //           child: IconButton(
+                      //             icon: const Icon(Icons.search,
+                      //                 color: Colors.white),
+                      //             onPressed: () {
+                      //               print("b");
+                      //             },
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                       Container(
                         //constructor
                         child: Row(

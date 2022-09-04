@@ -6,13 +6,19 @@ class User {
   final String productname;
   final String imageUrl;
   final int price;
+  final String category;
 
-  const User({required this.productname, required this.imageUrl, required this.price});
+  const User(
+      {required this.productname,
+      required this.imageUrl,
+      required this.price,
+      required this.category});
 
   static User fromJson(Map<String, dynamic> json) => User(
         productname: json['productname'],
         imageUrl: json['imageUrl'],
         price: json['price'],
+        category: json['category'],
       );
 }
 
