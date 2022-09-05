@@ -14,8 +14,8 @@ class _Changetran_pwState extends State<Changetran_pw> {
   final TextEditingController _newpwControler = TextEditingController();
   final TextEditingController _confirmnewpwControler = TextEditingController();
 
-  //String url = 'https://prositegroup2.herokuapp.com';
-  String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
+  //String url = 'http://10.0.2.2:5000';
 
   Future<void> savechanges(String oldpw, String newpw)async {
     Map<String,dynamic> data = {

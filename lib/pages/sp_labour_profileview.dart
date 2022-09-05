@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:group2/pages/edit_labourpview.dart';
 import 'package:image_picker/image_picker.dart';
 import '../Classes/userprofiles_getdatamethods.dart';
+import 'changelbpw.dart';
 
 class Labourpview extends StatefulWidget {
   const Labourpview({Key? key}) : super(key: key);
@@ -553,12 +554,12 @@ class _LabourpviewState extends State<Labourpview> {
         );
         setState(() {});
         break;
-      /*case 1:
+      case 1:
         await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Change_pw()),
+          MaterialPageRoute(builder: (context) => Changelb_pw()),
         );
-        break;*/
+        break;
     }
   }
 }

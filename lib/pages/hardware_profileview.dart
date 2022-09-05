@@ -22,8 +22,8 @@ class _HardwareprofileState extends State<Hardwareprofile> {
     'assets/imgs/h6.jpg',
   ];
 
-  String url = 'http://10.0.2.2:5000';
-  //String url = 'https://prositegroup2.herokuapp.com';
+  //String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
   Future<Map<String, dynamic>?> getData() async {
     try {
       print('1');
@@ -73,9 +73,9 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                                 value: 0, child: Text('Edit Profile')),
                             const PopupMenuItem<int>(
                                 value: 1, child: Text('Change password')),
-                            const PopupMenuItem<int>(
+                            /*const PopupMenuItem<int>(
                                 value: 2,
-                                child: Text('Add your workshop photes'))
+                                child: Text('Add your workshop photes'))*/
                           ],
                           onSelected: (item) => onSelete(item, snapshot.data),
                         )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Classes/update_methods.dart';
 
 class Editlabour extends StatefulWidget {
   Map<String, dynamic> data;
@@ -42,6 +43,34 @@ class _EditlabourState extends State<Editlabour> {
     _districtController.text = widget.data['district'];
     _qulificationController.text = widget.data['qualification'];
     _experienceController.text = widget.data['experience'].toString();
+  }
+
+  String url = 'https://prositegroup2.herokuapp.com';
+  //String url = 'http://10.0.2.2:5000';
+  Future<void> savechanges(String username, String profession, String email, String contactno,
+      String address, String hometown, String district, String qulification,int experience) async {
+    Map<String, dynamic> data = {
+      "profession": username,
+      "username":profession,
+      "email":email,
+      "contactNo":contactno,
+      "address":address,
+      "hometown":hometown,
+      "district":district,
+      "qualification":qulification,
+      "experience":experience,
+
+    };
+    try {
+      await UpdateServices().upadateData('$url/updatelabourinfo', data);
+      Navigator.pop(context);
+    } catch (err) {
+      print(err.toString());
+      var snackbar = const SnackBar(
+        content: Text('Error: Update is failed'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    }
   }
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -494,7 +523,21 @@ class _EditlabourState extends State<Editlabour> {
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {},
+                        onPressed: () async{
+                            if (_formkey.currentState!.validate()) {
+                              await savechanges(
+                                  _usernameController.text,
+                                  _professionController.text,
+                                  _emailController.text,
+                                  _contactnumController.text,
+                                  _addressController.text,
+                                  _hometwonController.text,
+                                  _districtController.text,
+                                  _qulificationController.text,
+                                  int.parse(_experienceController.text),
+                              );
+                            }
+                        },
                         child: const Text(
                           'Save changes',
                           style: TextStyle(color: Colors.white),

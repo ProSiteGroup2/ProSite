@@ -23,7 +23,7 @@ class _Changelb_pwState extends State<Changelb_pw> {
     };
 
     try{
-      await UpdateServices().updatePw('$url/changeHardwarePw',data);
+      await UpdateServices().updatePw('$url/changeLabourPw',data);
       Navigator.pop(context);
     }
     catch(err){

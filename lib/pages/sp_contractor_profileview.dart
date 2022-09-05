@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import '../Classes/userprofiles_getdatamethods.dart';
-import '../globals.dart';
 import 'changecontra_pw.dart';
 import 'edit_contractorprof.dart';
 
@@ -26,7 +24,8 @@ class _ContractorpviewState extends State<Contractorpview> {
     'assets/imgs/ppp.jfif',
   ];
 
-  String url = 'http://10.0.2.2:5000';
+  //String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
   Future<Map<String, dynamic>?> getData() async {
     try {
       print('1');
