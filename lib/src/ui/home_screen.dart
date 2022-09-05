@@ -899,40 +899,40 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-                      Container(
-                        //this week best offers
-                        child: Column(
-                          children: [
-                            Container(
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 11.0, horizontal: 25.0),
-                                      child: const Text(
-                                        "This Week best offers",
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            fontFamily: "Poppins",
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            height: 1.15),
-                                      ),
-                                    ),
-                                  ]),
-                            ),
-                             Container(
-                          //constructor car
-                           child: ImageCauserol_a(
-                                context: context,
-                                tags: data['tags'],
-                              ),
-                          ),
-                          ],
-                        ),
-                      ),
+                      // Container(
+                      //   //this week best offers
+                      //   child: Column(
+                      //     children: [
+                      //       Container(
+                      //         child: Row(
+                      //             mainAxisAlignment:
+                      //                 MainAxisAlignment.spaceBetween,
+                      //             children: [
+                      //               Container(
+                      //                 padding: const EdgeInsets.symmetric(
+                      //                     vertical: 11.0, horizontal: 25.0),
+                      //                 child: const Text(
+                      //                   "This Week best offers",
+                      //                   textAlign: TextAlign.left,
+                      //                   style: TextStyle(
+                      //                       fontFamily: "Poppins",
+                      //                       fontSize: 15,
+                      //                       fontWeight: FontWeight.bold,
+                      //                       height: 1.15),
+                      //                 ),
+                      //               ),
+                      //             ]),
+                      //       ),
+                      //        Container(
+                      //     //constructor car
+                      //      child: ImageCauserol_a(
+                      //           context: context,
+                      //           tags: data['tags'],
+                      //         ),
+                      //     ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
