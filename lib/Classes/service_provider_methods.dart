@@ -69,6 +69,7 @@ class SPMethods{
     }
   }
 
+ 
   getConsumerPastAppointment(consumerID) async {
     try {
       return await dio.get('https://prositegroup2.herokuapp.com/getConsumerPastAppointments/$consumerID');
@@ -125,6 +126,20 @@ class SPMethods{
     }
   }
 
+  getOrders() async {
+      try {
+        return await dio.get('https://prositegroup2.herokuapp.com/getOrders');
+      } on DioError catch (e) {
+        Fluttertoast.showToast(
+            msg: e.response?.data['msg'],
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    }
+    
   getContractors() async {
     try {
       return await dio.get('https://prositegroup2.herokuapp.com/getContractors');

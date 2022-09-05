@@ -23,7 +23,7 @@ class _HardwareprofileState extends State<Hardwareprofile> {
   ];
 
   String url = 'http://10.0.2.2:5000';
-
+  //String url = 'https://prositegroup2.herokuapp.com';
   Future<Map<String, dynamic>?> getData() async {
     try {
       print('1');
@@ -270,10 +270,10 @@ class _HardwareprofileState extends State<Hardwareprofile> {
                               width: 115.0,
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(16.0),
-                                  child: Image.network(
+                                  child: snapshot.data!['imageUrl']!=null?Image.network(
                                     '${snapshot.data!['imageUrl']}',
-                                    fit: BoxFit.fill,
-                                  )),
+                                    fit: BoxFit.cover,
+                                  ):Image.asset('assets/imgs/profile.jpg')),
                             ),
                             Positioned(
                               bottom: -5.0,

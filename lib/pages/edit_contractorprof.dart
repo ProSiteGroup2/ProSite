@@ -1,15 +1,11 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:group2/pages/sp_contractor_profileview.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:group2/globals.dart';
-import 'package:http/http.dart' as http;
-import 'package:group2/Classes/update_methods.dart';
+
+import '../Classes/update_methods.dart';
+
 
 class Editcontractor extends StatefulWidget {
-  const Editcontractor({Key? key}) : super(key: key);
-
+  Map<String, dynamic> data;
+  Editcontractor(this.data);
   @override
   State<Editcontractor> createState() => _EditcontractorState();
 }
@@ -38,31 +34,44 @@ class _EditcontractorState extends State<Editcontractor> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _contactnumController.text = sp['contractorname'];
-    _emailController.text = sp['email'];
-    _contactnumController.text = sp['contactNo'];
-    _addressController.text = sp['address'];
-    _hometwonController.text = sp['hometown'];
-    _districtController.text = sp['district'];
-    _regnoController.text = sp['regno'];
-    _no_workersController.text = sp['no_of_workers'];
+
+    _contractornameController.text = widget.data['contractorname'];
+    _emailController.text = widget.data['email'];
+    _contactnumController.text = widget.data['contactNo'];
+    _addressController.text = widget.data['address'];
+    _hometwonController.text = widget.data['hometown'];
+    _districtController.text = widget.data['district'];
+    _regnoController.text = widget.data['regno'];
+    _no_workersController.text = widget.data['no_of_workers'];
+  }
+
+  String url = 'http://10.0.2.2:5000';
+  Future<void> savechanges(String contractorname, String email, String contactNo,
+      String address, String hometown, String district, String regno, String no_workers) async {
+    Map<String, dynamic> data = {
+      "contractorname": contractorname,
+      "email": email,
+      "contactNo": contactNo,
+      "address": address,
+      "hometown": hometown,
+      "district": district,
+      "regno": regno,
+      "no_of_workers":no_workers
+    };
+    try {
+      await UpdateServices().upadateData('$url/updatecontractorinfo', data);
+      Navigator.pop(context);
+    } catch (err) {
+      print(err.toString());
+      var snackbar = const SnackBar(
+        content: Text('Error: Update is failed'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    }
   }
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  File? image;
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print('Failed to pick image:$e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +79,7 @@ class _EditcontractorState extends State<Editcontractor> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Contractorpview()),
-            );
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
@@ -83,10 +89,8 @@ class _EditcontractorState extends State<Editcontractor> {
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+        child:Container(
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
@@ -130,7 +134,7 @@ class _EditcontractorState extends State<Editcontractor> {
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                           child: TextFormField(
-                            controller: _contactnumController,
+                            controller: _contractornameController,
                             validator: (value){
                               if(value != null && value.length == 0){
                                 return '*Required Field';
@@ -461,26 +465,7 @@ class _EditcontractorState extends State<Editcontractor> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Center(
-                      child: ElevatedButton.icon(
-                        //label: Icon(Icons.lock),
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[700],
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {},
-                        icon: const Text(
-                          'Changed Password',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        label: const Icon(Icons.lock),
-                      ),
-                    ),
-                    const Divider(
-                      height: 20.0,
-                      color: Colors.black,
-                    ),
+
                     Center(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -488,7 +473,19 @@ class _EditcontractorState extends State<Editcontractor> {
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {},
+                        onPressed: () async{
+                          if (_formkey.currentState!.validate()) {
+                            await savechanges(
+                                _contractornameController.text,
+                                _emailController.text,
+                                _contactnumController.text,
+                                _addressController.text,
+                                _hometwonController.text,
+                                _districtController.text,
+                                _regnoController.text,
+                                _no_workersController.text);
+                                }
+                        },
                         child: const Text(
                           'Save changes',
                           style: TextStyle(color: Colors.white),
@@ -502,98 +499,8 @@ class _EditcontractorState extends State<Editcontractor> {
                 ),
               ),
             ),
-            Positioned(
-                child: Center(
-              child: Stack(children: [
-                SizedBox(
-                  height: 107.0,
-                  width: 115.0,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: image != null
-                          ? Image.file(
-                              image!,
-                              width: 115.0,
-                              height: 107.0,
-                              fit: BoxFit.fill,
-                            )
-                          : Image.asset(
-                              'assets/imgs/suplier.jpg',
-                              fit: BoxFit.fill,
-                            )),
-                ),
-                Positioned(
-                    bottom: -5.0,
-                    right: -5.0,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.add_a_photo_outlined,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              height: 100.0,
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 20.0),
-                              child: Column(
-                                children: [
-                                  Text('Choose profile photo'),
-                                  const SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.gallery);
-                                        },
-                                        child: const Text(
-                                          'Add from galery',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.camera);
-                                        },
-                                        child: const Text(
-                                          'Add from Camera',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ))
-              ]),
-            ))
-          ],
-        ),
+
+
       ),
     );
   }

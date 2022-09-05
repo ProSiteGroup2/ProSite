@@ -56,6 +56,7 @@ class _FeedbackTranState extends State<FeedbackTran> with TickerProviderStateMix
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
                     appBar: AppBar(
                           backgroundColor: Color(0xFF60A3D9),
                           title: Text(

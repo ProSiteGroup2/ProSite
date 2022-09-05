@@ -24,10 +24,12 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      body: IndexedStack(
-        index: currindex,
-        children: screens,
-      ),
+      // resizeToAvoidBottomPadding: true,
+      // body: IndexedStack(
+      //   index: currindex,
+      //   children: screens,
+      // ),
+      body: screens.elementAt(currindex),
       bottomNavigationBar: ClipRRect(
         
         borderRadius: BorderRadius.only(

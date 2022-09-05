@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:group2/common/size.dart';
+import 'package:group2/globals.dart';
 import 'package:group2/src/ui/item_details.dart';
 
 //import '../common/color.dart';
@@ -78,7 +79,7 @@ class _ImageCauserol_aState extends State<ImageCauserol_a> {
                                 onPressed: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) =>ItemDetails()),
+                                      MaterialPageRoute(builder: (context) =>ItemDetails(product: product,)),
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(

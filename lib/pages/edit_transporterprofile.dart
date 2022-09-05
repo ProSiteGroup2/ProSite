@@ -8,7 +8,8 @@ import 'package:http/http.dart' as http;
 import 'package:group2/Classes/update_methods.dart';
 
 class Edittransporter extends StatefulWidget {
-  const Edittransporter({Key? key}) : super(key: key);
+  Map<String, dynamic> data;
+  Edittransporter(this.data);
 
   @override
   State<Edittransporter> createState() => _EdittransporterState();
@@ -38,32 +39,43 @@ class _EdittransporterState extends State<Edittransporter> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _usernameController.text = sp['username'];
-    _emailController.text = sp['email'];
-    _contactnumController.text = sp['contactNo'];
-    _addressController.text = sp['address'];
-    _hometwonController.text = sp['hometown'];
-    _districtController.text = sp['district'];
-    _vehicleController.text = sp['vehicle'];
-    _workoutController.text = sp['work_out'];
+    _usernameController.text = widget.data['username'];
+    _emailController.text = widget.data['email'];
+    _contactnumController.text = widget.data['contactNo'];
+    _addressController.text = widget.data['address'];
+    _hometwonController.text = widget.data['hometown'];
+    _districtController.text = widget.data['district'];
+    _vehicleController.text = widget.data['vehicle'];
+    _workoutController.text = widget.data['work_out'];
+  }
+  //String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
+  Future<void> savechanges(String username, String email, String contactNo,
+      String address, String hometown, String district, String vehicle, String work_out) async {
+    Map<String, dynamic> data = {
+      "username": username,
+      "email": email,
+      "contactNo": contactNo,
+      "address": address,
+      "hometown": hometown,
+      "district": district,
+      "vehicle": vehicle,
+      "work_out":work_out
+    };
+    try {
+      await UpdateServices().upadateData('$url/updatetransporterinfo', data);
+      Navigator.pop(context);
+    } catch (err) {
+      print(err.toString());
+      var snackbar = const SnackBar(
+        content: Text('Error: Update is failed'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    }
   }
 
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-
-  File? image;
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print('Failed to pick image:$e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +83,7 @@ class _EdittransporterState extends State<Edittransporter> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Transporterpview()),
-            );
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_new_sharp),
           color: Colors.blueAccent,
@@ -84,10 +93,9 @@ class _EdittransporterState extends State<Edittransporter> {
       ),
       backgroundColor: Color(hexColor('#F0F0F0')),
       body: SingleChildScrollView(
-        child: Stack(
-          children: [
+        child:
             Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
@@ -461,26 +469,7 @@ class _EdittransporterState extends State<Edittransporter> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Center(
-                      child: ElevatedButton.icon(
-                        //label: Icon(Icons.lock),
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[700],
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {},
-                        icon: const Text(
-                          'Changed Password',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        label: const Icon(Icons.lock),
-                      ),
-                    ),
-                    const Divider(
-                      height: 20.0,
-                      color: Colors.black,
-                    ),
+
                     Center(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -488,7 +477,20 @@ class _EdittransporterState extends State<Edittransporter> {
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadiusDirectional.circular(16.0))),
-                        onPressed: () {},
+                        onPressed: () async{
+                          if (_formkey.currentState!.validate()) {
+                            await savechanges(
+                                _usernameController.text,
+                                _emailController.text,
+                                _contactnumController.text,
+                                _addressController.text,
+                              _hometwonController.text,
+                                _districtController.text,
+                                _vehicleController.text,
+                                _workoutController.text
+                            );
+                          }
+                        },
                         child: const Text(
                           'Save changes',
                           style: TextStyle(color: Colors.white),
@@ -502,98 +504,8 @@ class _EdittransporterState extends State<Edittransporter> {
                 ),
               ),
             ),
-            Positioned(
-                child: Center(
-              child: Stack(children: [
-                SizedBox(
-                  height: 107.0,
-                  width: 115.0,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: image != null
-                          ? Image.file(
-                              image!,
-                              width: 115.0,
-                              height: 107.0,
-                              fit: BoxFit.fill,
-                            )
-                          : Image.asset(
-                              'assets/imgs/t1.jpg',
-                              fit: BoxFit.fill,
-                            )),
-                ),
-                Positioned(
-                    bottom: -5.0,
-                    right: -5.0,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.add_a_photo_outlined,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              height: 100.0,
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 20.0),
-                              child: Column(
-                                children: [
-                                  Text('Choose profile photo'),
-                                  const SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.gallery);
-                                        },
-                                        child: const Text(
-                                          'Add from galery',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Color(hexColor('#1982BD')),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(16.0))),
-                                        onPressed: () {
-                                          pickImage(ImageSource.camera);
-                                        },
-                                        child: const Text(
-                                          'Add from Camera',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ))
-              ]),
-            ))
-          ],
-        ),
+
+
       ),
     );
   }

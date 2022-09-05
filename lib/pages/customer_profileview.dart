@@ -1,13 +1,11 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:group2/Classes/userprofiles_getdatamethods.dart';
 import 'package:group2/pages/changepw.dart';
 import 'package:group2/pages/edit_csprofile.dart';
-import 'package:group2/globals.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:http/http.dart' as http;
+
 
 class Customerpview extends StatefulWidget {
   const Customerpview({Key? key}) : super(key: key);
@@ -18,7 +16,7 @@ class Customerpview extends StatefulWidget {
 
 class _CustomerpviewState extends State<Customerpview> {
   String url = 'https://prositegroup2.herokuapp.com';
-
+  //String url = 'http://10.0.2.2:5000';
   Future<Map<String, dynamic>?> getData() async {
     try {
       print('1');

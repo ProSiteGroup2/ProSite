@@ -45,6 +45,20 @@ class ProductMethods{
     }
   }
 
+  getProducts() async {
+    try {
+      return await dio.get('https://prositegroup2.herokuapp.com/getProducts');
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: 'getting products failed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   getCementProduct() async {
     try {
       return await dio.get('https://prositegroup2.herokuapp.com/getCementProduct');

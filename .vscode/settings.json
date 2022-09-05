@@ -6,6 +6,7 @@
 		"Causerol",
 		"contractorview",
 		"Customerhdprofileview",
+		"Customerpview",
 		"fluttertoast",
 		"fresults",
 		"getstart",
@@ -22,13 +23,17 @@
 		"Perera",
 		"pickdate",
 		"ppayment",
+		"Productlist",
+		"productname",
 		"recieve",
 		"Roboto",
 		"spinkit",
 		"splashscreen",
 		"sppassword",
 		"sudesh",
-		"transporterview"
+		"transporterview",
+		"Userlist",
+		"Usermodel"
 	],
 	"java.configuration.updateBuildConfiguration": "automatic"
 }
