@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:group2/Classes/notification_methods.dart';
 import 'package:group2/Classes/service_provider_methods.dart';
 import 'package:group2/common/size.dart';
 
@@ -121,8 +123,31 @@ class _pickdateState extends State<pickdate> {
                   print(app_date);
                   print(app_date_str);
                   print(app_time_str);
-                  await SPMethods().addAppointment(consumer['_id'], sp['email'], app_date_str, app_time_str).then((val){
-                    if(val.data['success']){
+                  var result1=await SPMethods().addAppointment(consumer['_id'], sp['email'], app_date_str, app_time_str);
+                    if(result1.data['success']){
+                      var sp_name;
+                      if(sp['username']!=null){
+                        sp_name=sp['username'];
+                      }else if(sp['contractorname']!=null){
+                        sp_name=sp['contractorname'];
+                      }
+                      var result=await NotificationMethods().hireNotify(sp['_id'], "${consumer['username']} hired $sp_name", consumer['_id']);
+                      if(result.data['success']){
+                        var local_notification=result.data['notification'];
+                        var result2=await NotificationMethods().pushNotifytoWorker(sp['_id'], local_notification['_id']);
+                        if(result2.data['success']){
+                          var result3= await NotificationMethods().pushNotifytoConsumer(consumer['_id'], local_notification['_id']);
+                          if(result3.data['success']){
+                            Fluttertoast.showToast(
+                                msg: '${consumer['username']} hired $sp_name',
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                backgroundColor: Colors.green,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          }
+                        }
+                      }
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
@@ -145,7 +170,7 @@ class _pickdateState extends State<pickdate> {
                         ),
                       );
                     }
-                  });
+
                 },
                 child: Text(
                   'Make Appointment',

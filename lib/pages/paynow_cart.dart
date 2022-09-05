@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/cart_methods.dart';
+import 'package:group2/Classes/notification_methods.dart';
 import 'package:group2/Classes/order_methods.dart';
 import 'package:group2/Classes/product_methods.dart';
 import 'package:group2/common/size.dart';
@@ -335,7 +336,12 @@ class _paynow_cartState extends State<paynow_cart> {
                                   }
                                   for(var i=0;i<tags.length;i++){
                                     await OrderMethods().addOrder(buyerID, tags[i]['product']['_id'], tags[i]['quantity'], tags[i]['price'], tags[i]['product']['seller']);
-
+                                    var result=await NotificationMethods().purchaseNotify(buyerID, "${tags[i]['product']['productname']} has been Purchased", tags[i]['product']['seller'], tags[i]['product']['_id']);
+                                    if(result.data['success']){
+                                      var local_notification=result.data['notification'];
+                                      await NotificationMethods().pushNotifytoSeller(tags[i]['product']['seller'], local_notification['_id']);
+                                      await NotificationMethods().pushNotifytoBuyer(buyerID, local_notification['_id']);
+                                    }
                                   }
                                   Navigator.push(
                                       context,
@@ -344,8 +350,8 @@ class _paynow_cartState extends State<paynow_cart> {
                                               MySample(amount:widget.total_price))
                                     // Payment(amount:"55")),
                                   );
-                                  var result=await CartMethods().deleteProductsinCart(buyerID);
-                                  var result2=await CartMethods().deleteCartProducts(buyerID);
+                                  await CartMethods().deleteProductsinCart(buyerID);
+                                  await CartMethods().deleteCartProducts(buyerID);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.greenAccent[100],
