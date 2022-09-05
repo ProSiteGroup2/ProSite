@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import '../Classes/image_upload.dart';
 import '../Classes/userprofiles_getdatamethods.dart';
 import 'changecontra_pw.dart';
 import 'edit_contractorprof.dart';
@@ -36,10 +37,11 @@ class _ContractorpviewState extends State<Contractorpview> {
       print(err.toString());
       return {};
     }
+
   }
 
   File? image;
-  Future pickImage(ImageSource source) async {
+  Future pickImage(ImageSource source,email) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
@@ -50,6 +52,7 @@ class _ContractorpviewState extends State<Contractorpview> {
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
+    await ImgUpload().consumerProfile(image!,email);
   }
 
   @override
@@ -480,7 +483,7 @@ class _ContractorpviewState extends State<Contractorpview> {
                                                                         16.0))),
                                                             onPressed: () {
                                                               pickImage(
-                                                                  ImageSource.gallery);
+                                                                  ImageSource.gallery,snapshot.data!['email']);
                                                             },
                                                             child: const Text(
                                                               'Add from galery',
@@ -502,7 +505,7 @@ class _ContractorpviewState extends State<Contractorpview> {
                                                                         16.0))),
                                                             onPressed: () {
                                                               pickImage(
-                                                                  ImageSource.camera);
+                                                                  ImageSource.camera,snapshot.data!['email']);
                                                             },
                                                             child: const Text(
                                                               'Add from Camera',
@@ -530,7 +533,7 @@ class _ContractorpviewState extends State<Contractorpview> {
                     } else if (snapshot.hasError) {
                       return const Text('A Error');
                     } else {
-                      return CircularProgressIndicator();
+                      return const Center(child:  CircularProgressIndicator());
                     }
                     },
                     ),

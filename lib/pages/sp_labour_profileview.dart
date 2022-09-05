@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:group2/pages/edit_labourpview.dart';
 import 'package:image_picker/image_picker.dart';
+import '../Classes/image_upload.dart';
 import '../Classes/userprofiles_getdatamethods.dart';
 import 'changelbpw.dart';
 
@@ -39,7 +40,7 @@ class _LabourpviewState extends State<Labourpview> {
   }
 
   File? image;
-  Future pickImage(ImageSource source) async {
+  Future pickImage(ImageSource source,email) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
@@ -50,6 +51,7 @@ class _LabourpviewState extends State<Labourpview> {
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
+    await ImgUpload().consumerProfile(image!,email);
   }
 
   @override
@@ -485,7 +487,7 @@ class _LabourpviewState extends State<Labourpview> {
                                                                               16.0))),
                                                                   onPressed: () {
                                                                     pickImage(
-                                                                        ImageSource.gallery);
+                                                                        ImageSource.gallery,snapshot.data!['email']);
                                                                   },
                                                                   child: const Text(
                                                                     'Add from galery',
@@ -507,7 +509,7 @@ class _LabourpviewState extends State<Labourpview> {
                                                                               16.0))),
                                                                   onPressed: () {
                                                                     pickImage(
-                                                                        ImageSource.camera);
+                                                                        ImageSource.camera,snapshot.data!['email']);
                                                                   },
                                                                   child: const Text(
                                                                     'Add from Camera',
@@ -535,7 +537,7 @@ class _LabourpviewState extends State<Labourpview> {
                     } else if (snapshot.hasError) {
                       return Text('A Error');
                     } else {
-                      return CircularProgressIndicator();
+                      return const Center(child:  CircularProgressIndicator());
                     }
                     },
                 ),
