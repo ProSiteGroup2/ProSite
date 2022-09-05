@@ -1,5 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:group2/pages/edit_transporterprofile.dart';
+import 'package:image_picker/image_picker.dart';
 import '../Classes/userprofiles_getdatamethods.dart';
 import 'changetran_pw.dart';
 
@@ -30,6 +33,20 @@ class _TransporterpviewState extends State<Transporterpview> {
     } catch (err) {
       print(err.toString());
       return {};
+    }
+  }
+
+  File? image;
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      setState(() {
+        this.image = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      print('Failed to pick image:$e');
     }
   }
 
@@ -236,16 +253,97 @@ class _TransporterpviewState extends State<Transporterpview> {
                         ),
                         Positioned(
                             child: Center(
-                              child: SizedBox(
-                                height: 107.0,
-                                width: 115.0,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(16.0),
-                                    child: snapshot.data!['imageUrl']!=null?Image.network(
-                                      '${snapshot.data!['imageUrl']}',
-                                      fit: BoxFit.cover,
-                                    ):Image.asset('assets/imgs/profile.jpg')),
-                              ),
+                              child: Stack(children: [
+                                SizedBox(
+                                  height: 107.0,
+                                  width: 115.0,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(16.0),
+                                      child: snapshot.data!['imageUrl']!=null?Image.network(
+                                        '${snapshot.data!['imageUrl']}',
+                                        fit: BoxFit.cover,
+                                      ):Image.asset('assets/imgs/profile.jpg')),
+                                ),
+                                Positioned(
+                                  bottom: -5.0,
+                                  right: -5.0,
+                                  child: IconButton(
+                                      icon: const Icon(
+                                        Icons.add_a_photo_outlined,
+                                        color: Colors.black,
+                                      ),
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) {
+                                            return Container(
+                                              height: 100.0,
+                                              width:
+                                              MediaQuery.of(context).size.width,
+                                              margin: const EdgeInsets.symmetric(
+                                                  horizontal: 20.0, vertical: 20.0),
+                                              child: Column(
+                                                children: [
+                                                  const Text(
+                                                      'Choose profile photo'),
+                                                  const SizedBox(
+                                                    height: 10.0,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                    children: [
+                                                      ElevatedButton(
+                                                        style: ElevatedButton.styleFrom(
+                                                            primary: Color(hexColor(
+                                                                '#1982BD')),
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                BorderRadiusDirectional
+                                                                    .circular(
+                                                                    16.0))),
+                                                        onPressed: () {
+                                                          pickImage(
+                                                              ImageSource.gallery);
+                                                        },
+                                                        child: const Text(
+                                                          'Add from galery',
+                                                          style: TextStyle(
+                                                              color: Colors.white),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10.0,
+                                                      ),
+                                                      ElevatedButton(
+                                                        style: ElevatedButton.styleFrom(
+                                                            primary: Color(hexColor(
+                                                                '#1982BD')),
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                BorderRadiusDirectional
+                                                                    .circular(
+                                                                    16.0))),
+                                                        onPressed: () {
+                                                          pickImage(
+                                                              ImageSource.camera);
+                                                        },
+                                                        child: const Text(
+                                                          'Add from Camera',
+                                                          style: TextStyle(
+                                                              color: Colors.white),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }),
+                                )
+                              ]),
                             ))
                       ],
                     ),

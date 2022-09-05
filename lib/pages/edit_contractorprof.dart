@@ -45,7 +45,8 @@ class _EditcontractorState extends State<Editcontractor> {
     _no_workersController.text = widget.data['no_of_workers'];
   }
 
-  String url = 'http://10.0.2.2:5000';
+  //String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
   Future<void> savechanges(String contractorname, String email, String contactNo,
       String address, String hometown, String district, String regno, String no_workers) async {
     Map<String, dynamic> data = {
