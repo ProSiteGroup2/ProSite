@@ -72,10 +72,10 @@ class _ImageCauserol_ordersState extends State<ImageCauserol_orders> {
               child: ElevatedButton(
 
                 onPressed: () {
-                  sp=tags[i];
+                  product=tags[i];
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => new Cscontractorview()),
+                    MaterialPageRoute(builder: (context) => ItemDetails()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

@@ -14,8 +14,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../globals.dart';
 
 class ItemDetails extends StatefulWidget {
-  final Map product;
-  const ItemDetails({Key? key,  required this.product}) : super(key: key);
+  // final Map product;
+  const ItemDetails({Key? key}) : super(key: key);
 
   @override
   State<ItemDetails> createState() => _ItemDetailsState();

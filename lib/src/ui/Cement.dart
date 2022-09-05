@@ -128,7 +128,7 @@ class _cementState extends State<cement> {
                                               product=tags[i];
                                                   Navigator.push(
                                                     context,
-                                                    MaterialPageRoute(builder: (context) =>ItemDetails(product: product)),
+                                                    MaterialPageRoute(builder: (context) =>ItemDetails()),
                                                   );
                                                 },
                                                 style: ElevatedButton.styleFrom(

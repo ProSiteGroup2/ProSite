@@ -72,7 +72,7 @@ class _ImageCauserolState extends State<ImageCauserol> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>ItemDetails(product: product)),
+                        builder: (context) =>ItemDetails()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

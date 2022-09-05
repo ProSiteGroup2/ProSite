@@ -74,12 +74,13 @@ late String preActivities;
               Container(
                 child: Row(
                   //order id
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
+                      
                       width: kPropWidth(context, 0.5),
                       height: kPropHeight(context, 0.05),
-                      margin: EdgeInsets.fromLTRB(80, 5, 0, 30),
+                      margin: EdgeInsets.fromLTRB(50, 5, 0, 0),
                       child: Text(
                         "Your Order ID :",
                         style: TextStyle(
@@ -91,10 +92,10 @@ late String preActivities;
                       ),
                     ),
                     Container(
-                        width: kPropWidth(context, 0.3),
+                        width: kPropWidth(context, 0.2),
                         height: kPropHeight(context, 0.05),
-                        margin: EdgeInsets.fromLTRB(0, 5, 0, 30),
-                         child: Text("ID",
+                        margin: EdgeInsets.fromLTRB(0, 0, 70, 30),
+                         child: Text("6315f85074eb703db2dd200d",
                         style: TextStyle(
                           fontFamily: "Poppins",
 
