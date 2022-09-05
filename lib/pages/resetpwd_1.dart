@@ -55,6 +55,7 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
       }
     }
     return isValid;
+
   }
 
   @override
@@ -143,10 +144,6 @@ class _ResetPwd_1State extends State<ResetPwd_1> {
                               if (value == null || value.trim().isEmpty) {
                                 return 'Please enter your mobile number';
                               }
-
-                              // if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                              //   return 'Please enter a valid mobile number';
-                              // } else {}
                               return null;
                             },
                             onChanged: (value) => _userConNum = value,
