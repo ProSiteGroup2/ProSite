@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:group2/pages/customer_profileview.dart';
 import 'package:group2/pages/hardware_dashboard.dart';
 import 'package:group2/pages/hardware_profileview.dart';
+import 'package:group2/pages/notifications_hd.dart';
 import 'package:group2/pages/user_profile.dart';
 // import 'package:group2/pages/labour_activities.dart';
 import 'package:group2/src/ui/customer_activities.dart';
@@ -19,7 +20,7 @@ class HdNavBar extends StatefulWidget {
 
 class _HdNavBarState extends State<HdNavBar> {
   int currindex = 0;
-  final screens = [HrdDashboard(), Center(child: Text('Hardware Ativities')), Notifications(), Hardwareprofile()];
+  final screens = [HrdDashboard(), Center(child: Text('Hardware Ativities')), Notifications_hd(), Hardwareprofile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,31 +1,24 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/notification_methods.dart';
 import 'package:group2/Classes/notify.dart';
 
 import '../globals.dart';
 
-
-class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+class Notifications_cont extends StatefulWidget {
+  const Notifications_cont({Key? key}) : super(key: key);
 
   @override
-  State<Notifications> createState() => _NotificationsState();
+  State<Notifications_cont> createState() => _Notifications_contState();
 }
 
-@override
-class _NotificationsState extends State<Notifications> {
+class _Notifications_contState extends State<Notifications_cont> {
 
-  @override
   List<Notify> notice=[
     Notify(msg: 'You Hired irisena',img: 'pro2.png'),
     Notify(msg: 'You purchased cement',img: 'cement.png'),
     Notify(msg: 'You purchased safety goggles',img: 'gog.jpg'),
     Notify(msg: 'You hired Mr.Malan',img: 'worker1.jpg')
   ];
-
 
   @override
   List notices=[];
@@ -34,48 +27,31 @@ class _NotificationsState extends State<Notifications> {
 
   @override
   void initState() {
-    gettingConsumerNotifications();
+    gettingContractorNotifications();
     super.initState();
   }
 
-
-
-  Future<void> gettingConsumerNotifications() async {
-    var result=await NotificationMethods().getConsumerNotify(consumer['_id']);
+  Future<void> gettingContractorNotifications()async {
+    var result=await NotificationMethods().getContractorNotify(sp['_id']);
     if (result.data['success']){
-      var local_consumer=result.data['consumer'];
+      var local_contractor=result.data['contractor'];
       setState(() {
-        notices=local_consumer['notifications'];
+        notices=local_contractor['notifications'];
       });
-      
+
       if(notices.isNotEmpty){
         for(var i=0;i<notices.length;i++){
           if(notices[i]['product']!=null){
             photos.add(notices[i]['product']['imageUrl']);
-          }else if(notices[i]['labour']!=null){
-            photos.add(notices[i]['labour']['imageUrl']);
-          }else if(notices[i]['transporter']!=null){
-            photos.add(notices[i]['transporter']['imageUrl']);
-          }else{
-            photos.add(notices[i]['contractor']['imageUrl']);
+          }else if(notices[i]['consumer']!=null){
+            photos.add(notices[i]['consumer']['imageUrl']);
           }
         }
       }else{
         alert_text='No Notifications';
       }
-
-    }else{
-      Fluttertoast.showToast(
-          msg: 'Getting consumer notifications failed',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
     }
   }
-
-
 
 
   @override
@@ -88,16 +64,16 @@ class _NotificationsState extends State<Notifications> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top:20.0, bottom: 20.0),
-                    child: Text('Notifications',
-                      style: TextStyle(
+                child: Padding(
+                  padding: const EdgeInsets.only(top:20.0, bottom: 20.0),
+                  child: Text('Notifications',
+                    style: TextStyle(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold,
                         fontSize: 25.0
-                      ),
                     ),
-                  ),),
+                  ),
+                ),),
               Padding(
                 padding: const EdgeInsets.fromLTRB(5.0, 0, 0, 0),
                 child: Container(
@@ -138,7 +114,7 @@ class _NotificationsState extends State<Notifications> {
                                 ),
                               ),
                             ),
-                            title: Column(
+                            title:Column(
                               children: [
                                 Text(notices[index]['message'],
                                   style: TextStyle(
@@ -146,14 +122,14 @@ class _NotificationsState extends State<Notifications> {
                                   ),),
                                 SizedBox(height: 10.0,),
                                 Text('Date: ${notices[index]['createdAt'].toString().substring(0,10)}',
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  color: Colors.grey
-                                ),)
+                                  style: TextStyle(
+                                      fontSize: 15.0,
+                                      color: Colors.grey
+                                  ),)
                               ],
                             ),
-                            ),
                           ),
+                        ),
                       );
                     },
                   ),

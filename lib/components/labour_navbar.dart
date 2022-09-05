@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:group2/pages/customer_profileview.dart';
 import 'package:group2/pages/hardware_dashboard.dart';
 import 'package:group2/pages/labour_activities.dart';
+import 'package:group2/pages/notifications_labour.dart';
 import 'package:group2/pages/sp_labour_profileview.dart';
 import 'package:group2/pages/user_profile.dart';
 // import 'package:group2/pages/labour_activities.dart';
@@ -21,7 +22,7 @@ class LabNavBar extends StatefulWidget {
 
 class _LabNavBarState extends State<LabNavBar> {
   int currindex = 0;
-  final screens = [SP_HomeScreen(), LActivity(), Notifications(), Labourpview()];
+  final screens = [SP_HomeScreen(), LActivity(), Notifications_labour(), Labourpview()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

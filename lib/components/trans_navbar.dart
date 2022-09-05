@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:group2/pages/customer_profileview.dart';
 import 'package:group2/pages/hardware_dashboard.dart';
+import 'package:group2/pages/notifications_trans.dart';
 import 'package:group2/pages/sp_transporter_profileview.dart';
 import 'package:group2/pages/user_profile.dart';
 // import 'package:group2/pages/labour_activities.dart';
@@ -21,7 +22,7 @@ class TransNavBar extends StatefulWidget {
 
 class _TransNavBarState extends State<TransNavBar> {
   int currindex = 0;
-  final screens = [SP_HomeScreen(), LActivity(), Notifications(), Transporterpview()];
+  final screens = [SP_HomeScreen(), LActivity(), Notifications_trans(), Transporterpview()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:group2/pages/customer_profileview.dart';
 import 'package:group2/pages/hardware_dashboard.dart';
+import 'package:group2/pages/notifications_contractor.dart';
 import 'package:group2/pages/sp_contractor_profileview.dart';
 import 'package:group2/pages/user_profile.dart';
 // import 'package:group2/pages/labour_activities.dart';
@@ -22,7 +23,7 @@ class ConNavBar extends StatefulWidget {
 
 class _ConNavBarState extends State<ConNavBar> {
   int currindex = 0;
-  final screens = [SP_HomeScreen(), LActivity(), Notifications(), Contractorpview()];
+  final screens = [SP_HomeScreen(), LActivity(), Notifications_cont(), Contractorpview()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
