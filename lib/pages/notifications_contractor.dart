@@ -13,12 +13,6 @@ class Notifications_cont extends StatefulWidget {
 
 class _Notifications_contState extends State<Notifications_cont> {
 
-  List<Notify> notice=[
-    Notify(msg: 'You Hired irisena',img: 'pro2.png'),
-    Notify(msg: 'You purchased cement',img: 'cement.png'),
-    Notify(msg: 'You purchased safety goggles',img: 'gog.jpg'),
-    Notify(msg: 'You hired Mr.Malan',img: 'worker1.jpg')
-  ];
 
   @override
   List notices=[];
