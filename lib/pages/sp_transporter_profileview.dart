@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:group2/pages/edit_transporterprofile.dart';
 import 'package:image_picker/image_picker.dart';
+import '../Classes/image_upload.dart';
 import '../Classes/userprofiles_getdatamethods.dart';
 import 'changetran_pw.dart';
 
@@ -37,7 +38,7 @@ class _TransporterpviewState extends State<Transporterpview> {
   }
 
   File? image;
-  Future pickImage(ImageSource source) async {
+  Future pickImage(ImageSource source,email) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
@@ -48,6 +49,7 @@ class _TransporterpviewState extends State<Transporterpview> {
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
+    await ImgUpload().transporterProfile(image!,email);
   }
 
   @override
@@ -304,7 +306,7 @@ class _TransporterpviewState extends State<Transporterpview> {
                                                                     16.0))),
                                                         onPressed: () {
                                                           pickImage(
-                                                              ImageSource.gallery);
+                                                              ImageSource.gallery,snapshot.data!['email']);
                                                         },
                                                         child: const Text(
                                                           'Add from galery',
@@ -326,7 +328,7 @@ class _TransporterpviewState extends State<Transporterpview> {
                                                                     16.0))),
                                                         onPressed: () {
                                                           pickImage(
-                                                              ImageSource.camera);
+                                                              ImageSource.camera,snapshot.data!['email']);
                                                         },
                                                         child: const Text(
                                                           'Add from Camera',
@@ -354,7 +356,7 @@ class _TransporterpviewState extends State<Transporterpview> {
                   } else if (snapshot.hasError) {
                     return const Text('A Error');
                   } else {
-                    return CircularProgressIndicator();
+                    return const Center(child:  CircularProgressIndicator());
                   }
                   },
           ),

@@ -5,6 +5,8 @@ import 'package:group2/Classes/userprofiles_getdatamethods.dart';
 import 'package:group2/pages/changepw.dart';
 import 'package:group2/pages/edit_csprofile.dart';
 import 'package:image_picker/image_picker.dart';
+import '../Classes/image_upload.dart';
+
 
 
 class Customerpview extends StatefulWidget {
@@ -30,7 +32,7 @@ class _CustomerpviewState extends State<Customerpview> {
   }
 
   File? image;
-  Future pickImage(ImageSource source) async {
+  Future pickImage(ImageSource source,email) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
@@ -41,7 +43,11 @@ class _CustomerpviewState extends State<Customerpview> {
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
+
+    await ImgUpload().consumerProfile(image!,email);
+
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -246,7 +252,8 @@ class _CustomerpviewState extends State<Customerpview> {
                                                                         16.0))),
                                                     onPressed: () {
                                                       pickImage(
-                                                          ImageSource.gallery);
+                                                          ImageSource.gallery,snapshot.data!['email']);
+
                                                     },
                                                     child: const Text(
                                                       'Add from galery',
@@ -268,7 +275,10 @@ class _CustomerpviewState extends State<Customerpview> {
                                                                         16.0))),
                                                     onPressed: () {
                                                       pickImage(
-                                                          ImageSource.camera);
+                                                          ImageSource.camera,snapshot.data!['email']
+
+                                                      );
+
                                                     },
                                                     child: const Text(
                                                       'Add from Camera',
@@ -291,12 +301,12 @@ class _CustomerpviewState extends State<Customerpview> {
                     ),
                   ]);
                 } else {
-                  return Text('No data');
+                  return const Text('No data');
                 }
               } else if (snapshot.hasError) {
-                return Text('A Error');
+                return const Text('A Error');
               } else {
-                return CircularProgressIndicator();
+                return const Center(child:  CircularProgressIndicator());
               }
             },
           ),
