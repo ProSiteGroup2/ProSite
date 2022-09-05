@@ -41,7 +41,7 @@ class _EditlabourState extends State<Editlabour> {
     _hometwonController.text = widget.data['hometown'];
     _districtController.text = widget.data['district'];
     _qulificationController.text = widget.data['qualification'];
-    _experienceController.text = widget.data['experience'];
+    _experienceController.text = widget.data['experience'].toString();
   }
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
