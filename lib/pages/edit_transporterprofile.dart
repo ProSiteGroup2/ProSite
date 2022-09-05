@@ -48,7 +48,8 @@ class _EdittransporterState extends State<Edittransporter> {
     _vehicleController.text = widget.data['vehicle'];
     _workoutController.text = widget.data['work_out'];
   }
-  String url = 'http://10.0.2.2:5000';
+  //String url = 'http://10.0.2.2:5000';
+  String url = 'https://prositegroup2.herokuapp.com';
   Future<void> savechanges(String username, String email, String contactNo,
       String address, String hometown, String district, String vehicle, String work_out) async {
     Map<String, dynamic> data = {

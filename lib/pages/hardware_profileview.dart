@@ -22,8 +22,8 @@ class _HardwareprofileState extends State<Hardwareprofile> {
     'assets/imgs/h6.jpg',
   ];
 
-  //String url = 'http://10.0.2.2:5000';
-  String url = 'https://prositegroup2.herokuapp.com';
+  String url = 'http://10.0.2.2:5000';
+  //String url = 'https://prositegroup2.herokuapp.com';
   Future<Map<String, dynamic>?> getData() async {
     try {
       print('1');
