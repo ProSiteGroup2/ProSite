@@ -565,7 +565,7 @@ class _Suggestions_detState extends State<Suggestions_det>
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          paynow(quantity: local_quantity)),
+                                          paynow(quantity: local_quantity,)),
                                 );
                               } else {
                                 Fluttertoast.showToast(
