@@ -49,7 +49,7 @@ class _HardwareprofileState extends State<Hardwareprofile> {
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
-    await ImgUpload().consumerProfile(image!,email);
+    await ImgUpload().hardwareProfile(image!,email);
   }
 
   @override

@@ -49,7 +49,7 @@ class _TransporterpviewState extends State<Transporterpview> {
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
-    await ImgUpload().consumerProfile(image!,email);
+    await ImgUpload().transporterProfile(image!,email);
   }
 
   @override

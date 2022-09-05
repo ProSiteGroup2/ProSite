@@ -52,7 +52,7 @@ class _ContractorpviewState extends State<Contractorpview> {
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
-    await ImgUpload().consumerProfile(image!,email);
+    await ImgUpload().contractorProfile(image!,email);
   }
 
   @override

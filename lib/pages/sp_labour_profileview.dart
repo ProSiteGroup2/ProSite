@@ -51,7 +51,7 @@ class _LabourpviewState extends State<Labourpview> {
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
-    await ImgUpload().consumerProfile(image!,email);
+    await ImgUpload().labourProfile(image!,email);
   }
 
   @override
