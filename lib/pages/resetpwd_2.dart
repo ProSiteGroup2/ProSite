@@ -1,10 +1,10 @@
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors, avoid_unnecessary_containers, deprecated_member_use, unnecessary_new, unused_field, non_constant_identifier_names, override_on_non_overriding_member, must_call_super, prefer_final_fields, camel_case_types
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/pages/newloginas_cons.dart';
-
 import '../Classes/authenticate_service.dart';
 
 class ResetPwd_2 extends StatefulWidget {
@@ -29,6 +29,8 @@ class _ResetPwd_2State extends State<ResetPwd_2> {
   _ResetPwd_2State({required this.contactNo}) {
     this._userConNum = contactNo;
   }
+
+  // get http => null;
 
   bool? _trySubmitForm() {
     final bool? isValid = _formKey.currentState?.validate();
@@ -138,6 +140,12 @@ class _ResetPwd_2State extends State<ResetPwd_2> {
                               height: 68,
                               width: 64,
                               child: TextFormField(
+                                validator: (otp_1) {
+                                  if (otp_1 == null || otp_1.trim().isEmpty) {
+                                    return 'Required';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) {
                                   otp_1 = value;
                                   if (value.length == 1) {
@@ -159,6 +167,12 @@ class _ResetPwd_2State extends State<ResetPwd_2> {
                               height: 68,
                               width: 64,
                               child: TextFormField(
+                                validator: (otp_2) {
+                                  if (otp_2 == null || otp_2.trim().isEmpty) {
+                                    return 'Required';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) {
                                   otp_2 = value;
                                   if (value.length == 1) {
@@ -180,6 +194,12 @@ class _ResetPwd_2State extends State<ResetPwd_2> {
                               height: 68,
                               width: 64,
                               child: TextFormField(
+                                validator: (otp_3) {
+                                  if (otp_3 == null || otp_3.trim().isEmpty) {
+                                    return 'Required';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) {
                                   otp_3 = value;
                                   if (value.length == 1) {
@@ -201,6 +221,12 @@ class _ResetPwd_2State extends State<ResetPwd_2> {
                               height: 68,
                               width: 64,
                               child: TextFormField(
+                                validator: (otp_4) {
+                                  if (otp_4 == null || otp_4.trim().isEmpty) {
+                                    return 'Required';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) {
                                   otp_4 = value;
                                   if (value.length == 1) {
@@ -248,16 +274,35 @@ class _ResetPwd_2State extends State<ResetPwd_2> {
                     ),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {
-                          _otp = otp_1 + otp_2 + otp_3 + otp_4;
-                          print(_otp);
-                          bool? x = _trySubmitForm();
-                          if (x == true) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => NewLoginas_cons()),
-                            );
+                        onPressed: () async {
+                          try {
+                            print("A");
+                            final otp = "${otp_1}${otp_2}${otp_3}${otp_4}";
+                            print(otp);
+                            print(contactNo);
+
+                            // var url = Uri.parse(
+                            //     'https://prositegroup2.herokuapp.com/otpVerify');
+
+                            var response = await new Dio().post(
+                                "https://prositegroup2.herokuapp.com/otpVerify",
+                                data: {'telephoneNo': contactNo, '_otp': otp});
+
+                            print('Response status: ${response}');
+
+                            print('Response body: ${response.data}');
+
+                            bool? x = _trySubmitForm();
+                            if (x == true ) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NewLoginas_cons()),
+                              );
+                            }
+
+                          } on DioError catch (err) {
+                            print(err.message);
                           }
                         },
                         child: Text(
