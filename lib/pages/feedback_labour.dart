@@ -137,7 +137,7 @@ class _FeedbackLabState extends State<FeedbackLab> with TickerProviderStateMixin
                                               tags: snapshot.data!,
                                             );
                                           }else{
-                                            return CircularProgressIndicator();
+                                            return Center(child: CircularProgressIndicator());
                                           }
                                         },
                                       )

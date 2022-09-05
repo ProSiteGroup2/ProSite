@@ -136,7 +136,7 @@ class _FeedbackHdState extends State<FeedbackHd> with TickerProviderStateMixin {
                                               tags: snapshot.data!,
                                             );
                                           }else{
-                                            return CircularProgressIndicator();
+                                            return Center(child: CircularProgressIndicator());
                                           }
                                         },
                                       )

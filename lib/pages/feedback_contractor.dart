@@ -138,7 +138,7 @@ class _FeedbackConState extends State<FeedbackCon> with TickerProviderStateMixin
                                                         tags: snapshot.data!,
                                                       );
                                                     }else{
-                                                      return CircularProgressIndicator();
+                                                      return Center(child: CircularProgressIndicator());
                                                     }
                                                   },
                                                 )

@@ -137,7 +137,7 @@ class _FeedbackTranState extends State<FeedbackTran> with TickerProviderStateMix
                                               tags: snapshot.data!,
                                             );
                                           }else{
-                                            return CircularProgressIndicator();
+                                            return Center(child: CircularProgressIndicator());
                                           }
                                         },
                                       )

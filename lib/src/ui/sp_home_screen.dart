@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/product_methods.dart';
+import 'package:group2/Classes/service_provider_methods.dart';
 import 'package:group2/common/size.dart';
 import 'package:group2/components/image_causerol.dart';
 import 'package:group2/components/image_causerol_a.dart';
+import 'package:group2/components/image_causerol_orders.dart';
 import 'package:group2/pages/about_setting.dart';
 import 'package:group2/pages/loginas_cons.dart';
 import 'package:group2/pages/loginpage.dart';
@@ -22,6 +24,21 @@ class SP_HomeScreen extends StatefulWidget {
 }
 
 class _SP_HomeScreenState extends State<SP_HomeScreen>{
+
+  Future<List<dynamic>?> gettingOrders() async {
+    var results = await SPMethods().getOrders();
+    if (results.data['success']) {
+      return results.data['orders'];
+    } else {
+      Fluttertoast.showToast(
+          msg: results.data['msg'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 
 Map<String, dynamic> data = {
     "isRegisted": true,
@@ -591,10 +608,19 @@ Map<String, dynamic> data = {
                                      ]),
                                    ),         
                                Container( 
-                                 child: ImageCauserol(
-                                       tags: data['tags'],
-                                       
-                                     ),
+                                child: FutureBuilder<List<dynamic>?>(
+                                future: gettingOrders(),
+                                builder:
+                                    (context, AsyncSnapshot<List<dynamic>?> snapshot) {
+                                  if (snapshot.hasData) {
+                                    return ImageCauserol_orders(
+                                      tags: snapshot.data!,
+                                    );
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        },
+                      )
                                ),
                                      ],
                                    ),
