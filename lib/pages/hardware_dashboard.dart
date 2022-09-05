@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/product_methods.dart';
 import 'package:group2/common/size.dart';
@@ -9,6 +10,8 @@ import 'package:group2/components/image_causerol_b.dart';
 import 'package:group2/pages/about_setting.dart';
 import 'package:group2/pages/additem.dart';
 import 'package:group2/pages/loginas_cons.dart';
+import 'package:group2/src/ui/Suggestion.dart';
+import 'package:group2/src/ui/user_api.dart';
 
 import '../globals.dart';
 
@@ -103,7 +106,7 @@ class _HrdDashboardState extends State<HrdDashboard> {
                 return [
                   PopupMenuItem<int>(
                     value: 0,
-                    child: Text("About and Settings"),
+                    child: Text("About"),
                   ),
                   PopupMenuItem<int>(
                     value: 1,
@@ -153,47 +156,70 @@ class _HrdDashboardState extends State<HrdDashboard> {
           child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.all(20),
-              child: Row(
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: TextField(
-                      style: const TextStyle(height: 0.5),
-                      cursorColor: Colors.grey,
-                      decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.only(right: 15, left: 18),
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide.none),
-                        hintText: 'Search Ad...',
-                        hintStyle: const TextStyle(
-                            fontFamily: 'Poppins',
-                            color: Colors.grey,
-                            fontSize: 16),
+             Container(
+                        padding: const EdgeInsets.only(right: 15, left: 15),
+                        margin: const EdgeInsets.only(top: 15, bottom: 15),
+                        child: TypeAheadField<User?>(
+                          hideSuggestionsOnKeyboardHide: true,
+                          textFieldConfiguration: TextFieldConfiguration(
+                              autofocus: false,
+                              style: DefaultTextStyle.of(context)
+                                  .style
+                                  .copyWith(fontStyle: FontStyle.italic),
+                              decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.search_rounded),
+                                contentPadding:
+                                    const EdgeInsets.only(right: 15, left: 18),
+                                fillColor: Colors.white,
+                                filled: true,
+                                
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    
+                                    borderSide: BorderSide.none),
+                                    
+                                hintText: 'Search Item...',
+                                hintStyle: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.grey,
+                                    fontSize: 18),
+                              )),
+                          suggestionsCallback: UserApi.getProductSuggestions,
+                          itemBuilder: (context, User? suggestion) {
+                            final user = suggestion!;
+                            return ListTile(
+                              leading: Image.network(
+                                user.imageUrl,
+                              ),
+                              title: Text(
+                                user.productname,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text('Rs.' + '${user.price}'),
+                            );
+                          },
+                          noItemsFoundBuilder: (context) => Container(
+                            height: 100,
+                            child: Center(
+                              child: Text(
+                                'No Users Found.',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ),
+                          onSuggestionSelected: (User? suggestion) {
+                            User user = suggestion!;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Suggestions_det(user: user)),
+                            );
+                           
+                          },
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    padding: const EdgeInsets.only(right: 5, left: 5),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: IconButton(
-                      icon: const Icon(Icons.search, color: Colors.white),
-                      onPressed: () {
-                        print("b");
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                     
             Container(
               //most pop
               child: Column(

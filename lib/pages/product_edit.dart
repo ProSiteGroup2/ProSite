@@ -9,27 +9,27 @@ import 'package:image_picker/image_picker.dart';
 import 'package:group2/globals.dart';
 
 
-class AddProduct extends StatefulWidget {
-  const AddProduct({Key? key}) : super(key: key);
+class editProduct extends StatefulWidget {
+  const editProduct({Key? key}) : super(key: key);
 
   @override
-  State<AddProduct> createState() => _AddProductState();
+  State<editProduct> createState() => _editProductState();
 }
 
-class _AddProductState extends State<AddProduct> {
+class _editProductState extends State<editProduct> {
+
   var c_choose;
   List category=['Cement','Bricks','Steel','Sand'];
   final _formKey = GlobalKey<FormState>();
 
   File? image;
   File def_image=File('assets/imgs/default-product-image.jpg');
-  late Map product;
 
   pickImage(ImageSource source) async {
     try {
       final image=await ImagePicker().pickImage(source: source);
       if(image==null) return;
-      
+
       final imageTemporary=File(image.path);
       setState(()=>this.image=imageTemporary);
     } on PlatformException catch (e) {
@@ -37,14 +37,14 @@ class _AddProductState extends State<AddProduct> {
     }
   }
 
-  String _productName = '';
-  int? _productPrice;
-  int? _stock;
-  String _productSize='N/A';
-  String _productCategory='';
-  String _productDescription='';
-  String _productBrand='N/A';
-  String _productSeller=sp['_id'];
+  String _productName = product['productname'];
+  int _productPrice=product['price'];
+  int _stock=product['stock'];
+  String _productSize=product['size'];
+  String _productCategory=product['category'];
+  String _productDescription=product['description'];
+  String _productBrand=product['brand'];
+
 
   Future<void> _trySubmitForm() async {
     final bool? isValid = _formKey.currentState?.validate();
@@ -58,23 +58,40 @@ class _AddProductState extends State<AddProduct> {
       debugPrint(_productCategory);
       debugPrint(_productDescription);
       debugPrint(_productBrand);
-      debugPrint(_productSeller);
 
       if(image==null){
-        Fluttertoast.showToast(
-            msg: 'Please upload a product image',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        var result=await ProductMethods().updateProduct(product['_id'], _productName, _productPrice, _productSize, _stock, _productBrand, _productDescription, _productCategory);
+        if(result.data['success']){
+
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Product Updated Successfully'),
+              content: Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 60,
+              ),
+              actions: [
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(context, '/hdNavBar', (route) => false);
+                    },
+                    child: Text('Done'),
+                  ),
+                )
+              ],
+            ),
+          );
+        }
       }else{
-        await ProductMethods().addProduct(_productName, _productPrice, _stock, _productSize, _productCategory, _productDescription, _productBrand, _productSeller).then((val) async {
+        await ProductMethods().updateProduct(product['_id'], _productName, _productPrice, _productSize, _stock, _productBrand, _productDescription, _productCategory).then((val) async {
           if(val.data['success']){
-            product=val.data['product'];
-            await ImgUpload().productImage(image!, product['_id']).then((val2) async {
+            var local_product=val.data['product'];
+            await ImgUpload().productImage(image!, local_product['_id']).then((val2) async {
               if(val2.data['success']){
-                product=val2.data['product'];
+                local_product=val2.data['product'];
                 await Fluttertoast.showToast(
                     msg: val2.data['msg'],
                     toastLength: Toast.LENGTH_SHORT,
@@ -86,7 +103,7 @@ class _AddProductState extends State<AddProduct> {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Product Saved Successfully'),
+                    title: Text('Product Updated Successfully'),
                     content: Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -127,6 +144,17 @@ class _AddProductState extends State<AddProduct> {
       }
     }
   }
+  @override
+  void initState() {
+    super.initState();
+    item_nameController.text='${product['productname']}';
+    item_priceController.text='${product['price']}';
+    item_stockController.text='${product['stock']}';
+    item_sizeController.text='${product['size']}';
+    item_descriptionController.text='${product['description']}';
+    item_BrandController.text='${product['brand']}';
+
+  }
 
   @override
   final item_nameController = TextEditingController();
@@ -135,7 +163,7 @@ class _AddProductState extends State<AddProduct> {
   final item_sizeController = TextEditingController();
   final item_descriptionController = TextEditingController();
   final item_BrandController = TextEditingController();
-  final item_SellerController = TextEditingController();
+
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,10 +171,10 @@ class _AddProductState extends State<AddProduct> {
       appBar: AppBar(
         backgroundColor: Color(0xFF189AB4),
         title: Text('Add Your Item',
-        style: TextStyle(
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.bold
-        ),),
+          style: TextStyle(
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold
+          ),),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -157,12 +185,20 @@ class _AddProductState extends State<AddProduct> {
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children:<Widget> [
                     SizedBox(height: 15,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Item Name',
+                      style: TextStyle(
+                        fontSize: 18.0
+                      ),
+                      textAlign: TextAlign.left,),
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
+                          horizontal: 20.0, vertical: 5.0),
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -209,7 +245,7 @@ class _AddProductState extends State<AddProduct> {
                         onChanged: (value) => _productName = value,
                       ),
                     ),
-
+                    SizedBox(height: 10.0),
                     Container(
                       margin: EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10.0),
@@ -258,10 +294,18 @@ class _AddProductState extends State<AddProduct> {
                         ),
                       ),
                     ),
-
+                    SizedBox(height: 10.0,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Price',
+                        style: TextStyle(
+                            fontSize: 18.0
+                        ),
+                        textAlign: TextAlign.left,),
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
+                          horizontal: 20.0, vertical: 5.0),
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -309,10 +353,18 @@ class _AddProductState extends State<AddProduct> {
                         onChanged: (value) => _productPrice = int.parse(value),
                       ),
                     ),
-
+                    SizedBox(height: 20.0,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Size',
+                        style: TextStyle(
+                            fontSize: 18.0
+                        ),
+                        textAlign: TextAlign.left,),
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
+                          horizontal: 20.0, vertical: 5.0),
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -359,10 +411,18 @@ class _AddProductState extends State<AddProduct> {
                         onChanged: (value) => _productSize = value,
                       ),
                     ),
-
+                    SizedBox(height: 20.0,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Stock',
+                        style: TextStyle(
+                            fontSize: 18.0
+                        ),
+                        textAlign: TextAlign.left,),
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
+                          horizontal: 20.0, vertical: 5.0),
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -412,10 +472,18 @@ class _AddProductState extends State<AddProduct> {
                         onChanged: (value) => _stock = int.parse(value),
                       ),
                     ),
-
+                    SizedBox(height: 20.0,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Brand',
+                        style: TextStyle(
+                            fontSize: 18.0
+                        ),
+                        textAlign: TextAlign.left,),
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
+                          horizontal: 20.0, vertical: 5.0),
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -467,11 +535,11 @@ class _AddProductState extends State<AddProduct> {
                       children: [
                         SizedBox(height: 15,),
                         Text('Add an Item Image',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold
-                        ),),
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold
+                          ),),
                         SizedBox(height: 10.0,),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -530,7 +598,7 @@ class _AddProductState extends State<AddProduct> {
                                   borderRadius: BorderRadius.circular(20),
                                   color: Colors.white,
                                   image: DecorationImage(
-                                    image: image !=null? FileImage(image!):AssetImage("assets/imgs/default-product-image.jpg") as ImageProvider,
+                                    image: image !=null? FileImage(image!):NetworkImage('${product['imageUrl']}') as ImageProvider,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -540,10 +608,18 @@ class _AddProductState extends State<AddProduct> {
                         ),
                       ],
                     ),
-
+                    SizedBox(height: 20.0,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Description',
+                        style: TextStyle(
+                            fontSize: 18.0
+                        ),
+                        textAlign: TextAlign.left,),
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0),
+                          horizontal: 20.0, vertical: 5.0),
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -594,21 +670,23 @@ class _AddProductState extends State<AddProduct> {
 
 
                     SizedBox(height: 20.0,),
-                    ElevatedButton(
-                      onPressed: _trySubmitForm,
-                      child: Text(
-                        'Save Item',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.white
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: _trySubmitForm,
+                        child: Text(
+                          'Update',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.white
+                          ),
                         ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF189AB4),
-                        padding: EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 25.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(15.0),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF189AB4),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 12.0, horizontal: 25.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(15.0),
+                          ),
                         ),
                       ),
                     ),

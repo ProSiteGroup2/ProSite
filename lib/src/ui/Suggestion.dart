@@ -9,20 +9,24 @@ import 'package:group2/pages/customer_hdprofileview.dart';
 import 'package:group2/pages/customer_spprofileview.dart';
 import 'package:group2/pages/paynow.dart';
 import 'package:group2/pages/user_profile.dart';
+import 'package:group2/src/ui/user_api.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../globals.dart';
 
-class ItemDetails extends StatefulWidget {
-  final Map product;
-  const ItemDetails({Key? key,  required this.product}) : super(key: key);
+class Suggestions_det extends StatefulWidget {
+  final User user;
+  const Suggestions_det({
+    Key? key, required this.user,
+  }) : super(key: key);
 
   @override
-  State<ItemDetails> createState() => _ItemDetailsState();
+  State<Suggestions_det> createState() => _Suggestions_detState();
 }
 
-class _ItemDetailsState extends State<ItemDetails>
+class _Suggestions_detState extends State<Suggestions_det>
     with TickerProviderStateMixin {
+  late User user;
   TextEditingController quantityController = TextEditingController();
   @override
   void initState() {
@@ -91,7 +95,9 @@ class _ItemDetailsState extends State<ItemDetails>
                   ],
                   color: Colors.white,
                   image: DecorationImage(
-                    image: NetworkImage('${product['imageUrl']}'),
+                    image: NetworkImage(
+                      widget.user.imageUrl,
+                    ),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -106,7 +112,7 @@ class _ItemDetailsState extends State<ItemDetails>
                   children: [
                     Expanded(
                       child: Text(
-                        '${product['productname']}',
+                        widget.user.productname,
                         style: TextStyle(
                             fontFamily: "poppins",
                             fontSize: 22,
@@ -124,7 +130,7 @@ class _ItemDetailsState extends State<ItemDetails>
                         color: Colors.blue[700]!.withOpacity(0.4),
                       ),
                       child: Text(
-                        'Rs. ${product['price']}',
+                        'Rs. ${widget.user.price}',
                         style: TextStyle(
                             fontFamily: "poppins",
                             fontWeight: FontWeight.bold,
@@ -180,7 +186,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Category  -   ${product['category']}",
+                                    'Category  -   ${widget.user.category}',
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
@@ -194,7 +200,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Size  -   ${product['size']}",
+                                    "Size  -   ${widget.user.size}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
@@ -208,7 +214,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Stock  -   ${product['stock']}",
+                                    "Stock  -   ${widget.user.stock}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
@@ -222,7 +228,7 @@ class _ItemDetailsState extends State<ItemDetails>
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "Brand  -   ${product['brand']}",
+                                    "Brand  -   ${widget.user.brand}",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontFamily: "poppins",
@@ -251,7 +257,7 @@ class _ItemDetailsState extends State<ItemDetails>
                             margin:
                                 EdgeInsets.only(left: 20, right: 20, top: 15),
                             child: Text(
-                              '${product['description']}',
+                              '${widget.user.description}',
                               textAlign: TextAlign.justify,
                               style: TextStyle(
                                   fontFamily: "poppins",
