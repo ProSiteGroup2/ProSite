@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:group2/Classes/notify.dart';
 
+import '../Classes/notification_methods.dart';
+import '../globals.dart';
+
 
 class Notifications_labour extends StatefulWidget {
   const Notifications_labour({Key? key}) : super(key: key);
@@ -10,12 +13,39 @@ class Notifications_labour extends StatefulWidget {
 }
 
 class _Notifications_labourState extends State<Notifications_labour> {
-  List<Notify> notice=[
-    Notify(msg: 'You Hired irisena',img: 'pro2.png'),
-    Notify(msg: 'You purchased cement',img: 'cement.png'),
-    Notify(msg: 'You purchased safety goggles',img: 'gog.jpg'),
-    Notify(msg: 'You hired Mr.Malan',img: 'worker1.jpg')
-  ];
+
+  @override
+  List notices=[];
+  String alert_text='';
+  List photos=[];
+
+  @override
+  void initState() {
+    gettingLabourNotifications();
+    super.initState();
+  }
+
+  Future<void> gettingLabourNotifications()async {
+    var result=await NotificationMethods().getLabourNotify(sp['_id']);
+    if (result.data['success']){
+      var local_labour=result.data['labour'];
+      setState(() {
+        notices=local_labour['notifications'];
+      });
+
+      if(notices.isNotEmpty){
+        for(var i=0;i<notices.length;i++){
+          if(notices[i]['product']!=null){
+            photos.add(notices[i]['product']['imageUrl']);
+          }else if(notices[i]['consumer']!=null){
+            photos.add(notices[i]['consumer']['imageUrl']);
+          }
+        }
+      }else{
+        alert_text='No Notifications';
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +74,11 @@ class _Notifications_labourState extends State<Notifications_labour> {
                     border: Border.all(color: Colors.white, width: 1),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  height: 400,
+                  height: 600,
                   width: 400,
-                  child: ListView.builder(
+                  child: alert_text!=''?Center(child: Text(alert_text),):notices.isEmpty?Center(child: CircularProgressIndicator()): ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: notice.length,
+                    itemCount: notices.length,
                     itemBuilder: (context, index) {
                       return Card(
                         // color: Colors.cyanAccent,
@@ -59,12 +89,12 @@ class _Notifications_labourState extends State<Notifications_labour> {
                         shadowColor: Colors.blueAccent,
                         margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: ListTile(
                             onTap: () {},
                             leading: Container(
-                              height: 50,
-                              width: 55,
+                              height: 70,
+                              width: 70,
                               // child: Image.asset('assets/imgs/${preActivities[index].profile}'),
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -72,16 +102,25 @@ class _Notifications_labourState extends State<Notifications_labour> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
                                 image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/imgs/${notice[index].img}"),
+                                  image: photos[index]!=null?NetworkImage('${photos[index]}'):AssetImage('assets/imgs/profile.jpg') as ImageProvider,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            title: Text(notice[index].msg,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                              ),),
+                            title:Column(
+                              children: [
+                                Text(notices[index]['message'],
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                  ),),
+                                SizedBox(height: 10.0,),
+                                Text('Date: ${notices[index]['createdAt'].toString().substring(0,10)}',
+                                  style: TextStyle(
+                                      fontSize: 15.0,
+                                      color: Colors.grey
+                                  ),)
+                              ],
+                            ),
                           ),
                         ),
                       );

@@ -19,15 +19,6 @@ class Notifications extends StatefulWidget {
 class _NotificationsState extends State<Notifications> {
 
   @override
-  List<Notify> notice=[
-    Notify(msg: 'You Hired irisena',img: 'pro2.png'),
-    Notify(msg: 'You purchased cement',img: 'cement.png'),
-    Notify(msg: 'You purchased safety goggles',img: 'gog.jpg'),
-    Notify(msg: 'You hired Mr.Malan',img: 'worker1.jpg')
-  ];
-
-
-  @override
   List notices=[];
   String alert_text='';
   List photos=[];
