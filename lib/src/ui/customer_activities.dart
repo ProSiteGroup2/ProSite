@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group2/Classes/authenticate_service.dart';
 import 'package:group2/Classes/customer_pre_activities.dart';
+import 'package:group2/Classes/order_methods.dart';
 import 'package:group2/Classes/service_provider_methods.dart';
 import 'package:group2/globals.dart';
 import 'package:group2/pages/customer_contractorview.dart';
@@ -32,6 +33,7 @@ class _CActivityState extends State<CActivity> {
   void initState() {
     gettingConsumerPastAppointments();
     gettingConsumerUpcomingAppointments();
+    gettingConsumerOrders();
     super.initState();
 
   }
@@ -45,6 +47,8 @@ class _CActivityState extends State<CActivity> {
   List sp_name_up=[];
   String alert_pre='';
   String alert_up='';
+  List orders=[];
+  String alert_text='';
 
   Future<void> gettingConsumerPastAppointments() async {
     var results = await SPMethods().getConsumerPastAppointment(consumer['_id']);
@@ -133,6 +137,18 @@ class _CActivityState extends State<CActivity> {
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
+    }
+  }
+
+  Future<void> gettingConsumerOrders() async {
+    var result=await OrderMethods().getConsumerOrders(consumer['_id']);
+    if(result.data['success']){
+      setState(() {
+        orders=result.data['orders'];
+      });
+      if(orders.isEmpty){
+        alert_text='There are no Purchases';
+      }
     }
   }
 
@@ -580,6 +596,224 @@ class _CActivityState extends State<CActivity> {
                   ),
                 ),
               ),
+              SizedBox(height: 25.0,),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+                child: Text(
+                  'Purchase History',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto',
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.0,),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(5.0, 0, 0, 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 1),
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  height: 220,
+                  width: 400,
+                  child: (alert_text!='')?Center(child: Text(alert_text,style: TextStyle(color: Colors.black),)): orders.isEmpty?Center(child: CircularProgressIndicator()): ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: orders.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        // color: Colors.cyanAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        elevation: 10.0,
+                        shadowColor: Colors.blueAccent,
+                        margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: ListTile(
+                            onTap: (){},
+                            visualDensity: VisualDensity(vertical: 4),
+                            leading: Container(
+                              height: 100,
+                              width: 80,
+                              // child: Image.asset('assets/imgs/${preActivities[index].profile}'),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: Colors.grey.shade200),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                  // NetworkImage("${sp_profile_pre[index]}"),
+                                  image:NetworkImage('${orders[index]['item']['imageUrl']}'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            title: Row(
+                              children: [
+                                Expanded(
+                                  flex:6,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'Product',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              // preActivities[index].hired
+                                              '${orders[index]['item']['productname']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5.0),
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'Quantity',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              //preActivities[index]['date'],
+                                              '${orders[index]['quantity']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'Amount',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              //preActivities[index]['date'],
+                                              'Rs. ${orders[index]['amount']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'OrderID',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              //preActivities[index]['date'],
+                                              '${orders[index]['_id']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex:1,
+                                            child: Text(
+                                              'Seller',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13.0,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex:3,
+                                            child: Text(
+                                              //preActivities[index]['date'],
+                                              '${orders[index]['seller']['hardwarename']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 13.0,
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+
+
             ],
           ),
         ),

@@ -81,7 +81,6 @@ class _deliveryState extends State<delivery> {
           child: Column(
             children: [
               Container(
-
                 margin: EdgeInsets.all(10),
                 alignment: Alignment.bottomCenter,
                 width: kPropWidth(context, 1) ,
